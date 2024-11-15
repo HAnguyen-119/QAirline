@@ -1,0 +1,115 @@
+:root {
+    --primary: #16ba66;
+    --lightBackground: #eefffd;
+    --darkBackground: rgba(4, 16, 62, 0.69);
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    background-color: var(--lightBackground);
+}
+
+.josefin-sans {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+footer {
+    background-color: var(--primary);
+    height: 60px;
+    color: white;
+    margin-bottom: 0;
+    width: auto;
+    bottom: 0;
+}
+
+.navBar {
+    background-color: var(--primary);
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    display: flex;
+    width: 120px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.logo p {
+    font-size: 20px;
+    transform: translateX(-10px);
+}
+
+.navBar a {
+    float: right;
+    font-size: 20px;
+    width: 10%;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navBar a:hover {
+    color: black;
+}
+
+.navBar a.active {
+    background-color: white;
+    color: black;
+}
+
+.flightSearcherContainer {
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+}
+
+.flightSearcher {
+    padding-top: 10px;
+    background-color: var(--lightBackground);
+    border-radius: 15px;
+    margin-left: 30px;
+    width: 30%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flightSearcher input {
+    width: 80%;
+}
+
+.flightSearcher button {
+    width: 30%;
+}
