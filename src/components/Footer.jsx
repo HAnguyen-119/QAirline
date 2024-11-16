@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <div className="footerArea">
+        <div>
             Footer (to be implemented)
         </div>
     )
