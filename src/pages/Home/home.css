@@ -1,5 +1,7 @@
 .home {
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -12,12 +14,26 @@
     background-repeat: no-repeat;
 }
 
+.home hr {
+    margin-top: 3.5rem;
+    margin-bottom: 3rem;
+    width: 60%;
+    align-self: center;
+    height: 2px;
+    border: none;
+    background-color: var(--dark);
+}
+
+.home hr.dark {
+    background-color: var(--light);
+}
+
 .home h1 {
-    margin-top: 4rem;
     margin-left: 1rem;
 }
 
 .flightSearcherContainer {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     height: 400px;
@@ -25,16 +41,19 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-    border: 2px solid var(--darkBackground);
+    border: 2px solid var(--dark);
+    background-image: url('https://static1.simpleflyingimages.com/wordpress/wp-content/uploads/2024/05/ascend-airways-fleet-boeing-737-800-ly-tfs-exterior-1.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .flightSearcherContainer.dark {
-    border: 2px solid var(--lightBackground);
+    border: 2px solid var(--light);
 }
 
 .flightSearcher {
     padding-top: 10px;
-    background-color: var(--lightBackground);
+    background-color: var(--light);
     border-radius: 15px;
     margin-left: 7%;
     width: 30%;
@@ -47,7 +66,7 @@
 }
 
 .flightSearcher input {
-    width: 80%;
+    width: 60%;
 }
 
 .flightSearcher button {
@@ -55,15 +74,15 @@
 }
 
 .flightSearcher.dark {
-    background-color: var(--darkBackground);
+    background-color: var(--dark);
 }
 
 .suggestion {
     position: relative;
-    width: 325px;
-    height: 250px;
+    width: 390px;
+    height: 270px;
     background-color: transparent;
-    border: 2px solid var(--darkBackground);
+    border: 2px solid var(--dark);
     border-radius: 20px;
     overflow: hidden;
 }
@@ -73,17 +92,17 @@
 }
 
 .suggestion:hover a {
-    transform: translateY(-16px);
+    transform: translateY(-19px);
     opacity: 1;
 }
 
 .suggestion.dark {
-    border: 2px solid white;
+    border: 2px solid var(--light);
 }
 
 .suggestion.dark a {
-    background-color: var(--lightBackground);
-    color: var(--lightText);
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 .suggestion p {
@@ -96,11 +115,11 @@
     justify-content: center;
     text-decoration: none;
     border-radius: 10px;
-    background-color: var(--darkBackground);
+    background-color: var(--dark);
     position: absolute;
     right: 6%;
     bottom: 0;
-    color: var(--darkText);
+    color: var(--light);
     width: 100px;
     height: 30px;
     opacity: 0;
@@ -154,4 +173,145 @@
 
 .next.dark {
     background-image: url("src/assets/images/next-dark.png");
+}
+
+.discountContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 250px;
+    gap: 1rem;
+}
+
+.discount {
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    position: relative;
+    color: var(--light);
+    overflow: hidden;
+
+}
+
+.discount:hover > div:nth-child(1) {
+    transform: scale(1.2);
+}
+
+.discount.dark {
+    border: 2px solid var(--light);
+}
+
+.discount > div:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.75);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s ease;
+}
+
+.discount > div:nth-child(2) {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.discount p {
+    font-size: 1.2rem;
+    margin: 7px;
+}
+
+.discount a {
+    color: var(--light);
+    font-size: 0.9rem;
+    margin: 7px;
+}
+
+.discount a.active {
+    color: var(--light);
+}
+
+.discount:nth-child(1) {
+    grid-area: 1 / 1 / 3 / 3;
+}
+
+.discount:nth-child(1) > div:nth-child(1) {
+    background-image: url("https://gbs.edu.mt/media/gixj1o0a/intro-image.jpg?width=3000&height=2000");
+}
+
+.discount:nth-child(2) {
+    grid-area: 1 / 3 / 2 / 5;
+}
+
+.discount:nth-child(2) > div:nth-child(1) {
+    background-image: url("https://people.com/thmb/flx_Cizdjf9MdK6SlnEn7I2zLek=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2)/group-vacation-tout-072523-f3827a4393484e9d8f1fccf202cb63cf.jpg");
+}
+
+.discount:nth-child(3) > div:nth-child(1) {
+    background-image: url("https://tsrmatters.com/wp-content/uploads/2022/11/900x500-students-on-laptop.png");
+}
+
+.discount:nth-child(4) > div:nth-child(1) {
+    background-image: url("https://media.vneconomy.vn/images/upload/2023/07/01/vietnam-becomes-seventh-most-searched-country-worldwide-494.jpg");
+}
+
+.moreDiscount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 200px;
+    height: 35px;
+    text-decoration: none;
+    color: var(--light);
+    background-color: var(--dark);
+    margin-top: 2rem;
+    border-radius: 15px;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.moreDiscount.dark {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.moreDiscount:hover {
+    text-decoration: underline;
+}
+
+.subscribeContainer {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    border: 2px solid var(--dark);
+    background-image: url('https://izitour.com/media/imglib/nha-trang-tru-beach-1.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.subscribeContainer.dark {
+    border: 2px solid var(--light);
+}
+
+.subscribeContainer > h1 {
+    margin: 10%;
+}
+
+.subscribe {
+    width: 40%;
+    height: 70%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 30px;
 }

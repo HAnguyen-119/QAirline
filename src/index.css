@@ -1,17 +1,15 @@
 
 :root {
-    --primary: #16ba5d;
-    --lightBackground: white;
-    --darkBackground: rgb(23, 31, 71);
-    --lightText: rgb(23, 31, 71);
-    --darkText: white;
+    --primary: #16af58;
+    --primary-active: #c1ffe0;
+    --light: white;
+    --dark: rgb(23, 31, 71);
 }
 
 body {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .josefin-sans {

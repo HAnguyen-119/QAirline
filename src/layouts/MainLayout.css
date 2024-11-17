@@ -3,19 +3,19 @@
     display: flex;
     height: 100%;
     flex-direction: column;
-    gap: 5rem;
-    background-color: var(--lightBackground);
-    color: var(--lightText);
+    gap : 3rem;
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 .mainPage.dark {
-    background-color: var(--darkBackground);
-    color: var(--darkText);
+    background-color: var(--dark);
+    color: var(--light);
 }
 
 footer {
     background-color: var(--primary);
-    height: 60px;
+    height: 200px;
     color: white;
     bottom: 0;
     width: auto;
@@ -59,19 +59,19 @@ footer {
 }
 
 .sun {
-    background-color: var(--darkBackground);
+    background-color: var(--dark);
 }
 
 .sun.dark {
-    background-color: var(--lightBackground);
+    background-color: var(--light);
 }
 
 .moon {
-    background-color: var(--lightBackground);
+    background-color: var(--light);
 }
 
 .moon.dark {
-    background-color: var(--darkBackground);
+    background-color: var(--dark);
 }
 
 .switchMode > div > img {
@@ -113,12 +113,12 @@ footer {
 }
 
 .navBar a:hover {
-    color: var(--lightText);
+    color: var(--dark);
 }
 
 .navBar a.active {
-    background-color: white;
-    color: var(--lightText);
+    background-color: var(--primary-active);
+    color: var(--dark);
 }
 
 .navBar a.login {

@@ -11,14 +11,16 @@ import Booking from './pages/Booking/Booking'
 import About from './pages/About/About'
 import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Manage from "./pages/Manage/Manage.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<MainLayout/>}>
         <Route index element={<Home/>} />
         <Route path="/booking" element={<Booking/>} />
+        <Route path="/manage" element={<Manage/>} />
         <Route path="/about" element={<About/>} />
-        <Route path="/Explore" element={<Explore/>} />
-        <Route path="/Login" element={<Login/>} />
+        <Route path="/explore" element={<Explore/>} />
+        <Route path="/login" element={<Login/>} />
     </Route>
 ))
 

@@ -2,8 +2,12 @@ import Suggestion from "../../components/Home/Suggestion.jsx";
 import FlightSearcher from "../../components/Home/FlightSearcher.jsx";
 
 import "./home.css";
-import {useOutletContext} from "react-router-dom";
+import {NavLink, useOutletContext} from "react-router-dom";
 import {useState} from "react";
+import Discount from "../../components/Home/Discount.jsx";
+import {contents} from "../../components/Home/Discount.jsx";
+import News from "../../components/Home/News.jsx";
+import Subscribe from "../../components/Home/Subscribe.jsx";
 
 export default function Home() {
     const isLightMode = useOutletContext();
@@ -25,10 +29,10 @@ export default function Home() {
 
     return (
         <div className="home">
-            <h1>Enjoy the best experience at QAirline</h1>
+            <h1 style={{marginTop: "3rem"}}>Enjoy the best experience at QAirline</h1>
             <FlightSearcher isLightMode={isLightMode}/>
+            <hr className={isLightMode ? "" : "dark"}/>
             <h1>Recommendations</h1>
-
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden"}}>
                 <div className="suggestionContainer" style={{transform: `translate(${viewport}px, 0px)`}}>
                     <Suggestion imageURL="https://www.travelguide.net/media/new-york.jpeg" location="New York"
@@ -52,14 +56,33 @@ export default function Home() {
                 </div>
             </div>
             <br/>
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "1rem"}}>
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem"
+            }}>
                 <button className={`prev ${isLightMode ? "" : "dark"}`} onClick={() => prev()}></button>
                 <p>o o o o o</p>
                 <button className={`next ${isLightMode ? "" : "dark"}`} onClick={() => next()}></button>
             </div>
+            <hr className={isLightMode ? "" : "dark"}/>
             <h1>Discounts</h1>
-            <h1>Services</h1>
+            <div className="discountContainer">
+                <Discount content={contents[0]} isLightMode={isLightMode}/>
+                <Discount content={contents[1]} isLightMode={isLightMode}/>
+                <Discount content={contents[2]} isLightMode={isLightMode}/>
+                <Discount content={contents[3]} isLightMode={isLightMode}/>
+            </div>
+            <NavLink className={`moreDiscount ${isLightMode ? "" : "dark"}`} to="/booking">See more discounts</NavLink>
+            <hr className={isLightMode ? "" : "dark"}/>
             <h1>News</h1>
+            <div className="newsContainer">
+                <News/>
+            </div>
+            <hr className={isLightMode ? "" : "dark"}/>
+            <Subscribe isLightMode={isLightMode}/>
         </div>
     )
 }

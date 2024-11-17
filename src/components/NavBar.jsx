@@ -8,6 +8,7 @@ export default function NavBar({switchMode, isLightMode}) {
             <Logo/>
             <NavLink to='/'>Home</NavLink>
             <NavLink to='/booking'>Booking</NavLink>
+            <NavLink to='/manage'>Manage</NavLink>
             <NavLink to='/explore'>Explore</NavLink>
             <NavLink to='/about'>About</NavLink>
             <div className="switchMode" onClick={switchMode}>
