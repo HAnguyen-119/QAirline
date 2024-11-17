@@ -4,7 +4,7 @@
     margin-right: auto;
 }
 
-.home button {
+.flightSearcherContainer button {
     width: 50px;
     height: 50px;
     background-size: cover;
@@ -17,12 +17,53 @@
     margin-left: 1rem;
 }
 
+.flightSearcherContainer {
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--darkBackground);
+}
+
+.flightSearcherContainer.dark {
+    border: 2px solid var(--lightBackground);
+}
+
+.flightSearcher {
+    padding-top: 10px;
+    background-color: var(--lightBackground);
+    border-radius: 15px;
+    margin-left: 7%;
+    width: 30%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flightSearcher input {
+    width: 80%;
+}
+
+.flightSearcher button {
+    width: 30%;
+}
+
+.flightSearcher.dark {
+    background-color: var(--darkBackground);
+}
+
 .suggestion {
     position: relative;
-    width: 300px;
+    width: 325px;
     height: 250px;
     background-color: transparent;
-    border: 2px solid black;
+    border: 2px solid var(--darkBackground);
     border-radius: 20px;
     overflow: hidden;
 }
@@ -86,45 +127,31 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+    transition: transform 0.5s ease;
 }
 
-.flightSearcherContainer {
-    margin-left: auto;
-    margin-right: auto;
-    height: 400px;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    border: 2px solid black;
+.prev, .next {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-.flightSearcherContainer.dark {
-    border: 2px solid white;
+.prev {
+    background-image: url("src/assets/images/previous.png");
 }
 
-.flightSearcher {
-    padding-top: 10px;
-    background-color: var(--lightBackground);
-    border-radius: 15px;
-    margin-left: 7%;
-    width: 30%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+.prev.dark {
+    background-image: url("src/assets/images/previous-dark.png");
 }
 
-.flightSearcher input {
-    width: 80%;
+.next {
+    background-image: url("src/assets/images/next.png");
 }
 
-.flightSearcher button {
-    width: 30%;
-}
-
-.flightSearcher.dark {
-    background-color: var(--darkBackground);
+.next.dark {
+    background-image: url("src/assets/images/next-dark.png");
 }

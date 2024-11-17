@@ -1,7 +1,6 @@
 
 :root {
-    --lightPrimary: #16ba5d;
-    --darkPrimary: #ffd500;
+    --primary: #16ba5d;
     --lightBackground: white;
     --darkBackground: rgb(23, 31, 71);
     --lightText: rgb(23, 31, 71);

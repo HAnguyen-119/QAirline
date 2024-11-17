@@ -1,6 +1,7 @@
-// eslint-disable-next-line react/prop-types
+
 import {NavLink} from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 export default function Suggestion({imageURL, location, price, isLightMode}) {
     return (
         <div className={`suggestion ${isLightMode ? "" : "dark"}`}>
