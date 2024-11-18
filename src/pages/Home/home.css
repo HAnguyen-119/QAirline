@@ -195,6 +195,15 @@
     transform: scale(1.2);
 }
 
+.discount:hover a {
+    transform: translateY(-10px);
+    opacity: 1;
+}
+
+.discount:hover p {
+    transform: translateY(-20px);
+}
+
 .discount.dark {
     border: 2px solid var(--light);
 }
@@ -210,20 +219,29 @@
 }
 
 .discount > div:nth-child(2) {
+    width: 100%;
     position: absolute;
     bottom: 10px;
     left: 10px;
 }
 
 .discount p {
+    width: 100%;
     font-size: 1.2rem;
     margin: 7px;
+    position: absolute;
+    bottom: 0;
+    transition: 0.5s ease;
 }
 
 .discount a {
     color: var(--light);
     font-size: 0.9rem;
     margin: 7px;
+    position: absolute;
+    bottom: -14px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .discount a.active {
@@ -277,6 +295,75 @@
 
 .moreDiscount:hover {
     text-decoration: underline;
+}
+
+.newsContainer {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 2px solid var(--dark);
+    overflow: hidden;
+}
+
+.newsContainer.dark {
+    border: 2px solid var(--light);
+}
+
+.news:not(:last-child) {
+    border-bottom: 2px solid var(--dark);
+    height: 33.33%;
+}
+
+.news.dark:not(:last-child) {
+    border-bottom: 2px solid var(--light);
+}
+
+.news > div:nth-child(1) {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.news > div:nth-child(2) {
+    position: relative;
+    width: 85%;
+}
+
+.news > div:nth-child(2) > div:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.6);
+    transition: filter 0.5s ease;
+}
+
+.news:hover > div:nth-child(2) > div:nth-child(1) {
+    filter: brightness(0.9);
+}
+.news > div:nth-child(2) > div:nth-child(2) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 46%;
+    left: 2%;
+    font-size: 1.2rem;
+    color: var(--light);
+}
+
+.news {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    transition: flex 0.5s ease;
+}
+
+.news:hover {
+    flex: 3;
 }
 
 .subscribeContainer {

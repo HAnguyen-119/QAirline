@@ -6,7 +6,7 @@ import {NavLink, useOutletContext} from "react-router-dom";
 import {useState} from "react";
 import Discount from "../../components/Home/Discount.jsx";
 import {contents} from "../../components/Home/Discount.jsx";
-import News from "../../components/Home/News.jsx";
+import News, {newsContents} from "../../components/Home/News.jsx";
 import Subscribe from "../../components/Home/Subscribe.jsx";
 
 export default function Home() {
@@ -78,9 +78,12 @@ export default function Home() {
             <NavLink className={`moreDiscount ${isLightMode ? "" : "dark"}`} to="/booking">See more discounts</NavLink>
             <hr className={isLightMode ? "" : "dark"}/>
             <h1>News</h1>
-            <div className="newsContainer">
-                <News/>
+            <div className={`newsContainer ${isLightMode ? "" : "dark"}`}>
+                <News date={newsContents[0][0]} content={newsContents[0][1]} contentImage={newsContents[0][2]} isLightMode={isLightMode}/>
+                <News date={newsContents[1][0]} content={newsContents[1][1]} contentImage={newsContents[1][2]} isLightMode={isLightMode}/>
+                <News date={newsContents[2][0]} content={newsContents[2][1]} contentImage={newsContents[2][2]} isLightMode={isLightMode}/>
             </div>
+
             <hr className={isLightMode ? "" : "dark"}/>
             <Subscribe isLightMode={isLightMode}/>
         </div>
