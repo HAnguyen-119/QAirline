@@ -3,7 +3,6 @@ import FlightSearcher from "../../components/Home/FlightSearcher.jsx";
 
 import "./home.css";
 import {NavLink, useOutletContext} from "react-router-dom";
-import {useState} from "react";
 import Discount from "../../components/Home/Discount.jsx";
 import {contents} from "../../components/Home/Discount.jsx";
 import News, {newsContents} from "../../components/Home/News.jsx";
@@ -11,20 +10,35 @@ import Subscribe from "../../components/Home/Subscribe.jsx";
 
 export default function Home() {
     const isLightMode = useOutletContext();
-    const [viewport, setViewport] = useState("0");
 
     function next() {
         const suggestionWidth = document.querySelector(".suggestion").offsetWidth;
         const suggestionContainer = document.querySelector(".suggestionContainer");
         const gap = parseFloat(getComputedStyle(suggestionContainer).gap)
-        setViewport(vp => (parseInt(vp) - (suggestionWidth + gap)).toString());
+        suggestionContainer.style.transform = `translateX(${-2 * (suggestionWidth + gap)}px)`;
+        suggestionContainer.style.transition = "transform 0.5s ease";
+        setTimeout(() => {
+            const first = suggestionContainer.firstChild;
+            suggestionContainer.removeChild(first);
+            suggestionContainer.appendChild(first);
+            suggestionContainer.style.transform = `translateX(${- suggestionWidth - gap}px)`;
+            suggestionContainer.style.transition = "none";
+        }, 500);
     }
 
     function prev() {
         const suggestionWidth = document.querySelector(".suggestion").offsetWidth;
         const suggestionContainer = document.querySelector(".suggestionContainer");
         const gap = parseFloat(getComputedStyle(suggestionContainer).gap)
-        setViewport(vp => (parseInt(vp) + (suggestionWidth + gap)).toString());
+        suggestionContainer.style.transform = `translateX(0)`;
+        suggestionContainer.style.transition = "transform 0.5s ease";
+        setTimeout(() => {
+            const last = suggestionContainer.lastChild;
+            suggestionContainer.removeChild(last);
+            suggestionContainer.insertBefore(last, suggestionContainer.firstChild);
+            suggestionContainer.style.transform = `translateX(${- suggestionWidth - gap}px)`;
+            suggestionContainer.style.transition = "none";
+        }, 500);
     }
 
     return (
@@ -34,7 +48,7 @@ export default function Home() {
             <hr className={isLightMode ? "" : "dark"}/>
             <h1>Recommendations</h1>
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden"}}>
-                <div className="suggestionContainer" style={{transform: `translate(${viewport}px, 0px)`}}>
+                <div className="suggestionContainer">
                     <Suggestion imageURL="https://www.travelguide.net/media/new-york.jpeg" location="New York"
                                 price="100 USD" isLightMode={isLightMode}/>
                     <Suggestion imageURL="https://media.timeout.com/images/106181719/750/562/image.jpg" location="Paris"
@@ -63,9 +77,21 @@ export default function Home() {
                 justifyContent: "center",
                 gap: "1rem"
             }}>
-                <button className={`prev ${isLightMode ? "" : "dark"}`} onClick={() => prev()}></button>
+                <button className={`prev ${isLightMode ? "" : "dark"}`} onClick={(e) => {
+                    prev();
+                    e.target.disabled = true;
+                    setTimeout(() => {
+                        e.target.disabled = false
+                    }, 500)
+                }}></button>
                 <p>o o o o o</p>
-                <button className={`next ${isLightMode ? "" : "dark"}`} onClick={() => next()}></button>
+                <button className={`next ${isLightMode ? "" : "dark"}`} onClick={(e) => {
+                    next();
+                    e.target.disabled = true;
+                    setTimeout(() => {
+                        e.target.disabled = false
+                    }, 500)
+                }}></button>
             </div>
             <hr className={isLightMode ? "" : "dark"}/>
             <h1>Discounts</h1>
