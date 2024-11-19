@@ -1,8 +1,8 @@
 export default function Subscribe({isLightMode}) {
     return (
-        <div className={`subscribeContainer ${isLightMode ? "" : "dark"}`} >
+        <div className={`subscribeContainer${isLightMode ? "" : "dark"}`} >
             <h1 style={{color :"var(--light)"}}>Never miss an offer</h1>
-            <div className={`subscribe ${isLightMode ? "" : "dark"}`}>
+            <div className={`subscribe${isLightMode ? "" : "dark"}`}>
                 <h2>Subscribe now !</h2>
                 <input className="josefin-sans" type="text" placeholder="Email address"/>
                 <div style={{display: "flex"}}>
