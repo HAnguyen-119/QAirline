@@ -12,6 +12,7 @@ import About from './pages/About/About'
 import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Manage from "./pages/Manage/Manage.jsx";
+import Signup from "./pages/Signup/Signup.jsx"
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<MainLayout/>}>
@@ -21,6 +22,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/about" element={<About/>} />
         <Route path="/explore" element={<Explore/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path='/signup' element={<Signup/>} />
     </Route>
 ))
 
