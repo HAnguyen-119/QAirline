@@ -1,3 +1,5 @@
+
+
 .home {
     display: flex;
     flex-direction: column;
@@ -406,4 +408,95 @@
     justify-content: center;
     flex-direction: column;
     margin-left: 30px;
+}
+
+/* authentication form */
+.authentication-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.authentication-form>.inner {
+    width: 66%;
+    margin: auto;
+    background: url('../../assets/images/authenticationbackground.jpg') no-repeat;
+    background-size: cover;
+}
+
+.authentication-form form {
+    width: 40%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.authentication-form form h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.name-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.name-grid>.form-wrapper {
+    width: 45%;
+}
+
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-wrapper>label, .form-wrapper>input {
+    font-size: 1rem;
+}
+
+.form-wrapper>input {
+    padding: 10px 10px 10px 20px;
+    border-radius: 1.5rem;
+    border: 1px solid #ccc;
+}
+
+.submit {
+    margin: 0 80px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: rgba(255, 255, 255, .5) solid 1px;
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.submit:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388;
+}
+
+.switch {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.switch a {
+    text-decoration: none;
 }
