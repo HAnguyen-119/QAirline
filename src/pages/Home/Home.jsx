@@ -8,6 +8,8 @@ import {contents} from "../../components/Home/Discount.jsx";
 import News, {newsContents} from "../../components/Home/News.jsx";
 import Subscribe from "../../components/Home/Subscribe.jsx";
 
+import vnuImage from "../../assets/images/vnu.jpg"
+
 export default function Home() {
     const isLightMode = useOutletContext();
 
@@ -49,6 +51,7 @@ export default function Home() {
             <h1>Recommendations</h1>
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden"}}>
                 <div className="suggestionContainer">
+                    <Suggestion imageURL={vnuImage} location="University of Engineering and Technology" price="66USD" isLightMode={isLightMode}/>
                     <Suggestion imageURL="https://www.travelguide.net/media/new-york.jpeg" location="New York"
                                 price="100 USD" isLightMode={isLightMode}/>
                     <Suggestion imageURL="https://media.timeout.com/images/106181719/750/562/image.jpg" location="Paris"
