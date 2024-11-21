@@ -45,7 +45,7 @@ export default function Home() {
         <div className="home">
             <h1 style={{marginTop: "3rem"}}>Enjoy the best experience at QAirline</h1>
             <FlightSearcher isLightMode={isLightMode}/>
-            <hr className={isLightMode ? "" : "dark"}/>
+            <hr className={isLightMode ? "" : " dark"}/>
             <h1>Recommendations</h1>
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden"}}>
                 <div className="suggestionContainer">
@@ -77,7 +77,7 @@ export default function Home() {
                 justifyContent: "center",
                 gap: "1rem"
             }}>
-                <button className={`prev${isLightMode ? "" : "dark"}`} onClick={(e) => {
+                <button className={`prev${isLightMode ? "" : " dark"}`} onClick={(e) => {
                     prev();
                     e.target.disabled = true;
                     setTimeout(() => {
@@ -85,7 +85,7 @@ export default function Home() {
                     }, 500)
                 }}></button>
                 <p>o o o o o</p>
-                <button className={`next${isLightMode ? "" : "dark"}`} onClick={(e) => {
+                <button className={`next${isLightMode ? "" : " dark"}`} onClick={(e) => {
                     next();
                     e.target.disabled = true;
                     setTimeout(() => {
@@ -93,7 +93,7 @@ export default function Home() {
                     }, 500)
                 }}></button>
             </div>
-            <hr className={isLightMode ? "" : "dark"}/>
+            <hr className={isLightMode ? "" : " dark"}/>
             <h1>Discounts</h1>
             <div className="discountContainer">
                 <Discount content={contents[0]} isLightMode={isLightMode}/>
@@ -101,16 +101,16 @@ export default function Home() {
                 <Discount content={contents[2]} isLightMode={isLightMode}/>
                 <Discount content={contents[3]} isLightMode={isLightMode}/>
             </div>
-            <NavLink className={`moreDiscount${isLightMode ? "" : "dark"}`} to="/booking">See more discounts</NavLink>
-            <hr className={isLightMode ? "" : "dark"}/>
+            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/booking">See more discounts</NavLink>
+            <hr className={isLightMode ? "" : " dark"}/>
             <h1>News</h1>
-            <div className={`newsContainer${isLightMode ? "" : "dark"}`}>
+            <div className={`newsContainer${isLightMode ? "" : " dark"}`}>
                 <News date={newsContents[0][0]} content={newsContents[0][1]} contentImage={newsContents[0][2]} isLightMode={isLightMode}/>
                 <News date={newsContents[1][0]} content={newsContents[1][1]} contentImage={newsContents[1][2]} isLightMode={isLightMode}/>
                 <News date={newsContents[2][0]} content={newsContents[2][1]} contentImage={newsContents[2][2]} isLightMode={isLightMode}/>
             </div>
 
-            <hr className={isLightMode ? "" : "dark"}/>
+            <hr className={isLightMode ? "" : " dark"}/>
             <Subscribe isLightMode={isLightMode}/>
         </div>
     )

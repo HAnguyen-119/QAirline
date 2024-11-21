@@ -14,7 +14,7 @@ export default function MainLayout() {
     }
 
     return (
-        <div className={`mainPage josefin-sans${lightMode ? "" : "dark"}`}>
+        <div className={`mainPage josefin-sans${lightMode ? "" : " dark"}`}>
             <header>
                 <NavBar switchMode={switchMode} isLightMode={lightMode} />
             </header>

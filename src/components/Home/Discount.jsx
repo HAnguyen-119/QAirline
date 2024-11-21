@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 export default function Discount({content, isLightMode}) {
     return (
-        <div className={`discount${isLightMode ? "" : "dark"}`}>
+        <div className={`discount${isLightMode ? "" : " dark"}`}>
             <div></div>
             <div>
                 <p>{content}</p>

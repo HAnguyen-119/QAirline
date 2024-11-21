@@ -12,8 +12,8 @@ export default function NavBar({switchMode, isLightMode}) {
             <NavLink to='/explore'>Explore</NavLink>
             <NavLink to='/about'>About</NavLink>
             <div className="switchMode" onClick={switchMode}>
-                <div className={`sun ${isLightMode ? "" : "dark"}`}><img src="src/assets/images/sun1.png"/></div>
-                <div className={`moon ${isLightMode ? "" : "dark"}`}><img src="src/assets/images/moon1.png"/></div>
+                <div className={`sun ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/sun1.png"/></div>
+                <div className={`moon ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/moon1.png"/></div>
             </div>
             <NavLink to='/login' className="login">Log in</NavLink>
         </div>
