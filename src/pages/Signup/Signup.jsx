@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
-import FormElement from "../../components/Authentication/FormElement.jsx";
+import InputElement from "../../components/Form/InputElement.jsx";
 
 export default function Signup() {
     const [firstName, setFirstName] = useState('')
@@ -20,23 +20,23 @@ export default function Signup() {
     }
 
     return (
-        <div className='authentication-form'>
+        <div className='form'>
             <div className='inner'>
                 <form>
                     <h1>SIGN UP</h1>
                     <div className='name-grid'>
-                        <FormElement htmlFor='firstname' description='First Name' type='text' id='firstname'
-                                     value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                        <FormElement htmlFor='lastname' description='Last Name' type='text' id='lastname'
-                                     value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                        <InputElement htmlFor='firstname' description='First Name' type='text' id='firstname'
+                                      value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                        <InputElement htmlFor='lastname' description='Last Name' type='text' id='lastname'
+                                      value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     </div>
-                    <FormElement htmlFor='email' description='Email' type='email' id='email' value={email}
-                                 onChange={(e) => setEmail(e.target.value)}/>
-                    <FormElement htmlFor='password' description='Password' type='password' id='password'
-                                 value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <FormElement htmlFor='confirm-password' description='Confirm Password' type='password'
-                                 id='confirm-password' value={confirmPassword}
-                                 onChange={(e) => setConfirmPassword(e.target.value)}/>
+                    <InputElement htmlFor='email' description='Email' type='email' id='email' value={email}
+                                  onChange={(e) => setEmail(e.target.value)}/>
+                    <InputElement htmlFor='password' description='Password' type='password' id='password'
+                                  value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <InputElement htmlFor='confirm-password' description='Confirm Password' type='password'
+                                  id='confirm-password' value={confirmPassword}
+                                  onChange={(e) => setConfirmPassword(e.target.value)}/>
                     <div className='checkbox'>
                         <input type='checkbox' id='terms'/>
                         <label htmlFor='terms'>I agree to the terms and conditions</label>

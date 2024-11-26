@@ -1,8 +1,8 @@
 import React from "react"
 
-import ('./Authentication.css')
+import ('./Form.css')
 
-export default function FormElement({htmlFor, description, type, id, value, onChange}) {
+export default function InputElement({htmlFor, description, type, id, value, onChange}) {
     return (
         <div className='form-wrapper'>
             <label htmlFor={htmlFor}>{description}</label>
