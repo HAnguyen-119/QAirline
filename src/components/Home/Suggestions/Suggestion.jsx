@@ -1,5 +1,5 @@
-
 import {NavLink} from "react-router-dom";
+import ('./Suggestion.css')
 
 // eslint-disable-next-line react/prop-types
 export default function Suggestion({imageURL, location, price, isLightMode}) {

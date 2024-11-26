@@ -1,3 +1,5 @@
+import ('./Subscribe.css')
+
 export default function Subscribe({isLightMode}) {
     return (
         <div className={`subscribeContainer${isLightMode ? "" : " dark"}`} >

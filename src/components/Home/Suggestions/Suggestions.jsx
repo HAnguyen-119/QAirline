@@ -3,6 +3,8 @@ import Suggestion from "./Suggestion.jsx";
 import vnuImage from "../../../assets/images/vnu.jpg";
 import {useOutletContext} from "react-router-dom";
 
+import ('./Suggestion.css')
+
 export default function Suggestions() {
     const isLightMode = useOutletContext();
 

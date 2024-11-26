@@ -1,5 +1,7 @@
-import {next, prev} from "../../utils/SuggestionNav.js";
+import {next, prev} from "../../../utils/SuggestionNav.js";
 import {useOutletContext} from "react-router-dom";
+
+import ('./ButtonSlider.css')
 
 export default function ButtonSlider() {
     const isLightMode = useOutletContext()
