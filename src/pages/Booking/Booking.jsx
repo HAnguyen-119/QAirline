@@ -8,6 +8,7 @@ import Ticket from "../../components/Booking/Ticket.jsx";
 import ('./Booking.css')
 
 export default function Booking() {
+    //useState things
     return (
         <div className='booking-container'>
             <div className='booking'>
