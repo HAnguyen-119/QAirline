@@ -1,0 +1,20 @@
+
+:root {
+    --primary: #16af58;
+    --primary-active: #c1ffe0;
+    --light: white;
+    --dark: rgb(23, 31, 71);
+}
+
+body {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.josefin-sans {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
