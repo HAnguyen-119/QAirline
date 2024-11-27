@@ -1,0 +1,37 @@
+.ticket-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--dark);
+    border-radius: 10px;
+    align-items: center;
+}
+
+
+.ticket-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.passenger-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.boarding {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

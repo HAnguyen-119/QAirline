@@ -3,6 +3,9 @@ import InputElement from "../../components/Form/InputElement.jsx";
 import LabelElement from "../../components/Form/LabelElement.jsx";
 import FieldElement from "../../components/Form/FieldElement.jsx";
 import {AddPassenger} from "../../utils/AddPassenger.js";
+import Ticket from "../../components/Booking/Ticket.jsx";
+
+import ('./Booking.css')
 
 export default function Booking() {
     return (
@@ -59,9 +62,11 @@ export default function Booking() {
             </div>
             <div className='form my-booking'>
                 <h1>My Bookings</h1>
-                <form>
+                <div className='ticket-list'>
+                    <Ticket/>
+                    <Ticket/>
+                </div>
 
-                </form>
             </div>
         </div>
     )
