@@ -1,3 +1,5 @@
+import './discount.css';
+
 import Discount from "./Discount.jsx";
 import {useOutletContext} from "react-router-dom";
 import {contents} from "./Discount.jsx";

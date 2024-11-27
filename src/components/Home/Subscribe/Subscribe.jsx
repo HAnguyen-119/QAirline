@@ -1,3 +1,6 @@
+import './subscribe.css';
+
+// eslint-disable-next-line react/prop-types
 export default function Subscribe({isLightMode}) {
     return (
         <div className={`subscribeContainer${isLightMode ? "" : " dark"}`} >

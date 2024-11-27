@@ -1,4 +1,4 @@
-import {next, prev} from "../../utils/SuggestionNav.js";
+import {next, prev} from "../../../utils/SuggestionNav.js";
 import {useOutletContext} from "react-router-dom";
 
 export default function ButtonSlider() {

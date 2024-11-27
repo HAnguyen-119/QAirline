@@ -1,5 +1,7 @@
 import Suggestion from "./Suggestion.jsx";
 
+import './suggestion.css';
+
 import vnuImage from "../../../assets/images/vnu.jpg";
 import {useOutletContext} from "react-router-dom";
 

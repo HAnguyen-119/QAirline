@@ -1,12 +1,12 @@
 import Suggestions from "../../components/Home/Suggestions/Suggestions.jsx";
-import FlightSearcher from "../../components/Home/FlightSearcher.jsx";
+import FlightSearcher from "../../components/Home/FlightSearcher/FlightSearcher.jsx";
 
 import "./home.css";
 import {NavLink, useOutletContext} from "react-router-dom";
 import Discounts from "../../components/Home/Discounts/Discounts.jsx";
-import Subscribe from "../../components/Home/Subscribe.jsx";
+import Subscribe from "../../components/Home/Subscribe/Subscribe.jsx";
 import NewsContainer from "../../components/Home/News/NewsContainer.jsx";
-import ButtonSlider from "../../components/Home/ButtonSlider.jsx";
+import ButtonSlider from "../../components/Home/Suggestions/ButtonSlider.jsx";
 import HorizontalRule from "../../components/HorizontalRule.jsx";
 import H1Text from "../../components/H1Text.jsx";
 

@@ -1,0 +1,100 @@
+.suggestion {
+    position: relative;
+    width: 390px;
+    height: 270px;
+    background-color: transparent;
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestion:hover img {
+    transform: scale(1.2);
+}
+
+.suggestion:hover a {
+    transform: translateY(-19px);
+    opacity: 1;
+}
+
+.suggestion.dark {
+    border: 2px solid var(--light);
+}
+
+.suggestion.dark a {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.suggestion p {
+    margin: 10px 5px 5px;
+}
+
+.suggestion a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: var(--dark);
+    position: absolute;
+    right: 6%;
+    bottom: 0;
+    color: var(--light);
+    width: 100px;
+    height: 30px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.suggestion div {
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+}
+
+.suggestion img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.suggestionContainer {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    /*transition: transform 0.5s ease;*/
+    transform: translateX(calc(-1 * (1rem + 2 * var(--border-width) + var(--suggestion-width))));
+}
+
+.prev, .next {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.prev {
+    background-image: url("src/assets/images/previous.png");
+}
+
+.prev.dark {
+    background-image: url("src/assets/images/previous-dark.png");
+}
+
+.next {
+    background-image: url("src/assets/images/next.png");
+}
+
+.next.dark {
+    background-image: url("src/assets/images/next-dark.png");
+}
