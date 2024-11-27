@@ -1,6 +1,8 @@
 import News, {newsContents} from "./News.jsx";
 import {useOutletContext} from "react-router-dom";
 
+import './news.css';
+
 export default function NewsContainer() {
     const isLightMode = useOutletContext();
     return (
