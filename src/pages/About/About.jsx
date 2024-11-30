@@ -10,7 +10,7 @@ export default function About() {
                 <AboutContent content='Partners' page='partners' background='https://image.cnbcfm.com/api/v1/image/106174405-1570711107124gettyimages-1083841638.jpeg?v=1570711118&w=1600&h=900'/>
                 <AboutContent content='Career' page='career' background='https://bcp.cdnchinhphu.vn/334894974524682240/2024/6/22/anh-minh-hoa-3-1719021267699277678465.jpg'/>
             </div>
-            <div id="specific-content">
+            <div className="specific-content">
                 <Outlet></Outlet>
             </div>
         </div>
