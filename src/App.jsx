@@ -13,6 +13,10 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Manage from "./pages/Manage/Manage.jsx";
 import Signup from "./pages/Signup/Signup.jsx"
+import SearchResults from "./pages/Booking/Search/SearchResults.jsx";
+import ShoppingCart from "./pages/Booking/ShoppingCart/ShoppingCart.jsx";
+import Traveler from "./pages/Booking/TravelerInfo/Traveler.jsx";
+import {BookingProvider} from "./Context/BookingContext.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<MainLayout/>}>
@@ -23,12 +27,17 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/explore" element={<Explore/>} />
         <Route path="/login" element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
+        <Route path='/booking/availability' element={<SearchResults/>} />
+        <Route path='/booking/shopping-cart' element={<ShoppingCart/>} />
+        <Route path='/booking/traveler' element={<Traveler/>} />
     </Route>
 ))
 
 function App() {
   return (
-    <RouterProvider router={router} />
+      <BookingProvider>
+          <RouterProvider router={router} />
+      </BookingProvider>
   )
 }
 
