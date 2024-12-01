@@ -1,12 +1,11 @@
 import NavBar from "../components/NavBar.jsx";
 import {Outlet} from "react-router-dom";
 import Footer from "../components/Footer.jsx";
-import Background from "../components/Background.jsx";
 import {useState} from "react";
 
-import "./MainLayout.css"
+import "./AdminLayout.css"
 
-export default function MainLayout() {
+export default function AdminLayout() {
     const [lightMode, setLightMode] = useState(true);
 
     function switchMode() {
@@ -16,7 +15,7 @@ export default function MainLayout() {
     return (
         <div className={`mainPage josefin-sans${lightMode ? "" : " dark"}`}>
             <header>
-                <NavBar isAdmin={false} switchMode={switchMode} isLightMode={lightMode} />
+                <NavBar isAdmin={true} switchMode={switchMode} isLightMode={lightMode} />
             </header>
             <main>
                 {/*<Background isLightMode={lightMode}/>*/}
