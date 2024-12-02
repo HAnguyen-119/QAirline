@@ -45,7 +45,7 @@ export default function Itinerary() {
                 </DivContainer>
                 <div className='info'>
                     <SelectElement htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} onChange={(e) => setDeparture(e.target.value)}/>
-                    <Icon name='trip-arrow' iconName={tripType === 'round-trip' ? faRightLong : faRightLeft} />
+                    <Icon name='trip-arrow' iconName={tripType === 'round-trip' ? faRightLeft : faRightLong} />
                     <SelectElement htmlFor='destination' description='Destination Airport' id='destination' name='destination' required={true} onChange={(e) => setDestination(e.target.value)}/>
                     <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)}/>
                     <div style={{ visibility: tripType === 'round-trip' ? 'visible' : 'hidden' }}>

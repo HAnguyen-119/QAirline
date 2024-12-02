@@ -1,6 +1,6 @@
-import LabelElement from "../Form/LabelElement.jsx";
-import HorizontalRule from "../HorizontalRule.jsx";
-import Logo from "../Logo.jsx";
+import LabelElement from "../../Form/LabelElement.jsx";
+import HorizontalRule from "../../HorizontalRule.jsx";
+import Logo from "../../Logo.jsx";
 import ('./Ticket.css')
 
 export default function Ticket() {
