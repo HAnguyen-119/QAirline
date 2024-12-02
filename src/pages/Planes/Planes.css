@@ -1,0 +1,25 @@
+.planes {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.planes table, .planes table td, .planes table th, .planes table tr {
+    border: 2px solid var(--dark);
+    border-collapse: collapse;
+}
+
+.planes table {
+    width: 70%;
+    height: 100%;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}

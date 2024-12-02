@@ -1,0 +1,17 @@
+.flights {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.flights table, .flights table td, .flights table th, .flights table tr {
+    border: 2px solid var(--dark);
+    border-collapse: collapse;
+}
+
+.flights table {
+    width: 80%;
+    height: 100%;
+}
