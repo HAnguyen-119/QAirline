@@ -1,0 +1,102 @@
+[
+  {
+    "region": "VIỆT NAM",
+    "airports": [
+      { "name": "Tp. Hồ Chí Minh", "code": "SGN" },
+      { "name": "Đà Nẵng", "code": "DAD" },
+      { "name": "Phú Quốc", "code": "PQC" },
+      { "name": "Nha Trang", "code": "CXR" },
+      { "name": "Hà Nội", "code": "HAN" }
+    ]
+  },
+  {
+    "region": "ĐÔNG NAM Á",
+    "airports": [
+      { "name": "Bangkok", "code": "BKK" },
+      { "name": "Kuala Lumpur", "code": "KUL" },
+      { "name": "Singapore", "code": "SIN" },
+      { "name": "Jakarta", "code": "CGK" },
+      { "name": "Manila", "code": "MNL" }
+    ]
+  },
+  {
+    "region": "NAM Á",
+    "airports": [
+      { "name": "New Delhi", "code": "DEL" },
+      { "name": "Mumbai", "code": "BOM" },
+      { "name": "Colombo", "code": "CMB" },
+      { "name": "Kathmandu", "code": "KTM" },
+      { "name": "Dhaka", "code": "DAC" }
+    ]
+  },
+  {
+    "region": "BẮC Á",
+    "airports": [
+      { "name": "Beijing", "code": "PEK" },
+      { "name": "Tokyo", "code": "HND" },
+      { "name": "Seoul", "code": "ICN" },
+      { "name": "Shanghai", "code": "PVG" },
+      { "name": "Osaka", "code": "KIX" }
+    ]
+  },
+  {
+    "region": "CHÂU ÂU",
+    "airports": [
+      { "name": "London Heathrow", "code": "LHR" },
+      { "name": "Paris Charles de Gaulle", "code": "CDG" },
+      { "name": "Frankfurt", "code": "FRA" },
+      { "name": "Amsterdam Schiphol", "code": "AMS" },
+      { "name": "Madrid Barajas", "code": "MAD" }
+    ]
+  },
+  {
+    "region": "BẮC MỸ",
+    "airports": [
+      { "name": "New York JFK", "code": "JFK" },
+      { "name": "Los Angeles LAX", "code": "LAX" },
+      { "name": "Chicago O'Hare", "code": "ORD" },
+      { "name": "Toronto Pearson", "code": "YYZ" },
+      { "name": "Mexico City", "code": "MEX" }
+    ]
+  },
+  {
+    "region": "NAM MỸ",
+    "airports": [
+      { "name": "Sao Paulo Guarulhos", "code": "GRU" },
+      { "name": "Buenos Aires Ezeiza", "code": "EZE" },
+      { "name": "Bogotá El Dorado", "code": "BOG" },
+      { "name": "Lima Jorge Chávez", "code": "LIM" },
+      { "name": "Rio de Janeiro Galeão", "code": "GIG" }
+    ]
+  },
+  {
+    "region": "CHÂU ÚC",
+    "airports": [
+      { "name": "Sydney", "code": "SYD" },
+      { "name": "Melbourne", "code": "MEL" },
+      { "name": "Brisbane", "code": "BNE" },
+      { "name": "Perth", "code": "PER" },
+      { "name": "Auckland", "code": "AKL" }
+    ]
+  },
+  {
+    "region": "TRUNG ĐÔNG",
+    "airports": [
+      { "name": "Dubai International", "code": "DXB" },
+      { "name": "Doha Hamad", "code": "DOH" },
+      { "name": "Istanbul", "code": "IST" },
+      { "name": "Abu Dhabi", "code": "AUH" },
+      { "name": "Tel Aviv", "code": "TLV" }
+    ]
+  },
+  {
+    "region": "CHÂU PHI",
+    "airports": [
+      { "name": "Johannesburg", "code": "JNB" },
+      { "name": "Cape Town", "code": "CPT" },
+      { "name": "Nairobi", "code": "NBO" },
+      { "name": "Cairo", "code": "CAI" },
+      { "name": "Addis Ababa", "code": "ADD" }
+    ]
+  }
+]

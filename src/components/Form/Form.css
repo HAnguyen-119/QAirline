@@ -62,7 +62,7 @@
     padding: 10px;
     font-size: 1rem;
     border-radius: 20px;
-    border: 0 solid;
+    border: 1px solid;
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
     outline: rgba(255, 255, 255, .5) solid 1px;
     outline-offset: 0px;
@@ -71,8 +71,8 @@
 }
 
 .submit:hover {
-    border: 1px solid;
-    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    border: 1px solid black;
+    /*box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);*/
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
     text-shadow: 1px 1px 2px #427388;

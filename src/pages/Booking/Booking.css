@@ -2,63 +2,145 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
 .booking {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 600px;
+    width: 80%;
+    margin-top: 2rem;
 }
 
-.form.itinerary {
+.booking-form, .search-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100% ;
+    gap: 20px;
 }
 
-.form.itinerary h1 {
+.itinerary, .search {
+    padding: 2rem;
+}
+
+.itinerary>h1, .search>h1 {
     font-size: 28px;
     margin-bottom: 25px;
     text-align: center;
     color: #333333;
 }
 
-.form.itinerary form {
+.itinerary form {
     display: flex;
     flex-direction: column;
 }
 
-.form.itinerary form > * {
-    margin-bottom: 20px;
+form>.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
 }
 
-.form.itinerary .type {
+form>.info > * {
+    flex: 1;
+}
+
+form>.info>.trip-arrow {
+    flex: 0;
+}
+
+form>.info > .return-date {
+    gap: 20px;
+}
+
+.itinerary .type {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+
+.trip-button {
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.trip-button:last-child {
+    margin-right: 0;
+}
+
+.trip-button:hover {
+    background-color: var(--primary)
+}
+
+.trip-button.active {
+    background-color: var(--primary);
+}
+
+.trip-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.form-selector {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.form.itinerary .type label {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #555555;
+.form-button-container {
+    flex: 1;
 }
 
-.form.itinerary .type input {
-    margin-right: 10px;
-}
-
-.form.itinerary select,
-.form.itinerary input[type="text"],
-.form.itinerary input[type="date"] {
+.form-button {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 20px 0;
+    cursor: pointer;
     font-size: 16px;
-    color: #333333;
+    transition: background-color 0.3s ease;
+}
+
+.form-button.active {
+    background-color: var(--button-active);
+}
+
+.form-button:hover {
+    background-color: var(--button-active);
+}
+
+.form-button-container:first-child .form-button {
+    border-top-left-radius: 10px;
+}
+
+.form-button-container:last-child .form-button {
+    border-top-right-radius: 10px;
+}
+
+.itinerary>.booking-form>.submit, .search>.search-form>.submit {
+    padding: 10px 50px;
+
+    &:hover {
+        background-color: var(--button-active);
+    }
+}
+
+span.trip-arrow {
+    padding-top: 18px;
+    color: var(--primary);
 }

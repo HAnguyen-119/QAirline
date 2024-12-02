@@ -1,9 +1,9 @@
-
 :root {
     --primary: #16af58;
     --primary-active: #c1ffe0;
     --light: white;
     --dark: rgb(23, 31, 71);
+    --button-active: #0f964c;
 }
 
 body {
