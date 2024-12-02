@@ -1,5 +1,11 @@
 [
   {
+    "region": " ",
+    "airports": [
+      {"name": " ", "code": " "}
+    ]
+  },
+  {
     "region": "VIỆT NAM",
     "airports": [
       { "name": "Tp. Hồ Chí Minh", "code": "SGN" },

@@ -10,7 +10,7 @@ export default function SelectElement({ htmlFor, description, id, value, onChang
                     <optgroup key={region.region} label={region.region}>
                         {region.airports.map(airport => (
                             <option key={airport.code} value={`${airport.name} (${airport.code})`}>
-                                {airport.name} ({airport.code})
+                                {airport.name}
                             </option>
                         ))}
                     </optgroup>
@@ -19,3 +19,4 @@ export default function SelectElement({ htmlFor, description, id, value, onChang
         </div>
     );
 }
+

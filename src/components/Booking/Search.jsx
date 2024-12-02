@@ -20,7 +20,7 @@ export default function Search() {
                     <InputElement htmlFor='booking-id' description='Booking ID' id='booking-id' name='booking-id' type='text' required={true} onChange={(e) => setBookingId(e.target.value)}/>
                     <InputElement htmlFor='last-name' description='Last Name' id='last-name' name='last-name' type='text' required={true}/>
                 </div>
-                <Button className='submit' type='submit' text='Search'/>
+                <Button buttonClass='submit' type='submit' text='Search'/>
             </form>
         </div>
     )
