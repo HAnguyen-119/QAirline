@@ -5,7 +5,9 @@ export default function AboutContent({content, page, background, description}) {
     return (
         <div className='about-content' style={{ backgroundImage: `url(${background})` }}>
             <NavLink to={`./${page}`} onClick={() => {
-                document.querySelector(".specific-content").scrollIntoView({behavior: "smooth"});
+                let specificContent = document.querySelector(".specific-content");
+                specificContent.style.display = "block";
+                specificContent.scrollIntoView({behavior: "smooth"});
             }}>{content}</NavLink>
             <div>{description}</div>
         </div>
