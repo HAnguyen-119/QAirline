@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './ShoppingCart.css';
-import H1Text from "../../../components/H1Text.jsx";
-import DivContainer from "../../../components/DivContainer.jsx";
+import H1Text from "../../../../components/H1Text.jsx";
+import DivContainer from "../../../../components/DivContainer.jsx";
 
 export default function ShoppingCart() {
     const location = useLocation();

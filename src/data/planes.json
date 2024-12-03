@@ -1,0 +1,32 @@
+{
+"planes" : [
+  {
+    "id": "fwf3e",
+    "branch": "Boeing123",
+    "company": "Boeing",
+    "original": "USA",
+    "seats": 98
+  },
+  {
+    "id": "cs3r3",
+    "branch": "Boeing987",
+    "company": "Boeing",
+    "original": "France",
+    "seats": 200
+  },
+  {
+    "id": "ety88",
+    "branch": "Airbus124",
+    "company": "Airbus",
+    "original": "France",
+    "seats": 110
+  },
+  {
+    "id": "nth56",
+    "branch": "sgwrgrg",
+    "company": "Abscscc",
+    "original": "USA",
+    "seats": 240
+  }
+]
+}

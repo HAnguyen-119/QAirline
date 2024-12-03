@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookingContext } from '../../../Context/BookingContext.jsx';
-import InputElement from "../../../components/Form/InputElement.jsx";
-import SelectElement from "../../../components/Form/SelectElement.jsx";
+import { BookingContext } from '../../../../Context/BookingContext.jsx';
+import InputElement from "../../../../components/Form/InputElement.jsx";
+import SelectElement from "../../../../components/Form/SelectElement.jsx";
 
 import './Traveler.css';
 
