@@ -1,5 +1,5 @@
 import './About.css'
-import AboutContent from "../../components/About/AboutContent.jsx";
+import AboutContent from "../../../components/About/AboutContent.jsx";
 import {Outlet} from "react-router-dom";
 
 export default function About() {

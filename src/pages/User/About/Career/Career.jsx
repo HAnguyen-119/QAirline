@@ -1,7 +1,7 @@
 import './Career.css'
-import BasicInfo from "../../../components/About/BasicInfo.jsx";
-import BenefitsContainer from "../../../components/About/BenefitsContainer.jsx";
-import AvailableJobs from "../../../components/About/AvailableJobs.jsx";
+import BasicInfo from "../../../../components/About/BasicInfo.jsx";
+import BenefitsContainer from "../../../../components/About/BenefitsContainer.jsx";
+import AvailableJobs from "../../../../components/About/AvailableJobs.jsx";
 
 export default function Career() {
     return (

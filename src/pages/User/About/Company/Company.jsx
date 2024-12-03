@@ -1,5 +1,5 @@
-import Logo from "../../../components/Logo.jsx";
-import BasicInfo from "../../../components/About/BasicInfo.jsx";
+import Logo from "../../../../components/Logo.jsx";
+import BasicInfo from "../../../../components/About/BasicInfo.jsx";
 
 import "./Company.css"
 

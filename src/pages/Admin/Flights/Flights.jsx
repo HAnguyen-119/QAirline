@@ -1,7 +1,7 @@
 import './Flights.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import userAPI from "../../api/userAPI.jsx";
+import userAPI from "../../../api/userAPI.jsx";
 
 export default function Flights() {
     const [flightsData, setFlightsData] = useState([]);
@@ -42,11 +42,11 @@ export default function Flights() {
                         <th>Economy</th>
                         <th>Business</th>
                     </tr>
-                    {flightsData.map((flight, index) => <tr key={flight.id}>
+                    {flightsData.map((flight, index) => <tr key={flight.flightNumber}>
                         <td>{index + 1}</td>
                         <td>{flight.flightNumber}</td>
                         <td></td>
-                        <td></td>
+                        <td>{((Object)(flight.departureAirport)).city + " (" + ((Object)(flight.departureAirport)).code + ")"}</td>
                         <td></td>
                         <td>{flight.departureTime}</td>
                         <td>{flight.arrivalTime}</td>

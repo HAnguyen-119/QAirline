@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './SearchResults.css';
 import FilterModal from '../FilterModal/FilterModal.jsx';
-import { getNextSevenDays } from "../../../utils/NextSevenDays.js";
-import Days from "../../../components/Booking/Date/Days.jsx";
-import DivContainer from "../../../components/DivContainer.jsx";
-import Button from "../../../components/Button/Button.jsx";
-import FlightCard from "../../../components/Card/FlightCard.jsx";
+import { getNextSevenDays } from "../../../../utils/NextSevenDays.js";
+import Days from "../../../../components/Booking/Date/Days.jsx";
+import DivContainer from "../../../../components/DivContainer.jsx";
+import Button from "../../../../components/Button/Button.jsx";
+import FlightCard from "../../../../components/Card/FlightCard.jsx";
 
-import EmptyFlight from '../../../assets/images/empty.png';
+import EmptyFlight from '../../../../assets/images/empty.png';
 
 export default function SearchResults() {
     const location = useLocation();

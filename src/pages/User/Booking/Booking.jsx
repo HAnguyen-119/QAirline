@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import './Booking.css';
-import BookingNav from "../../components/Booking/BookingNav.jsx";
-import Itinerary from "../../components/Booking/Itinerary.jsx";
-import Search from "../../components/Booking/Search.jsx";
+import BookingNav from "../../../components/Booking/BookingNav.jsx";
+import Itinerary from "../../../components/Booking/Itinerary.jsx";
+import Search from "../../../components/Booking/Search.jsx";
 
 export default function Booking() {
     const [activeForm, setActiveForm] = useState('search-flight');

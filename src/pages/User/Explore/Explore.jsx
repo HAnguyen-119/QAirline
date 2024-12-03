@@ -1,7 +1,7 @@
-import Suggestions from "../../components/Home/Suggestions/Suggestions.jsx";
-import ButtonSlider from "../../components/Home/Slider/ButtonSlider.jsx";
+import Suggestions from "../../../components/Home/Suggestions/Suggestions.jsx";
+import ButtonSlider from "../../../components/Home/Slider/ButtonSlider.jsx";
 import {NavLink, useOutletContext} from "react-router-dom";
-import HorizontalRule from "../../components/HorizontalRule.jsx";
+import HorizontalRule from "../../../components/HorizontalRule.jsx";
 
 
 

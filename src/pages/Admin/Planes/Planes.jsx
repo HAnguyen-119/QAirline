@@ -1,7 +1,7 @@
 import './Planes.css'
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import userAPI from "../../api/userAPI.jsx";
+import userAPI from "../../../api/userAPI.jsx";
 
 export default function Planes() {
     const location = useLocation();
