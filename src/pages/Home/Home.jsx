@@ -26,6 +26,7 @@ export default function Home() {
             </div>
             <br/>
             <ButtonSlider/>
+            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/Explore">See more places</NavLink>
             <HorizontalRule/>
 
             {/*Discounts section*/}

@@ -24,6 +24,10 @@ import Flights from "./pages/Flights/Flights.jsx";
 import Planes from "./pages/Planes/Planes.jsx";
 import Booked from "./pages/Booked/Booked.jsx";
 import Information from "./pages/Information/Information.jsx";
+import SearchResults from "./pages/Booking/Search/SearchResults.jsx";
+import ShoppingCart from "./pages/Booking/ShoppingCart/ShoppingCart.jsx";
+import Traveler from "./pages/Booking/TravelerInfo/Traveler.jsx";
+import {BookingProvider} from "./Context/BookingContext.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
@@ -39,6 +43,9 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
+            <Route path='/booking/availability' element={<SearchResults/>} />
+            <Route path='/booking/shopping-cart' element={<ShoppingCart/>} />
+            <Route path='/booking/traveler' element={<Traveler/>} />
         </Route>
         <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<Dashboard/>} />
@@ -54,7 +61,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
 function App() {
   return (
-    <RouterProvider router={router} />
+      <BookingProvider>
+          <RouterProvider router={router} />
+      </BookingProvider>
   )
 }
 

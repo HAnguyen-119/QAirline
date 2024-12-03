@@ -2,11 +2,11 @@ import React from "react"
 
 import ('./Form.css')
 
-export default function InputElement({htmlFor, description, type, id, value, onChange}) {
+export default function InputElement({htmlFor, description, type, id, value, name, onChange, required}) {
     return (
         <div className='form-wrapper'>
             <label htmlFor={htmlFor}>{description}</label>
-            <input type={type} id={id} value={value} onChange={onChange}/>
+            <input type={type} id={id} value={value} onChange={onChange} name={name} required={required}/>
         </div>
     )
 }

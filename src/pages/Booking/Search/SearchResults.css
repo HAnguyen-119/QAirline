@@ -1,0 +1,25 @@
+.search-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.search-results {
+    padding: 30px;
+    text-align: center;
+}
+
+.flights {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
