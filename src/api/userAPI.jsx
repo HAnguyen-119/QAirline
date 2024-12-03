@@ -14,6 +14,16 @@ const userAPI = {
     addPlane: (plane) => {
         const url = "api/v1/airplanes";
         return axiosClient.post(url, plane);
+    },
+
+    updatePlane: (planeId, plane) => {
+        const url = `api/v1/airplanes/${planeId}`;
+        return axiosClient.put(url, plane);
+    },
+
+    deletePlane: (planeId) => {
+        const url = `api/v1/airplanes/${planeId}`;
+        return axiosClient.delete(url, planeId);
     }
 }
 
