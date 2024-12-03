@@ -47,13 +47,13 @@ export default function Flights() {
                         <td>{flight.flightNumber}</td>
                         <td></td>
                         <td>{((Object)(flight.departureAirport)).city + " (" + ((Object)(flight.departureAirport)).code + ")"}</td>
-                        <td></td>
+                        <td>{((Object)(flight.arrivalAirport)).city + " (" + ((Object)(flight.arrivalAirport)).code + ")"}</td>
                         <td>{flight.departureTime}</td>
                         <td>{flight.arrivalTime}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{((Object)(flight.seatClasses[0])).totalNumber}</td>
+                        <td>{((Object)(flight.seatClasses[1])).totalNumber}</td>
+                        <td>{((Object)(flight.seatClasses[0])).bookedNumber}</td>
+                        <td>{((Object)(flight.seatClasses[1])).bookedNumber}</td>
                         <td>{flight.status}</td>
                         <td>
                             <button>Edit</button>
@@ -66,41 +66,3 @@ export default function Flights() {
     )
 }
 
-export const flightsInfo = [
-    {
-        id : "efee",
-        planeId: "awe3",
-        from: "Hanoi (HAN)",
-        to: "Ho Chi Minh City (SGN)",
-        departureTime: "2018-02-05 15:00",
-        seats: "100",
-        booked: "90",
-    },
-    {
-        id : "sf4t",
-        planeId: "vgs4",
-        from: "Hanoi (HAN)",
-        to: "Ho Chi Minh City (SGN)",
-        departureTime: "2018-02-05 15:00",
-        seats: "100",
-        booked: "90",
-    },
-    {
-        id : "grg",
-        planeId: "a2fwf",
-        from: "Hanoi (HAN)",
-        to: "Ho Chi Minh City (SGN)",
-        departureTime: "2018-02-05 15:00",
-        seats: "100",
-        booked: "90",
-    },
-    {
-        id : "4tte",
-        planeId: "sd0g",
-        from: "Hanoi (HAN)",
-        to: "Ho Chi Minh City (SGN)",
-        departureTime: "2018-02-05 15:00",
-        seats: "100",
-        booked: "90",
-    }
-]

@@ -9,6 +9,11 @@ const userAPI = {
     getAllPlanes: (planes) => {
         const url = "api/v1/airplanes";
         return axiosClient.get(url, planes);
+    },
+
+    addPlane: (plane) => {
+        const url = "api/v1/airplanes";
+        return axiosClient.post(url, plane);
     }
 }
 
