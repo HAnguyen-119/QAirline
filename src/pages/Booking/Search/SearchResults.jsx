@@ -5,15 +5,16 @@ import FilterModal from '../FilterModal/FilterModal.jsx';
 import { getNextSevenDays } from "../../../utils/NextSevenDays.js";
 import Days from "../../../components/Booking/Date/Days.jsx";
 import DivContainer from "../../../components/DivContainer.jsx";
-import Button from "../../../components/Button/Button.jsx";
 import FlightCard from "../../../components/Card/FlightCard.jsx";
 
 import EmptyFlight from '../../../assets/images/empty.png';
+import HorizontalRule from "../../../components/HorizontalRule.jsx";
 
 export default function SearchResults() {
     const location = useLocation();
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
+    const fullParams = new URLSearchParams(location.pathname)
 
     const tripType = searchParams.get('tripType');
     const departure = searchParams.get('departure');
@@ -22,7 +23,8 @@ export default function SearchResults() {
     const returnDate = searchParams.get('return-date');
 
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [activeDate, setActiveDate] = useState(null);
+    const [activeOutbound, setActiveOutbound] = useState(null);
+    const [activeReturn, setActiveReturn] = useState(null);
 
     //test
     const flights = [
@@ -45,18 +47,33 @@ export default function SearchResults() {
 
     ];
 
-    const nextSevenDays = getNextSevenDays(deptDate);
+    console.log(returnDate)
+
+    const nextSevenDaysDept = getNextSevenDays(deptDate);
+    const nextSevenDaysReturn = returnDate !== '' ? getNextSevenDays(returnDate) : null;
 
     const handleBookNow = (id) => {
         const flight = flights.find(flight => flight.id === id);
-        const params = new URLSearchParams({
-            'tripType': flight.tripType,
-            'departure': flight.departure,
-            'destination': flight.destination,
-            'dept-date': flight.deptDate,
-            'return-date': flight.returnDate
-        }).toString();
-        navigate(`/booking/shopping-cart?${params}`);
+        let params;
+        if (flight.tripType === 'one-way') {
+            params = new URLSearchParams({
+                'outbound-id': flight.id
+            }).toString();
+            navigate(`/booking/shopping-cart?${params}`);
+        } else {
+            if (fullParams.toString().includes('outbound')) {
+                params = new URLSearchParams({
+                    'outbound-id': flight.id
+                }).toString();
+                navigate(`/booking/return/availability?${searchParams}&${params}`);
+            } else {
+                params = new URLSearchParams({
+                    'return-id': flight.id
+                }).toString();
+                let param = searchParams.toString().split('&');
+                navigate(`/booking/shopping-cart?${param[param.length - 1]}&${params}`);
+            }
+        }
     };
 
     const handleFilter = () => {
@@ -67,32 +84,62 @@ export default function SearchResults() {
         setIsFilterOpen(false);
     };
 
-    const activeDateString = activeDate !== null ? nextSevenDays[activeDate][1] : null;
+    let activeOutboundString = activeOutbound !== null ? nextSevenDaysDept[activeOutbound][1] : null;
+    let activeReturnString = activeReturn !== null ? nextSevenDaysReturn[activeReturn][1] : null;
 
-    const filteredFlights = flights.filter(flight => {
+    const filteredOutbound = flights.filter(flight => {
         const flightDate = new Date(flight.deptDate).getDate().toString();
-        return flightDate === activeDateString && flight.tripType === tripType;
+        return flightDate === activeOutboundString && flight.tripType === tripType;
     });
 
-    const isEmpty = filteredFlights.length === 0;
+    const filteredReturn = flights.filter(flight => {
+        const flightDate = new Date(flight.deptDate).getDate().toString();
+        return flightDate === activeReturnString && flight.tripType === tripType;
+    });
+
+    const isOutboundEmpty = filteredOutbound.length === 0;
+    const isReturnEmpty = filteredReturn.length === 0;
 
     return (
         <div className='search-results'>
-            <h1>Search Results</h1>
-            <Days days={nextSevenDays} activeDate={activeDate} setActiveDate={setActiveDate} />
-            <button className='submit' onClick={handleFilter}>Filter</button>
-            <div className='flights'>
-                {!isEmpty && filteredFlights.map(flight => (
-                    <FlightCard flight={flight} handleBookNow={() => handleBookNow(flight.id)}/>
-                ))}
-                {isEmpty && (
-                    <DivContainer parentClass='empty'>
-                        <img src={EmptyFlight} />
-                    </DivContainer>
-                )}
-            </div>
+            { fullParams.toString().includes('outbound') && (
+                <div className='outbound-result'>
+                    <h1>Outbound</h1>
+                    <Days days={nextSevenDaysDept} activeDate={activeOutbound} setActiveDate={setActiveOutbound} />
+                    <button className='submit' onClick={handleFilter}>Filter</button>
+                    <div className='flights'>
+                        {!isOutboundEmpty && filteredOutbound.map(flight => (
+                            <FlightCard flight={flight} handleBookNow={() => handleBookNow(flight.id)}/>
+                        ))}
+                        {isOutboundEmpty && (
+                            <DivContainer parentClass='empty'>
+                                <img src={EmptyFlight} />
+                            </DivContainer>
+                        )}
+                    </div>
 
-            <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                </div>
+            )}
+            {!fullParams.toString().includes('outbound')  && (
+                <div className='outbound-result'>
+                    <h1>Return</h1>
+                    <Days days={nextSevenDaysReturn} activeDate={activeReturn} setActiveDate={setActiveReturn} />
+                    <button className='submit' onClick={handleFilter}>Filter</button>
+                    <div className='flights'>
+                        {!isReturnEmpty && filteredReturn.map(flight => (
+                            <FlightCard flight={flight} handleBookNow={() => handleBookNow(flight.id)}/>
+                        ))}
+                        {isReturnEmpty && (
+                            <DivContainer parentClass='empty'>
+                                <img src={EmptyFlight} />
+                            </DivContainer>
+                        )}
+                    </div>
+
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                </div>
+            )}
         </div>
     );
 }

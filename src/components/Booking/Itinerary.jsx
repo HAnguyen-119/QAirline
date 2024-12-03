@@ -10,7 +10,6 @@ import {faPlaneUp} from "@fortawesome/free-solid-svg-icons/faPlaneUp";
 import {faRotate} from "@fortawesome/free-solid-svg-icons/faRotate";
 
 export default function Itinerary() {
-    const isLightMode = useOutletContext();
     const navigate = useNavigate();
 
     const [tripType, setTripType] = useState('');
@@ -21,7 +20,7 @@ export default function Itinerary() {
 
     const handleSearchFlightSubmit = (event) => {
         event.preventDefault();
-        if (returnDate && returnDate <= deptDate) {
+        if (returnDate && returnDate < deptDate) {
             alert('Return date must be after the departure date.');
             return;
         }
@@ -32,7 +31,7 @@ export default function Itinerary() {
             'dept-date': deptDate,
             'return-date': returnDate
         }).toString();
-        navigate(`/booking/availability?${searchParams}`);
+        navigate(`/booking/outbound/availability?${searchParams}`);
     }
 
     return (

@@ -2,9 +2,8 @@ export function getNextSevenDays(date) {
     const dates = [];
     const returnDateObj = new Date(date);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    dates.push(['Today', returnDateObj.toLocaleDateString('en-US', options).split(',')[1].split(' ')[2], returnDateObj.toLocaleDateString('en-US', options).split(',')[1].split(' ')[1]]);
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 0; i <= 7; i++) {
         const nextDay = new Date(returnDateObj);
         nextDay.setDate(returnDateObj.getDate() + i);
 
