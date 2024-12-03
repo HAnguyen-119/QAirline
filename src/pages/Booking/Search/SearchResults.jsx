@@ -8,7 +8,6 @@ import DivContainer from "../../../components/DivContainer.jsx";
 import FlightCard from "../../../components/Card/FlightCard.jsx";
 
 import EmptyFlight from '../../../assets/images/empty.png';
-import HorizontalRule from "../../../components/HorizontalRule.jsx";
 
 export default function SearchResults() {
     const location = useLocation();
