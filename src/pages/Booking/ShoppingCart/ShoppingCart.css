@@ -1,14 +1,13 @@
 .shopping-cart-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f8f8;
-    font-family: Arial, sans-serif;
 }
 
 .shopping-cart {
-    background-color: #ffffff;
+    border: 2px solid;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -19,7 +18,6 @@
     font-size: 28px;
     margin-bottom: 25px;
     text-align: center;
-    color: #333333;
 }
 
 .shopping-cart ul {
@@ -31,7 +29,6 @@
 .shopping-cart ul li {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #555555;
 }
 
 .prices {
@@ -47,11 +44,9 @@
 .price-section h2 {
     font-size: 20px;
     margin-bottom: 10px;
-    color: #333333;
 }
 
 .price {
     font-size: 20px;
     font-weight: bold;
-    color: #333333;
 }

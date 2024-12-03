@@ -5,6 +5,7 @@
 }
 
 .booking {
+    border: 1px solid;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 80%;
@@ -79,11 +80,15 @@ form>.info > .return-date {
 }
 
 .trip-button:hover {
-    background-color: var(--primary)
+    background-color: var(--button-active)
 }
 
 .trip-button.active {
-    background-color: var(--primary);
+    background-color: var(--button-active);
+}
+
+.trip-button.active:hover {
+    background-color: var(--button-hover);
 }
 
 .trip-arrow {

@@ -50,13 +50,13 @@ export default function SearchResults() {
     const handleBookNow = (id) => {
         const flight = flights.find(flight => flight.id === id);
         const params = new URLSearchParams({
-            'tripType': flight.tripType,
-            'departure': flight.departure,
-            'destination': flight.destination,
-            'dept-date': flight.deptDate,
-            'return-date': flight.returnDate
+            'flight': flight
         }).toString();
-        navigate(`/booking/shopping-cart?${params}`);
+        if (flight.tripType === 'one-way') {
+            navigate(`/booking/shopping-cart?${params}`);
+        } else {
+            navigate('/booking/')
+        }
     };
 
     const handleFilter = () => {
