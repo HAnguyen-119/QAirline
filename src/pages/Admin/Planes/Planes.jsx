@@ -108,10 +108,10 @@ export default function Planes() {
     }
 
     const handleAdd = async () => {
-        const newId = document.getElementById("id-add").value;
-        const newModel = document.getElementById("model-add").value;
-        const newManufacturer = document.getElementById("manufacturer-add").value;
-        const newCapacity = document.getElementById("capacity-add").value;
+        const newId = document.getElementById("id-new").value;
+        const newModel = document.getElementById("model-new").value;
+        const newManufacturer = document.getElementById("manufacturer-new").value;
+        const newCapacity = document.getElementById("capacity-new").value;
         const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "capacity": newCapacity};
         try{
             if (checkDuplicateId(newId)) {
@@ -132,10 +132,10 @@ export default function Planes() {
     }
 
     const handleUpdate = async () => {
-        const newId = document.getElementById("id-add").value;
-        const newModel = document.getElementById("model-add").value;
-        const newManufacturer = document.getElementById("manufacturer-add").value;
-        const newCapacity = document.getElementById("capacity-add").value;
+        const newId = document.getElementById("id-new").value;
+        const newModel = document.getElementById("model-new").value;
+        const newManufacturer = document.getElementById("manufacturer-new").value;
+        const newCapacity = document.getElementById("capacity-new").value;
         const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "capacity": newCapacity};
         try {
             if (updatingId !== newId && checkDuplicateId(newId)) {
@@ -170,10 +170,10 @@ export default function Planes() {
             <div className="planes-filter">
                 <button className="josefin-sans" id="add-Bt" onClick={() => {setIsAdding(true)}}>Add new plane</button>
                 <div className="filters">
-                    ID <input type="text" id="id-filter"/>
-                    model <input type="text" id="model-filter"/>
-                    manufacturer <input type="text" id="manufacturer-filter"/>
-                    Capacity <select id="capacity-filter">
+                    ID <input type="text" id="id-filter" className="josefin-sans"/>
+                    Model <input type="text" id="model-filter" className="josefin-sans"/>
+                    Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/>
+                    Capacity <select id="capacity-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="< 100">{"< 100"}</option>
                         <option value="100 - 200">{"100 - 200"}</option>
@@ -223,20 +223,20 @@ export default function Planes() {
                         <h1>{isAdding ? "New plane" : "Update plane"}</h1>
                         <div className="input-fields">
                             <span>Plane ID <span style={{color: "red"}}>{isIdInput ? "" : "*"} {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
-                            <input type="text" id="id-add" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("id-add").value.trim().length > 0 ? setIsIdInput(true) : setIsIdInput(false);
+                            <input type="text" id="id-new" className="josefin-sans" required={true} onInput={() => {
+                                document.getElementById("id-new").value.trim().length > 0 ? setIsIdInput(true) : setIsIdInput(false);
                             }}/>
                             <span>Model <span style={{color: "red"}}>{isModelInput ? "" : "*"}</span></span>
-                            <input type="text" id="model-add" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("model-add").value.trim().length > 0 ? setIsModelInput(true) : setIsModelInput(false);
+                            <input type="text" id="model-new" className="josefin-sans" required={true} onInput={() => {
+                                document.getElementById("model-new").value.trim().length > 0 ? setIsModelInput(true) : setIsModelInput(false);
                             }}/>
                             <span>Manufacturer <span style={{color: "red"}}>{isManufacturerInput ? "" : "*"}</span></span>
-                            <input type="text" id="manufacturer-add" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("manufacturer-add").value.trim().length > 0 ? setIsManufacturerInput(true) : setIsManufacturerInput(false);
+                            <input type="text" id="manufacturer-new" className="josefin-sans" required={true} onInput={() => {
+                                document.getElementById("manufacturer-new").value.trim().length > 0 ? setIsManufacturerInput(true) : setIsManufacturerInput(false);
                             }}/>
                             <span>Capacity <span style={{color: "red"}}>{isCapacityInput ? "" : "*"}</span></span>
-                            <input type="number" id="capacity-add" className="josefin-sans" min={1} required={true} onInput={() => {
-                                document.getElementById("capacity-add").value.length > 0 ? setIsCapacityInput(true) : setIsCapacityInput(false);
+                            <input type="number" id="capacity-new" className="josefin-sans" min={1} required={true} onInput={() => {
+                                document.getElementById("capacity-new").value.length > 0 ? setIsCapacityInput(true) : setIsCapacityInput(false);
                             }}/>
                         </div>
                         <div className="buttons">

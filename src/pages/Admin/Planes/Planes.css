@@ -27,6 +27,10 @@ caption {
     width: 30%;
 }
 
+.planes th:first-child, .planes th:nth-child(2) {
+    width: 10%;
+}
+
 .planes th:last-child {
     width: 70px;
 }
