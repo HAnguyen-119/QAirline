@@ -28,6 +28,7 @@ import SearchResults from "./pages/User/Booking/Search/SearchResults.jsx";
 import ShoppingCart from "./pages/User/Booking/ShoppingCart/ShoppingCart.jsx";
 import Traveler from "./pages/User/Booking/TravelerInfo/Traveler.jsx";
 import {BookingProvider} from "./Context/BookingContext.jsx";
+import Airports from "./pages/Admin/Airports/Airports.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
@@ -52,6 +53,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="users" element={<Users/>} />
             <Route path="flights" element={<Flights/>} />
             <Route path="planes" element={<Planes/>} />
+            <Route path="airports" element={<Airports/>} />
             <Route path="booked" element={<Booked/>} />
             <Route path="information" element={<Information/>} />
         </Route>
