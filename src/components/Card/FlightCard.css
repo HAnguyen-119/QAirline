@@ -1,16 +1,20 @@
+.flight-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.flight-card-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
 .flight-card {
     display: flex;
     flex-direction: row;
     border: 1px solid;
     border-radius: 10px;
-    padding: 10px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-}
-
-.flight-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
 }
 
 .flight-type {
@@ -18,30 +22,12 @@
     margin: 10px;
 }
 
-.business, .economy {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    text-align: center;
-
-}
-
-.business {
-    border: 2px solid #ffcc00;
-    border-radius: 5px;
-}
-
-.economy {
-    border: 2px solid #0099ff;
-    border-radius: 5px;
-}
-
 .flight-info {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    flex: 3;
+    flex: 4;
 }
 
 .flight-info>* {
@@ -51,19 +37,14 @@
 
 .flight-price {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 10px;
+    flex: 1;
 }
 
-.flight-price-left>p {
-    margin: 10px 0 0 0;
-    font-size: 36px;
-}
-
-.flight-price>.submit {
+.flight-price>*>.submit {
     background-color: var(--button-active);
     color: white;
     border: none;
@@ -74,11 +55,24 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.flight-price>.submit:hover {
+.flight-price>*>.submit:hover {
     background-color: var(--button-hover);
     transform: translateY(-2px);
 }
 
-.flight-price>.submit:active {
+.flight-price>*>    .submit:active {
     transform: translateY(0);
+}
+
+.flight-price-left {
+    background-color: blue;
+}
+
+.dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.dropdown.show {
+    max-height: 150px;
 }

@@ -1,108 +1,146 @@
+
 [
   {
-    "region": " ",
-    "airports": [
-      {"name": " ", "code": " "}
-    ]
+    "id": 1,
+    "name": "Noi Bai International Airport",
+    "code": "HAN",
+    "area": "Viet Nam",
+    "city": "Ha Noi, Viet Nam"
+
   },
   {
-    "region": "VIỆT NAM",
-    "airports": [
-      { "name": "Tp. Hồ Chí Minh", "code": "SGN" },
-      { "name": "Đà Nẵng", "code": "DAD" },
-      { "name": "Phú Quốc", "code": "PQC" },
-      { "name": "Nha Trang", "code": "CXR" },
-      { "name": "Hà Nội", "code": "HAN" }
-    ]
+    "id": 2,
+    "name": "Changi Airport",
+    "code": "SIN",
+    "area": "Southeast Asia",
+    "city": "Singapore, Singapore"
+
   },
   {
-    "region": "ĐÔNG NAM Á",
-    "airports": [
-      { "name": "Bangkok", "code": "BKK" },
-      { "name": "Kuala Lumpur", "code": "KUL" },
-      { "name": "Singapore", "code": "SIN" },
-      { "name": "Jakarta", "code": "CGK" },
-      { "name": "Manila", "code": "MNL" }
-    ]
+    "id": 3,
+    "name": "Tokyo Haneda Airport",
+    "code": "HND",
+    "area": "Asia",
+    "city": "Tokyo, Japan"
+
   },
   {
-    "region": "NAM Á",
-    "airports": [
-      { "name": "New Delhi", "code": "DEL" },
-      { "name": "Mumbai", "code": "BOM" },
-      { "name": "Colombo", "code": "CMB" },
-      { "name": "Kathmandu", "code": "KTM" },
-      { "name": "Dhaka", "code": "DAC" }
-    ]
+    "id": 4,
+    "name": "Incheon International Airport",
+    "code": "ICN",
+    "area": "Asia",
+    "city": "Seoul, South Korea"
+
   },
   {
-    "region": "BẮC Á",
-    "airports": [
-      { "name": "Beijing", "code": "PEK" },
-      { "name": "Tokyo", "code": "HND" },
-      { "name": "Seoul", "code": "ICN" },
-      { "name": "Shanghai", "code": "PVG" },
-      { "name": "Osaka", "code": "KIX" }
-    ]
+    "id": 5,
+    "name": "Heathrow Airport",
+    "code": "LHR",
+    "area": "Europe",
+    "city": "London, United Kingdom"
+
   },
   {
-    "region": "CHÂU ÂU",
-    "airports": [
-      { "name": "London Heathrow", "code": "LHR" },
-      { "name": "Paris Charles de Gaulle", "code": "CDG" },
-      { "name": "Frankfurt", "code": "FRA" },
-      { "name": "Amsterdam Schiphol", "code": "AMS" },
-      { "name": "Madrid Barajas", "code": "MAD" }
-    ]
+    "id": 6,
+    "name": "Charles de Gaulle Airport",
+    "code": "CDG",
+    "area": "Europe",
+    "city": "Paris, France"
+
   },
   {
-    "region": "BẮC MỸ",
-    "airports": [
-      { "name": "New York JFK", "code": "JFK" },
-      { "name": "Los Angeles LAX", "code": "LAX" },
-      { "name": "Chicago O'Hare", "code": "ORD" },
-      { "name": "Toronto Pearson", "code": "YYZ" },
-      { "name": "Mexico City", "code": "MEX" }
-    ]
+    "id": 7,
+    "name": "Frankfurt Airport",
+    "code": "FRA",
+    "area": "Europe",
+    "city": "Frankfurt, Germany"
+
   },
   {
-    "region": "NAM MỸ",
-    "airports": [
-      { "name": "Sao Paulo Guarulhos", "code": "GRU" },
-      { "name": "Buenos Aires Ezeiza", "code": "EZE" },
-      { "name": "Bogotá El Dorado", "code": "BOG" },
-      { "name": "Lima Jorge Chávez", "code": "LIM" },
-      { "name": "Rio de Janeiro Galeão", "code": "GIG" }
-    ]
+    "id": 8,
+    "name": "John F. Kennedy International Airport",
+    "code": "JFK",
+    "area": "North America",
+    "city": "New York, USA"
+
   },
   {
-    "region": "CHÂU ÚC",
-    "airports": [
-      { "name": "Sydney", "code": "SYD" },
-      { "name": "Melbourne", "code": "MEL" },
-      { "name": "Brisbane", "code": "BNE" },
-      { "name": "Perth", "code": "PER" },
-      { "name": "Auckland", "code": "AKL" }
-    ]
+    "id": 9,
+    "name": "Los Angeles International Airport",
+    "code": "LAX",
+    "area": "North America",
+    "city": "Los Angeles, USA"
+
   },
   {
-    "region": "TRUNG ĐÔNG",
-    "airports": [
-      { "name": "Dubai International", "code": "DXB" },
-      { "name": "Doha Hamad", "code": "DOH" },
-      { "name": "Istanbul", "code": "IST" },
-      { "name": "Abu Dhabi", "code": "AUH" },
-      { "name": "Tel Aviv", "code": "TLV" }
-    ]
+    "id": 10,
+    "name": "Sydney Kingsford Smith Airport",
+    "code": "SYD",
+    "area": "Oceania",
+    "city": "Sydney, Australia"
+
   },
   {
-    "region": "CHÂU PHI",
-    "airports": [
-      { "name": "Johannesburg", "code": "JNB" },
-      { "name": "Cape Town", "code": "CPT" },
-      { "name": "Nairobi", "code": "NBO" },
-      { "name": "Cairo", "code": "CAI" },
-      { "name": "Addis Ababa", "code": "ADD" }
-    ]
+    "id": 11,
+    "name": "Kuala Lumpur International Airport",
+    "code": "KUL",
+    "area": "Southeast Asia",
+    "city": "Kuala Lumpur, Malaysia"
+
+  },
+  {
+    "id": 12,
+    "name": "Tan Son Nhat International Airport",
+    "code": "SGN",
+    "area": "Southeast Asia",
+    "city": "Ho Chi Minh City, Viet Nam"
+
+  },
+  {
+    "id": 13,
+    "name": "Da Nang International Airport",
+    "code": "DAD",
+    "area": "Southeast Asia",
+    "city": "Da Nang, Viet Nam"
+
+  },
+  {
+    "id": 14,
+    "name": "Cam Ranh International Airport",
+    "code": "CXR",
+    "area": "Southeast Asia",
+    "city": "Khanh Hoa, Viet Nam"
+  },
+  {
+    "id": 15,
+    "name": "Phu Quoc International Airport",
+    "code": "PQC",
+    "area": "Southeast Asia",
+    "city": "Phu Quoc, Viet Nam"
+
+  },
+  {
+    "id": 16,
+    "name": "Cat Bi International Airport",
+    "code": "HPH",
+    "area": "Southeast Asia",
+    "city": "Hai Phong, Viet Nam"
+
+  },
+  {
+    "id": 17,
+    "name": "Suvarnabhumi Airport",
+    "code": "BKK",
+    "area": "Southeast Asia",
+    "city": "Bangkok, Thailand"
+
+  },
+  {
+    "id": 18,
+    "name": "Changi Airport",
+    "code": "SIN",
+    "area": "Southeast Asia",
+    "city": "Singapore, Singapore"
+
   }
 ]
