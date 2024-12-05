@@ -1,9 +1,10 @@
 import './Airports.css'
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 
 export default function Airports() {
+    const isLightMode = useOutletContext();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -11,15 +12,10 @@ export default function Airports() {
     const [isRefresh, setIsRefresh] = useState(false);
     const [isAdding, setIsAdding] = useState(false);
     const [isUpdating, setIsUpdating] = useState(false);
-    const [updatingId, setUpdatingId] = useState(0);
+    const [updatingAirport, setUpdatingAirport] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [deletingId, setDeletingId] = useState([0, ""]);
     const [isDuplicatedId, setIsDuplicatedId] = useState(false);
-
-    const [isIdInput, setIsIdInput] = useState(false);
-    const [isNameInput, setIsNameInput] = useState(false);
-    const [isRegionInput, setIsRegionInput] = useState(false);
-    const [isCityInput, setIsCityInput] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,12 +32,13 @@ export default function Airports() {
     }, [isRefresh]);
 
     const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get('code');
+    const code = searchParams.get('id');
     const name = searchParams.get('name');
     const region = searchParams.get("region");
     const city = searchParams.get('city');
 
     const checkDuplicateId = (newId) => {
+        if (newId.length === 0) return false;
         const airportIds = airportData.map(airport => airport.code);
         for (let i = 0; i < airportIds.length; i++) {
             if (airportIds[i] === newId) return true;
@@ -52,7 +49,7 @@ export default function Airports() {
     const filteredAirports = airportData.filter((airport) => {
         return (!code || airport.code === code)
             && (!name || airport.name === name)
-            && (!region || airport.area === region)
+            && (!region || airport.region === region)
             && (!city || airport.city === city);
     })
 
@@ -69,10 +66,10 @@ export default function Airports() {
     }
 
     const searchWithFilter = () => {
-        const idValue = document.getElementById("id-filter").value;
-        const nameValue = document.getElementById("name-filter").value;
-        const regionValue = document.getElementById("region-filter").value;
-        const cityValue = document.getElementById("city-filter").value;
+        const idValue = document.getElementById("id-filter").value.trim();
+        const nameValue = document.getElementById("name-filter").value.trim();
+        const regionValue = document.getElementById("region-filter").value.trim();
+        const cityValue = document.getElementById("city-filter").value.trim();
         let params = new URLSearchParams({
             'id': idValue,
             'name': nameValue,
@@ -88,29 +85,29 @@ export default function Airports() {
         setIsDeleting(false);
         setIsDuplicatedId(false);
         setIsRefresh(!isRefresh);
-        setIsIdInput(false);
-        setIsNameInput(false);
-        setIsRegionInput(false);
-        setIsCityInput(false);
     }
 
     const handleAdd = async () => {
-        const newId = document.getElementById("id-new").value;
-        const newName = document.getElementById("name-new").value;
-        const newRegion = document.getElementById("region-new").value;
-        const newCity = document.getElementById("city-new").value;
-        const newAirportData = {"code": newId, "name": newName, "area": newRegion, "city": newCity};
+        const newId = document.getElementById("id-new").value.trim();
+        const newName = document.getElementById("name-new").value.trim();
+        const newRegion = document.getElementById("region-new").value.trim();
+        const newCity = document.getElementById("city-new").value.trim();
+        const isValid = newId.length > 0
+                            && newName.length > 0
+                            && newRegion.length > 0
+                            && newCity.length > 0
+        const newAirportData = {"code": newId, "name": newName, "region": newRegion, "city": newCity};
         try{
-            if (checkDuplicateId(newId)) {
-                setIsDuplicatedId(true);
+            if (!isValid) {
+                if (checkDuplicateId(newId)) {
+                    setIsDuplicatedId(true);
+                } else {
+                    setIsDuplicatedId(false);
+                }
             } else {
                 setIsDuplicatedId(false);
                 await userAPI.addAirport(newAirportData);
                 setIsAdding(false);
-                setIsIdInput(false);
-                setIsNameInput(false);
-                setIsRegionInput(false);
-                setIsCityInput(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
@@ -119,22 +116,26 @@ export default function Airports() {
     }
 
     const handleUpdate = async () => {
-        const newId = document.getElementById("id-new").value;
-        const newName = document.getElementById("name-new").value;
-        const newRegion = document.getElementById("region-new").value;
-        const newCity = document.getElementById("city-new").value;
+        const newId = document.getElementById("id-new").value.trim();
+        const newName = document.getElementById("name-new").value.trim();
+        const newRegion = document.getElementById("region-new").value.trim();
+        const newCity = document.getElementById("city-new").value.trim();
+        const isValid = newId.length > 0
+                            && newName.length > 0
+                            && newRegion.length > 0
+                            && newCity.length > 0
         const newAirportData = {"code": newId, "name": newName, "region": newRegion, "city": newCity};
         try {
-            if (updatingId !== newId && checkDuplicateId(newId)) {
-                setIsDuplicatedId(true);
+            if (!isValid) {
+                if (updatingAirport.code !== newId && checkDuplicateId(newId)) {
+                    setIsDuplicatedId(true);
+                } else {
+                    setIsDuplicatedId(false);
+                }
             } else {
                 setIsDuplicatedId(false);
-                await userAPI.updateAirport(updatingId, newAirportData);
+                await userAPI.updateAirport(updatingAirport.id, newAirportData);
                 setIsUpdating(false);
-                setIsIdInput(false);
-                setIsNameInput(false);
-                setIsRegionInput(false);
-                setIsCityInput(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
@@ -170,7 +171,7 @@ export default function Airports() {
                     <button className="josefin-sans" onClick={clearFilters}>Clear Filters</button>
                 </div>
             </div>
-            <table>
+            <table className={`${isLightMode ? "" : "dark"}`}>
                 <caption>TOTAL NUMBER OF AIRPORTS : {airportData.length}</caption>
                 <tbody>
                 <tr>
@@ -186,12 +187,12 @@ export default function Airports() {
                         <td>{index + 1}</td>
                         <td>{airport.code}</td>
                         <td>{airport.name}</td>
-                        <td>{airport.area}</td>
+                        <td>{airport.region}</td>
                         <td>{airport.city}</td>
                         <td>
                             <button className="edit" onClick={() => {
                                 setIsUpdating(true);
-                                setUpdatingId(airport.id);
+                                setUpdatingAirport(airport);
                             }}></button>
                             <button className="delete" onClick={() => {
                                 setIsDeleting(true);
@@ -207,22 +208,14 @@ export default function Airports() {
                     <div className="add-airport-form">
                         <h1>{isAdding ? "New airport" : "Update airport"}</h1>
                         <div className="input-fields">
-                            <span>Airport ID <span style={{color: "red"}}>{isIdInput ? "" : "*"} {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
-                            <input type="text" id="id-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("id-new").value.trim().length > 0 ? setIsIdInput(true) : setIsIdInput(false);
-                            }}/>
-                            <span>Name <span style={{color: "red"}}>{isNameInput ? "" : "*"}</span></span>
-                            <input type="text" id="name-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("name-new").value.trim().length > 0 ? setIsNameInput(true) : setIsNameInput(false);
-                            }}/>
-                            <span>Region <span style={{color: "red"}}>{isRegionInput ? "" : "*"}</span></span>
-                            <input type="text" id="region-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("region-new").value.trim().length > 0 ? setIsRegionInput(true) : setIsRegionInput(false);
-                            }}/>
-                            <span>City <span style={{color: "red"}}>{isCityInput ? "" : "*"}</span></span>
-                            <input type="text" id="city-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("city-new").value.trim().length > 0 ? setIsCityInput(true) : setIsCityInput(false);
-                            }}/>
+                            <span>Airport ID <span style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
+                            <input type="text" id="id-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.code : ""}/>
+                            <span>Name <span style={{color: "red"}}>* </span></span>
+                            <input type="text" id="name-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.name : ""}/>
+                            <span>Region <span style={{color: "red"}}>* </span></span>
+                            <input type="text" id="region-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.region : ""}/>
+                            <span>City <span style={{color: "red"}}>* </span></span>
+                            <input type="text" id="city-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.city : ""}/>
                         </div>
                         <div className="buttons">
                             <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>

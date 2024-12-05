@@ -37,12 +37,12 @@ const userAPI = {
     },
 
     updateAirport: (airportId, airport) => {
-        const url = `api/v1/airplanes/${airportId}`;
+        const url = `api/v1/airports/${airportId}`;
         return axiosClient.put(url, airport);
     },
 
     deleteAirport: (airportId) => {
-        const url = `api/v1/airplanes/${airportId}`;
+        const url = `api/v1/airports/${airportId}`;
         return axiosClient.delete(url, airportId);
     }
 }

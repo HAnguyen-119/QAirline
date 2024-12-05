@@ -1,9 +1,10 @@
 import './Planes.css'
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 
 export default function Planes() {
+    const isLightMode = useOutletContext();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -11,15 +12,10 @@ export default function Planes() {
     const [isRefresh, setIsRefresh] = useState(false);
     const [isAdding, setIsAdding] = useState(false);
     const [isUpdating, setIsUpdating] = useState(false);
-    const [updatingId, setUpdatingId] = useState(0);
+    const [updatingPlane, setUpdatingPlane] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [deletingId, setDeletingId] = useState([0, ""]);
     const [isDuplicatedId, setIsDuplicatedId] = useState(false);
-
-    const [isIdInput, setIsIdInput] = useState(false);
-    const [isModelInput, setIsModelInput] = useState(false);
-    const [isManufacturerInput, setIsManufacturerInput] = useState(false);
-    const [isCapacityInput, setIsCapacityInput] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,6 +23,7 @@ export default function Planes() {
                 const planes = await userAPI.getAllPlanes();
                 setPlaneData(planes);
                 console.log(planes);
+                console.log(planes)
                 console.log(isRefresh);
             } catch (error) {
                 console.log(error);
@@ -55,6 +52,7 @@ export default function Planes() {
     }
 
     const checkDuplicateId = (newId) => {
+        if (newId.length === 0) return false;
         const planeIds = planeData.map(plane => plane.code);
         for (let i = 0; i < planeIds.length; i++) {
             if (planeIds[i] === newId) return true;
@@ -66,7 +64,7 @@ export default function Planes() {
         return (!code || plane.code === code)
             && (!model || plane.model === model)
             && (!manufacturer || plane.manufacturer === manufacturer)
-            && (checkCapacity(plane.capacity, capacity));
+            && (checkCapacity(plane.economySeatNumber + plane.businessSeatNumber, capacity));
     })
 
     const clearFilters = () => {
@@ -82,10 +80,10 @@ export default function Planes() {
     }
 
     const searchWithFilter = () => {
-        const idValue = document.getElementById("id-filter").value;
-        const modelValue = document.getElementById("model-filter").value;
-        const manufacturerValue = document.getElementById("manufacturer-filter").value;
-        const capacityValue = document.getElementById("capacity-filter").value;
+        const idValue = document.getElementById("id-filter").value.trim();
+        const modelValue = document.getElementById("model-filter").value.trim();
+        const manufacturerValue = document.getElementById("manufacturer-filter").value.trim();
+        const capacityValue = document.getElementById("capacity-filter").value.trim();
         let params = new URLSearchParams({
             'id': idValue,
             'model': modelValue,
@@ -101,29 +99,31 @@ export default function Planes() {
         setIsDeleting(false);
         setIsDuplicatedId(false);
         setIsRefresh(!isRefresh);
-        setIsIdInput(false);
-        setIsModelInput(false);
-        setIsManufacturerInput(false);
-        setIsCapacityInput(false);
     }
 
     const handleAdd = async () => {
-        const newId = document.getElementById("id-new").value;
-        const newModel = document.getElementById("model-new").value;
-        const newManufacturer = document.getElementById("manufacturer-new").value;
-        const newCapacity = document.getElementById("capacity-new").value;
-        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "capacity": newCapacity};
+        const newId = document.getElementById("id-new").value.trim();
+        const newModel = document.getElementById("model-new").value.trim();
+        const newManufacturer = document.getElementById("manufacturer-new").value.trim();
+        const newEconomy = document.getElementById("economy-new").value.trim();
+        const newBusiness = document.getElementById("business-new").value.trim();
+        const isValid = newId.length > 0
+                                && newModel.length > 0
+                                && newManufacturer.length > 0
+                                && newEconomy.length > 0
+                                && newBusiness.length > 0;
+        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "economySeatNumber": newEconomy, "businessSeatNumber": newBusiness};
         try{
-            if (checkDuplicateId(newId)) {
-                setIsDuplicatedId(true);
+            if (!isValid) {
+                if(checkDuplicateId(newId)) {
+                    setIsDuplicatedId(true);
+                } else {
+                    setIsDuplicatedId(false);
+                }
             } else {
                 setIsDuplicatedId(false);
                 await userAPI.addPlane(newPlaneData);
                 setIsAdding(false);
-                setIsIdInput(false);
-                setIsModelInput(false);
-                setIsManufacturerInput(false);
-                setIsCapacityInput(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
@@ -132,22 +132,29 @@ export default function Planes() {
     }
 
     const handleUpdate = async () => {
-        const newId = document.getElementById("id-new").value;
-        const newModel = document.getElementById("model-new").value;
-        const newManufacturer = document.getElementById("manufacturer-new").value;
-        const newCapacity = document.getElementById("capacity-new").value;
-        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "capacity": newCapacity};
+        const newId = document.getElementById("id-new").value.trim();
+        const newModel = document.getElementById("model-new").value.trim();
+        const newManufacturer = document.getElementById("manufacturer-new").value.trim();
+        const newEconomy = document.getElementById("economy-new").value.trim();
+        const newBusiness = document.getElementById("business-new").value.trim();
+        const isValid = newId.length > 0
+            && newModel.length > 0
+            && newManufacturer.length > 0
+            && newEconomy.length > 0
+            && newBusiness.length > 0;
+        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "economySeatNumber": newEconomy, "businessSeatNumber": newBusiness};
         try {
-            if (updatingId !== newId && checkDuplicateId(newId)) {
-                setIsDuplicatedId(true);
+            if (!isValid) {
+                if (updatingPlane.code !== newId && checkDuplicateId(newId)) {
+                    setIsDuplicatedId(true);
+                }
+                else {
+                    setIsDuplicatedId(false);
+                }
             } else {
                 setIsDuplicatedId(false);
-                await userAPI.updatePlane(updatingId, newPlaneData);
+                await userAPI.updatePlane(updatingPlane.id, newPlaneData);
                 setIsUpdating(false);
-                setIsIdInput(false);
-                setIsModelInput(false);
-                setIsManufacturerInput(false);
-                setIsCapacityInput(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
@@ -185,28 +192,35 @@ export default function Planes() {
                     <button className="josefin-sans" onClick={clearFilters}>Clear Filters</button>
                 </div>
             </div>
-            <table>
+            <table className={`${isLightMode ? "" : "dark"}`}>
                 <caption>TOTAL NUMBER OF PLANES : {planeData.length}</caption>
                 <tbody>
-                <tr>
-                    <th>No</th>
-                    <th>Id</th>
-                    <th>Model</th>
-                    <th>Manufacturer</th>
-                    <th>Capacity</th>
-                    <th>Edit</th>
-                </tr>
+                    <tr>
+                        <th rowSpan={2}>No</th>
+                        <th rowSpan={2}>Id</th>
+                        <th rowSpan={2}>Model</th>
+                        <th rowSpan={2}>Manufacturer</th>
+                        <th colSpan={3}>Capacity</th>
+                        <th rowSpan={2}>Edit</th>
+                    </tr>
+                    <tr>
+                        <th>Economy</th>
+                        <th>Business</th>
+                        <th>Total</th>
+                    </tr>
                 {filteredPlanes.map((plane, index) =>
                     <tr key={plane.code}>
                         <td>{index + 1}</td>
                         <td>{plane.code}</td>
                         <td>{plane.model}</td>
                         <td>{plane.manufacturer}</td>
-                        <td>{plane.capacity}</td>
+                        <td>{plane.economySeatNumber}</td>
+                        <td>{plane.businessSeatNumber}</td>
+                        <td>{plane.economySeatNumber + plane.businessSeatNumber}</td>
                         <td>
                             <button className="edit" onClick={() => {
                                 setIsUpdating(true);
-                                setUpdatingId(plane.id);
+                                setUpdatingPlane(plane);
                             }}></button>
                             <button className="delete" onClick={() => {
                                 setIsDeleting(true);
@@ -222,22 +236,18 @@ export default function Planes() {
                     <div className="add-plane-form">
                         <h1>{isAdding ? "New plane" : "Update plane"}</h1>
                         <div className="input-fields">
-                            <span>Plane ID <span style={{color: "red"}}>{isIdInput ? "" : "*"} {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
-                            <input type="text" id="id-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("id-new").value.trim().length > 0 ? setIsIdInput(true) : setIsIdInput(false);
-                            }}/>
-                            <span>Model <span style={{color: "red"}}>{isModelInput ? "" : "*"}</span></span>
-                            <input type="text" id="model-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("model-new").value.trim().length > 0 ? setIsModelInput(true) : setIsModelInput(false);
-                            }}/>
-                            <span>Manufacturer <span style={{color: "red"}}>{isManufacturerInput ? "" : "*"}</span></span>
-                            <input type="text" id="manufacturer-new" className="josefin-sans" required={true} onInput={() => {
-                                document.getElementById("manufacturer-new").value.trim().length > 0 ? setIsManufacturerInput(true) : setIsManufacturerInput(false);
-                            }}/>
-                            <span>Capacity <span style={{color: "red"}}>{isCapacityInput ? "" : "*"}</span></span>
-                            <input type="number" id="capacity-new" className="josefin-sans" min={1} required={true} onInput={() => {
-                                document.getElementById("capacity-new").value.length > 0 ? setIsCapacityInput(true) : setIsCapacityInput(false);
-                            }}/>
+                            <span>Plane ID <span
+                                style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
+                            <input type="text" id="id-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.code : ""}/>
+                            <span>Model <span style={{color: "red"}}>* </span></span>
+                            <input type="text" id="model-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.model : ""}/>
+                            <span>Manufacturer <span
+                                style={{color: "red"}}>* </span></span>
+                            <input type="text" id="manufacturer-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.manufacturer : ""}/>
+                            <span>Economy seats <span style={{color: "red"}}>* </span></span>
+                            <input type="number" id="economy-new" className="josefin-sans" min={1} required={true} defaultValue={isUpdating ? updatingPlane.economySeatNumber : ""}/>
+                            <span>Business seats <span style={{color: "red"}}>* </span></span>
+                            <input type="number" id="business-new" className="josefin-sans" min={1} required={true} defaultValue={isUpdating ? updatingPlane.businessSeatNumber : ""}/>
                         </div>
                         <div className="buttons">
                             <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>

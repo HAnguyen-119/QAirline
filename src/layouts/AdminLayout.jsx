@@ -18,7 +18,6 @@ export default function AdminLayout() {
                 <NavBar isAdmin={true} switchMode={switchMode} isLightMode={lightMode} />
             </header>
             <main>
-                {/*<Background isLightMode={lightMode}/>*/}
                 <Outlet context={lightMode}/>
             </main>
             <footer>
