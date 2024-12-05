@@ -1,9 +1,10 @@
 import './Flights.css'
 import {useEffect, useState} from "react";
-import axios from "axios";
 import userAPI from "../../../api/userAPI.jsx";
+import {useOutletContext} from "react-router-dom";
 
 export default function Flights() {
+    const isLightMode = useOutletContext();
     const [flightsData, setFlightsData] = useState([]);
 
     useEffect(() => {
@@ -21,7 +22,8 @@ export default function Flights() {
 
     return (
         <div className="flights">
-            <table>
+            <table className={`${isLightMode ? "" : "dark"}`}>
+                <caption>TOTAL NUMBER OF FLIGHTS : {flightsData.length}</caption>
                 <tbody>
                     <tr>
                         <th rowSpan={2}>No</th>
@@ -31,7 +33,8 @@ export default function Flights() {
                         <th rowSpan={2}>Arrival Airport</th>
                         <th rowSpan={2}>Departure Time</th>
                         <th rowSpan={2}>Arrival Time</th>
-                        <th colSpan={2}>Number of seats</th>
+                        <th colSpan={2}>Price</th>
+                        <th colSpan={2}>Seats</th>
                         <th colSpan={2}>Booked</th>
                         <th rowSpan={2}>Status</th>
                         <th rowSpan={2}>Edit</th>
@@ -41,23 +44,31 @@ export default function Flights() {
                         <th>Business</th>
                         <th>Economy</th>
                         <th>Business</th>
+                        <th>Economy</th>
+                        <th>Business</th>
                     </tr>
                     {flightsData.map((flight, index) => <tr key={flight.flightNumber}>
                         <td>{index + 1}</td>
                         <td>{flight.flightNumber}</td>
-                        <td></td>
-                        <td>{((Object)(flight.departureAirport)).city + " (" + ((Object)(flight.departureAirport)).code + ")"}</td>
-                        <td>{((Object)(flight.arrivalAirport)).city + " (" + ((Object)(flight.arrivalAirport)).code + ")"}</td>
+                        <td>{flight.airplane.code}</td>
+                        <td>{flight.departureAirport.code}</td>
+                        <td>{flight.arrivalAirport.code}</td>
                         <td>{flight.departureTime}</td>
                         <td>{flight.arrivalTime}</td>
-                        <td>{((Object)(flight.seatClasses[0])).totalNumber}</td>
-                        <td>{((Object)(flight.seatClasses[1])).totalNumber}</td>
-                        <td>{((Object)(flight.seatClasses[0])).bookedNumber}</td>
-                        <td>{((Object)(flight.seatClasses[1])).bookedNumber}</td>
-                        <td>{flight.status}</td>
+                        <td>{flight.economyPrice}</td>
+                        <td>{flight.businessPrice}</td>
+                        <td>{flight.airplane.economySeatNumber}</td>
+                        <td>{flight.airplane.businessSeatNumber}</td>
+                        <td>{flight.economySeatBookedNumber}</td>
+                        <td>{flight.businessSeatBookedNumber}</td>
+                        <td>{flight.flightStatus}</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button className="edit" onClick={() => {
+
+                            }}></button>
+                            <button className="delete" onClick={() => {
+
+                            }}></button>
                         </td>
                     </tr>)}
                 </tbody>

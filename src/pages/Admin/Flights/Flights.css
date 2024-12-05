@@ -6,12 +6,101 @@
     margin-top: 4rem;
 }
 
-.flights table, .flights table td, .flights table th, .flights table tr {
+.flights table {
+    width: 90%;
+    height: 100%;
+}
+
+.flights table,
+.flights table td,
+.flights table th,
+.flights table tr {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-.flights table {
-    width: 80%;
-    height: 100%;
+.flights table.dark,
+.flights table.dark th,
+.flights table.dark td {
+    border: 2px solid var(--light);
+}
+
+.flights caption {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.flights tr:first-child > th:first-child,
+.flights tr:first-child > th:nth-child(2),
+.flights tr:first-child > th:nth-child(3),
+.flights tr:first-child > th:nth-child(4),
+.flights tr:first-child > th:nth-child(5) {
+    width: 5%;
+    min-width: 70px;
+}
+
+.flights tr:first-child > th:nth-child(6),
+.flights tr:first-child > th:nth-child(7) {
+    width: 20%;
+    min-width: 170px;
+}
+
+.flights tr:first-child > th:nth-child(8),
+.flights tr:first-child > th:nth-child(9),
+.flights tr:first-child > th:nth-child(10) {
+    width: 10%;
+    min-width: 100px;
+}
+
+.flights tr:first-child > th:nth-child(11) {
+    width: 7%;
+    min-width: 120px;
+}
+
+.flights tr:first-child > th:last-child {
+    width: 10%;
+    min-width: 70px;
+}
+
+.flights tr:nth-child(2) > th {
+    width: 50%;
+    min-width: 90px;
+}
+
+.flights th, td {
+    height: 2.5rem;
+}
+
+.flights th {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.flights tr > td:first-child {
+    text-align: center;
+}
+
+.flights tr > td:not(:first-child) {
+    padding-left: 0.5rem;
+}
+
+.flights table button {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.flights .edit {
+    background-image: url("../src/assets/images/edit.png");
+}
+
+.flights .delete {
+    background-image: url("../src/assets/images/delete.png");
 }

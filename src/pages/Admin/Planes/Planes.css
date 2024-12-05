@@ -7,9 +7,18 @@
     margin-top: 4rem;
 }
 
-.planes table, .planes table td, .planes table th, .planes table tr {
+table {
+    width: 70%;
+    height: 100%;
+}
+
+table, table td, table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
+}
+
+table.dark, table.dark td, table.dark th {
+    border: 2px solid var(--dark);
 }
 
 caption {
@@ -18,41 +27,49 @@ caption {
     margin-bottom: 1rem;
 }
 
-.planes table {
-    width: 70%;
-    height: 100%;
+
+tr:first-child > th:nth-child(3), tr:first-child > th:nth-child(4) {
+    width: 20%;
+    min-width: 200px;
 }
 
-.planes th:nth-child(3), .planes td:nth-child(4) {
-    width: 30%;
-}
-
-.planes th:first-child, .planes th:nth-child(2) {
+tr:first-child > th:first-child, tr:first-child > th:nth-child(2) {
     width: 10%;
+    min-width: 100px;
 }
 
-.planes th:last-child {
-    width: 70px;
+tr:first-child > th:nth-child(5) {
+    width: 30%;
+    min-width: 300px;
 }
 
-.planes th, .planes td {
+tr:first-child > th:last-child {
+    width: 10%;
+    min-width: 70px;
+}
+
+tr:nth-child(2) > th {
+    width: 33.33%;
+}
+
+th, td {
     height: 2.5rem;
 }
 
-.planes th {
+th {
     background-color: var(--secondary);
     color: white;
 }
 
-.planes tr > td:first-child {
+tr > td:first-child {
     text-align: center;
 }
 
-.planes tr > td:not(:first-child) {
+tr > td:not(:first-child) {
     padding-left: 0.5rem;
 }
 
-.planes table button {
+table button {
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
@@ -64,7 +81,7 @@ caption {
     cursor: pointer;
 }
 
-.planes table button:hover {
+table button:hover {
     background-color: white;
 }
 
@@ -138,8 +155,8 @@ caption {
 
 .add-plane-form {
     position: absolute;
-    width: 350px;
-    height: 460px;
+    width: 400px;
+    height: 550px;
     background-color: white;
     border-radius: 20px;
     display: flex;
