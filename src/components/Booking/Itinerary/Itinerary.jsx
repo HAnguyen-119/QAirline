@@ -25,13 +25,15 @@ export default function Itinerary() {
     const [deptDate, setDeptDate] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
 
+    const [flight, setFlight] = useState('');
+
     const [passengers, setPassengers] = useState({
         adults: 1,
         children: 0,
         infants: 0,
     });
 
-    const [flights, setFlights] = useState([]);
+    const [airports, setAirports] = useState([]);
 
     const handleSearchFlightSubmit = async (event) => {
         event.preventDefault();
@@ -45,15 +47,18 @@ export default function Itinerary() {
             // };
 
             const searchDept = {
-                "deptAirportId": 1,
-                "destAirportId": 2,
-                "deptDate": "2024-01-10",
-                "arrivalDate": "2024-01-12",
-                "passengerNumber": 2
+                "dept-id": 1,
+                "arr-id": 2,
+                "dept-date": "2024-10-04",
+                "ret-date": "2024-12-10",
+                "passenger": 2
             }
+
+
             const params = new URLSearchParams(searchDept).toString();
-            // const response = await userAPI.findFlight(searchData);
-            // setFlights(response.data);
+            const response = await userAPI.getAllAirports();
+            setAirports(response);
+            console.log(response)
             console.log(searchDept)
             navigate(`/booking/outbound/availability?${params}`);
         } catch (error) {

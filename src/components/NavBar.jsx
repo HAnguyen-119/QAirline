@@ -1,6 +1,9 @@
 import {NavLink} from "react-router-dom";
 import Logo from "./Logo.jsx";
 
+import Sun from "../assets/images/sun1.png";
+import Moon from "../assets/images/moon1.png";
+
 // eslint-disable-next-line react/prop-types
 export default function NavBar({isAdmin, switchMode, isLightMode}) {
     if (isAdmin) {
@@ -14,8 +17,8 @@ export default function NavBar({isAdmin, switchMode, isLightMode}) {
                 <NavLink to='/admin/booked'>Booked</NavLink>
                 <NavLink to='/admin/information'>Information</NavLink>
                 <div className="switchMode" onClick={switchMode}>
-                    <div className={`sun ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/sun1.png"/></div>
-                    <div className={`moon ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/moon1.png"/></div>
+                    <div className={`sun ${isLightMode ? "" : " dark"}`}><img src={Sun}/></div>
+                    <div className={`moon ${isLightMode ? "" : " dark"}`}><img src={Moon}/></div>
                 </div>
             </div>
         )

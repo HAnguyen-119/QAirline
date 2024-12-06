@@ -18,6 +18,10 @@ const userAPI = {
     findFlight: (data) => {
         const url = 'api/v1/flights/find'
         return axiosClient.post(url, data)
+    },
+    findFlightById: (id) => {
+        const url = `api/v1/flights/${id}`
+        return axiosClient.get(url, id)
     }
 }
 

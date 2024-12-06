@@ -15,16 +15,21 @@ export default function SearchResults() {
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
     const fullParams = new URLSearchParams(location.pathname)
-
     console.log(fullParams.toString())
 
-    const deptAirportId = searchParams.get('deptAirportId');
-    const destAirportId = searchParams.get('destAirportId');
-    const deptDate = searchParams.get('deptDate');
-    const arrivalDate = searchParams.get('arrivalDate');
-    const passengerNumber = searchParams.get('passengerNumber');
 
-    const tripType = arrivalDate !== '' ? 'round-trip' : 'one-way';
+    const deptAirportId = searchParams.get('dept-id');
+    const destAirportId = searchParams.get('arr-id');
+    const deptDate = searchParams.get('dept-date');
+    const retDate = searchParams.get('ret-date');
+    const passengerNumber = searchParams.get('passenger');
+
+    let tripType = 'one-way';
+    if (retDate !== '' || (retDate === '' && fullParams.toString().includes('return'))) {
+        tripType = 'round-trip';
+    }
+
+    console.log(tripType)
 
     const [flights, setFlights] = useState([])
     let searchData;
@@ -32,31 +37,38 @@ export default function SearchResults() {
     useEffect( () => {
         const fetchFlights = async () => {
             try {
-                if (tripType === 'one-way') {
-                    searchData = {
-                        "departureAirportId": deptAirportId,
-                        "arrivalAirportId": destAirportId,
-                        "departureDate": deptDate,
-                        "passengerNumber": passengerNumber
-                    }
-                } else {
-                    if (fullParams.toString().includes('outbound')) {
-                        searchData = {
-                            "departureAirportId": deptAirportId,
-                            "arrivalAirportId": destAirportId,
-                            "departureDate": deptDate,
-                            "passengerNumber": passengerNumber
-                        }
-                    } else {
-                        searchData = {
-                            "departureAirportId": destAirportId,
-                            "arrivalAirportId": deptAirportId,
-                            "departureDate": arrivalDate,
-                            "passengerNumber": passengerNumber
-                        }
-                    }
+                // if (tripType === 'one-way') {
+                //     searchData = {
+                //         "departureAirportId": deptAirportId,
+                //         "arrivalAirportId": destAirportId,
+                //         "departureDate": deptDate,
+                //         "passengerNumber": passengerNumber
+                //     }
+                // } else {
+                //     if (fullParams.toString().includes('outbound')) {
+                //         searchData = {
+                //             "departureAirportId": deptAirportId,
+                //             "arrivalAirportId": destAirportId,
+                //             "departureDate": deptDate,
+                //             "passengerNumber": passengerNumber
+                //         }
+                //     } else {
+                //         searchData = {
+                //             "departureAirportId": deptAirportId,
+                //             "arrivalAirportId": destAirportId,
+                //             "departureDate": deptDate,
+                //             "passengerNumber": passengerNumber
+                //         }
+                //     }
+                // }
+                searchData = {
+                    "departureAirportId": deptAirportId,
+                    "arrivalAirportId": destAirportId,
+                    "departureDate": deptDate,
+                    "passengerNumber": passengerNumber
                 }
 
+                console.log(searchData)
 
                 const response = await userAPI.findFlight(searchData);
                 setFlights(response);
@@ -65,35 +77,50 @@ export default function SearchResults() {
             }
         }
         fetchFlights()
-    }, [deptAirportId, destAirportId, deptDate, arrivalDate, passengerNumber]);
+    }, [deptAirportId, destAirportId, deptDate, retDate, passengerNumber]);
+
 
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [activeOutbound, setActiveOutbound] = useState(null);
     const [activeReturn, setActiveReturn] = useState(null);
 
     const nextSevenDaysDept = getNextSevenDays(deptDate);
-    const nextSevenDaysReturn = arrivalDate !== '' ? getNextSevenDays(arrivalDate) : null;
+    // const nextSevenDaysReturn = retDate !== '' ? getNextSevenDays(retDate) : null;
 
-    const handleBookNow = (id) => {
+    const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
         let params;
-        if (flight.tripType === 'one-way') {
+        if (tripType === 'one-way') {
             params = new URLSearchParams({
-                'outbound-id': flight.id
+                'passenger': passengerNumber,
+                'outbound-id': flight.id,
+                'outbound-seat': type
             }).toString();
             navigate(`/booking/shopping-cart?${params}`);
         } else {
             if (fullParams.toString().includes('outbound')) {
-                params = new URLSearchParams({
-                    'outbound-id': flight.id
+                const retParams = new URLSearchParams({
+                    "dept-id": destAirportId,
+                    "arr-id": deptAirportId,
+                    "dept-date": retDate,
+                    "ret-date": "",
+                    "passenger": 2
                 }).toString();
-                navigate(`/booking/return/availability?${searchParams}&${params}`);
+                params = new URLSearchParams({
+                    'dept-date': deptDate,
+                    'passenger': passengerNumber,
+                    'outbound-id': flight.id,
+                    'outbound-seat': type
+                }).toString();
+                navigate(`/booking/return/availability?${retParams}&${params}`);
             } else {
                 params = new URLSearchParams({
-                    'return-id': flight.id
+                    'passenger': passengerNumber,
+                    'return-id': flight.id,
+                    'return-seat': type
                 }).toString();
                 let param = searchParams.toString().split('&');
-                navigate(`/booking/shopping-cart?${param[param.length - 1]}&${params}`);
+                navigate(`/booking/shopping-cart?${param[param.length - 2]}&${param[param.length - 1]}&${params}`);
             }
         }
     };
@@ -107,13 +134,11 @@ export default function SearchResults() {
     };
 
     let activeOutboundString = activeOutbound !== null ? nextSevenDaysDept[activeOutbound][1] : null;
-    let activeReturnString = activeReturn !== null ? nextSevenDaysReturn[activeReturn][1] : null;
+    let activeReturnString = activeReturn !== null ? nextSevenDaysDept[activeReturn][1] : null;
 
-    console.log(tripType)
 
     const filteredOutbound = flights.filter(flight => {
         const flightDate = new Date(flight.departureTime).getDate().toString();
-        console.log(flightDate)
         return flightDate === activeOutboundString;
     });
 
@@ -121,6 +146,7 @@ export default function SearchResults() {
         const flightDate = new Date(flight.departureTime).getDate().toString();
         return flightDate === activeReturnString;
     });
+
 
     const isOutboundEmpty = filteredOutbound.length === 0;
     const isReturnEmpty = filteredReturn.length === 0;
@@ -134,7 +160,7 @@ export default function SearchResults() {
                     <button className='submit' onClick={handleFilter}>Filter</button>
                     <div className='flights'>
                         {!isOutboundEmpty && filteredOutbound.map(flight => (
-                            <FlightCard flight={flight} tripType={tripType} handleBookNow={() => handleBookNow(flight.deptAirportId)}/>
+                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)}/>
                         ))}
                         {isOutboundEmpty && (
                             <DivContainer parentClass='empty'>
@@ -149,11 +175,11 @@ export default function SearchResults() {
             {!fullParams.toString().includes('outbound')  && (
                 <div className='outbound-result'>
                     <h1>Return</h1>
-                    <Days days={nextSevenDaysReturn} activeDate={activeReturn} setActiveDate={setActiveReturn} />
+                    <Days days={nextSevenDaysDept} activeDate={activeReturn} setActiveDate={setActiveReturn} />
                     <button className='submit' onClick={handleFilter}>Filter</button>
                     <div className='flights'>
                         {!isReturnEmpty && filteredReturn.map(flight => (
-                            <FlightCard flight={flight} tripType={tripType} handleBookNow={() => handleBookNow(flight.deptAirportId)}/>
+                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)}/>
                         ))}
                         {isReturnEmpty && (
                             <DivContainer parentClass='empty'>

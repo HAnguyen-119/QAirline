@@ -3,13 +3,10 @@ import DivContainer from "../DivContainer.jsx";
 import React, { useState } from "react";
 import Icon from "../Icon/icon.jsx";
 import { faRightLeft, faRightLong } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../Logo.jsx";
 
 import ('./FlightCard.css');
 
 export default function FlightCard({ flight, tripType, handleBookNow }) {
-    const economyClass = flight.seatClasses.find(seatClass => seatClass.seatClassType === 'STANDARD');
-    const businessClass = flight.seatClasses.find(seatClass => seatClass.seatClassType === 'BUSINESS');
     const deptTime = flight.departureTime;
     const destTime = flight.arrivalTime;
 
@@ -22,28 +19,13 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
     const m = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    const [dropdownOpenEconomy, setDropdownOpenEconomy] = useState(false);
-    const [dropdownOpenBusiness, setDropdownOpenBusiness] = useState(false);
-
     const [openDropdown, setOpenDropdown] = useState(null);
 
     const toggleDropdown = (type) => {
         setOpenDropdown(openDropdown === type ? null : type);
     }
 
-    const toggleDropdownEconomy = () => {
-        setDropdownOpenEconomy(!dropdownOpenEconomy);
-        if (dropdownOpenBusiness) {
-            setDropdownOpenBusiness(false);
-        }
-    };
 
-    const toggleDropdownBusiness = () => {
-        setDropdownOpenBusiness(!dropdownOpenBusiness);
-        if (dropdownOpenEconomy) {
-            setDropdownOpenEconomy(false);
-        }
-    };
 
     return (
         <DivContainer parentClass='flight-card-container'>
@@ -51,7 +33,7 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                 <DivContainer parentClass='flight-info'>
                     <DivContainer parentClass='flight-info-dept-time'>
                         <DivContainer parentClass='flight-info-left'>
-                            <p>{flight.departure}</p>
+                            <p>{flight.departureAirport.name}</p>
                             <p>{deptTime.split('T')[1]}</p>
                         </DivContainer>
                     </DivContainer>
@@ -66,14 +48,14 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                     </DivContainer>
                     <DivContainer parentClass='flight-info-arrival-time'>
                         <DivContainer parentClass='flight-info-right'>
-                            <p>{flight.destination}</p>
+                            <p>{flight.arrivalAirport.name}</p>
                             <p>{destTime.split('T')[1]}</p>
                         </DivContainer>
                     </DivContainer>
                 </DivContainer>
                 <DivContainer parentClass='flight-price'>
-                    <Button buttonClass='dropdown-button' onClick={() => toggleDropdown('economy')} text={`Economy - ${economyClass.price}`}/>
-                    <Button buttonClass='dropdown-button' onClick={() => toggleDropdown('business')} text={`Business - ${businessClass.price}`}/>
+                    <Button buttonClass='dropdown-button' onClick={() => toggleDropdown('economy')} text={`Economy - ${flight.economyPrice}`}/>
+                    <Button buttonClass='dropdown-button' onClick={() => toggleDropdown('business')} text={`Business - ${flight.businessPrice}`}/>
                 </DivContainer>
             </DivContainer>
             <DivContainer className='flight-ticket'>
@@ -81,9 +63,9 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                     {openDropdown === 'economy' && (
                         <div className='dropdown-content'>
                             <div>
-                                Seats available: {economyClass.totalNumber - economyClass.bookedNumber}
+                                Seats available: {flight.airplane.economySeatNumber - flight.economySeatBookedNumber}
                             </div>
-                            <Button buttonClass='submit' onClick={() => handleBookNow(flight.id, 'STANDARD')} text='Book now!' />
+                            <Button buttonClass='submit' onClick={() => handleBookNow(flight.id, 'ECONOMY')} text='Book now!' />
                         </div>
                     )}
                 </DivContainer>
@@ -91,7 +73,7 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                     {openDropdown === 'business' && (
                         <div className='dropdown-content'>
                             <div>
-                                Seats available: {businessClass.totalNumber - businessClass.bookedNumber}
+                                Seats available: {flight.airplane.businessSeatNumber - flight.businessSeatBookedNumber}
                             </div>
                             <Button buttonClass='submit' onClick={() => handleBookNow(flight.id, 'BUSINESS')} text='Book now!' />
                         </div>
