@@ -27,8 +27,8 @@ export default function Flights() {
                 <tbody>
                     <tr>
                         <th rowSpan={2}>No</th>
-                        <th rowSpan={2}>Id</th>
-                        <th rowSpan={2}>Plane Id</th>
+                        <th rowSpan={2}>ID</th>
+                        <th rowSpan={2}>Plane ID</th>
                         <th rowSpan={2}>Departure Airport</th>
                         <th rowSpan={2}>Arrival Airport</th>
                         <th rowSpan={2}>Departure Time</th>

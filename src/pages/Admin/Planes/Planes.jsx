@@ -197,7 +197,7 @@ export default function Planes() {
                 <tbody>
                     <tr>
                         <th rowSpan={2}>No</th>
-                        <th rowSpan={2}>Id</th>
+                        <th rowSpan={2}>ID</th>
                         <th rowSpan={2}>Model</th>
                         <th rowSpan={2}>Manufacturer</th>
                         <th colSpan={3}>Capacity</th>
