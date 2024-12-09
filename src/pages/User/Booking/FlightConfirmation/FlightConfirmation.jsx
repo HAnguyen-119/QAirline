@@ -1,17 +1,16 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import './ShoppingCart.css';
+import './FlightConfirmation.css';
 import H1Text from "../../../../components/H1Text.jsx";
 import DivContainer from "../../../../components/DivContainer.jsx";
 import {useEffect, useState} from "react";
 import userAPI from "../../../../api/userAPI.jsx";
+import ConfirmationCard from "../../../../components/Card/ConfirmationCard.jsx";
 
-export default function ShoppingCart() {
+export default function FlightConfirmation() {
     const location = useLocation();
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
 
-    console.log(searchParams)
-    // const {}
     const passengerNumber = searchParams.get('passenger');
     const outboundId = searchParams.get('outbound-id');
     const outboundSeatType = searchParams.get('outbound-seat')
@@ -40,7 +39,6 @@ export default function ShoppingCart() {
     }, []);
 
     console.log(outboundFlight)
-    console.log(returnFlight)
 
     const handleContinue = () => {
         navigate('/booking/traveler');
@@ -52,34 +50,32 @@ export default function ShoppingCart() {
 
     return (
         <div className='cart-container'>
-            <H1Text content={'Flight Itineraries'}/>
             <DivContainer parentClass={'cart-content'}>
-                <DivContainer className={'departure-flight'}>
-                    <DivContainer parentClass={'flight-name'}>
-                        {
-                            `Selected Departure Flight`
-                        }
-                    </DivContainer>
-                    <DivContainer parentClass={'flight-detail'}>
-
-                    </DivContainer>
-                </DivContainer>
-                {tripType === 'round-trip' && (
-                    <DivContainer parentClass={'return-flight'}>
+                <H1Text content={'Flight Itineraries'}/>
+                <DivContainer parentClass={'boarding-pass'}>
+                    <DivContainer className={'departure-flight'}>
                         <DivContainer parentClass={'flight-name'}>
-
+                            Departure Flight
                         </DivContainer>
-                        <DivContainer parentClass={'flight-detail'}>
-
-                        </DivContainer>
+                        <ConfirmationCard flight={outboundFlight} passengerNumber={passengerNumber} seatType={outboundSeatType}/>
                     </DivContainer>
-                )}
-                <DivContainer parentClass={'submit-container'}>
-                    <button className='submit' onClick={handleContinue}>Continue</button>
-                    <button className='submit' onClick={handleLogin}>Login to Continue</button>
+                    {tripType === 'round-trip' && (
+                        <>
+                            <DivContainer parentClass={'return-flight'}>
+                                <DivContainer parentClass={'flight-name'}>
+                                    Return Flight
+                                </DivContainer>
+                                <ConfirmationCard flight={returnFlight} passengerNumber={passengerNumber} seatType={returnSeatType}/>
+                            </DivContainer>
+                        </>
+                    )}
+                    <DivContainer parentClass={'submit-container'}>
+                        <button className='submit' onClick={handleContinue}>Continue</button>
+                        <button className='submit' onClick={handleLogin}>Login to Continue</button>
+                    </DivContainer>
                 </DivContainer>
+                <DivContainer parentClass={'cart-details'}></DivContainer>
             </DivContainer>
-            <DivContainer parentClass={'cart-details'}></DivContainer>
         </div>
     );
 }

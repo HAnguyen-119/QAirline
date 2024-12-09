@@ -1,0 +1,41 @@
+
+.mid-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.mid-icon::before,
+.mid-icon::after {
+    content: '';
+    flex: 1;
+    border-bottom: 3px dotted;
+    margin: 0;
+    gap: 1px;
+}
+
+.mid-icon>span {
+    padding: 0;
+}
+
+.dept-top, .dept-middle, .dept-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dept-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: row;
+}
+
