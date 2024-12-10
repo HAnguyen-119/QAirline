@@ -48,30 +48,36 @@ export default function FlightConfirmation() {
         navigate('/login');
     };
 
+    const handleGoBack = (num) => {
+        navigate(-num);
+    }
+
     return (
         <div className='cart-container'>
             <DivContainer parentClass={'cart-content'}>
                 <H1Text content={'Flight Itineraries'}/>
                 <DivContainer parentClass={'boarding-pass'}>
-                    <DivContainer className={'departure-flight'}>
+                    <DivContainer parentClass={'departure-flight'}>
                         <DivContainer parentClass={'flight-name'}>
                             Departure Flight
                         </DivContainer>
-                        <ConfirmationCard flight={outboundFlight} passengerNumber={passengerNumber} seatType={outboundSeatType}/>
+                        <DivContainer parentClass={'departure-card'}>
+                            <ConfirmationCard flight={outboundFlight} passengerNumber={passengerNumber} seatType={outboundSeatType} handle={() => handleGoBack(tripType === 'one-way' ? 1 : 2)}/>
+                        </DivContainer>
                     </DivContainer>
                     {tripType === 'round-trip' && (
-                        <>
-                            <DivContainer parentClass={'return-flight'}>
-                                <DivContainer parentClass={'flight-name'}>
-                                    Return Flight
-                                </DivContainer>
-                                <ConfirmationCard flight={returnFlight} passengerNumber={passengerNumber} seatType={returnSeatType}/>
+                        <DivContainer parentClass={'return-flight'}>
+                            <DivContainer parentClass={'flight-name'}>
+                                Return Flight
                             </DivContainer>
-                        </>
+                            <DivContainer parentClass={'return-card'}>
+                                <ConfirmationCard flight={returnFlight} passengerNumber={passengerNumber} seatType={returnSeatType} handle={() => handleGoBack(1)}/>
+                            </DivContainer>
+                        </DivContainer>
                     )}
                     <DivContainer parentClass={'submit-container'}>
-                        <button className='submit' onClick={handleContinue}>Continue</button>
-                        <button className='submit' onClick={handleLogin}>Login to Continue</button>
+                        <button onClick={handleContinue}>Continue</button>
+                        <button onClick={handleLogin}>Login to Continue</button>
                     </DivContainer>
                 </DivContainer>
                 <DivContainer parentClass={'cart-details'}></DivContainer>

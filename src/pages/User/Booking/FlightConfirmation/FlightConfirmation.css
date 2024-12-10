@@ -3,11 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
-p {
-    padding: 0;
-    margin: 0;
+    p {
+        padding: 0;
+        margin: 0;
+    }
 }
 
 .cart-content {
@@ -41,8 +41,14 @@ p {
 
 .departure-flight {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.departure-card, .return-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
