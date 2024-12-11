@@ -6,6 +6,21 @@ const userAPI = {
         return axiosClient.get(url, flights);
     },
 
+    addFlight: (flight) => {
+        const url = "api/v1/flights";
+        return axiosClient.post(url, flight);
+    },
+
+    updateFlight: (flightId, flight) => {
+        const url = `api/v1/flights/${flightId}`;
+        return axiosClient.put(url, flight);
+    },
+
+    deleteFlight: (flightId) => {
+        const url = `api/v1/flights/${flightId}`;
+        return axiosClient.delete(url, flightId);
+    },
+
     getAllPlanes: () => {
         const url = "api/v1/airplanes";
         return axiosClient.get(url);

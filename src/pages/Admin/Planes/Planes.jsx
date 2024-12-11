@@ -14,7 +14,7 @@ export default function Planes() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [updatingPlane, setUpdatingPlane] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [deletingId, setDeletingId] = useState([0, ""]);
+    const [deletingPlane, setDeletingPlane] = useState(null);
     const [isDuplicatedId, setIsDuplicatedId] = useState(false);
 
     useEffect(() => {
@@ -37,6 +37,7 @@ export default function Planes() {
     const model = searchParams.get('model');
     const manufacturer = searchParams.get("manufacturer");
     const capacity = searchParams.get('capacity');
+    const status = searchParams.get('status');
 
     const checkCapacity = (seat, range) => {
         switch(range) {
@@ -64,6 +65,7 @@ export default function Planes() {
         return (!code || plane.code === code)
             && (!model || plane.model === model)
             && (!manufacturer || plane.manufacturer === manufacturer)
+            && (!status || plane.isActive === (status === "Active"))
             && (checkCapacity(plane.economySeatNumber + plane.businessSeatNumber, capacity));
     })
 
@@ -71,10 +73,12 @@ export default function Planes() {
         const idFilter = document.getElementById("id-filter");
         const modelFilter = document.getElementById("model-filter");
         const manufacturerFilter = document.getElementById("manufacturer-filter");
+        const statusFilter = document.getElementById("status-filter");
         const capacityFilter = document.getElementById("capacity-filter");
         idFilter.value = "";
         modelFilter.value = "";
         manufacturerFilter.value = "";
+        statusFilter.value = "";
         capacityFilter.value = "";
         searchWithFilter();
     }
@@ -83,11 +87,13 @@ export default function Planes() {
         const idValue = document.getElementById("id-filter").value.trim();
         const modelValue = document.getElementById("model-filter").value.trim();
         const manufacturerValue = document.getElementById("manufacturer-filter").value.trim();
+        const statusValue = document.getElementById("status-filter").value.trim();
         const capacityValue = document.getElementById("capacity-filter").value.trim();
         let params = new URLSearchParams({
             'id': idValue,
             'model': modelValue,
             'manufacturer': manufacturerValue,
+            'status': statusValue,
             'capacity': capacityValue,
         }).toString();
         navigate(`?${params}`);
@@ -107,12 +113,18 @@ export default function Planes() {
         const newManufacturer = document.getElementById("manufacturer-new").value.trim();
         const newEconomy = document.getElementById("economy-new").value.trim();
         const newBusiness = document.getElementById("business-new").value.trim();
+        const newStatus = document.getElementById("status-new").value.trim();
         const isValid = newId.length > 0
                                 && newModel.length > 0
                                 && newManufacturer.length > 0
                                 && newEconomy.length > 0
                                 && newBusiness.length > 0;
-        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "economySeatNumber": newEconomy, "businessSeatNumber": newBusiness};
+        const newPlaneData = {"code": newId,
+            "model": newModel,
+            "manufacturer": newManufacturer,
+            "economySeatNumber": newEconomy,
+            "businessSeatNumber": newBusiness,
+            "isActive": newStatus === "Active"};
         try{
             if (!isValid) {
                 if(checkDuplicateId(newId)) {
@@ -137,25 +149,31 @@ export default function Planes() {
         const newManufacturer = document.getElementById("manufacturer-new").value.trim();
         const newEconomy = document.getElementById("economy-new").value.trim();
         const newBusiness = document.getElementById("business-new").value.trim();
+        const newStatus = document.getElementById("status-new").value.trim();
         const isValid = newId.length > 0
             && newModel.length > 0
             && newManufacturer.length > 0
             && newEconomy.length > 0
             && newBusiness.length > 0;
-        const newPlaneData = {"code": newId, "model": newModel, "manufacturer": newManufacturer, "economySeatNumber": newEconomy, "businessSeatNumber": newBusiness};
+        const newPlaneData = {"code": newId,
+            "model": newModel,
+            "manufacturer": newManufacturer,
+            "economySeatNumber": newEconomy,
+            "businessSeatNumber": newBusiness,
+            "isActive": newStatus === "Active",};
+        console.log(updatingPlane);
+        console.log(newStatus === "Active");
         try {
-            if (!isValid) {
-                if (updatingPlane.code !== newId && checkDuplicateId(newId)) {
+            if (isValid)  {
+                if (checkDuplicateId(newId) && updatingPlane.code !== newId) {
                     setIsDuplicatedId(true);
                 }
                 else {
                     setIsDuplicatedId(false);
+                    await userAPI.updatePlane(updatingPlane.id, newPlaneData);
+                    setIsUpdating(false);
+                    setIsRefresh(!isRefresh);
                 }
-            } else {
-                setIsDuplicatedId(false);
-                await userAPI.updatePlane(updatingPlane.id, newPlaneData);
-                setIsUpdating(false);
-                setIsRefresh(!isRefresh);
             }
         } catch (error) {
             console.log(error);
@@ -181,10 +199,15 @@ export default function Planes() {
                     Model <input type="text" id="model-filter" className="josefin-sans"/>
                     Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/>
                     Capacity <select id="capacity-filter" className="josefin-sans">
-                        <option value="">{""}</option>
+                        <option value=""></option>
                         <option value="< 100">{"< 100"}</option>
                         <option value="100 - 200">{"100 - 200"}</option>
                         <option value="> 200">{"> 200"}</option>
+                    </select>
+                    Status <select id="status-filter" className="josefin-sans">
+                        <option value=""></option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                 </div>
                 <div>
@@ -197,10 +220,11 @@ export default function Planes() {
                 <tbody>
                     <tr>
                         <th rowSpan={2}>No</th>
-                        <th rowSpan={2}>Id</th>
+                        <th rowSpan={2}>ID</th>
                         <th rowSpan={2}>Model</th>
                         <th rowSpan={2}>Manufacturer</th>
                         <th colSpan={3}>Capacity</th>
+                        <th rowSpan={2}>Status</th>
                         <th rowSpan={2}>Edit</th>
                     </tr>
                     <tr>
@@ -217,6 +241,7 @@ export default function Planes() {
                         <td>{plane.economySeatNumber}</td>
                         <td>{plane.businessSeatNumber}</td>
                         <td>{plane.economySeatNumber + plane.businessSeatNumber}</td>
+                        <td>{plane.isActive ? "Active" : "Inactive"}</td>
                         <td>
                             <button className="edit" onClick={() => {
                                 setIsUpdating(true);
@@ -224,7 +249,7 @@ export default function Planes() {
                             }}></button>
                             <button className="delete" onClick={() => {
                                 setIsDeleting(true);
-                                setDeletingId([plane.id, plane.code])
+                                setDeletingPlane(plane)
                             }}></button>
                         </td>
                     </tr>)}
@@ -238,16 +263,33 @@ export default function Planes() {
                         <div className="input-fields">
                             <span>Plane ID <span
                                 style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
-                            <input type="text" id="id-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.code : ""}/>
+                            <input type="text" id="id-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingPlane.code : ""}/>
                             <span>Model <span style={{color: "red"}}>* </span></span>
-                            <input type="text" id="model-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.model : ""}/>
+                            <input type="text" id="model-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingPlane.model : ""}/>
                             <span>Manufacturer <span
                                 style={{color: "red"}}>* </span></span>
-                            <input type="text" id="manufacturer-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingPlane.manufacturer : ""}/>
-                            <span>Economy seats <span style={{color: "red"}}>* </span></span>
-                            <input type="number" id="economy-new" className="josefin-sans" min={1} required={true} defaultValue={isUpdating ? updatingPlane.economySeatNumber : ""}/>
-                            <span>Business seats <span style={{color: "red"}}>* </span></span>
-                            <input type="number" id="business-new" className="josefin-sans" min={1} required={true} defaultValue={isUpdating ? updatingPlane.businessSeatNumber : ""}/>
+                            <input type="text" id="manufacturer-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingPlane.manufacturer : ""}/>
+                            <div>
+                                <div>
+                                    <span>Economy seats <span style={{color: "red"}}>* </span></span>
+                                    <input type="number" id="economy-new" className="josefin-sans" min={1} required={true}
+                                           defaultValue={isUpdating ? updatingPlane.economySeatNumber : ""}/>
+                                </div>
+                                <div>
+                                    <span>Business seats <span style={{color: "red"}}>* </span></span>
+                                    <input type="number" id="business-new" className="josefin-sans" min={1} required={true}
+                                           defaultValue={isUpdating ? updatingPlane.businessSeatNumber : ""}/>
+                                </div>
+                            </div>
+                            <span>Status <span style={{color: "red"}}>* </span></span>
+                            <select id="status-new" className="josefin-sans" required={true}
+                                    defaultValue={isUpdating ? (updatingPlane.isActive ? "Active" : "Inactive") : "Active"}>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
                         </div>
                         <div className="buttons">
                             <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
@@ -260,13 +302,24 @@ export default function Planes() {
             {isDeleting ?
                 <div className="delete-plane-window">
                     <div></div>
-                    <div className="delete-plane-form">
-                        <h3>Delete plane with id {deletingId[1]} ?</h3>
-                        <div className="buttons">
-                            <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
-                            <button className="josefin-sans" onClick={() => {handleDelete(deletingId[0])}}>DELETE</button>
+                    {deletingPlane.isActive ?
+                        <div className="delete-plane-form">
+                            <h3>Can&#39;t delete an active plane</h3>
+                            <div className="buttons">
+                                <button className="josefin-sans" onClick={handleCancel}>BACK</button>
+                            </div>
+                        </div> :
+                        <div className="delete-plane-form">
+                            <h3>Delete plane with ID {deletingPlane.code} ?</h3>
+                            <div className="buttons">
+                                <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
+                                <button className="josefin-sans" onClick={() => {
+                                    handleDelete(deletingPlane.id)
+                                }}>DELETE
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div> : null}
         </div>
     )

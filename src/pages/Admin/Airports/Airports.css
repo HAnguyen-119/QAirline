@@ -4,38 +4,38 @@
     gap: 2rem;
     min-height: 50vh;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
-table {
+.airports table {
     width: 70%;
     height: 100%;
 }
 
-table, table td, table th {
+.airports table, .airports table td, .airports table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-table.dark, table.dark th, table.dark td {
+.airports table.dark, .airports table.dark th, .airports table.dark td {
     border: 2px solid var(--light);
 }
 
-caption {
+.airports caption {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
-th:nth-child(3), td:nth-child(5) {
+.airports th:nth-child(3), .airports td:nth-child(5) {
     width: 30%;
 }
 
-th:first-child, th:nth-child(2) {
+.airports th:first-child, .airports th:nth-child(2) {
     width: 10%;
 }
 
-th:last-child {
+.airports th:last-child {
     width: 70px;
 }
 
@@ -48,11 +48,11 @@ th {
     color: white;
 }
 
-tr > td:first-child {
+.airports tr > td:first-child {
     text-align: center;
 }
 
-tr > td:not(:first-child) {
+.airports tr > td:not(:first-child) {
     padding-left: 0.5rem;
 }
 
@@ -105,7 +105,7 @@ table button:hover {
     width: 120px;
 }
 
-.filters {
+.airports .filters {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -114,11 +114,11 @@ table button:hover {
     width: 200px;
 }
 
-.filters input:not(:last-child) {
+.airports .filters input:not(:last-child) {
     margin-bottom: 1rem;
 }
 
-.add-airport-window, .delete-airport-window {
+.airports .add-airport-window, .airports .delete-airport-window {
     position: fixed;
     top: 0;
     left: 0;
@@ -130,7 +130,7 @@ table button:hover {
     z-index: 10;
 }
 
-.add-airport-window > div:first-child, .delete-airport-window > div:first-child {
+.airports .add-airport-window > div:first-child, .airports .delete-airport-window > div:first-child {
     position: fixed;
     top: 0;
     left: 0;
@@ -163,7 +163,7 @@ table button:hover {
     justify-content: center;
 }
 
-.input-fields {
+.airports .input-fields {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

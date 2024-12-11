@@ -4,52 +4,53 @@
     gap: 2rem;
     min-height: 50vh;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
-table {
+.planes table {
     width: 70%;
     height: 100%;
 }
 
-table, table td, table th {
+.planes table, .planes table td, .planes table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-table.dark, table.dark td, table.dark th {
-    border: 2px solid var(--dark);
+.planes table.dark, .planes table.dark td, .planes table.dark th {
+    border: 2px solid var(--light);
 }
 
-caption {
+.planes caption {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
 
-tr:first-child > th:nth-child(3), tr:first-child > th:nth-child(4) {
+.planes tr:first-child > th:nth-child(3), .planes tr:first-child > th:nth-child(4) {
     width: 20%;
     min-width: 200px;
 }
 
-tr:first-child > th:first-child, tr:first-child > th:nth-child(2) {
+.planes tr:first-child > th:first-child, .planes tr:first-child > th:nth-child(2) {
     width: 10%;
     min-width: 100px;
 }
 
-tr:first-child > th:nth-child(5) {
+.planes tr:first-child > th:nth-child(5) {
     width: 30%;
     min-width: 300px;
 }
 
-tr:first-child > th:last-child {
+.planes tr:first-child > th:last-child {
     width: 10%;
     min-width: 70px;
 }
 
-tr:nth-child(2) > th {
+.planes tr:nth-child(2) > th {
     width: 33.33%;
+    min-width: 120px;
 }
 
 th, td {
@@ -61,11 +62,11 @@ th {
     color: white;
 }
 
-tr > td:first-child {
+.planes tr > td:first-child {
     text-align: center;
 }
 
-tr > td:not(:first-child) {
+.planes tr > td:not(:first-child) {
     padding-left: 0.5rem;
 }
 
@@ -118,7 +119,7 @@ table button:hover {
     width: 120px;
 }
 
-.filters {
+.planes .filters {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -127,7 +128,7 @@ table button:hover {
     width: 200px;
 }
 
-.filters input {
+.planes .filters input, .planes .filters select {
     margin-bottom: 1rem;
 }
 
@@ -156,7 +157,7 @@ table button:hover {
 .add-plane-form {
     position: absolute;
     width: 400px;
-    height: 550px;
+    height: 530px;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -176,7 +177,7 @@ table button:hover {
     justify-content: center;
 }
 
-.input-fields {
+.planes .input-fields {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -184,12 +185,24 @@ table button:hover {
     margin-bottom: 2rem;
 }
 
-.add-plane-form > div > input {
+.planes .input-fields > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.planes .input-fields > div > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.add-plane-form input, .add-plane-form select {
     height: 1.5rem;
     font-size: 1rem;
 }
 
-.add-plane-form > div > input:not(:last-child) {
+.add-plane-form > div > input, .add-plane-form > div > div {
     margin-bottom: 1rem;
 }
 
