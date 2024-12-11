@@ -3,8 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 3rem;
+    gap: 10px;
 
-    p {
+    h1, p {
         padding: 0;
         margin: 0;
     }
@@ -12,30 +14,19 @@
 
 .cart-content {
     display: flex;
-    flex-direction: column;
-    width: auto;
+    width: 80%;
 }
 
-.card {
-    border: 2px solid;
-    border-radius: 10px;
+.boarding-pass {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px 30px;
-    text-align: center;
-}
-
-.card-top {
-    flex-direction: row;
-}
-
-.card-bottom {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 3;
 }
 
-.card>* {
+.cart-summary {
     flex: 1;
 }
 
@@ -51,4 +42,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

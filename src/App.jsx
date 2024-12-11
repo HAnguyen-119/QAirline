@@ -28,6 +28,7 @@ import SearchResults from "./pages/User/Booking/Search/SearchResults.jsx";
 import FlightConfirmation from "./pages/User/Booking/FlightConfirmation/FlightConfirmation.jsx";
 import Traveler from "./pages/User/Booking/TravelerInfo/Traveler.jsx";
 import {BookingProvider} from "./Context/BookingContext.jsx";
+import Ticket from "./components/Booking/Ticket/Ticket.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
@@ -47,6 +48,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
+            <Route path='booking/ticket-info' element={<Ticket/>} />
         </Route>
         <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<Dashboard/>} />
@@ -62,9 +64,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 
 function App() {
   return (
-      <BookingProvider>
-          <RouterProvider router={router} />
-      </BookingProvider>
+    <RouterProvider router={router} />
   )
 }
 

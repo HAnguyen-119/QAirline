@@ -1,5 +1,4 @@
 export function format(time) {
-    console.log(time)
     let [hours, minutes, seconds] = time.split(':');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;

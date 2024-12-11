@@ -1,6 +1,6 @@
 import DivContainer from "../../DivContainer.jsx";
 import Button from "../../Button/Button.jsx";
-import SelectElement from "../../Form/SelectElement.jsx";
+import FlightsSelector from "../../Form/FlightsSelector.jsx";
 import Icon from "../../Icon/icon.jsx";
 import {faRightLeft, faRightLong} from "@fortawesome/free-solid-svg-icons";
 import InputElement from "../../Form/InputElement.jsx";
@@ -51,16 +51,15 @@ export default function Itinerary() {
                 "arr-id": 2,
                 "dept-date": "2024-10-04",
                 "ret-date": "2024-12-10",
-                "passenger": 2
+                "passenger": 2,
             }
 
 
             const params = new URLSearchParams(searchDept).toString();
             const response = await userAPI.getAllAirports();
             setAirports(response);
-            console.log(response)
-            console.log(searchDept)
-            navigate(`/booking/outbound/availability?${params}`);
+
+            navigate(`/booking/outbound/availability?${params}`, {state: {adults: passengers.adults, children: passengers.children, infants: passengers.infants}});
         } catch (error) {
             console.error("Error finding flights:", error);
         }
@@ -75,9 +74,9 @@ export default function Itinerary() {
                     <Button type='button' buttonClass={`trip-button ${tripType === 'round-trip' ? 'active' : ''}`} onClick={() => setTripType('round-trip')} text='Round Trip' icon={faRotate   }/>
                 </DivContainer>
                 <div className='info'>
-                    <SelectElement htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
+                    <FlightsSelector htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
                     <Icon name='trip-arrow' iconName={tripType === 'round-trip' ? faRightLeft : faRightLong} />
-                    <SelectElement htmlFor='destination' description='Destination Airport' id='destination' name='destination' required={true} value={destID} onChange={(e) => setDestID(e.target.value)}/>
+                    <FlightsSelector htmlFor='destination' description='Destination Airport' id='destination' name='destination' required={true} value={destID} onChange={(e) => setDestID(e.target.value)}/>
                     <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)}/>
                     <div style={{ visibility: tripType === 'round-trip' ? 'visible' : 'hidden' }}>
                         <InputElement htmlFor='return-date' description='Return Date' id='return-date' name='return-date' type='date' required={tripType === 'round-trip'} onChange={(e) => setArrivalDate(e.target.value)}/>

@@ -2,7 +2,7 @@ import './Form.css';
 import {useEffect, useState} from "react";
 import userAPI from "../../api/userAPI.jsx";
 
-export default function SelectElement({ htmlFor, description, id, value, onChange }) {
+export default function FlightsSelector({ htmlFor, description, id, value, onChange }) {
     const [airports, setAirports] = useState([]);
     useEffect(() => {
         const fetchData = async () => {

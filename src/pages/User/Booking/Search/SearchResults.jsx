@@ -15,8 +15,6 @@ export default function SearchResults() {
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
     const fullParams = new URLSearchParams(location.pathname)
-    console.log(fullParams.toString())
-
 
     const deptAirportId = searchParams.get('dept-id');
     const destAirportId = searchParams.get('arr-id');
@@ -37,30 +35,6 @@ export default function SearchResults() {
     useEffect( () => {
         const fetchFlights = async () => {
             try {
-                // if (tripType === 'one-way') {
-                //     searchData = {
-                //         "departureAirportId": deptAirportId,
-                //         "arrivalAirportId": destAirportId,
-                //         "departureDate": deptDate,
-                //         "passengerNumber": passengerNumber
-                //     }
-                // } else {
-                //     if (fullParams.toString().includes('outbound')) {
-                //         searchData = {
-                //             "departureAirportId": deptAirportId,
-                //             "arrivalAirportId": destAirportId,
-                //             "departureDate": deptDate,
-                //             "passengerNumber": passengerNumber
-                //         }
-                //     } else {
-                //         searchData = {
-                //             "departureAirportId": deptAirportId,
-                //             "arrivalAirportId": destAirportId,
-                //             "departureDate": deptDate,
-                //             "passengerNumber": passengerNumber
-                //         }
-                //     }
-                // }
                 searchData = {
                     "departureAirportId": deptAirportId,
                     "arrivalAirportId": destAirportId,
@@ -85,7 +59,6 @@ export default function SearchResults() {
     const [activeReturn, setActiveReturn] = useState(null);
 
     const nextSevenDaysDept = getNextSevenDays(deptDate);
-    // const nextSevenDaysReturn = retDate !== '' ? getNextSevenDays(retDate) : null;
 
     const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
@@ -96,7 +69,7 @@ export default function SearchResults() {
                 'outbound-id': flight.id,
                 'outbound-seat': type
             }).toString();
-            navigate(`/booking/shopping-cart?${params}`);
+            navigate(`/booking/shopping-cart?${params}`, {state: location.state});
         } else {
             if (fullParams.toString().includes('outbound')) {
                 const retParams = new URLSearchParams({
@@ -112,7 +85,7 @@ export default function SearchResults() {
                     'outbound-id': flight.id,
                     'outbound-seat': type
                 }).toString();
-                navigate(`/booking/return/availability?${retParams}&${params}`);
+                navigate(`/booking/return/availability?${retParams}&${params}`, {state: location.state});
             } else {
                 params = new URLSearchParams({
                     'passenger': passengerNumber,
@@ -120,7 +93,7 @@ export default function SearchResults() {
                     'return-seat': type
                 }).toString();
                 let param = searchParams.toString().split('&');
-                navigate(`/booking/shopping-cart?${param[param.length - 2]}&${param[param.length - 1]}&${params}`);
+                navigate(`/booking/shopping-cart?${param[param.length - 2]}&${param[param.length - 1]}&${params}`, {state: location.state});
             }
         }
     };
