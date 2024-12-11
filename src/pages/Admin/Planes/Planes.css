@@ -128,7 +128,7 @@ table button:hover {
     width: 200px;
 }
 
-.planes .filters input {
+.planes .filters input, .planes .filters select {
     margin-bottom: 1rem;
 }
 
@@ -157,7 +157,7 @@ table button:hover {
 .add-plane-form {
     position: absolute;
     width: 400px;
-    height: 550px;
+    height: 530px;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -185,12 +185,24 @@ table button:hover {
     margin-bottom: 2rem;
 }
 
-.add-plane-form > div > input {
+.planes .input-fields > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.planes .input-fields > div > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.add-plane-form input, .add-plane-form select {
     height: 1.5rem;
     font-size: 1rem;
 }
 
-.add-plane-form > div > input:not(:last-child) {
+.add-plane-form > div > input, .add-plane-form > div > div {
     margin-bottom: 1rem;
 }
 

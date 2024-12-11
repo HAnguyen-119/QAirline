@@ -14,7 +14,7 @@ export default function Airports() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [updatingAirport, setUpdatingAirport] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [deletingId, setDeletingId] = useState([0, ""]);
+    const [deletingAirport, setDeletingAirport] = useState(null);
     const [isDuplicatedId, setIsDuplicatedId] = useState(false);
 
     useEffect(() => {
@@ -36,6 +36,7 @@ export default function Airports() {
     const name = searchParams.get('name');
     const region = searchParams.get("region");
     const city = searchParams.get('city');
+    const status = searchParams.get('status');
 
     const checkDuplicateId = (newId) => {
         if (newId.length === 0) return false;
@@ -50,7 +51,8 @@ export default function Airports() {
         return (!code || airport.code === code)
             && (!name || airport.name === name)
             && (!region || airport.region === region)
-            && (!city || airport.city === city);
+            && (!city || airport.city === city)
+            && (!status || airport.isActive === (status === "Active"));
     })
 
     const clearFilters = () => {
@@ -58,10 +60,12 @@ export default function Airports() {
         const nameFilter = document.getElementById("name-filter");
         const regionFilter = document.getElementById("region-filter");
         const cityFilter = document.getElementById("city-filter");
+        const statusFilter = document.getElementById("status-filter");
         idFilter.value = "";
         nameFilter.value = "";
         regionFilter.value = "";
         cityFilter.value = "";
+        statusFilter.value = "";
         searchWithFilter();
     }
 
@@ -70,11 +74,13 @@ export default function Airports() {
         const nameValue = document.getElementById("name-filter").value.trim();
         const regionValue = document.getElementById("region-filter").value.trim();
         const cityValue = document.getElementById("city-filter").value.trim();
+        const statusValue = document.getElementById("status-filter").value.trim();
         let params = new URLSearchParams({
             'id': idValue,
             'name': nameValue,
             'region': regionValue,
             'city': cityValue,
+            'status': statusValue,
         }).toString();
         navigate(`?${params}`);
     }
@@ -92,11 +98,16 @@ export default function Airports() {
         const newName = document.getElementById("name-new").value.trim();
         const newRegion = document.getElementById("region-new").value.trim();
         const newCity = document.getElementById("city-new").value.trim();
+        const newStatus = document.getElementById("status-new").value.trim();
         const isValid = newId.length > 0
                             && newName.length > 0
                             && newRegion.length > 0
                             && newCity.length > 0
-        const newAirportData = {"code": newId, "name": newName, "region": newRegion, "city": newCity};
+        const newAirportData = {"code": newId,
+            "name": newName,
+            "region": newRegion,
+            "city": newCity,
+            "isActive": newStatus === "Active"};
         try{
             if (!isValid) {
                 if (checkDuplicateId(newId)) {
@@ -120,23 +131,27 @@ export default function Airports() {
         const newName = document.getElementById("name-new").value.trim();
         const newRegion = document.getElementById("region-new").value.trim();
         const newCity = document.getElementById("city-new").value.trim();
+        const newStatus = document.getElementById("status-new").value.trim();
         const isValid = newId.length > 0
                             && newName.length > 0
                             && newRegion.length > 0
                             && newCity.length > 0
-        const newAirportData = {"code": newId, "name": newName, "region": newRegion, "city": newCity};
+        const newAirportData = {"code": newId,
+            "name": newName,
+            "region": newRegion,
+            "city": newCity,
+            "isActive": newStatus === "Active"};
         try {
-            if (!isValid) {
-                if (updatingAirport.code !== newId && checkDuplicateId(newId)) {
+            if (isValid)  {
+                if (checkDuplicateId(newId) && updatingAirport.code !== newId) {
                     setIsDuplicatedId(true);
-                } else {
-                    setIsDuplicatedId(false);
                 }
-            } else {
-                setIsDuplicatedId(false);
-                await userAPI.updateAirport(updatingAirport.id, newAirportData);
-                setIsUpdating(false);
-                setIsRefresh(!isRefresh);
+                else {
+                    setIsDuplicatedId(false);
+                    await userAPI.updateAirport(updatingAirport.id, newAirportData);
+                    setIsUpdating(false);
+                    setIsRefresh(!isRefresh);
+                }
             }
         } catch (error) {
             console.log(error);
@@ -165,6 +180,11 @@ export default function Airports() {
                     Name <input type="text" id="name-filter" className="josefin-sans"/>
                     Region <input type="text" id="region-filter" className="josefin-sans"/>
                     City <input type="text" id="city-filter" className="josefin-sans"/>
+                    Status <select id="status-filter" className="josefin-sans">
+                        <option value=""></option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
                 </div>
                 <div>
                     <button className="josefin-sans" onClick={searchWithFilter}>Search</button>
@@ -180,6 +200,7 @@ export default function Airports() {
                     <th>Name</th>
                     <th>Region</th>
                     <th>City</th>
+                    <th>Status</th>
                     <th>Edit</th>
                 </tr>
                 {filteredAirports.map((airport, index) =>
@@ -189,6 +210,7 @@ export default function Airports() {
                         <td>{airport.name}</td>
                         <td>{airport.region}</td>
                         <td>{airport.city}</td>
+                        <td>{airport.isActive ? "Active" : "Inactive"}</td>
                         <td>
                             <button className="edit" onClick={() => {
                                 setIsUpdating(true);
@@ -196,7 +218,7 @@ export default function Airports() {
                             }}></button>
                             <button className="delete" onClick={() => {
                                 setIsDeleting(true);
-                                setDeletingId([airport.id, airport.code])
+                                setDeletingAirport(airport)
                             }}></button>
                         </td>
                     </tr>)}
@@ -208,14 +230,25 @@ export default function Airports() {
                     <div className="add-airport-form">
                         <h1>{isAdding ? "New airport" : "Update airport"}</h1>
                         <div className="input-fields">
-                            <span>Airport ID <span style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
-                            <input type="text" id="id-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.code : ""}/>
+                            <span>Airport ID <span
+                                style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
+                            <input type="text" id="id-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingAirport.code : ""}/>
                             <span>Name <span style={{color: "red"}}>* </span></span>
-                            <input type="text" id="name-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.name : ""}/>
+                            <input type="text" id="name-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingAirport.name : ""}/>
                             <span>Region <span style={{color: "red"}}>* </span></span>
-                            <input type="text" id="region-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.region : ""}/>
+                            <input type="text" id="region-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingAirport.region : ""}/>
                             <span>City <span style={{color: "red"}}>* </span></span>
-                            <input type="text" id="city-new" className="josefin-sans" required={true} defaultValue={isUpdating ? updatingAirport.city : ""}/>
+                            <input type="text" id="city-new" className="josefin-sans" required={true}
+                                   defaultValue={isUpdating ? updatingAirport.city : ""}/>
+                            <span>Status <span style={{color: "red"}}>* </span></span>
+                            <select id="status-new" className="josefin-sans" required={true}
+                                    defaultValue={isUpdating ? (updatingAirport.isActive ? "Active" : "Inactive") : "Active"}>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
                         </div>
                         <div className="buttons">
                             <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
@@ -228,13 +261,24 @@ export default function Airports() {
             {isDeleting ?
                 <div className="delete-airport-window">
                     <div></div>
-                    <div className="delete-airport-form">
-                        <h3>Delete airport with id {deletingId[1]} ?</h3>
-                        <div className="buttons">
-                            <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
-                            <button className="josefin-sans" onClick={() => {handleDelete(deletingId[0])}}>DELETE</button>
+                    {deletingAirport.isActive ?
+                        <div className="delete-airport-form">
+                            <h3>Can&#39;t delete an active airport</h3>
+                            <div className="buttons">
+                                <button className="josefin-sans" onClick={handleCancel}>BACK</button>
+                            </div>
+                        </div> :
+                        <div className="delete-airport-form">
+                            <h3>Delete plane with ID {deletingAirport.code} ?</h3>
+                            <div className="buttons">
+                                <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
+                                <button className="josefin-sans" onClick={() => {
+                                    handleDelete(deletingAirport.id)
+                                }}>DELETE
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div> : null}
         </div>
     )

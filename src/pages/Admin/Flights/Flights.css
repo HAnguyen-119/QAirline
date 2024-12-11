@@ -109,3 +109,178 @@
 .flights .delete {
     background-image: url("../src/assets/images/delete.png");
 }
+
+.flights-filter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.flights .filters > div {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flights-filter > div:last-child {
+    display: flex;
+    flex-direction: row;
+}
+
+.flights-filter button {
+    border: none;
+    border-radius: 15px;
+    background-color: var(--button-active);
+    color: white;
+    width: 90px;
+    height: 30px;
+    margin: 3px;
+}
+
+.flights-filter button:hover {
+    background-color: var(--button-hover);
+}
+
+#add-Bt {
+    width: 120px;
+}
+
+.flights .filters {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.flights .filters input {
+    margin-bottom: 0.5rem;
+    width: 90%;
+}
+
+.flights .filters select {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.add-flight-window, .delete-flight-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.add-flight-window > div:first-child, .delete-flight-window > div:first-child {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    opacity: 0.2;
+}
+
+.add-flight-form {
+    position: absolute;
+    width: 800px;
+    height: 420px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-flight-form {
+    position: absolute;
+    width: 350px;
+    height: 150px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-flight-form .input-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.add-flight-form .input-fields > div:not(:last-child) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+}
+
+.add-flight-form .input-fields > div > span {
+    margin-bottom: 0.5rem;
+}
+
+.add-flight-form .input-fields .time {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add-flight-form .input-fields .time input {
+    width: 50%;
+}
+
+.add-flight-form .input-fields > div > input {
+    font-size: 1rem;
+}
+
+.add-flight-form .input-fields select {
+    height: 1.5rem;
+    font-size: 1rem;
+}
+
+.add-flight-form > div > input:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.flights .buttons {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    top: 0.7rem;
+}
+
+.flights .buttons button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: var(--button-active);
+    color: white;
+    border-radius: 20px;
+}
+
+.buttons button:hover {
+    background-color: var(--button-hover);
+}
+
