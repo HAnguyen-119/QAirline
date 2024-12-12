@@ -5,11 +5,16 @@
 }
 
 .booking {
-    border: 1px solid;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid;
+    box-shadow: 0.8rem 0.8rem 0 0 #ffbd3e;
     width: 80%;
     margin-top: 2rem;
+    z-index: 1;
+    background-color: var(--booking-light);
+}
+
+.booking.dark {
+    background-color: var(--booking-dark);
 }
 
 .booking-form, .search-form {
@@ -28,7 +33,6 @@
     font-size: 28px;
     margin-bottom: 25px;
     text-align: center;
-    color: #333333;
 }
 
 .itinerary form {
@@ -63,16 +67,15 @@ form>.info > .return-date {
 }
 
 .trip-button {
-    background-color: #fff;
     color: black;
-    border: 1px solid black;
-    border-radius: 20px;
+    border: 3px solid;
     padding: 10px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transition for box-shadow */
     flex: 1;
     margin-right: 10px;
+    box-shadow: 2px 2px 0 0 #ffbd3e;
 }
 
 .trip-button:last-child {
@@ -80,15 +83,12 @@ form>.info > .return-date {
 }
 
 .trip-button:hover {
-    background-color: var(--button-active)
+    box-shadow: 4px 4px 0 0 #ffbd3e;
 }
 
 .trip-button.active {
-    background-color: var(--button-active);
-}
-
-.trip-button.active:hover {
-    background-color: var(--button-hover);
+    box-shadow: -2px -2px 0 0 white;
+    background-color: #ffbd3e;
 }
 
 .trip-arrow {
@@ -126,14 +126,6 @@ form>.info > .return-date {
 
 .form-button:hover {
     background-color: var(--button-active);
-}
-
-.form-button-container:first-child .form-button {
-    border-top-left-radius: 10px;
-}
-
-.form-button-container:last-child .form-button {
-    border-top-right-radius: 10px;
 }
 
 .itinerary>.booking-form>.submit, .search>.search-form>.submit {

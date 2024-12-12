@@ -36,14 +36,18 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;  /* Thêm hiệu ứng phóng to một chút khi di chuột */
 }
 
 .passenger-button:hover {
-    background-color: var(--button-active);
+    transform: scale(1.1);
 }
+
+.passenger-button:active {
+    transform: scale(1);
+}
+
 
 .info {
     display: flex;
@@ -59,4 +63,8 @@
 
 .number>span {
     font-size: 1.3rem;
+}
+
+.passenger>button>svg {
+    margin: 0;
 }
