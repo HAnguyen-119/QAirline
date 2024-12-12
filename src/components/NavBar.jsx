@@ -12,7 +12,7 @@ export default function NavBar({isAdmin, switchMode, isLightMode}) {
                 <NavLink to='/admin/flights'>Flights</NavLink>
                 <NavLink to='/admin/planes'>Planes</NavLink>
                 <NavLink to='/admin/airports'>Airports</NavLink>
-                <NavLink to='/admin/booked'>Booked</NavLink>
+                <NavLink to='/admin/bookings'>Bookings</NavLink>
                 <NavLink to='/admin/information'>Information</NavLink>
                 <div className="switchMode" onClick={switchMode}>
                     <div className={`sun ${isLightMode ? "" : " dark"}`}><img src="../src/assets/images/sun1.png"/></div>

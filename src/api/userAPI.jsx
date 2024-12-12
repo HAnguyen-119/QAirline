@@ -59,6 +59,11 @@ const userAPI = {
     deleteAirport: (airportId) => {
         const url = `api/v1/airports/${airportId}`;
         return axiosClient.delete(url, airportId);
+    },
+
+    getAllBookings: () => {
+        const url = "api/v1/bookings";
+        return axiosClient.get(url);
     }
 }
 
