@@ -67,8 +67,12 @@ const userAPI = {
     findFlightById: (id) => {
         const url = `api/v1/flights/${id}`
         return axiosClient.get(url, id)
-    }
+    },
 
+    getAllBookings: () => {
+        const url = "api/v1/bookings";
+        return axiosClient.get(url);
+    }
 }
 
 export default userAPI;
