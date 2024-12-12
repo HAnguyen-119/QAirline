@@ -26,7 +26,7 @@ export default function Itinerary() {
     const [deptDate, setDeptDate] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
 
-    const [flight, setFlight] = useState('');
+    const today = new Date().toISOString().split('T')[0];
 
     const [passengers, setPassengers] = useState({
         adults: 1,
@@ -78,9 +78,9 @@ export default function Itinerary() {
                     <FlightsSelector htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
                     <Icon name='trip-arrow' iconName={tripType === 'round-trip' ? faRightLeft : faRightLong} />
                     <FlightsSelector htmlFor='destination' description='Destination Airport' id='destination' name='destination' required={true} value={destID} onChange={(e) => setDestID(e.target.value)}/>
-                    <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)}/>
+                    <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)} minDate={today}/>
                     <div className={'return-date-choice'} style={{ visibility: tripType === 'round-trip' ? 'visible' : 'hidden', marginLeft: '10px'}}>
-                        <InputElement htmlFor='return-date' description='Return Date' id='return-date' name='return-date' type='date' required={tripType === 'round-trip'} onChange={(e) => setArrivalDate(e.target.value)}/>
+                        <InputElement htmlFor='return-date' description='Return Date' id='return-date' name='return-date' type='date' required={tripType === 'round-trip'} onChange={(e) => setArrivalDate(e.target.value)} minDate={deptDate}/>
                     </div>
                 </div>
                 <p>Passenger</p>

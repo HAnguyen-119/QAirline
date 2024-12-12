@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-.flights {
+.flights-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
