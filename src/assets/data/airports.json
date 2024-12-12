@@ -1,108 +1,116 @@
-[
-  {
-    "region": " ",
-    "airports": [
-      {"name": " ", "code": " "}
-    ]
+{
+  "id": 1,
+  "flightNumber": "VN123",
+  "departureTime": "2024-10-04T06:00:00",
+  "arrivalTime": "2024-10-04T08:00:00",
+  "flightStatus": "ARRIVED",
+  "economyPrice": null,
+  "businessPrice": null,
+  "economySeatBookedNumber": 0,
+  "businessSeatBookedNumber": 0,
+  "airplane": {
+    "id": 1,
+    "code": "AP001",
+    "model": "Boeing 737",
+    "manufacturer": "Boeing",
+    "economySeatNumber": 200,
+    "businessSeatNumber": 50
   },
-  {
-    "region": "VIỆT NAM",
-    "airports": [
-      { "name": "Tp. Hồ Chí Minh", "code": "SGN" },
-      { "name": "Đà Nẵng", "code": "DAD" },
-      { "name": "Phú Quốc", "code": "PQC" },
-      { "name": "Nha Trang", "code": "CXR" },
-      { "name": "Hà Nội", "code": "HAN" }
-    ]
+  "departureAirport": {
+    "id": 1,
+    "name": "Noi Bai International Airport",
+    "code": "HAN",
+    "region": "Viet Nam",
+    "city": "Ha Noi, Viet Nam"
   },
-  {
-    "region": "ĐÔNG NAM Á",
-    "airports": [
-      { "name": "Bangkok", "code": "BKK" },
-      { "name": "Kuala Lumpur", "code": "KUL" },
-      { "name": "Singapore", "code": "SIN" },
-      { "name": "Jakarta", "code": "CGK" },
-      { "name": "Manila", "code": "MNL" }
-    ]
+  "arrivalAirport": {
+    "id": 2,
+    "name": "Changi Airport",
+    "code": "SIN",
+    "region": "Southeast Asia",
+    "city": "Singapore, Singapore"
   },
-  {
-    "region": "NAM Á",
-    "airports": [
-      { "name": "New Delhi", "code": "DEL" },
-      { "name": "Mumbai", "code": "BOM" },
-      { "name": "Colombo", "code": "CMB" },
-      { "name": "Kathmandu", "code": "KTM" },
-      { "name": "Dhaka", "code": "DAC" }
-    ]
-  },
-  {
-    "region": "BẮC Á",
-    "airports": [
-      { "name": "Beijing", "code": "PEK" },
-      { "name": "Tokyo", "code": "HND" },
-      { "name": "Seoul", "code": "ICN" },
-      { "name": "Shanghai", "code": "PVG" },
-      { "name": "Osaka", "code": "KIX" }
-    ]
-  },
-  {
-    "region": "CHÂU ÂU",
-    "airports": [
-      { "name": "London Heathrow", "code": "LHR" },
-      { "name": "Paris Charles de Gaulle", "code": "CDG" },
-      { "name": "Frankfurt", "code": "FRA" },
-      { "name": "Amsterdam Schiphol", "code": "AMS" },
-      { "name": "Madrid Barajas", "code": "MAD" }
-    ]
-  },
-  {
-    "region": "BẮC MỸ",
-    "airports": [
-      { "name": "New York JFK", "code": "JFK" },
-      { "name": "Los Angeles LAX", "code": "LAX" },
-      { "name": "Chicago O'Hare", "code": "ORD" },
-      { "name": "Toronto Pearson", "code": "YYZ" },
-      { "name": "Mexico City", "code": "MEX" }
-    ]
-  },
-  {
-    "region": "NAM MỸ",
-    "airports": [
-      { "name": "Sao Paulo Guarulhos", "code": "GRU" },
-      { "name": "Buenos Aires Ezeiza", "code": "EZE" },
-      { "name": "Bogotá El Dorado", "code": "BOG" },
-      { "name": "Lima Jorge Chávez", "code": "LIM" },
-      { "name": "Rio de Janeiro Galeão", "code": "GIG" }
-    ]
-  },
-  {
-    "region": "CHÂU ÚC",
-    "airports": [
-      { "name": "Sydney", "code": "SYD" },
-      { "name": "Melbourne", "code": "MEL" },
-      { "name": "Brisbane", "code": "BNE" },
-      { "name": "Perth", "code": "PER" },
-      { "name": "Auckland", "code": "AKL" }
-    ]
-  },
-  {
-    "region": "TRUNG ĐÔNG",
-    "airports": [
-      { "name": "Dubai International", "code": "DXB" },
-      { "name": "Doha Hamad", "code": "DOH" },
-      { "name": "Istanbul", "code": "IST" },
-      { "name": "Abu Dhabi", "code": "AUH" },
-      { "name": "Tel Aviv", "code": "TLV" }
-    ]
-  },
-  {
-    "region": "CHÂU PHI",
-    "airports": [
-      { "name": "Johannesburg", "code": "JNB" },
-      { "name": "Cape Town", "code": "CPT" },
-      { "name": "Nairobi", "code": "NBO" },
-      { "name": "Cairo", "code": "CAI" },
-      { "name": "Addis Ababa", "code": "ADD" }
-    ]
-  }
-]
+  "bookings": [
+    {
+      "id": 1,
+      "code": "458OM2",
+      "email": "khaihd@gmail.com",
+      "phoneNumber": "0981234561",
+      "bookingStatus": "PENDING",
+      "reservationTime": "2024-12-09T20:44:57.823452",
+      "user": null,
+      "passengers": [
+        {
+          "id": 1,
+          "passengerTitle": "MR",
+          "firstname": "John",
+          "lastname": "Doe",
+          "passengerType": "ADULT",
+          "dob": "1990-01-01"
+        },
+        {
+          "id": 2,
+          "passengerTitle": "MRS",
+          "firstname": "Jane",
+          "lastname": "Smith",
+          "passengerType": "ADULT",
+          "dob": "1985-05-15"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "OMP34Z",
+      "email": "user1@gmail.com",
+      "phoneNumber": "0982345672",
+      "bookingStatus": "PENDING",
+      "reservationTime": "2024-12-09T20:44:57.830773",
+      "user": null,
+      "passengers": [
+        {
+          "id": 3,
+          "passengerTitle": "MS",
+          "firstname": "Emily",
+          "lastname": "Johnson",
+          "passengerType": "ADULT",
+          "dob": "1992-09-21"
+        },
+        {
+          "id": 4,
+          "passengerTitle": "DOCTOR",
+          "firstname": "Michael",
+          "lastname": "Brown",
+          "passengerType": "ADULT",
+          "dob": "1978-11-30"
+        },
+        {
+          "id": 5,
+          "passengerTitle": "PROFESSOR",
+          "firstname": "Sarah",
+          "lastname": "Davis",
+          "passengerType": "ADULT",
+          "dob": "1965-07-22"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "code": "5QFWY3",
+      "email": "user2@gmail.com",
+      "phoneNumber": "0983456783",
+      "bookingStatus": "PENDING",
+      "reservationTime": "2024-12-09T20:44:57.83584",
+      "user": null,
+      "passengers": [
+        {
+          "id": 6,
+          "passengerTitle": "MR",
+          "firstname": "James",
+          "lastname": "Wilson",
+          "passengerType": "CHILD",
+          "dob": "2010-03-10"
+        }
+      ]
+    }
+  ]
+}

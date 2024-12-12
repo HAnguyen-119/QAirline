@@ -9,8 +9,25 @@ export const BookingProvider = ({ children }) => {
         destination: '',
         deptDate: '',
         returnDate: '',
-        travelerInfo: {},
-        cartItems: []
+        travelerInfo: {
+            title: '',
+            firstName: '',
+            lastName: '',
+            citizenId: '',
+            address: '',
+            city: '',
+            postalCode: '',
+            country: '',
+            countryCode: '',
+            phoneNumber: '',
+            dob: ''
+        },
+        cartItems: [],
+        outboundFlight: {},
+        returnFlight: {},
+        passengerNumber: '',
+        outboundSeatType: '',
+        returnSeatType: ''
     });
 
     return (

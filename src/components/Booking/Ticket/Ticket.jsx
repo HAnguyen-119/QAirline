@@ -1,54 +1,38 @@
 import LabelElement from "../../Form/LabelElement.jsx";
 import HorizontalRule from "../../HorizontalRule.jsx";
 import Logo from "../../Logo.jsx";
+import {useLocation} from "react-router-dom";
 import ('./Ticket.css')
 
 export default function Ticket() {
+
+    const location = useLocation();
+    const { outboundFlight, returnFlight, passengerNumber, outboundSeatType, returnSeatType } = location.state;
+
     return (
-        <div className='ticket-container'>
-            <Logo/>
-            <div className='ticket-inner'>
-                <div className='passenger-data'>
-                    <div className='seat-info'>
-                        <LabelElement description='CLASS' text='ECONOMY'/>
-                        <LabelElement description='SEAT NO.' text='A-1'/>
-                        <LabelElement description='TICKET NO.' text='123456789'/>
-                    </div>
-                    <div className='passenger-info'>
-                        <LabelElement description='PASSENGER NAME' text='Nguyen Van A'/>
-                    </div>
-                    <div className='ticket-qr'>
-                        <h4>For more information</h4>
-                        <div>
-                            QR CODE
-                        </div>
-                    </div>
+           <div>
+                <h1>Traveler Details</h1>
+                <div>
+                    <h2>Outbound Flight</h2>
+                    <p>Flight Number: {outboundFlight}</p>
+                    <p>Departure Time: {outboundFlight?.departureTime}</p>
+                    <p>Arrival Time: {outboundFlight?.arrivalTime}</p>
+                    <p>Seat Type: {outboundSeatType}</p>
                 </div>
-
-                <div className='boarding-data'>
-                    <div className=''>
-                        <div className='boarding-data'>
-                            <h1>BOARDING PASS</h1>
-                            <div className='form-wrapper boarding'>
-                                <div className='dept-'>
-                                    <LabelElement description='Departure' text='Gate 01'/>
-                                    <h2>HANOI</h2>
-                                    <LabelElement description='Departure Date' text='01/01/2020'/>
-                                    <LabelElement description='Arrival Date' text='01/01/2020'/>
-
-                                </div>
-                                <div className='arrv-'>
-                                    <LabelElement description='Arrival' text='Gate 02'/>
-                                    <h2>HO CHI MINH CITY</h2>
-                                    <LabelElement description='Departure Time' text='00:00'/>
-                                    <LabelElement description='Arrival Time' text='00:00'/>
-                                </div>
-                            </div>
-                        </div>
+                {returnFlight && (
+                    <div>
+                        <h2>Return Flight</h2>
+                        <p>Flight Number: {returnFlight}</p>
+                        <p>Departure Time: {returnFlight?.departureTime}</p>
+                        <p>Arrival Time: {returnFlight?.arrivalTime}</p>
+                        <p>Seat Type: {returnSeatType}</p>
                     </div>
+                )}
+                <div>
+                    <h2>Passenger Number</h2>
+                    <p>{passengerNumber}</p>
                 </div>
+                <button onClick={() => console.log('Submit to backend')}>Continue</button>
             </div>
-
-        </div>
     )
 }

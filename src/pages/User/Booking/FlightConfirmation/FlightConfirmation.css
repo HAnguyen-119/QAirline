@@ -1,0 +1,51 @@
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3rem;
+    gap: 10px;
+
+    h1, p {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.cart-content {
+    display: flex;
+    width: 80%;
+}
+
+.boarding-pass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 3;
+}
+
+.cart-summary {
+    flex: 1;
+}
+
+.departure-flight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.departure-card, .return-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

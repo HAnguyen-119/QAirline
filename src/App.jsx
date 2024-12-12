@@ -25,18 +25,20 @@ import Planes from "./pages/Admin/Planes/Planes.jsx";
 import Booked from "./pages/Admin/Booked/Booked.jsx";
 import Information from "./pages/Admin/Information/Information.jsx";
 import SearchResults from "./pages/User/Booking/Search/SearchResults.jsx";
-import ShoppingCart from "./pages/User/Booking/ShoppingCart/ShoppingCart.jsx";
+import FlightConfirmation from "./pages/User/Booking/FlightConfirmation/FlightConfirmation.jsx";
 import Traveler from "./pages/User/Booking/TravelerInfo/Traveler.jsx";
 import {BookingProvider} from "./Context/BookingContext.jsx";
 import Airports from "./pages/Admin/Airports/Airports.jsx";
+import Ticket from "./components/Booking/Ticket/Ticket.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
         <Route path="/" element={<MainLayout/>}>
             <Route index element={<Home/>} />
             <Route path="booking" element={<Booking/>}/>
-            <Route path='/booking/availability' element={<SearchResults/>} />
-            <Route path='/booking/shopping-cart' element={<ShoppingCart/>} />
+            <Route path='/booking/outbound/availability' element={<SearchResults/>} />
+            <Route path='/booking/return/availability' element={<SearchResults/>} />
+            <Route path='/booking/shopping-cart' element={<FlightConfirmation/>} />
             <Route path='/booking/traveler' element={<Traveler/>} />
             <Route path="manage" element={<Manage/>} />
             <Route path="about" element={<About/>}>
@@ -47,6 +49,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
+            <Route path='booking/ticket-info' element={<Ticket/>} />
         </Route>
         <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<Dashboard/>} />
@@ -63,9 +66,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 
 function App() {
   return (
-      <BookingProvider>
-          <RouterProvider router={router} />
-      </BookingProvider>
+    <RouterProvider router={router} />
   )
 }
 

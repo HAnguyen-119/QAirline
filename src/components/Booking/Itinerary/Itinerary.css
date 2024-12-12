@@ -1,0 +1,9 @@
+.return-date-choice>input {
+    padding-left: 10px;
+}
+
+.info + p {
+    font-size: 1.1rem;
+    padding: 0;
+    margin: 0;
+}

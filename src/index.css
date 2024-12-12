@@ -6,6 +6,18 @@
     --dark: #1c2130;
     --button-active: #dd6311;
     --button-hover: #b41e1e;
+    --card-top-light: #e0f7fa;
+    --card-top-dark: #2b3245;
+    --card-seperate-light: #80deea;
+    --card-seperate-dark: #3b4257;
+    --card-divider-light: #e0f7fa;
+    --card-divider-dark: #2b3245;
+    --card-bottom-light: #e0f7fa;
+    --card-bottom-dark: #232938;
+    --card-text-light: #e0e6ed;
+    --card-text-dark: #70d7ff;
+    --booking-light: #ffdab9;
+    --booking-dark: #24304d;
 }
 
 body {

@@ -1,62 +1,101 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './SearchResults.css';
 import FilterModal from '../FilterModal/FilterModal.jsx';
 import { getNextSevenDays } from "../../../../utils/NextSevenDays.js";
 import Days from "../../../../components/Booking/Date/Days.jsx";
 import DivContainer from "../../../../components/DivContainer.jsx";
-import Button from "../../../../components/Button/Button.jsx";
 import FlightCard from "../../../../components/Card/FlightCard.jsx";
 
 import EmptyFlight from '../../../../assets/images/empty.png';
+import userAPI from "../../../../api/userAPI.jsx";
 
 export default function SearchResults() {
     const location = useLocation();
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
+    const fullParams = new URLSearchParams(location.pathname)
 
-    const tripType = searchParams.get('tripType');
-    const departure = searchParams.get('departure');
-    const destination = searchParams.get('destination');
+    const deptAirportId = searchParams.get('dept-id');
+    const destAirportId = searchParams.get('arr-id');
     const deptDate = searchParams.get('dept-date');
-    const returnDate = searchParams.get('return-date');
+    const retDate = searchParams.get('ret-date');
+    const passengerNumber = searchParams.get('passenger');
+
+    let tripType = 'one-way';
+    if (retDate !== '' || (retDate === '' && fullParams.toString().includes('return'))) {
+        tripType = 'round-trip';
+    }
+
+    console.log(tripType)
+
+    const [flights, setFlights] = useState([])
+    let searchData;
+
+    useEffect( () => {
+        const fetchFlights = async () => {
+            try {
+                searchData = {
+                    "departureAirportId": deptAirportId,
+                    "arrivalAirportId": destAirportId,
+                    "departureDate": deptDate,
+                    "passengerNumber": passengerNumber
+                }
+
+                console.log(searchData)
+
+                const response = await userAPI.findFlight(searchData);
+                setFlights(response);
+            } catch (error) {
+                console.error("Error finding flights:", error);
+            }
+        }
+        fetchFlights()
+    }, [deptAirportId, destAirportId, deptDate, retDate, passengerNumber]);
+
 
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [activeDate, setActiveDate] = useState(null);
+    const [activeOutbound, setActiveOutbound] = useState(null);
+    const [activeReturn, setActiveReturn] = useState(null);
 
-    //test
-    const flights = [
-        { id: 1, tripType, flight: 'Flight 1', departure, destination, deptDate, returnDate, deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'', returnArrivalTime:'', eco_cost:100, bus_cost:200 },
-        { id: 2, tripType:'one-way', flight: 'Flight 2', departure, destination, deptDate: '2024-12-05', returnDate: '',deptTime:'06:00', arrivalTime: '08:00', returnDeptTime: '', returnArrivalTime: '', eco_cost:100, bus_cost:200 },
-        { id: 3, tripType:'one-way', flight: 'Flight 3', departure, destination, deptDate: '2024-12-02', returnDate: '', deptTime:'06:00', arrivalTime: '08:00', returnDeptTime: '', returnArrivalTime: '', eco_cost:100, bus_cost:200 },
-        { id: 4, tripType:'round-trip', flight: 'Flight 4', departure, destination, deptDate: '2024-12-05', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 5, tripType:'round-trip', flight: 'Flight 5', departure, destination, deptDate: '2024-12-06', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 6, tripType:'one-way', flight: 'Flight 6', departure, destination, deptDate: '2024-12-03', returnDate: '', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'', returnArrivalTime:'', eco_cost:100, bus_cost:200 },
-        { id: 7, tripType:'round-trip', flight: 'Flight 7', departure, destination, deptDate: '2024-12-03', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 8, tripType:'round-trip', flight: 'Flight 8', departure, destination, deptDate: '2024-12-07', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 9, tripType:'round-trip', flight: 'Flight 9', departure, destination, deptDate: '2024-12-08', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 10, tripType:'round-trip', flight: 'Flight 10', departure, destination, deptDate: '2024-12-09', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 11, tripType:'round-trip', flight: 'Flight 11', departure, destination, deptDate: '2024-12-04', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 12, tripType:'one-way', flight: 'Flight 12', departure, destination, deptDate: '2024-12-05', returnDate: '', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'', returnArrivalTime:'', eco_cost:100, bus_cost:200 },
-        { id: 13, tripType:'round-trip', flight: 'Flight 13', departure, destination, deptDate: '2024-12-06', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 14, tripType:'round-trip', flight: 'Flight 14', departure, destination, deptDate: '2024-12-04', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 },
-        { id: 15, tripType:'one-way', flight: 'Flight 15', departure, destination, deptDate: '2024-12-03', returnDate: '', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'', returnArrivalTime:'', eco_cost:100, bus_cost:200 },
-        { id: 16, tripType:'round-trip', flight: 'Flight 6', departure, destination, deptDate: '2024-12-06', returnDate: '2023-12-08', deptTime:'05:00', arrivalTime:'07:00', returnDeptTime:'05:00', returnArrivalTime:'07:00', eco_cost:100, bus_cost:200 }
+    const nextSevenDaysDept = getNextSevenDays(deptDate);
 
-    ];
-
-    const nextSevenDays = getNextSevenDays(deptDate);
-
-    const handleBookNow = (id) => {
+    const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
-        const params = new URLSearchParams({
-            'tripType': flight.tripType,
-            'departure': flight.departure,
-            'destination': flight.destination,
-            'dept-date': flight.deptDate,
-            'return-date': flight.returnDate
-        }).toString();
-        navigate(`/booking/shopping-cart?${params}`);
+        let params;
+        if (tripType === 'one-way') {
+            params = new URLSearchParams({
+                'passenger': passengerNumber,
+                'outbound-id': flight.id,
+                'outbound-seat': type
+            }).toString();
+            navigate(`/booking/shopping-cart?${params}`, {state: location.state});
+        } else {
+            if (fullParams.toString().includes('outbound')) {
+                const retParams = new URLSearchParams({
+                    "dept-id": destAirportId,
+                    "arr-id": deptAirportId,
+                    "dept-date": retDate,
+                    "ret-date": "",
+                    "passenger": 2
+                }).toString();
+                params = new URLSearchParams({
+                    'dept-date': deptDate,
+                    'passenger': passengerNumber,
+                    'outbound-id': flight.id,
+                    'outbound-seat': type
+                }).toString();
+                navigate(`/booking/return/availability?${retParams}&${params}`, {state: location.state});
+            } else {
+                params = new URLSearchParams({
+                    'passenger': passengerNumber,
+                    'return-id': flight.id,
+                    'return-seat': type
+                }).toString();
+                let param = searchParams.toString().split('&');
+                navigate(`/booking/shopping-cart?${param[param.length - 2]}&${param[param.length - 1]}&${params}`, {state: location.state});
+            }
+        }
     };
 
     const handleFilter = () => {
@@ -67,32 +106,64 @@ export default function SearchResults() {
         setIsFilterOpen(false);
     };
 
-    const activeDateString = activeDate !== null ? nextSevenDays[activeDate][1] : null;
+    let activeOutboundString = activeOutbound !== null ? nextSevenDaysDept[activeOutbound][1] : null;
+    let activeReturnString = activeReturn !== null ? nextSevenDaysDept[activeReturn][1] : null;
 
-    const filteredFlights = flights.filter(flight => {
-        const flightDate = new Date(flight.deptDate).getDate().toString();
-        return flightDate === activeDateString && flight.tripType === tripType;
+
+    const filteredOutbound = flights.filter(flight => {
+        const flightDate = new Date(flight.departureTime).getDate().toString();
+        return flightDate === activeOutboundString;
     });
 
-    const isEmpty = filteredFlights.length === 0;
+    const filteredReturn = flights.filter(flight => {
+        const flightDate = new Date(flight.departureTime).getDate().toString();
+        return flightDate === activeReturnString;
+    });
+
+
+    const isOutboundEmpty = filteredOutbound.length === 0;
+    const isReturnEmpty = filteredReturn.length === 0;
 
     return (
         <div className='search-results'>
-            <h1>Search Results</h1>
-            <Days days={nextSevenDays} activeDate={activeDate} setActiveDate={setActiveDate} />
-            <button className='submit' onClick={handleFilter}>Filter</button>
-            <div className='flights'>
-                {!isEmpty && filteredFlights.map(flight => (
-                    <FlightCard flight={flight} handleBookNow={() => handleBookNow(flight.id)}/>
-                ))}
-                {isEmpty && (
-                    <DivContainer parentClass='empty'>
-                        <img src={EmptyFlight} />
-                    </DivContainer>
-                )}
-            </div>
+            { fullParams.toString().includes('outbound') && (
+                <div className='outbound-result'>
+                    <h1>Outbound</h1>
+                    <Days days={nextSevenDaysDept} activeDate={activeOutbound} setActiveDate={setActiveOutbound} />
+                    <button className='submit' onClick={handleFilter}>Filter</button>
+                    <div className='flights'>
+                        {!isOutboundEmpty && filteredOutbound.map(flight => (
+                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)}/>
+                        ))}
+                        {isOutboundEmpty && (
+                            <DivContainer parentClass='empty'>
+                                <img src={EmptyFlight} />
+                            </DivContainer>
+                        )}
+                    </div>
 
-            <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                </div>
+            )}
+            {!fullParams.toString().includes('outbound')  && (
+                <div className='outbound-result'>
+                    <h1>Return</h1>
+                    <Days days={nextSevenDaysDept} activeDate={activeReturn} setActiveDate={setActiveReturn} />
+                    <button className='submit' onClick={handleFilter}>Filter</button>
+                    <div className='flights'>
+                        {!isReturnEmpty && filteredReturn.map(flight => (
+                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)}/>
+                        ))}
+                        {isReturnEmpty && (
+                            <DivContainer parentClass='empty'>
+                                <img src={EmptyFlight} />
+                            </DivContainer>
+                        )}
+                    </div>
+
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                </div>
+            )}
         </div>
     );
 }
