@@ -8,15 +8,15 @@ export default function Bookings() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [bookingData, setbookingData] = useState([]);
+    const [bookingData, setBookingData] = useState([]);
     const [isRefresh, setIsRefresh] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const Bookings = await userAPI.getAllBookings();
-                setbookingData(Bookings);
-                console.log(Bookings);
+                const bookings = await userAPI.getAllBookings();
+                setBookingData(bookings);
+                console.log(bookings);
                 console.log(isRefresh);
             } catch (error) {
                 console.log(error);
@@ -26,7 +26,7 @@ export default function Bookings() {
     }, [isRefresh]);
 
     const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get('code');
+    const code = searchParams.get('id');
     const model = searchParams.get('model');
     const manufacturer = searchParams.get("manufacturer");
     const capacity = searchParams.get('capacity');
@@ -84,24 +84,39 @@ export default function Bookings() {
         navigate(`?${params}`);
     }
 
+    const countPassengerTypes = (passengers) => {
+        const counts = passengers.reduce((counts, passenger) => {
+            counts[passenger.passengerType] = (counts[passenger.passengerType] || 0) + 1;
+            return counts;
+        }, {});
+
+        return {
+            adults: counts.ADULT || 0,
+            children: counts.CHILD || 0,
+            infants: counts.INFANT || 0
+        };
+    }
+
     return (
         <div className="bookings">
             <div className="bookings-filter">
                 <div className="filters">
-                    ID <input type="text" id="id-filter" className="josefin-sans"/>
-                    Model <input type="text" id="model-filter" className="josefin-sans"/>
-                    Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/>
-                    Capacity <select id="capacity-filter" className="josefin-sans">
-                    <option value=""></option>
-                    <option value="< 100">{"< 100"}</option>
-                    <option value="100 - 200">{"100 - 200"}</option>
-                    <option value="> 200">{"> 200"}</option>
-                </select>
-                    Status <select id="status-filter" className="josefin-sans">
-                    <option value=""></option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+                    <div>ID<input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div>Flight<input type="text" id="plane-id-filter" className="josefin-sans"/></div>
+                    <div>Departure Airport <input type="text" id="departure-airport-filter" className="josefin-sans"/>
+                    </div>
+                    <div>Class <select id="class-filter" className="josefin-sans">
+                        <option value="">{""}</option>
+                        <option value="Economy">Economy</option>
+                        <option value="Business">Business</option>
+                    </select></div>
+                    <div>Reservation Date <input type="date" id="reservation-date-filter" className="josefin-sans"/>
+                    </div>
+                    <div>Status <select id="status-filter" className="josefin-sans">
+                        <option value="">{""}</option>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="En route">En route</option>
+                    </select></div>
                 </div>
                 <div>
                     <button className="josefin-sans" onClick={searchWithFilter}>Search</button>
@@ -118,25 +133,29 @@ export default function Bookings() {
                     <th rowSpan={2}>Email</th>
                     <th rowSpan={2}>Phone</th>
                     <th colSpan={3}>Passenger</th>
+                    <th rowSpan={2}>Class</th>
+                    <th rowSpan={2}>Price</th>
                     <th rowSpan={2}>Reservation Time</th>
                     <th rowSpan={2}>Status</th>
                 </tr>
                 <tr>
-                    <th>Infant</th>
-                    <th>Child</th>
-                    <th>Adult</th>
+                    <th>Infants</th>
+                    <th>Children</th>
+                    <th>Adults</th>
                 </tr>
                 {filteredBookings.map((booking, index) =>
                     <tr key={booking.code}>
                         <td>{index + 1}</td>
                         <td>{booking.code}</td>
-                        <td></td>
+                        <td>{booking.flight.flightNumber}</td>
                         <td>{booking.email}</td>
                         <td>{booking.phoneNumber}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{booking.reservationTime}</td>
+                        <td>{countPassengerTypes(booking.passengers).infants}</td>
+                        <td>{countPassengerTypes(booking.passengers).children}</td>
+                        <td>{countPassengerTypes(booking.passengers).adults}</td>
+                        <td>{booking.seatClass}</td>
+                        <td>{booking.price}</td>
+                        <td>{booking.reservationTime.substring(0, 10) + " " + booking.reservationTime.substring(12, 19)}</td>
                         <td>{booking.bookingStatus}</td>
                     </tr>)}
                 </tbody>

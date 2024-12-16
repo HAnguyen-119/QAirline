@@ -1,6 +1,8 @@
 import {NavLink} from "react-router-dom";
 import Logo from "./Logo.jsx";
 
+import './NavBar.css'
+
 import Sun from "../assets/images/sun1.png";
 import Moon from "../assets/images/moon1.png";
 
@@ -36,7 +38,25 @@ export default function NavBar({isAdmin, switchMode, isLightMode}) {
                     <div className={`sun ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/sun1.png"/></div>
                     <div className={`moon ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/moon1.png"/></div>
                 </div>
-                <NavLink to='/login' className="login">Log in</NavLink>
+                <div className="menu" onClick={() => {
+                    let navBarHeight = document.querySelector(".navBar").style.height;
+                    if (navBarHeight === "300px") {
+                        document.querySelector(".navBar").style.height = "60px";
+                    } else {
+                        document.querySelector(".navBar").style.height = "300px";
+                    }
+                }}>
+                    Menu
+                </div>
+                <NavLink to='/login' className="login" onClick={() => {
+                    document.querySelector(".navBar").style.height = "60px"
+                }}>Log in</NavLink>
             </div>
         )
+}
+
+window.onresize = () => {
+    if (window.innerWidth > 768) {
+        document.querySelector(".navBar").style.height = "60px"
+    }
 }

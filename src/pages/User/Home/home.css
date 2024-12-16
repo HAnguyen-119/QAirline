@@ -1,7 +1,7 @@
 .home {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     --suggestion-width: 390px;
@@ -9,8 +9,8 @@
 }
 
 .home hr {
-    margin-top: 3.5rem;
-    margin-bottom: 3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
     width: 60%;
     align-self: center;
     height: 2px;
@@ -22,8 +22,8 @@
     background-color: var(--light);
 }
 
-.home h1 {
-    margin-left: 1rem;
+.home > h1 {
+    margin-left: 10%;
 }
 
 .moreDiscount {
