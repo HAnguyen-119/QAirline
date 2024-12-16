@@ -2,7 +2,7 @@
     --primary: #028f76;
     --primary-active: #b3e099;
     --secondary: #0096d5;
-    --light: #ffeaad;
+    --light: #ffffe5;
     --dark: #1c2130;
     --button-active: #dd6311;
     --button-hover: #b41e1e;
@@ -18,6 +18,13 @@
     --card-text-dark: #70d7ff;
     --booking-light: #ffdab9;
     --booking-dark: #24304d;
+
+    --extra-small-screen: 359px;
+    --small-screen-min: 360px;
+    --small-screen-max: 767px;
+    --medium-screen-min: 768px;
+    --medium-screen-max: 1023px;
+    --large-screen: 1024px;
 }
 
 body {

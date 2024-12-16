@@ -173,6 +173,7 @@ export default function Flights() {
         const newArrivalTime = document.getElementById("arrival-time-new").value.trim();
         const newEconomyPrice = document.getElementById("economy-price-new").value;
         const newBusinessPrice = document.getElementById("business-price-new").value;
+        const newStatus = document.getElementById("status-new").value;
         const isValid = newId.length > 0
             && newId.length > 0
             && newPlaneId.length > 0
@@ -180,17 +181,18 @@ export default function Flights() {
             && newArrivalAirport.length > 0
             && newDepartureDate.length > 0
             && newArrivalDate.length > 0
+        && newStatus.length > 0
         const newFlightData = {"flightNumber": newId,
             "departureTime": `${newDepartureDate}T${newDepartureTime}`,
             "arrivalTime": `${newArrivalDate}T${newArrivalTime}`,
-            "flightStatus": "SCHEDULED",
+            "flightStatus": newStatus,
             "economyPrice": newEconomyPrice,
             "businessPrice": newBusinessPrice,
             "economySeatBookedNumber": 0,
             "businessSeatBookedNumber": 0,
             "airplane": {"id": selectingPlane.id},
             "departureAirport": {"id": selectingDepartureAirport.id},
-            "arrivalAirport": {"id": selectingArrivalAirport.id}
+            "arrivalAirport": {"id": selectingArrivalAirport.id},
         };
         console.log(newFlightData);
         try {
