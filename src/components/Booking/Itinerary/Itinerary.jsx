@@ -20,7 +20,7 @@ import ('./Itinerary.css');
 export default function Itinerary() {
     const navigate = useNavigate();
 
-    const [tripType, setTripType] = useState('');
+    const [tripType, setTripType] = useState('one-way');
     const [deptID, setDeptID] = useState('');
     const [destID, setDestID] = useState('');
     const [deptDate, setDeptDate] = useState('');
@@ -60,6 +60,7 @@ export default function Itinerary() {
             const response = await userAPI.getAllAirports();
             setAirports(response);
 
+
             navigate(`/booking/outbound/availability?${params}`, {state: {adults: passengers.adults, children: passengers.children, infants: passengers.infants}});
         } catch (error) {
             console.error("Error finding flights:", error);
@@ -71,8 +72,8 @@ export default function Itinerary() {
             <h1>ITINERARY</h1>
             <form className='booking-form' onSubmit={handleSearchFlightSubmit}>
                 <DivContainer parentClass='type'>
-                    <Button type='button' buttonClass={`trip-button ${tripType === 'one-way' ? 'active' : ''}`} onClick={() => setTripType('one-way')} text=' One-way Trip' icon={faPlaneUp}/>
-                    <Button type='button' buttonClass={`trip-button ${tripType === 'round-trip' ? 'active' : ''}`} onClick={() => setTripType('round-trip')} text=' Round Trip' icon={faRotate   }/>
+                    <Button type='button' buttonClass={`button ${tripType === 'one-way' ? 'active' : ''}`} onClick={() => setTripType('one-way')} text=' One-way Trip' icon={faPlaneUp}/>
+                    <Button type='button' buttonClass={`button ${tripType === 'round-trip' ? 'active' : ''}`} onClick={() => setTripType('round-trip')} text=' Round Trip' icon={faRotate   }/>
                 </DivContainer>
                 <div className='info'>
                     <FlightsSelector htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
@@ -85,7 +86,7 @@ export default function Itinerary() {
                 </div>
                 <p>Passenger</p>
                 <Passenger passengers={passengers} setPassengers={setPassengers}/>
-                <button className='trip-button' type='submit' ><Icon iconName={faMagnifyingGlass}/> Search </button>
+                <button className='button' type='submit' ><Icon iconName={faMagnifyingGlass}/> Search </button>
             </form>
         </div>
     )

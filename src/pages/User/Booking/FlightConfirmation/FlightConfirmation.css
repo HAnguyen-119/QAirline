@@ -14,38 +14,90 @@
 
 .cart-content {
     display: flex;
+    flex-direction: column;
     width: 80%;
 }
 
 .boarding-pass {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
-    flex: 3;
+    gap: 20px;
 }
+
+.boarding-pass>* {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
 
 .cart-summary {
     flex: 1;
 }
 
-.departure-flight {
+
+.departure-card, .return-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
+    >* {
+        width: 90%;
+    }
 }
 
-.departure-card, .return-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.flight-name {
+    text-align: center;
 }
 
 .cart-summary {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    border: 2px solid;
+    padding: 20px;
+    >* {
+        width: 60%;
+    }
+}
+
+.change-flight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.summary-item {
+    flex: 3;
+}
+
+.total-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 3px;
+}
+
+.total-price > button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    cursor: pointer;
 }

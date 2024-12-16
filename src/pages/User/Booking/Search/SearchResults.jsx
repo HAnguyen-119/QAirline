@@ -202,7 +202,7 @@ export default function SearchResults() {
                 <div className='outbound-result'>
                     <h1>Return Flights</h1>
                     <Days days={retDays} activeDate={activeReturn} setActiveDate={setActiveReturn} />
-                    <button className='submit' onClick={handleOpenFilter}>Filter</button>
+                    <button className='' onClick={handleOpenFilter}>Filter</button>
                     <FlightList isEmpty={isReturnEmpty} flights={filteredReturn} tripType={tripType} handleBookNow={handleBookNow} />
                     <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} onFilters={handleFilters}/>
                 </div>

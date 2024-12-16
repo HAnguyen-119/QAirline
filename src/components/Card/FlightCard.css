@@ -3,9 +3,13 @@
     flex-direction: column;
     width: 100%;
     border: 2px solid;
-    border-radius: 5px;
+    box-shadow: 0.8rem 0.8rem 0 0 #ffbd3e;
+    background-color: var(--booking-light);
 }
 
+.dark .flight-card-container {
+    background-color: var(--booking-dark);
+}
 
 .flight-card {
     display: flex;
@@ -39,24 +43,17 @@
     flex: 1;
 }
 
-.flight-price > * > .book-button {
-    background-color: var(--button-active);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.flight-price > .button {
+    margin: 0 4rem;
 }
 
-.flight-price > * > .book-button:hover {
-    background-color: var(--button-hover);
-    transform: translateY(-2px);
+.show .flight-price > .button {
+    box-shadow: -2px -2px 0 0 white;
+    background-color: #ffbd3e;
 }
 
-.flight-price > * > .book-button:active {
-    transform: translateY(0);
+.show .flight-price > .button:hover {
+    box-shadow: -4px -4px 0 0 white;
 }
 
 .flight-price-left {
@@ -102,6 +99,8 @@
 
 .dropdown-option:hover {
     border-color: var(--button-hover);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 .dropdown-option:last-child {

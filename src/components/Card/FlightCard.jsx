@@ -66,7 +66,7 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                     </DivContainer>
                 </DivContainer>
                 <DivContainer parentClass='flight-price'>
-                    <Button buttonClass='dropdown-button' onClick={toggleDropdown} text='Select'/>
+                    <Button buttonClass='button' onClick={toggleDropdown} text={`${openDropdown ? 'Close' : 'Select'}`}/>
                 </DivContainer>
             </DivContainer>
                 {openDropdown && (
@@ -88,7 +88,7 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                                 </div>
                             </div>
                             <span><Icon iconName={faChair}/> Seats available: {flight.airplane.economySeatNumber - flight.economySeatBookedNumber}</span>
-                            <Button buttonClass='book-button' onClick={() => handleBookNow(flight.id, 'ECONOMY')} text='Book now!' />
+                            <Button buttonClass='button' onClick={() => handleBookNow(flight.id, 'ECONOMY')} text='Book now!' />
                         </div>
                         <div className='dropdown-option'>
                             <h2><Icon iconName={faBriefcase}/> Business</h2>
@@ -107,7 +107,7 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                                 </div>
                             </div>
                             <span><Icon iconName={faChair}/> Seats available: {flight.airplane.businessSeatNumber - flight.businessSeatBookedNumber}</span>
-                            <Button buttonClass='book-button' onClick={() => handleBookNow(flight.id, 'BUSINESS')} text='Book now!' />
+                            <Button buttonClass='button' onClick={() => handleBookNow(flight.id, 'BUSINESS')} text='Book now!' />
                         </div>
                     </div>
                 )}

@@ -33,6 +33,7 @@ export default function Traveler() {
             alert('You must accept the terms and conditions.');
         }
         //update backend database
+        navigate('/booking/payment', { state: { outboundFlight, returnFlight, adults: adultDetails, children: childDetails, infants: infantDetails, contactInfo, outboundSeatType, returnSeatType } });
     };
 
     return (

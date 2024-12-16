@@ -14,9 +14,6 @@ export default function ConfirmationCard({ flight, passengerNumber, seatType, ha
 
     const isLightMode = useOutletContext();
 
-    if (type === 'DEPARTURE') {
-
-    }
     const handleCapture = async () => {
         let element;
         if (type === 'DEP') {
@@ -146,8 +143,8 @@ export default function ConfirmationCard({ flight, passengerNumber, seatType, ha
                 </DivContainer>
             </DivContainer>
             <DivContainer parentClass={'change-flight'}>
-                <button onClick={handle}>Change Flight</button>
-                <button onClick={handleCapture}>Print</button>
+                <button className='button' onClick={handle}>Change Flight</button>
+                <button className='button' onClick={handleCapture}>Download</button>
             </DivContainer>
         </>
     )

@@ -1,4 +1,3 @@
-
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -27,9 +26,8 @@ import Information from "./pages/Admin/Information/Information.jsx";
 import SearchResults from "./pages/User/Booking/Search/SearchResults.jsx";
 import FlightConfirmation from "./pages/User/Booking/FlightConfirmation/FlightConfirmation.jsx";
 import Traveler from "./pages/User/Booking/TravelerInfo/Traveler.jsx";
-import {BookingProvider} from "./Context/BookingContext.jsx";
 import Airports from "./pages/Admin/Airports/Airports.jsx";
-import Ticket from "./components/Booking/Ticket/Ticket.jsx";
+import Payment from "./pages/User/Booking/Payment/Payment.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
@@ -49,7 +47,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
-            <Route path='booking/ticket-info' element={<Ticket/>} />
+            <Route path='booking/payment' element={<Payment/>} />
         </Route>
         <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<Dashboard/>} />

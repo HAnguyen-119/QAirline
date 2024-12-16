@@ -7,6 +7,12 @@ import userAPI from "../../../../api/userAPI.jsx";
 import ConfirmationCard from "../../../../components/Card/ConfirmationCard.jsx";
 import {format} from "../../../../utils/Time.js";
 import {calculateTravelTime} from "../../../../utils/CalculateTime.js";
+import {CalculateFee} from "../../../../utils/CalculateFee.js";
+import {CalculateTax} from "../../../../utils/CalculateTax.js";
+import FeeDetails from "../../../../components/Booking/Flights/FeeDetails.jsx";
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
+import Icon from "../../../../components/Icon/icon.jsx";
+import HorizontalRule from "../../../../components/HorizontalRule.jsx";
 
 export default function FlightConfirmation() {
     const location = useLocation();
@@ -14,7 +20,6 @@ export default function FlightConfirmation() {
     const searchParams = new URLSearchParams(location.search);
 
     const {adults, children, infants} = location.state;
-
     const passengerNumber = searchParams.get('passenger');
     const outboundId = searchParams.get('outbound-id');
     const outboundSeatType = searchParams.get('outbound-seat')
@@ -25,6 +30,8 @@ export default function FlightConfirmation() {
 
     const [outboundFlight, getOutboundFlight] = useState({});
     const [returnFlight, getReturnFlight] = useState({});
+
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     useEffect(() => {
         try {
@@ -42,7 +49,19 @@ export default function FlightConfirmation() {
         }
     }, []);
 
-    console.log(outboundFlight)
+    const handleOpenPopup = () => {
+        setIsPopupOpen(true);
+    }
+
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+    }
+
+    const totalOutbound = CalculateFee({ flight: outboundFlight, seatType: outboundSeatType, adults, children, infants });
+    const totalReturn = tripType === 'round-trip' ? CalculateFee({ flight: returnFlight, seatType: returnSeatType, adults, children, infants }) : 0;
+
+    const outboundTax = CalculateTax(totalOutbound, passengerNumber);
+    const returnTax = tripType === 'round-trip' ? CalculateTax(totalReturn, passengerNumber) : 0;
 
     const handleContinue = () => {
         navigate('/booking/traveler', { state: { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType } });
@@ -82,31 +101,45 @@ export default function FlightConfirmation() {
 
                 </DivContainer>
                 <DivContainer parentClass={'cart-summary'}>
-                    <DivContainer parentClass={'cart-header'}>
+                    <DivContainer parentClass={'summary-header'}>
                         <h2>Cart Summary</h2>
                         <p>Total Passenger: {passengerNumber}</p>
                     </DivContainer>
-                    <DivContainer parentClass={'cart-content'}>
-                        <DivContainer parentClass={'dept-summary'}>
-                            <p>Outbound Flight: {outboundFlight?.flightNumber}</p>
-                            <p>Departure Time: {outboundFlight?.departureTime && format(outboundFlight.departureTime.split('T')[1])}</p>
-                            <p>Arrival Time: {outboundFlight?.arrivalTime && format(outboundFlight.arrivalTime.split('T')[1])}</p>
-                            <p>Seat Type: {outboundSeatType}</p>
-                            <p>Total Travel Time: {calculateTravelTime(outboundFlight?.departureTime, outboundFlight?.arrivalTime)}</p>
+                    <DivContainer parentClass={'summary-content'}>
+                        <DivContainer parentClass={'summary-item'}>
+                            <strong>Departure Flight</strong>
+                            <p>${totalOutbound}</p>
+                            <HorizontalRule/>
+                            <strong>Tax</strong>
+                            <p>${outboundTax}</p>
+                            <HorizontalRule/>
+                            <strong>Discounts</strong>
+                            <p>0</p>
                         </DivContainer>
                         {tripType === 'round-trip' && (
-                            <DivContainer parentClass={'ret-summary'}>
-                                <p>Return Flight: {returnFlight?.flightNumber}</p>
-                                <p>Departure Time: {returnFlight?.departureTime && format(returnFlight.departureTime.split('T')[1])}</p>
-                                <p>Arrival Time: {returnFlight?.arrivalTime && format(returnFlight.arrivalTime.split('T')[1])}</p>
-                                <p>Seat Type: {returnSeatType}</p>
-                                <p>Total Travel Time: {calculateTravelTime(returnFlight?.departureTime, returnFlight?.arrivalTime)}</p>
+                            <DivContainer parentClass={'summary-item'}>
+                                <strong>Return Flight</strong>
+                                <p>${totalReturn}</p>
+                                <HorizontalRule/>
+                                <strong>Tax</strong>
+                                <p>${returnTax}</p>
+                                <HorizontalRule/>
+                                <strong>Discounts</strong>
+                                <p>0</p>
                             </DivContainer>
                         )}
+                        <DivContainer parentClass={'flight-total'}>
+                            <strong>Total</strong>
+                            <DivContainer parentClass={'total-price'}>
+                                <p>${totalOutbound + outboundTax + totalReturn + returnTax}</p>
+                                <button onClick={handleOpenPopup}><Icon iconName={faInfoCircle}/></button>
+                            </DivContainer>
+                            <FeeDetails isOpen={isPopupOpen} onClose={handleClosePopup} />
+                        </DivContainer>
                     </DivContainer>
                     <DivContainer parentClass={'submit-container'}>
-                        <button onClick={handleContinue}>Continue</button>
-                        <button onClick={handleLogin}>Login to Continue</button>
+                        <button className='button' onClick={handleContinue}>Continue</button>
+                        <button className='button' onClick={handleLogin}>Login to Continue</button>
                     </DivContainer>
                 </DivContainer>
             </DivContainer>

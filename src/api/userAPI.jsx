@@ -72,7 +72,12 @@ const userAPI = {
     getAllBookings: () => {
         const url = "api/v1/bookings";
         return axiosClient.get(url);
-    }
+    },
+
+    addBooking: (booking) => {
+        const url = "api/v1/bookings";
+        return axiosClient.post(url, booking);
+    },
 }
 
 export default userAPI;
