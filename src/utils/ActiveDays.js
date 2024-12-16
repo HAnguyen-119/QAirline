@@ -6,28 +6,32 @@ export function getDeptDays(deptDate) {
     const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
 
     const formattedToday = today.toLocaleDateString('en-US', options);
+
     const todayThingDay = formattedToday.split(',')[0];
-    const todayMonth = formattedToday.split(',')[1].split('/')[0];
+    const todayMonth = formattedToday.split(',')[1].split('/')[0].trim();
     const todayDay = formattedToday.split(',')[1].split('/')[1];
-    dates.push([todayThingDay, todayDay, todayMonth]);
+    const todayYear = formattedToday.split(',')[1].split('/')[2];
+    dates.push([todayThingDay, todayDay, todayMonth, todayYear]);
 
     today.setDate(today.getDate() + 1);
 
     while (today <= endDate) {
         const formattedDate = today.toLocaleDateString('en-US', options);
         const thingDay = formattedDate.split(',')[0];
-        const month = formattedDate.split(',')[1].split('/')[0];
+        const month = formattedDate.split(',')[1].split('/')[0].trim();
         const day = formattedDate.split(',')[1].split('/')[1];
-        dates.push([thingDay, day, month]);
+        const year = formattedDate.split(',')[1].split('/')[2];
+        dates.push([thingDay, day, month, year]);
         today.setDate(today.getDate() + 1);
     }
 
     for (let i = 0; i < additionalDays; i++) {
         const formattedDate = endDate.toLocaleDateString('en-US', options);
         const thingDay = formattedDate.split(',')[0];
-        const month = formattedDate.split(',')[1].split('/')[0];
+        const month = formattedDate.split(',')[1].split('/')[0].trim();
         const day = formattedDate.split(',')[1].split('/')[1];
-        dates.push([thingDay, day, month]);
+        const year = formattedDate.split(',')[1].split('/')[2];
+        dates.push([thingDay, day, month, year]);
         endDate.setDate(endDate.getDate() + 1);
     }
 

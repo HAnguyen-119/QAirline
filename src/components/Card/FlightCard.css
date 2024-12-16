@@ -2,19 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    border: 2px solid;
+    border-radius: 5px;
 }
 
-.flight-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-}
 
 .flight-card {
     display: flex;
     flex-direction: row;
-    border: 1px solid;
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .flight-type {
@@ -30,7 +25,7 @@
     flex: 4;
 }
 
-.flight-info>* {
+.flight-info > * {
     flex: 1;
     text-align: center;
 }
@@ -44,7 +39,7 @@
     flex: 1;
 }
 
-.flight-price>*>.submit {
+.flight-price > * > .book-button {
     background-color: var(--button-active);
     color: white;
     border: none;
@@ -55,12 +50,12 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.flight-price>*>.submit:hover {
+.flight-price > * > .book-button:hover {
     background-color: var(--button-hover);
     transform: translateY(-2px);
 }
 
-.flight-price>*>    .submit:active {
+.flight-price > * > .book-button:active {
     transform: translateY(0);
 }
 
@@ -68,11 +63,106 @@
     background-color: blue;
 }
 
-.dropdown {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+
+.dropdown-button {
+    background-color: var(--button-active);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.dropdown.show {
-    max-height: 150px;
+
+.dropdown-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.dropdown-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 20px;
+    padding: 15px;
+}
+
+.dropdown-option {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    gap: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    width: 20%;
+    height: auto;
+}
+
+.dropdown-option:hover {
+    border-color: var(--button-hover);
+}
+
+.dropdown-option:last-child {
+    border-right: none;
+}
+
+.dropdown-option > .book-button {
+    background-color: var(--button-active);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-option > .book-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.dropdown-option > .book-button:active {
+    transform: translateY(0);
+}
+
+.dropdown-option > span {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.dropdown-option > h2, .dropdown-option>p {
+    padding: 0;
+    margin: 5px;
+}
+
+.flight-ticket {
+    display: none;
+}
+
+.flight-ticket.show {
+    display: block;
+}
+
+.seat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.seat-details>* {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.seat-details > * > strong {
+    padding: 0 0 10px 0;
+}
+
+.seat-details > * > span {
+    padding-left: 5px;
 }

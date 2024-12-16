@@ -9,6 +9,7 @@ import FlightCard from "../../../../components/Card/FlightCard.jsx";
 
 import EmptyFlight from '../../../../assets/images/empty.png';
 import userAPI from "../../../../api/userAPI.jsx";
+import FlightList from "../../../../components/Booking/Flights/FlightList.jsx";
 
 export default function SearchResults() {
     const location = useLocation();
@@ -31,16 +32,27 @@ export default function SearchResults() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [activeOutbound, setActiveOutbound] = useState(null);
     const [activeReturn, setActiveReturn] = useState(null);
+    const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
+    const [filteredFlights, setFilteredFlights] = useState([]);
 
     const deptDays = getDeptDays(deptDate);
-
     const retDays = tripType === 'round-trip' ? getDeptDays(deptDate) : [];
 
     const activeDeptDate = activeOutbound !== null
-        ? `${new Date().getFullYear()}-${deptDays[activeOutbound][2].trim()}-${deptDays[activeOutbound][1].trim()}`
+        ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
         : deptDate;
-    console.log(activeDeptDate)
+
     useEffect(() => {
+        // TODO: bo comment sau khi hoan thanh database
+        // xu ly nguoi dung co tinh thay doi params
+        // const today = new Date();
+        // const deptDateObj = new Date(deptDate);
+        // const retDateObj = retDate ? new Date(retDate) : null;
+        //
+        // if (deptDateObj < today || (retDateObj && retDateObj < today)) {
+        //     navigate('/booking');
+        //     return;
+        // }
         const fetchFlights = async () => {
             try {
                 const searchData = {
@@ -49,33 +61,16 @@ export default function SearchResults() {
                     "departureDate": activeDeptDate,
                     "passengerNumber": passengerNumber
                 };
-
-                console.log(searchData)
-
                 const response = await userAPI.findFlight(searchData);
                 setFlights(response);
+                setFilteredFlights(response);
             } catch (error) {
                 console.error("Error finding flights:", error);
             }
         };
         fetchFlights();
 
-        const activeOutboundIndex = deptDays.findIndex(day => day[1] === new Date(deptDate).getDate().toString());
-        const activeReturnIndex = retDate !== '' ? retDays.findIndex(day => day[1] === new Date(retDate).getDate().toString()) : -1;
-
-        console.log(deptDays)
-        console.log(retDays)
-
-
-        if (activeOutboundIndex !== -1) {
-            setActiveOutbound(activeOutboundIndex);
-        }
-        if (activeReturnIndex !== -1) {
-            setActiveReturn(activeReturnIndex);
-        }
     }, [deptAirportId, destAirportId, deptDate, retDate, passengerNumber, activeOutbound, activeReturn]);
-
-    console.log(flights)
 
     const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
@@ -115,7 +110,7 @@ export default function SearchResults() {
         }
     };
 
-    const handleFilter = () => {
+    const handleOpenFilter = () => {
         setIsFilterOpen(true);
     };
 
@@ -123,66 +118,93 @@ export default function SearchResults() {
         setIsFilterOpen(false);
     };
 
-    let activeOutboundString = activeOutbound !== null ? deptDays[activeOutbound][1] : null;
-    let activeReturnString = activeReturn !== null ? retDays[activeReturn][1] : null;
+    const applyFilters = (filter) => {
+        let filtered = flights;
+        if (filter.priceRange !== 'all') {
+            filtered = filtered.filter(flight => {
+                const price = flight.economyPrice;
+                if (filter.priceRange === '<1000') {
+                    return price < 1000;
+                } else if (filter.priceRange === '<2000') {
+                    return price >= 1000 && price < 2000;
+                } else if (filter.priceRange === '<3000') {
+                    return price >= 2000 && price < 3000;
+                } else {
+                    return price >= 3000;
+                }
+            });
+        }
 
-    console.log(activeOutboundString)
+        if (filter.sortOrder === 'asc') {
+            filtered = filtered.sort((a, b) => a.price - b.price);
+        } else {
+            filtered = filtered.sort((a, b) => b.price - a.price);
+        }
 
-    const filteredOutbound = flights.filter(flight => {
-        const flightDate = flight.departureTime.split('T')[0].split('-')[2];
+        if (filter.flightTime !== 'all') {
+            filtered = filtered.filter(flight => {
+                const time = parseInt(flight.departureTime.split('T')[1].split(':')[0]);
+                if (filter.flightTime === 'nighttime') {
+                    return time >= 0 && time < 6;
+                } else if (filter.flightTime === 'morning') {
+                    return time >= 6 && time < 12;
+                } else if (filter.flightTime === 'afternoon') {
+                    return time >= 12 && time < 18;
+                } else if (filter.flightTime === 'evening') {
+                    return time >= 18 && time < 24;
+                }
+            });
+        }
+        return filtered;
+    }
+
+    const handleFilters = (filter) => {
+        setFilters(filter)
+        console.log(filter)
+        const filtered = applyFilters(filter);
+        console.log(filtered)
+        setFilteredFlights(filtered);
+    }
+
+
+    let activeOutboundString = activeOutbound !== null
+        ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
+        : null;
+    let activeReturnString = activeReturn !== null
+        ? `${retDays[activeReturn][3]}-${retDays[activeReturn][2]}-${retDays[activeReturn][1]}`
+        : null;
+
+    const filteredOutbound = filteredFlights.filter(flight => {
+        const flightDate = flight.departureTime.split('T')[0];
         return flightDate === activeOutboundString;
     });
 
-    console.log(filteredOutbound)
-
-    const filteredReturn = flights.filter(flight => {
-        const flightDate = flight.departureTime.split('T')[0].split('-')[2];
+    const filteredReturn = filteredFlights.filter(flight => {
+        const flightDate = flight.departureTime.split('T')[0];
         return flightDate === activeReturnString;
     });
 
     const isOutboundEmpty = filteredOutbound.length === 0;
     const isReturnEmpty = filteredReturn.length === 0;
 
-    console.log(isOutboundEmpty)
-
     return (
         <div className='search-results'>
             {fullParams.toString().includes('outbound') && (
                 <div className='outbound-result'>
-                    <h1>Outbound</h1>
+                    <h1>Outbound flights</h1>
                     <Days days={deptDays} activeDate={activeOutbound} setActiveDate={setActiveOutbound} />
-                    <button className='submit' onClick={handleFilter}>Filter</button>
-                    <div className='flights-list'>
-                        {!isOutboundEmpty && filteredOutbound.map(flight => (
-                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)} />
-                        ))}
-                        {isOutboundEmpty && (
-                            <DivContainer parentClass='empty'>
-                                <img src={EmptyFlight} />
-                            </DivContainer>
-                        )}
-                    </div>
-
-                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                    <button className='' onClick={handleOpenFilter}>Filter</button>
+                    <FlightList isEmpty={isOutboundEmpty} flights={filteredOutbound} tripType={tripType} handleBookNow={handleBookNow} />
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} onFilters={handleFilters} />
                 </div>
             )}
             {!fullParams.toString().includes('outbound') && (
                 <div className='outbound-result'>
-                    <h1>Return</h1>
+                    <h1>Return Flights</h1>
                     <Days days={retDays} activeDate={activeReturn} setActiveDate={setActiveReturn} />
-                    <button className='submit' onClick={handleFilter}>Filter</button>
-                    <div className='flights-list'>
-                        {!isReturnEmpty && filteredReturn.map(flight => (
-                            <FlightCard flight={flight} tripType={tripType} handleBookNow={(id, type) => handleBookNow(id, type)} />
-                        ))}
-                        {isReturnEmpty && (
-                            <DivContainer parentClass='empty'>
-                                <img src={EmptyFlight} />
-                            </DivContainer>
-                        )}
-                    </div>
-
-                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} />
+                    <button className='submit' onClick={handleOpenFilter}>Filter</button>
+                    <FlightList isEmpty={isReturnEmpty} flights={filteredReturn} tripType={tripType} handleBookNow={handleBookNow} />
+                    <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} onFilters={handleFilters}/>
                 </div>
             )}
         </div>

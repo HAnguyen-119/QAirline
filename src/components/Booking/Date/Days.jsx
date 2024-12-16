@@ -7,7 +7,6 @@ import { faCaretRight } from "@fortawesome/free-solid-svg-icons/faCaretRight";
 import { numberToMonth } from "../../../utils/Month.js";
 
 export default function Days({ days, activeDate, setActiveDate }) {
-
     const [startIndex, setStartIndex] = useState(0);
     const daysToShow = 7;
 
