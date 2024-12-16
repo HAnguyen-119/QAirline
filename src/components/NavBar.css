@@ -81,7 +81,7 @@
     width: 10%;
     height: 100%;
     text-decoration: none;
-    color: white;
+    color: var(--light);
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -97,6 +97,11 @@
     right: 60px;
     display: none;
     cursor: pointer;
+    color: var(--light);
+}
+
+.menu:hover {
+    color: var(--dark);
 }
 
 .navBar a:hover {

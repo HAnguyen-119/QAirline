@@ -5,6 +5,8 @@ import './NavBar.css'
 
 import Sun from "../assets/images/sun1.png";
 import Moon from "../assets/images/moon1.png";
+import {faBars, faUser} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 // eslint-disable-next-line react/prop-types
 export default function NavBar({isAdmin, switchMode, isLightMode}) {
@@ -20,9 +22,22 @@ export default function NavBar({isAdmin, switchMode, isLightMode}) {
                 <NavLink to='/admin/bookings'>Bookings</NavLink>
                 <NavLink to='/admin/information'>Information</NavLink>
                 <div className="switchMode" onClick={switchMode}>
-                    <div className={`sun ${isLightMode ? "" : " dark"}`}><img src={Sun}/></div>
-                    <div className={`moon ${isLightMode ? "" : " dark"}`}><img src={Moon}/></div>
+                    <div className={`sun ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/sun1.png"/></div>
+                    <div className={`moon ${isLightMode ? "" : " dark"}`}><img src="src/assets/images/moon1.png"/></div>
                 </div>
+                <div className="menu" onClick={() => {
+                    let navBarHeight = document.querySelector(".navBar").style.height;
+                    if (navBarHeight === "300px") {
+                        document.querySelector(".navBar").style.height = "60px";
+                    } else {
+                        document.querySelector(".navBar").style.height = "300px";
+                    }
+                }}>
+                    <FontAwesomeIcon icon={faBars}/>
+                </div>
+                <NavLink to='/login' className="login" onClick={() => {
+                    document.querySelector(".navBar").style.height = "60px"
+                }}><FontAwesomeIcon icon={faUser}/></NavLink>
             </div>
         )
     } else
@@ -46,11 +61,11 @@ export default function NavBar({isAdmin, switchMode, isLightMode}) {
                         document.querySelector(".navBar").style.height = "300px";
                     }
                 }}>
-                    Menu
+                    <FontAwesomeIcon icon={faBars}/>
                 </div>
                 <NavLink to='/login' className="login" onClick={() => {
                     document.querySelector(".navBar").style.height = "60px"
-                }}>Log in</NavLink>
+                }}><FontAwesomeIcon icon={faUser}/></NavLink>
             </div>
         )
 }
