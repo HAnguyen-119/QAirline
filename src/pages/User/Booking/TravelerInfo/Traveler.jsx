@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import InputElement from "../../../../components/Form/InputElement.jsx";
 import TitleSelector from "../../../../components/Form/TitleSelector.jsx";
 import './Traveler.css';
 import CountryCodeSelector from "../../../../components/Form/CountryCodeSelector.jsx";
-import {EMAIL_REGEX, NUMBER_REGEX, SPECIAL_CHAR_REGEX} from "../../../../data/RegEx.js";
-import {EmailValidation, PhoneValidation} from "../../../../utils/Validation.js";
+import {NUMBER_REGEX, SPECIAL_CHAR_REGEX} from "../../../../data/RegEx.js";
+import {EmailValidation, NameValidation, PhoneValidation} from "../../../../utils/Validation.js";
+import userAPI from "../../../../api/userAPI.jsx";
 
 export default function Traveler() {
     const location = useLocation();
@@ -78,14 +79,91 @@ export default function Traveler() {
         setContactInfo(updatedContactInfo);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (focusFirstError()) {
+            return;
+        }
+
         if (!acceptTerms) {
             alert('You must accept the terms and conditions.');
             return;
         }
-        //update backend database
-        navigate('/booking/payment', { state: { outboundFlight, returnFlight, adults: adultDetails, children: childDetails, infants: infantDetails, contactInfo, outboundSeatType, returnSeatType, total } });
+
+        const bookingData = {
+            email: contactInfo.email,
+            phoneNumber: contactInfo.phoneNumber,
+            seatClass: outboundSeatType,
+            returnSeatClass: returnFlight !== null ? returnSeatType : null,
+            price: total,
+            isRoundTrip: returnFlight !== null,
+            bookingStatus: "PENDING",
+            flight: {
+                id: outboundFlight.id
+            },
+            returnFlight: returnFlight !== null ? { id: returnFlight.id } : null,
+            passengers: [
+                ...adultDetails.map(adult => ({
+                    passengerTitle: adult.title === '' ? 'MR' : adult.title,
+                    firstname: NameValidation(adult.firstName),
+                    lastname: NameValidation(adult.lastName),
+                    passengerType: "ADULT",
+                    dob: adult.dob
+                })),
+                ...childDetails.map(child => ({
+                    passengerTitle: child.title,
+                    firstname: NameValidation(child.firstName),
+                    lastname: NameValidation(child.lastName),
+                    passengerType: "CHILD",
+                    dob: child.dob
+                })),
+                ...infantDetails.map(infant => ({
+                    passengerTitle: infant.title,
+                    firstname: NameValidation(infant.firstName),
+                    lastname: NameValidation(infant.lastName),
+                    passengerType: "INFANT",
+                    dob: infant.dob
+                }))
+            ]
+        };
+        try {
+            const response = await userAPI.addBooking(bookingData);
+            navigate('/booking/payment', { state: { code: response.code } });
+        } catch (error) {
+            console.error("Error adding booking:", error);
+        }
+    };
+
+    const focusFirstError = () => {
+        const findError = (details) => {
+            for (let i = 0; i < details.length; i++) {
+                if (details[i].firstNameTooltip.type === 'error') {
+                    document.getElementById(`first-name-${i}`).focus();
+                    return true;
+                }
+                if (details[i].lastNameTooltip.type === 'error') {
+                    document.getElementById(`last-name-${i}`).focus();
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        if (findError(adultDetails) || findError(childDetails) || findError(infantDetails)) {
+            return true;
+        }
+
+        if (contactInfo.emailTooltip.type === 'error') {
+            document.getElementById('email').focus();
+            return true;
+        }
+        if (contactInfo.phoneTooltip.type === 'error') {
+            document.getElementById('phone-number').focus();
+            return true;
+        }
+
+        return false;
     };
 
     return (

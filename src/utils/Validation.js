@@ -12,15 +12,11 @@ export function NameValidation(str) {
             continue;
         }
         if (!NAME_REGEX.test(name)) {
-            if (NUMBER_REGEX.test(name)) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return -1;
         }
         ret += name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() + ' ';
     }
-    return ret
+    return ret.trim();
 }
 
 export function EmailValidation(email) {
