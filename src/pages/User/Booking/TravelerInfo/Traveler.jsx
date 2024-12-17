@@ -406,7 +406,7 @@ export default function Traveler() {
                     </div>
                 </div>
             </form>
-            <button className='button' type='submit' onClick={handleSubmit}>Submit</button>
+            <button className='button' type='submit' onClick={handleSubmit}>Checkout</button>
         </div>
     );
 }

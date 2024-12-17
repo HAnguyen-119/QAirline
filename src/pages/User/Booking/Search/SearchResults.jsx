@@ -43,6 +43,20 @@ export default function SearchResults() {
         : deptDate;
 
     useEffect(() => {
+        let dateIndex = '';
+        console.log(fullParams.toString())
+        if (fullParams.toString().includes('outbound')) {
+            dateIndex = deptDays.findIndex(day =>
+                `${day[3]}-${day[2]}-${day[1]}` === deptDate
+            );
+            setActiveOutbound(dateIndex);
+        } else {
+            dateIndex = retDays.findIndex(day =>
+                `${day[3]}-${day[2]}-${day[1]}` === deptDate
+            );
+            setActiveReturn(dateIndex)
+        }
+
         // TODO: bo comment sau khi hoan thanh database
         // xu ly nguoi dung co tinh thay doi params
         // const today = new Date();

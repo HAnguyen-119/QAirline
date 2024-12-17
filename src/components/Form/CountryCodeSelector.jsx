@@ -4,7 +4,7 @@ import codes from '../../data/CountryCode.js';
 
 import './CountryCodeSelector.css';
 
-export default function CountryCodeSelector({ htmlFor, description, id, value, onChange }) {
+export default function CountryCodeSelector({ htmlFor, description}) {
     const [query, setQuery] = useState('');
     const [filteredSuggestion, setFilteredSuggestion] = useState([]);
 
@@ -30,9 +30,8 @@ export default function CountryCodeSelector({ htmlFor, description, id, value, o
     };
 
     const handleSuggestionClick = (suggestion) => {
-        setQuery(suggestion.country);
+        setQuery(suggestion.country + ' (+' + suggestion.countryCodes + ')');
         setFilteredSuggestion([]);
-        onChange({ target: { value: suggestion.country } });
     };
 
     const handleBlur = () => {
@@ -58,7 +57,7 @@ export default function CountryCodeSelector({ htmlFor, description, id, value, o
                             onClick={() => handleSuggestionClick(item)}
                             className="suggestion-item"
                         >
-                            {item.country} ({item.countryCodes.join(', ')})
+                            {item.country} (+{item.countryCodes})
                         </li>
                     ))}
                 </ul>

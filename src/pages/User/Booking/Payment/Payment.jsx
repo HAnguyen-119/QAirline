@@ -9,7 +9,7 @@ export default function Payment() {
     return (
         <div>
             <h1>Payment</h1>
-            <p>{state.code}</p>
+            <p>Your booking code is: {state.code}</p>
         </div>
     )
 }
