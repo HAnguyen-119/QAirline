@@ -63,8 +63,10 @@ export default function FlightConfirmation() {
     const outboundTax = CalculateTax(totalOutbound, passengerNumber);
     const returnTax = tripType === 'round-trip' ? CalculateTax(totalReturn, passengerNumber) : 0;
 
+    const total = totalOutbound + outboundTax + totalReturn + returnTax;
+
     const handleContinue = () => {
-        navigate('/booking/traveler', { state: { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType } });
+        navigate('/booking/traveler', { state: { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType, total } });
     };
 
     const handleLogin = () => {
@@ -131,7 +133,7 @@ export default function FlightConfirmation() {
                         <DivContainer parentClass={'flight-total'}>
                             <strong>Total</strong>
                             <DivContainer parentClass={'total-price'}>
-                                <p>${totalOutbound + outboundTax + totalReturn + returnTax}</p>
+                                <p>${total}</p>
                                 <button onClick={handleOpenPopup}><Icon iconName={faInfoCircle}/></button>
                             </DivContainer>
                             <FeeDetails isOpen={isPopupOpen} onClose={handleClosePopup} />

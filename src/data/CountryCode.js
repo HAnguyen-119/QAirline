@@ -1,5 +1,11 @@
 const codes = [
     {
+        country: 'Vietnam',
+        countryCodes: ['84'],
+        isoCode2: 'VN',
+        isoCode3: 'VNM',
+    },
+    {
         country: 'Afghanistan',
         countryCodes: ['93'],
         isoCode2: 'AF',
@@ -1402,12 +1408,6 @@ const codes = [
         countryCodes: ['58'],
         isoCode2: 'VE',
         isoCode3: 'VEN',
-    },
-    {
-        country: 'Vietnam',
-        countryCodes: ['84'],
-        isoCode2: 'VN',
-        isoCode3: 'VNM',
     },
     {
         country: 'Wallis and Futuna',

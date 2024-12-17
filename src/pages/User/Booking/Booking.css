@@ -78,10 +78,6 @@ form>.info > .return-date {
     box-shadow: 2px 2px 0 0 #ffbd3e;
 }
 
-.button:last-child {
-    margin-right: 0;
-}
-
 .button:hover {
     box-shadow: 4px 4px 0 0 #ffbd3e;
 }

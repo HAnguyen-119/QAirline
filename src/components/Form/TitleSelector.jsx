@@ -8,9 +8,13 @@ export default function TitleSelector({ htmlFor, description, id, value, onChang
                 {description} {required && <span style={{ color: 'red' }}>*</span>}
             </label>
             <select id={id} value={value} onChange={onChange} required={required}>
-                <option value='Mr'>Mr</option>
-                <option value='Mrs'>Mrs</option>
-                <option value='Ms'>Ms</option>
+                <option value='MR'>Mr</option>
+                <option value='MRS'>Mrs</option>
+                <option value='MS'>Ms</option>
+                <option value='DOCTOR'>Doctor</option>
+                <option value='PROFESSOR'>Professor</option>
+                <option value='BOY'>Boy</option>
+                <option value='GIRL'>Girl</option>
             </select>
         </div>
     );

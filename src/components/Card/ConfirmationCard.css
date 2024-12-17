@@ -1,6 +1,5 @@
 .card-container {
     border: 2px solid var(--dark);
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     &:hover {
         border-color: red;
@@ -37,7 +36,6 @@
     flex-direction: row;
     border-bottom: 2px dashed var(--card-seperate-light);
     background-color: var(--card-top-light);
-    border-radius: 10px 10px 0 0;
 }
 
 .card-top.dark {
@@ -47,7 +45,6 @@
 
 .card-bottom {
     flex-direction: column;
-    border-radius: 0 0 10px 10px;
     background-color: #f0f0f0;
 }
 
@@ -124,4 +121,8 @@
 .title {
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+.change-flight > * {
+    margin: 0 30px;
 }

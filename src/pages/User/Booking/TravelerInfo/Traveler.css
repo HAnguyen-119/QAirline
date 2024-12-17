@@ -2,16 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
-
-.traveler {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 600px;
 }
 
 .form.customer-data {
@@ -21,13 +11,86 @@
 
 .form.customer-data form {
     display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+}
+
+.passenger-info {
+    display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .form.customer-data form > * {
-    margin-bottom: 20px;
+    flex: 1;
+    margin: 0 20px;
 }
 
 .form.customer-data input[type="checkbox"] {
     margin-right: 10px;
+}
+
+.passenger-data, .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid;
+    padding: 0 20px 20px 20px;
+    background-color: var(--booking-light);
+}
+
+.passenger-data {
+    width: 50%;
+}
+
+.contact-info {
+    position: fixed;
+    width: 40%;
+    right: 0;
+    margin-bottom: 40px;
+    z-index: 0;
+}
+
+.dark .passenger-data, .dark .contact-info, .dark input, .dark select {
+    background-color: var(--booking-dark);
+}
+
+.name {
+    display: flex;
+    gap: 20px;
+    >* {
+        flex: 1;
+
+    }
+}
+
+.input-container {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.tooltip.error {
+    background-color: #ffe5e5;
+    border-color: #ff4d4d;
+    color: #d00000;
+}
+
+.tooltip.hint {
+    background-color: #eaf7ff;
+    border-color: #00aaff;
+    color: #005b9f;
 }
