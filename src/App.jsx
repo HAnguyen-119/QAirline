@@ -23,7 +23,7 @@ import Users from "./pages/Admin/Users/Users.jsx";
 import Flights from "./pages/Admin/Flights/Flights.jsx";
 import Planes from "./pages/Admin/Planes/Planes.jsx";
 import Bookings from "./pages/Admin/Bookings/Bookings.jsx";
-import Information from "./pages/Admin/Information/Information.jsx";
+import Posts from "./pages/Admin/Posts/Posts.jsx";
 import SearchResults from "./pages/User/Booking/Search/SearchResults.jsx";
 import FlightConfirmation from "./pages/User/Booking/FlightConfirmation/FlightConfirmation.jsx";
 import Traveler from "./pages/User/Booking/TravelerInfo/Traveler.jsx";
@@ -58,7 +58,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="planes" element={<Planes/>} />
             <Route path="airports" element={<Airports/>} />
             <Route path="bookings" element={<Bookings/>} />
-            <Route path="information" element={<Information/>} />
+            <Route path="posts" element={<Posts/>} />
         </Route>
         <Route path="*" element={<NotFound />} />
     </>

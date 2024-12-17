@@ -129,7 +129,8 @@ export default function Bookings() {
                 <tr>
                     <th rowSpan={2}>No</th>
                     <th rowSpan={2}>ID</th>
-                    <th rowSpan={2}>Flight</th>
+                    <th rowSpan={2}>Outbound Flight</th>
+                    <th rowSpan={2}>Return Flight</th>
                     <th rowSpan={2}>Email</th>
                     <th rowSpan={2}>Phone</th>
                     <th colSpan={3}>Passenger</th>
@@ -148,6 +149,7 @@ export default function Bookings() {
                         <td>{index + 1}</td>
                         <td>{booking.code}</td>
                         <td>{booking.flight.flightNumber}</td>
+                        <td>{booking.returnFlight && booking.returnFlight.flightNumber}</td>
                         <td>{booking.email}</td>
                         <td>{booking.phoneNumber}</td>
                         <td>{countPassengerTypes(booking.passengers).infants}</td>

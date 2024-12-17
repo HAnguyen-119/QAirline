@@ -79,30 +79,6 @@ th {
     padding-left: 0.5rem;
 }
 
-table button {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
-
-table button:hover {
-    background-color: white;
-}
-
-.edit {
-    background-image: url("../src/assets/images/edit.png");
-}
-
-.delete {
-    background-image: url("../src/assets/images/delete.png");
-}
-
 .bookings-filter {
     display: flex;
     flex-direction: column;
@@ -157,12 +133,14 @@ table button:hover {
 .bookings .filters input {
     margin-bottom: 0.5rem;
     width: 90%;
+    color: var(--dark);
 }
 
 .bookings .filters select {
     margin-bottom: 0.5rem;
     width: 100%;
     font-size: 1rem;
+    color: var(--dark);
 }
 
 .add-booking-window, .delete-booking-window {
