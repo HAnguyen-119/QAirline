@@ -43,7 +43,7 @@ export default function Dashboard() {
                         <div>Inactive</div>
                     </div>
                 </DashboardItem>
-                <DashboardItem title="Information">
+                <DashboardItem title="Posts">
                     <div>
                         <div>Total planes:</div>
                         <div>Active</div>

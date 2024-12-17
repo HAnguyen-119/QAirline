@@ -1,4 +1,4 @@
-.information {
+.posts {
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -7,36 +7,43 @@
     margin-top: 3rem;
 }
 
-.information table {
+.posts table {
     width: 70%;
     height: 100%;
 }
 
-.information table, .information table td, .information table th {
+.posts table, .posts table td, .posts table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-.information table.dark, .information table.dark th, .information table.dark td {
+.posts table.dark, .posts table.dark th, .posts table.dark td {
     border: 2px solid var(--light);
 }
 
-.information caption {
+.posts caption {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
-.information th:nth-child(3), .information td:nth-child(5) {
-    width: 30%;
+.posts th:nth-child(3) {
+    width: 15%;
+    min-width: 100px;
 }
 
-.information th:first-child, .information th:nth-child(2) {
+.posts td:nth-child(4), .posts td:nth-child(5) {
+    width: 20%;
+    min-width: 150px;
+}
+
+.posts th:first-child, .posts th:nth-child(2) {
     width: 10%;
+    min-width: 70px;
 }
 
-.information th:last-child {
-    width: 70px;
+.posts th:last-child {
+    min-width: 70px;
 }
 
 th, td {
@@ -48,46 +55,22 @@ th {
     color: white;
 }
 
-.information tr > td:first-child {
+.posts tr > td:first-child {
     text-align: center;
 }
 
-.information tr > td:not(:first-child) {
+.posts tr > td:not(:first-child) {
     padding-left: 0.5rem;
 }
 
-table button {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
-
-table button:hover {
-    background-color: white;
-}
-
-.information .edit {
-    background-image: url("../src/assets/images/edit.png");
-}
-
-.information .delete {
-    background-image: url("../src/assets/images/delete.png");
-}
-
-.information-filter {
+.posts-filter {
     display: flex;
     flex-direction: column;
     /*justify-content: center;*/
     align-items: center;
 }
 
-.information-filter button {
+.posts-filter button {
     border: none;
     border-radius: 15px;
     background-color: var(--button-active);
@@ -97,7 +80,7 @@ table button:hover {
     margin: 3px;
 }
 
-.information-filter button:hover {
+.posts-filter button:hover {
     background-color: var(--button-hover);
 }
 
@@ -105,7 +88,7 @@ table button:hover {
     width: 120px;
 }
 
-.information .filters {
+.posts .filters {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -114,11 +97,11 @@ table button:hover {
     width: 200px;
 }
 
-.information .filters input:not(:last-child) {
+.posts .filters input:not(:last-child) {
     margin-bottom: 1rem;
 }
 
-.information .add-airport-window, .information .delete-airport-window {
+.posts .add-post-window, .posts .delete-post-window {
     position: fixed;
     top: 0;
     left: 0;
@@ -130,7 +113,7 @@ table button:hover {
     z-index: 10;
 }
 
-.information .add-airport-window > div:first-child, .information .delete-airport-window > div:first-child {
+.posts .add-post-window > div:first-child, .posts .delete-post-window > div:first-child {
     position: fixed;
     top: 0;
     left: 0;
@@ -140,7 +123,7 @@ table button:hover {
     opacity: 0.4;
 }
 
-.add-airport-form {
+.add-post-form {
     position: absolute;
     width: 350px;
     height: 460px;
@@ -151,7 +134,7 @@ table button:hover {
     align-items: center;
 }
 
-.delete-airport-form {
+.delete-post-form {
     position: absolute;
     width: 350px;
     height: 150px;
@@ -163,7 +146,7 @@ table button:hover {
     justify-content: center;
 }
 
-.information .input-fields {
+.posts .input-fields {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -171,34 +154,11 @@ table button:hover {
     margin-bottom: 2rem;
 }
 
-.add-airport-form > div > input {
+.add-post-form > div > input {
     height: 1.5rem;
     font-size: 1rem;
 }
 
-.add-airport-form > div > input:not(:last-child) {
+.add-post-form > div > input:not(:last-child) {
     margin-bottom: 1rem;
-}
-
-.buttons {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttons button {
-    width: 30%;
-    height: 40px;
-    border: none;
-    background-color: var(--button-active);
-    color: white;
-    border-radius: 20px;
-}
-
-.buttons button:hover {
-    background-color: var(--button-hover);
 }

@@ -2,6 +2,8 @@ import './Planes.css'
 import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 export default function Planes() {
     const isLightMode = useOutletContext();
@@ -23,7 +25,6 @@ export default function Planes() {
                 const planes = await userAPI.getAllPlanes();
                 setPlaneData(planes);
                 console.log(planes);
-                console.log(planes)
                 console.log(isRefresh);
             } catch (error) {
                 console.log(error);
@@ -246,11 +247,11 @@ export default function Planes() {
                             <button className="edit" onClick={() => {
                                 setIsUpdating(true);
                                 setUpdatingPlane(plane);
-                            }}></button>
+                            }}><FontAwesomeIcon icon={faPenToSquare}/></button>
                             <button className="delete" onClick={() => {
                                 setIsDeleting(true);
                                 setDeletingPlane(plane)
-                            }}></button>
+                            }}><FontAwesomeIcon icon={faTrash}/></button>
                         </td>
                     </tr>)}
                 </tbody>

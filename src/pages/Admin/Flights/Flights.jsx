@@ -2,6 +2,8 @@ import './Flights.css'
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
+import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Flights() {
     const isLightMode = useOutletContext();
@@ -297,11 +299,11 @@ export default function Flights() {
                             console.log(flight.airplane);
                             setSelectingDepartureAirport(flight.departureAirport);
                             setSelectingArrivalAirport(flight.arrivalAirport);
-                        }}></button>
+                        }}><FontAwesomeIcon icon={faPenToSquare}/></button>
                         <button className="delete" onClick={() => {
                             setIsDeleting(true)
                             setDeletingId([flight.id, flight.flightNumber]);
-                        }}></button>
+                        }}><FontAwesomeIcon icon={faTrash}/></button>
                     </td>
                 </tr>)}
                 </tbody>

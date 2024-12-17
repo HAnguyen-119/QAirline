@@ -35,8 +35,18 @@
     width: 10%;
 }
 
+.airports th:nth-child(4) {
+    width: 15%;
+}
+
+.airports th:nth-child(6) {
+    width: 10%;
+    min-width: 70px;
+}
+
 .airports th:last-child {
-    width: 70px;
+    width: 10%;
+    min-width: 70px;
 }
 
 th, td {
@@ -54,30 +64,6 @@ th {
 
 .airports tr > td:not(:first-child) {
     padding-left: 0.5rem;
-}
-
-table button {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
-
-table button:hover {
-    background-color: white;
-}
-
-.airports .edit {
-    background-image: url("../src/assets/images/edit.png");
-}
-
-.airports .delete {
-    background-image: url("../src/assets/images/delete.png");
 }
 
 .airports-filter {
@@ -118,7 +104,7 @@ table button:hover {
     margin-bottom: 1rem;
 }
 
-.airports .add-airport-window, .airports .delete-airport-window {
+.add-airport-window, .delete-airport-window {
     position: fixed;
     top: 0;
     left: 0;
@@ -128,6 +114,7 @@ table button:hover {
     width: 100vw;
     height: 100vh;
     z-index: 10;
+    color: var(--dark);
 }
 
 .airports .add-airport-window > div:first-child, .airports .delete-airport-window > div:first-child {
@@ -203,3 +190,6 @@ table button:hover {
     background-color: var(--button-hover);
 }
 
+.airports input, .airports select {
+    color: var(--dark);
+}
