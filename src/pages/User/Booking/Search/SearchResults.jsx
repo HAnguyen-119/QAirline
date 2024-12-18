@@ -61,7 +61,7 @@ export default function SearchResults() {
         const deptDateObj = new Date(deptDate);
         const retDateObj = retDate ? new Date(retDate) : null;
 
-        if (deptDateObj < today || (retDateObj && retDateObj < today)) {
+        if (deptDateObj < today.getDate() || (retDateObj && retDateObj < today.getDate())) {
             navigate('/booking');
             return;
         }

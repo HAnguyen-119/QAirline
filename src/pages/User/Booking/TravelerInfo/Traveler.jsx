@@ -20,6 +20,8 @@ export default function Traveler() {
 
     const navigate = useNavigate();
 
+    console.log(returnFlight.id == null)
+
     const handleInputChange = (index, field, value, type) => {
         const updatedDetails = type === 'adult' ? [...adultDetails] : type === 'child' ? [...childDetails] : [...infantDetails];
         updatedDetails[index] = { ...updatedDetails[index], [field]: value };
@@ -95,14 +97,14 @@ export default function Traveler() {
             email: contactInfo.email,
             phoneNumber: contactInfo.phoneNumber,
             seatClass: outboundSeatType,
-            returnSeatClass: returnFlight !== null ? returnSeatType : null,
+            returnSeatClass: returnFlight.id != null ? returnSeatType : null,
             price: total,
-            isRoundTrip: returnFlight !== null,
+            isRoundTrip: returnFlight.id != null,
             bookingStatus: "PENDING",
             flight: {
                 id: outboundFlight.id
             },
-            returnFlight: returnFlight !== null ? { id: returnFlight.id } : null,
+            returnFlight: returnFlight.id != null ? { id: returnFlight.id } : null,
             passengers: [
                 ...adultDetails.map(adult => ({
                     passengerTitle: adult.title === '' ? 'MR' : adult.title,
@@ -127,6 +129,7 @@ export default function Traveler() {
                 }))
             ]
         };
+        console.log(bookingData)
         try {
             const response = await userAPI.addBooking(bookingData);
             navigate('/booking/payment', { state: { code: response.code } });
