@@ -21,7 +21,7 @@ export default function Home() {
 
             {/*Recommendations section*/}
             <H1Text content={"Recommendations"}/>
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden", width: "80%", marginLeft: "auto", marginRight: "auto"}}>
+            <div className="suggestion-carousel">
                 <Suggestions/>
             </div>
             <br/>

@@ -4,8 +4,8 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    --suggestion-width: 390px;
     --border-width: 2px;
+    --suggestion-width: 12.5%;
 }
 
 .home hr {
@@ -24,6 +24,13 @@
 
 .home > h1 {
     margin-left: 10%;
+}
+
+.suggestion-carousel {
+    overflow: hidden;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .moreDiscount {

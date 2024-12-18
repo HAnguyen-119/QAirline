@@ -70,3 +70,9 @@
 .news:hover {
     flex: 3;
 }
+
+@media screen and (max-width: 768px) {
+    .newsContainer {
+        height: 400px;
+    }
+}
