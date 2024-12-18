@@ -1,14 +1,14 @@
 
 .subscribeContainer {
-    width: 100%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     height: 250px;
     border-radius: 20px;
     overflow: hidden;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 4rem;
     border: 2px solid var(--dark);
     background-image: url('https://izitour.com/media/imglib/nha-trang-tru-beach-1.webp');
     background-size: cover;
@@ -20,12 +20,15 @@
 }
 
 .subscribeContainer > h1 {
-    margin: 10%;
+    margin-left: 10%;
+    width: 30%;
+    text-align: center;
 }
 
 .subscribe {
-    width: 40%;
+    width: 50%;
     height: 70%;
+    margin-right: 10%;
     border: none;
     border-radius: 10px;
     background-color: var(--light);
@@ -34,4 +37,24 @@
     justify-content: center;
     flex-direction: column;
     margin-left: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+    .subscribeContainer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10%;
+        height: 400px;
+    }
+
+    .subscribe {
+        width: 60%;
+        height: 50%;
+        margin: 0;
+    }
+
+    .subscribeContainer > h1 {
+        margin: 0;
+        width: 100%;
+    }
 }

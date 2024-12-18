@@ -74,6 +74,43 @@ const userAPI = {
         return axiosClient.get(url);
     },
 
+    getAllPosts: () => {
+        const url = "api/v1/posts";
+        return axiosClient.get(url);
+    },
+
+    getPostImageById: (post) => {
+        const url = `api/v1/posts/${post.id}/image`;
+        return axiosClient.get(url, {responseType: "blob"});
+    },
+
+    addPost: (post) => {
+        const url = "api/v1/posts";
+        return axiosClient.post(url, post, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        });
+    },
+
+    updatePost: (postId, post) => {
+        const url = `api/v1/posts/${postId}`;
+        return axiosClient.put(url, post, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        });
+    },
+
+    deletePost: (postId) => {
+        const url = `api/v1/posts/${postId}`;
+        return axiosClient.delete(url, postId);
+    },
+
+    authenticate: (userData) => {
+        const url = "api/v1/auth/authenticate";
+        return axiosClient.post(url, userData);
+    },
     addBooking: (booking) => {
         const url = "api/v1/bookings";
         return axiosClient.post(url, booking);

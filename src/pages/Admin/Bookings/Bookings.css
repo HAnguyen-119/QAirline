@@ -1,15 +1,19 @@
 .bookings {
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    min-height: 50vh;
-    justify-content: center;
+    flex-direction: column;
     margin-top: 3rem;
+    justify-content: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .bookings table {
-    width: 70%;
+    width: 90%;
     height: 100%;
+    margin: auto;
 }
 
 .bookings table, .bookings table td, .bookings table th {
@@ -28,7 +32,7 @@
 }
 
 
-.bookings tr:first-child > th:nth-child(4), .bookings tr:first-child > th:nth-child(7) {
+.bookings tr:first-child > th:nth-child(4), .bookings tr:first-child > th:nth-child(8) {
     width: 20%;
     min-width: 200px;
 }
@@ -41,6 +45,11 @@
 .bookings tr:first-child > th:nth-child(5) {
     width: 10%;
     min-width: 100px;
+}
+
+.bookings tr:first-child > th:nth-child(7), .bookings tr:first-child > th:nth-child(8) {
+    width: 15%;
+    min-width: 150px;
 }
 
 .bookings tr:first-child > th:last-child {
@@ -70,35 +79,26 @@ th {
     padding-left: 0.5rem;
 }
 
-table button {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
-
-table button:hover {
-    background-color: white;
-}
-
-.edit {
-    background-image: url("../src/assets/images/edit.png");
-}
-
-.delete {
-    background-image: url("../src/assets/images/delete.png");
-}
-
 .bookings-filter {
     display: flex;
     flex-direction: column;
+    width: 100%;
     /*justify-content: center;*/
     align-items: center;
+    margin-bottom: 2rem;
+}
+
+.bookings .filters > div {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookings-filter > div:last-child {
+    display: flex;
+    flex-direction: row;
 }
 
 .bookings-filter button {
@@ -121,15 +121,26 @@ table button:hover {
 
 .bookings .filters {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    flex-direction: row;
+    gap: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    width: 200px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.bookings .filters input, .bookings .filters select {
-    margin-bottom: 1rem;
+.bookings .filters input {
+    margin-bottom: 0.5rem;
+    width: 90%;
+    color: var(--dark);
+}
+
+.bookings .filters select {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--dark);
 }
 
 .add-booking-window, .delete-booking-window {

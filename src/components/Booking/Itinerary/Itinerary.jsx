@@ -48,11 +48,11 @@ export default function Itinerary() {
             // };
 
             const searchDept = {
-                "dept-id": 1,
-                "arr-id": 2,
-                "dept-date": "2024-10-04",
-                "ret-date": "2024-12-10",
-                "passenger": 2,
+                "dept-id": deptID,
+                "arr-id": destID,
+                "dept-date": deptDate,
+                "ret-date": tripType === 'round-trip' ? arrivalDate : '',
+                "passenger": passengers.adults + passengers.children,
             }
 
 

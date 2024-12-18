@@ -20,7 +20,7 @@ export default function ButtonSlider() {
                     e.target.disabled = false
                 }, 500)
             }}></button>
-            <p>o o o o o</p>
+            <p>o o o o o o o</p>
             <button className={`next${isLightMode ? "" : " dark"}`} onClick={(e) => {
                 next();
                 e.target.disabled = true;

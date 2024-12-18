@@ -6,12 +6,15 @@ export function getDeptDays(deptDate) {
     const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
 
     const formattedToday = today.toLocaleDateString('en-US', options);
+    const formattedDeptDate = endDate.toLocaleDateString('en-US', options);
 
-    const todayThingDay = formattedToday.split(',')[0];
-    const todayMonth = formattedToday.split(',')[1].split('/')[0].trim();
-    const todayDay = formattedToday.split(',')[1].split('/')[1];
-    const todayYear = formattedToday.split(',')[1].split('/')[2];
-    dates.push([todayThingDay, todayDay, todayMonth, todayYear]);
+    if (formattedToday !== formattedDeptDate) {
+        const todayThingDay = formattedToday.split(',')[0];
+        const todayMonth = formattedToday.split(',')[1].split('/')[0].trim();
+        const todayDay = formattedToday.split(',')[1].split('/')[1];
+        const todayYear = formattedToday.split(',')[1].split('/')[2];
+        dates.push([todayThingDay, todayDay, todayMonth, todayYear]);
+    }
 
     today.setDate(today.getDate() + 1);
 

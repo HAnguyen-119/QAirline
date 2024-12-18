@@ -1,0 +1,150 @@
+.navBar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--primary);
+  height: 60px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.switchMode {
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 50%;
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 15px;
+}
+
+.switchMode:hover {
+  cursor: pointer;
+}
+
+.switchMode > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.sun {
+  background-color: var(--dark);
+}
+
+.sun.dark {
+  background-color: var(--light);
+}
+
+.moon {
+  background-color: var(--light);
+}
+
+.moon.dark {
+  background-color: var(--dark);
+}
+
+.switchMode > div > img {
+  object-fit: contain;
+  width: 80%;
+  height: 80%;
+}
+
+.logo {
+  float: left;
+  display: flex;
+  width: 180px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.logo p {
+  font-size: 20px;
+  transform: translateX(-10px);
+}
+
+.navBar a {
+  font-size: 20px;
+  width: 10%;
+  height: 100%;
+  text-decoration: none;
+  color: var(--light);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+}
+
+.menu {
+  height: 60px;
+  position: absolute;
+  width: 60px;
+  top: 0;
+  right: 60px;
+  display: none;
+  cursor: pointer;
+  color: var(--light);
+}
+
+.menu:hover {
+  color: var(--dark);
+}
+
+.navBar a:hover {
+  color: var(--dark);
+}
+
+.navBar a.active {
+  background-color: var(--primary-active);
+  color: var(--dark);
+}
+
+.navBar a.login {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  top: 0;
+  right: 0;
+}
+
+.navBar .logout {
+  color: rgb(71, 255, 123);
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .switchMode {
+    position: absolute;
+    top: 0;
+    right: 120px;
+    height: 30px;
+  }
+
+  .navBar a:not(.login) {
+    width: 100%;
+  }
+}

@@ -15,13 +15,13 @@ export default function Home() {
     return (
         <div className="home">
             {/*Flight searcher section*/}
-            <H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>
+            {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
             <FlightSearcher isLightMode={isLightMode}/>
             <HorizontalRule/>
 
             {/*Recommendations section*/}
             <H1Text content={"Recommendations"}/>
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden"}}>
+            <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden", width: "80%", marginLeft: "auto", marginRight: "auto"}}>
                 <Suggestions/>
             </div>
             <br/>

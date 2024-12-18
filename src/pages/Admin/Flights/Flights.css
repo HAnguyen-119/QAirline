@@ -90,25 +90,25 @@
     padding-left: 0.5rem;
 }
 
-.flights table button {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
+/*.flights table button {*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: contain;*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    margin: 5px;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.flights .edit {
-    background-image: url("../src/assets/images/edit.png");
-}
+/*.flights .edit {*/
+/*    background-image: url("../src/assets/images/edit.png");*/
+/*}*/
 
-.flights .delete {
-    background-image: url("../src/assets/images/delete.png");
-}
+/*.flights .delete {*/
+/*    background-image: url("../src/assets/images/delete.png");*/
+/*}*/
 
 .flights-filter {
     display: flex;
@@ -163,12 +163,14 @@
 .flights .filters input {
     margin-bottom: 0.5rem;
     width: 90%;
+    color: var(--dark);
 }
 
 .flights .filters select {
     margin-bottom: 0.5rem;
     width: 100%;
     font-size: 1rem;
+    color: var(--dark);
 }
 
 .add-flight-window, .delete-flight-window {
@@ -181,6 +183,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 10;
+    color: var(--dark);
 }
 
 .add-flight-window > div:first-child, .delete-flight-window > div:first-child {
