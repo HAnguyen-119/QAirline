@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import InputElement from "../../../../components/Form/InputElement.jsx";
 import TitleSelector from "../../../../components/Form/TitleSelector.jsx";
 import './Traveler.css';
 import CountryCodeSelector from "../../../../components/Form/CountryCodeSelector.jsx";
 import {NUMBER_REGEX, SPECIAL_CHAR_REGEX} from "../../../../data/RegEx.js";
-import {EmailValidation, NameValidation, PhoneValidation} from "../../../../utils/Validation.js";
+import {
+    EmailValidation,
+    getAdultDay,
+    getChildDay, getInfantDay,
+    NameValidation,
+    PhoneValidation
+} from "../../../../utils/Validation.js";
 import userAPI from "../../../../api/userAPI.jsx";
 
 export default function Traveler() {
@@ -13,14 +19,24 @@ export default function Traveler() {
     const { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType, total } = location.state;
 
     const [acceptTerms, setAcceptTerms] = useState(false);
-    const [adultDetails, setAdultDetails] = useState(Array(adults).fill({ title: '', firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false } }));
-    const [childDetails, setChildDetails] = useState(Array(children).fill({ firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false } }));
-    const [infantDetails, setInfantDetails] = useState(Array(infants).fill({ firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false } }));
+    const [adultDetails, setAdultDetails] = useState(Array(adults).fill({ title: '', firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, dobTooltip: { message: 'Please enter a valid date of birth (over 12yrs).', type: 'error', visible: false } }));
+    const [childDetails, setChildDetails] = useState(Array(children).fill({ firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, dobTooltip: { message: 'Please enter a valid date of birth (between 2 and 12 yrs).', type: 'error', visible: false } }));
+    const [infantDetails, setInfantDetails] = useState(Array(infants).fill({ firstName: '', lastName: '', dob: '', firstNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, lastNameTooltip: { message: 'Names must contain only letters and spaces (a-z, A-Z).', type: 'hint', visible: false }, dobTooltip: { message: 'Please enter a valid date of birth (under 2yrs).', type: 'error', visible: false } }));
     const [contactInfo, setContactInfo] = useState({ email: '', phoneNumber: '', citizenId: '', country: '', emailTooltip: {message: 'eg: abc@def.fgh', type:'hint', visible: false }, phoneTooltip: {message: 'eg: 0123456789', type:'hint', visible: false } });
 
     const navigate = useNavigate();
+    useEffect(() => {
+        const handleBackNavigation = (e) => {
+            e.preventDefault();
+            navigate("/booking");
+        };
 
-    console.log(returnFlight.id == null)
+        window.addEventListener("popstate", handleBackNavigation);
+
+        return () => {
+            window.removeEventListener("popstate", handleBackNavigation);
+        };
+    }, [navigate]);
 
     const handleInputChange = (index, field, value, type) => {
         const updatedDetails = type === 'adult' ? [...adultDetails] : type === 'child' ? [...childDetails] : [...infantDetails];
@@ -48,6 +64,26 @@ export default function Traveler() {
             } else {
                 updatedDetails[index].lastNameTooltip = { message: 'Your name validated!', type: 'hint', visible: true };
             }
+        }
+
+        if (field === 'dob') {
+            console.log(value);
+            let isValid = false;
+            let message = '';
+
+            if (type === 'adult') {
+                isValid = new Date(value) <= new Date(getAdultDay());
+                message = isValid ? 'Your date of birth validated!' : 'Please enter a valid date of birth (over 12yrs).';
+            } else if (type === 'child') {
+                const { minDate, maxDate } = getChildDay();
+                isValid = new Date(value) >= new Date(minDate) && new Date(value) <= new Date(maxDate);
+                message = isValid ? 'Your date of birth validated!' : 'Please enter a valid date of birth (between 2 and 12 yrs).';
+            } else if (type === 'infant') {
+                isValid = new Date(value) >= new Date(getInfantDay()) && new Date(value) <= new Date();
+                message = isValid ? 'Your date of birth validated!' : 'Please enter a valid date of birth (under 2yrs).';
+            }
+
+            updatedDetails[index].dobTooltip = { message, type: isValid ? 'hint' : 'error', visible: true };
         }
 
         type === 'adult' ? setAdultDetails(updatedDetails) : type === 'child' ? setChildDetails(updatedDetails) : setInfantDetails(updatedDetails);
@@ -149,6 +185,11 @@ export default function Traveler() {
                     document.getElementById(`last-name-${i}`).focus();
                     return true;
                 }
+                if (details[i].dobTooltip.type === 'error') {
+                    document.getElementById(`dob-${i}`).focus();
+                    return true;
+                }
+                console.log(details[i].dobTooltip.type);
             }
             return false;
         };
@@ -223,15 +264,25 @@ export default function Traveler() {
                                     )}
                                 </div>
                             </div>
-                            <InputElement
-                                htmlFor={`dob-${index}`}
-                                description='Date of Birth'
-                                type='date'
-                                id={`dob-${index}`}
-                                value={adult.dob}
-                                required={true}
-                                onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'adult')}
-                            />
+                            <div className='input-container'>
+                                <InputElement
+                                    htmlFor={`dob-${index}`}
+                                    description='Date of Birth'
+                                    type='date'
+                                    id={`dob-${index}`}
+                                    value={adult.dob}
+                                    required={true}
+                                    onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'adult')}
+                                    maxDate={getAdultDay()}
+                                    onFocus={() => setAdultDetails(adultDetails.map((a, i) => i === index ? { ...a, dobTooltip: { ...a.dobTooltip, visible: true } } : a))}
+                                    onBlur={() => setAdultDetails(adultDetails.map((a, i) => i === index ? { ...a, dobTooltip: { ...a.dobTooltip, visible: false } } : a))}
+                                />
+                                {adult.dobTooltip.visible && (
+                                    <div className={`tooltip ${adult.dobTooltip.type}`}>
+                                        {adult.dobTooltip.message}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     ))}
                     {childDetails.map((child, index) => (
@@ -283,15 +334,26 @@ export default function Traveler() {
                                     )}
                                 </div>
                             </div>
-                            <InputElement
-                                htmlFor={`child-dob-${index}`}
-                                description='Date of Birth'
-                                type='date'
-                                id={`child-dob-${index}`}
-                                value={child.dob}
-                                required={true}
-                                onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'child')}
-                            />
+                            <div className='input-container'>
+                                <InputElement
+                                    htmlFor={`child-dob-${index}`}
+                                    description='Date of Birth'
+                                    type='date'
+                                    id={`child-dob-${index}`}
+                                    value={child.dob}
+                                    required={true}
+                                    onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'child')}
+                                    minDate={getChildDay().minDate}
+                                    maxDate={getChildDay().maxDate}
+                                    onFocus={() => setChildDetails(childDetails.map((c, i) => i === index ? { ...c, dobTooltip: { ...c.dobTooltip, visible: true } } : c))}
+                                    onBlur={() => setChildDetails(childDetails.map((c, i) => i === index ? { ...c, dobTooltip: { ...c.dobTooltip, visible: false } } : c))}
+                                />
+                                {child.dobTooltip.visible && (
+                                    <div className={`tooltip ${child.dobTooltip.type}`}>
+                                        {child.dobTooltip.message}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     ))}
                     {infantDetails.map((infant, index) => (
@@ -343,15 +405,26 @@ export default function Traveler() {
                                     )}
                                 </div>
                             </div>
-                            <InputElement
-                                htmlFor={`infant-dob-${index}`}
-                                description='Date of Birth'
-                                type='date'
-                                id={`infant-dob-${index}`}
-                                value={infant.dob}
-                                required={true}
-                                onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'infant')}
-                            />
+                            <div className='input-container'>
+                                <InputElement
+                                    htmlFor={`infant-dob-${index}`}
+                                    description='Date of Birth'
+                                    type='date'
+                                    id={`infant-dob-${index}`}
+                                    value={infant.dob}
+                                    required={true}
+                                    onChange={(e) => handleInputChange(index, 'dob', e.target.value, 'infant')}
+                                    minDate={getInfantDay()}
+                                    maxDate={new Date().toISOString().split('T')[0]}
+                                    onFocus={() => setInfantDetails(childDetails.map((c, i) => i === index ? { ...c, dobTooltip: { ...c.dobTooltip, visible: true } } : c))}
+                                    onBlur={() => setInfantDetails(childDetails.map((c, i) => i === index ? { ...c, dobTooltip: { ...c.dobTooltip, visible: false } } : c))}
+                                />
+                                {infant.dobTooltip.visible && (
+                                    <div className={`tooltip ${infant.dobTooltip.type}`}>
+                                        {infant.dobTooltip.message}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>

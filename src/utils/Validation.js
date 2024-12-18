@@ -1,4 +1,4 @@
-import {NAME_REGEX, EMAIL_REGEX, PHONE_REGEX, NUMBER_REGEX} from "../data/RegEx.js";
+import {EMAIL_REGEX, NAME_REGEX, PHONE_REGEX} from "../data/RegEx.js";
 
 let name = '          a          aksd           adsa '
 let email = 'abc@gmail.com'
@@ -27,6 +27,34 @@ export function PhoneValidation(phone) {
     return PHONE_REGEX.test(phone);
 }
 
+export function getInfantDay() {
+    const today = new Date();
+    return new Date(today.getFullYear() - 2, today.getMonth(), today.getDate())
+        .toISOString()
+        .split("T")[0]
+}
+
+export function getChildDay() {
+    const today = new Date();
+    const maxDate = new Date(today.getFullYear() - 2, today.getMonth(), today.getDate())
+        .toISOString()
+        .split("T")[0];
+    const minDate = new Date(today.getFullYear() - 12, today.getMonth(), today.getDate())
+        .toISOString()
+        .split("T")[0];
+    return {minDate, maxDate};
+}
+
+export function getAdultDay() {
+    const today = new Date();
+    return new Date(today.getFullYear() - 12, today.getMonth(), today.getDate())
+        .toISOString()
+        .split("T")[0];
+}
+
+console.log(getInfantDay())
+console.log(getChildDay())
+console.log(getAdultDay())
 console.log(PhoneValidation(password))
 
 console.log(EmailValidation(email))

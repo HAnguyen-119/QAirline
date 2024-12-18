@@ -48,14 +48,23 @@ export default function SearchResults() {
     const [flights, setFlights] = useState([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [activeOutbound, setActiveOutbound] = useState(activeIndex);
-    const [activeReturn, setActiveReturn] = useState(fullParams.toString().includes('return') ? 0 : null);
+    const [activeReturn, setActiveReturn] = useState(activeIndex);
     const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
     const [filteredFlights, setFilteredFlights] = useState([]);
 
+    let activeDeptDate = '';
 
-    const activeDeptDate = activeOutbound !== null
-        ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
-        : deptDate;
+    if (fullParams.toString().includes('outbound')) {
+        activeDeptDate = activeOutbound !== null
+            ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
+            : deptDate;
+    } else {
+        activeDeptDate = activeReturn !== null
+            ? `${retDays[activeReturn][3]}-${retDays[activeReturn][2]}-${retDays[activeReturn][1]}`
+            : deptDate;
+    }
+
+
     useEffect(() => {
         const today = new Date();
         const deptDateObj = new Date(deptDate);
@@ -68,14 +77,15 @@ export default function SearchResults() {
         const fetchFlights = async () => {
             try {
                 const searchData = {
-                    "departureAirportId": deptAirportId !== '' ? deptAirportId : 1,
-                    "arrivalAirportId": destAirportId !== '' ? destAirportId : 1,
+                    "departureAirportId": deptAirportId !== '' ? deptAirportId : "1",
+                    "arrivalAirportId": destAirportId !== '' ? destAirportId : "1",
                     "departureDate": activeDeptDate,
                     "passengerNumber": passengerNumber
                 };
                 const response = await userAPI.findFlight(searchData);
                 setFlights(response);
                 setFilteredFlights(response);
+                console.log(searchData)
             } catch (error) {
                 console.error("Error finding flights:", error);
             }
@@ -84,6 +94,7 @@ export default function SearchResults() {
 
     }, [deptAirportId, destAirportId, deptDate, retDate, passengerNumber, activeOutbound, activeReturn]);
 
+    console.log(flights)
 
     const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
