@@ -1,36 +1,114 @@
-import './Form.css';
-import {useEffect, useState} from "react";
+import React, { useState, useEffect } from 'react';
 import userAPI from "../../api/userAPI.jsx";
+import DivContainer from "../DivContainer.jsx";
+import './FlightsSelector.css';
 
 export default function FlightsSelector({ htmlFor, description, id, value, onChange }) {
+    const [query, setQuery] = useState('');
+    const [filteredSuggestion, setFilteredSuggestion] = useState([]);
     const [airports, setAirports] = useState([]);
+    const [regions, setRegions] = useState([]);
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [isFocus, setIsFocus] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const airports = await userAPI.getAllAirports()
+                const airports = await userAPI.getAllAirports();
                 setAirports(airports);
+                const uniqueRegions = [...new Set(airports.map(airport => airport.region))];
+                setRegions(uniqueRegions);
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         fetchData();
-    }, [])
-    console.log(airports)
+    }, []);
+
+    const handleFocus = () => {
+        if (!isFocus && query.trim() !== '') {
+            setQuery('');
+            setFilteredSuggestion(airports);
+        }
+        setIsFocus(true);
+        if (query.trim() === '') {
+            setFilteredSuggestion(airports);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        const input = e.target.value;
+        setQuery(input);
+        filterSuggestions(input, selectedRegion);
+    };
+
+    const handleRegionChange = (region) => {
+        setSelectedRegion(region);
+        filterSuggestions(query, region);
+    };
+
+    const filterSuggestions = (input, region) => {
+        let filtered = airports;
+        if (region !== '') {
+            filtered = filtered.filter(airport => airport.region === region);
+        }
+        if (input.trim() !== '') {
+            filtered = filtered.filter(airport =>
+                airport.name.toLowerCase().startsWith(input.toLowerCase()) ||
+                airport.code.toLowerCase().startsWith(input.toLowerCase())
+            );
+        }
+        setFilteredSuggestion(filtered);
+    };
+
+    const handleSuggestionClick = (suggestion) => {
+        setQuery(`${suggestion.name} (${suggestion.code})`);
+        onChange({ target: { value: suggestion.id } });
+        setFilteredSuggestion([]);
+    };
+
+    const handleBlur = () => {
+        setTimeout(() => { setFilteredSuggestion([]);
+        setSelectedRegion('');
+        setIsFocus(false);
+        }, 150);
+    };
+
     return (
-        <div className='form-wrapper'>
+        <DivContainer parentClass='form-wrapper'>
             <label htmlFor={htmlFor}>{description}</label>
-            <select id={id} value={value} onChange={onChange}>
-                {Array.from(new Set(airports.map(airport => airport.region))).map(region => (
-                    <optgroup label={region} key={region}>
-                        {airports.filter(airport => airport.region === region).map(airport => (
-                            <option value={airport.id} key={airport.id}>
-                                {airport.name} ({airport.code})
-                            </option>
+            <input
+                type='text'
+                id={id}
+                className='airport-input'
+                value={query}
+                onChange={handleInputChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required={true}
+            />
+            {isFocus && (
+                <div className="suggestions-airport-container">
+                    <div className="region-container">
+                        {regions.map((region, index) => (
+                            <span key={index} className={`region-item ${selectedRegion === region ? 'active' : ''}`} onMouseDown={(e) => { e.preventDefault(); handleRegionChange(region); }}>
+                                {region}
+                            </span>
                         ))}
-                    </optgroup>
-                ))}
-            </select>
-        </div>
+                    </div>
+                    <div className="suggestions-airport">
+                        {filteredSuggestion.map((airport, index) => (
+                            <span
+                                key={index}
+                                onClick={() => handleSuggestionClick(airport)}
+                                className="suggestion-item"
+                            >
+                                {airport.name} ({airport.code})
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </DivContainer>
     );
 }
-

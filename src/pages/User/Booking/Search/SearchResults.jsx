@@ -28,29 +28,31 @@ export default function SearchResults() {
         tripType = 'round-trip';
     }
 
-    let activeIndex = 0;
+    let activeOutboundIndex = 0;
+    let activeReturnIndex = 0;
     const today = new Date();
 
     const deptDays = getDeptDays(deptDate);
     const retDays = tripType === 'round-trip' ? getRetDays(deptDate) : [];
 
 
-    if (fullParams.toString().includes('outbound')) {
-        if (deptDate === today.toISOString().split('T')[0]) {
-            activeIndex = 0;
-        } else  {
-            activeIndex = - today.getDate() + new Date(deptDate).getDate();
-        }
-    } else {
-        activeIndex = 0;
+    if (deptDate === today.toISOString().split('T')[0]) {
+        activeOutboundIndex = 0;
+    } else  {
+        activeOutboundIndex = - today.getDate() + new Date(deptDate).getDate();
     }
+
+    console.log(activeOutboundIndex)
+    console.log(fullParams.toString().includes('return'))
 
     const [flights, setFlights] = useState([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [activeOutbound, setActiveOutbound] = useState(activeIndex);
-    const [activeReturn, setActiveReturn] = useState(activeIndex);
+    const [activeOutbound, setActiveOutbound] = useState(activeOutboundIndex);
+    const [activeReturn, setActiveReturn] = useState(activeReturnIndex);
     const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
     const [filteredFlights, setFilteredFlights] = useState([]);
+
+    console.log(activeReturn)
 
     let activeDeptDate = '';
 
@@ -63,6 +65,11 @@ export default function SearchResults() {
             ? `${retDays[activeReturn][3]}-${retDays[activeReturn][2]}-${retDays[activeReturn][1]}`
             : deptDate;
     }
+    console.log()
+
+    console.log(activeReturn)
+
+    console.log(activeDeptDate)
 
 
     useEffect(() => {
@@ -160,9 +167,9 @@ export default function SearchResults() {
         }
 
         if (filter.sortOrder === 'asc') {
-            filtered = filtered.sort((a, b) => a.price - b.price);
+            filtered = filtered.sort((a, b) => a.economyPrice - b.economyPrice);
         } else {
-            filtered = filtered.sort((a, b) => b.price - a.price);
+            filtered = filtered.sort((a, b) => b.economyPrice - a.economyPrice);
         }
 
         if (filter.flightTime !== 'all') {
@@ -184,9 +191,7 @@ export default function SearchResults() {
 
     const handleFilters = (filter) => {
         setFilters(filter)
-        console.log(filter)
         const filtered = applyFilters(filter);
-        console.log(filtered)
         setFilteredFlights(filtered);
     }
 

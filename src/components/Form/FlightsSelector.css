@@ -1,0 +1,59 @@
+.form-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.airport-input {
+
+}
+
+.suggestions-airport-container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    z-index: 1000;
+    background-color: var(--light);
+    border: 1px solid;
+    width: 250%;
+    max-height: 400px;
+    overflow-y: auto;
+    top: 120%;
+    padding: 20px;
+}
+
+.region-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 10px 0;
+    padding: 0 10px 0 0 ;
+    border-right: 2px solid;
+}
+
+.region-container>span {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid;
+}
+
+.region-item.active {
+    background-color: var(--booking-light);
+}
+
+.region-container>span:hover {
+    cursor: pointer;
+    background-color: var(--booking-light);
+}
+
+.suggestions-airport {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid;
+}
+
+.suggestion-item:hover {
+}
