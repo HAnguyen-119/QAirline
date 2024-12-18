@@ -57,16 +57,14 @@ export default function SearchResults() {
         ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
         : deptDate;
     useEffect(() => {
-        // TODO: bo comment sau khi hoan thanh database
-        // xu ly nguoi dung co tinh thay doi params
-        // const today = new Date();
-        // const deptDateObj = new Date(deptDate);
-        // const retDateObj = retDate ? new Date(retDate) : null;
-        //
-        // if (deptDateObj < today || (retDateObj && retDateObj < today)) {
-        //     navigate('/booking');
-        //     return;
-        // }
+        const today = new Date();
+        const deptDateObj = new Date(deptDate);
+        const retDateObj = retDate ? new Date(retDate) : null;
+
+        if (deptDateObj < today || (retDateObj && retDateObj < today)) {
+            navigate('/booking');
+            return;
+        }
         const fetchFlights = async () => {
             try {
                 const searchData = {
