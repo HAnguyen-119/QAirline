@@ -5,19 +5,25 @@
     min-height: 50vh;
     justify-content: center;
     margin-top: 3rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.posts table {
+.posts .table-container {
+    padding-bottom: 10px;
     width: 70%;
-    height: 100%;
 }
 
-.posts table, .posts table td, .posts table th {
+.posts table, 
+.posts table td, 
+.posts table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-.posts table.dark, .posts table.dark th, .posts table.dark td {
+.posts table.dark, 
+.posts table.dark th, 
+.posts table.dark td {
     border: 2px solid var(--light);
 }
 
@@ -32,27 +38,20 @@
     min-width: 100px;
 }
 
-.posts td:nth-child(4), .posts td:nth-child(5) {
+.posts td:nth-child(4), 
+.posts td:nth-child(5) {
     width: 20%;
     min-width: 150px;
 }
 
-.posts th:first-child, .posts th:nth-child(2) {
+.posts th:first-child, 
+.posts th:nth-child(2) {
     width: 10%;
     min-width: 70px;
 }
 
 .posts th:last-child {
     min-width: 70px;
-}
-
-th, td {
-    height: 2.5rem;
-}
-
-th {
-    background-color: var(--secondary);
-    color: white;
 }
 
 .posts tr > td:first-child {
@@ -68,6 +67,20 @@ th {
     flex-direction: column;
     /*justify-content: center;*/
     align-items: center;
+}
+
+.posts .filters > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.posts .filters input,
+.posts .filters select {
+    margin-bottom: 1rem;
+    color: var(--dark);
+    width: 95%;
 }
 
 .posts-filter button {
@@ -161,4 +174,31 @@ th {
 
 .add-post-form > div > input:not(:last-child) {
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1224px) {
+    .posts {
+        flex-direction: column;
+    }
+
+    .posts .table-container {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    .posts .filters {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .posts .filters > div {
+        justify-content: center;
+        align-items: center;
+    }
 }
