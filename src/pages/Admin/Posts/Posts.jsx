@@ -131,7 +131,7 @@ export default function Posts() {
                     new Blob([JSON.stringify(newPostData)], { type: "application/json" }));
                 formData.append("imageFile", imgFile);
                 await userAPI.updatePost(updatingPost.id, formData);
-                setIsAdding(false);
+                setIsUpdating(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
