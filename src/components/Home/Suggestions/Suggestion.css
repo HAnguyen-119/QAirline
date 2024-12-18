@@ -1,8 +1,29 @@
-.suggestion {
-    position: relative;
-    width: 390px;
+.suggestionContainer {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*gap: 1rem;*/
+    width: 266.66%;
+    /*transition: transform 0.5s ease;*/
+    /*background-color: var(--button-active);*/
+    transform: translateX(calc(-1 * (var(--suggestion-width))));
+}
+
+.suggestionContainer > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--suggestion-width);
     height: 270px;
     background-color: transparent;
+}
+
+.suggestion {
+    position: relative;
+    width: 95%;
+    height: 95%;
     border: 2px solid var(--dark);
     border-radius: 20px;
     overflow: hidden;
@@ -62,13 +83,15 @@
     transition: 0.5s ease;
 }
 
-.suggestionContainer {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    /*transition: transform 0.5s ease;*/
-    transform: translateX(calc(-1 * (1rem + var(--border-width) + var(--suggestion-width))));
+
+@media screen and (max-width: 1024px) {
+    .suggestionContainer {
+        width: 400%;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .suggestionContainer {
+        width: 800%;
+    }
 }
