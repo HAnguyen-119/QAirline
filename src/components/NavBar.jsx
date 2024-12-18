@@ -25,10 +25,10 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         <NavLink to="/admin/posts">Posts</NavLink>
         <div className="switchMode" onClick={switchMode}>
           <div className={`sun ${isLightMode ? "" : " dark"}`}>
-            <img src="src/assets/images/sun1.png" />
+            <img src="../src/assets/images/sun1.png" />
           </div>
           <div className={`moon ${isLightMode ? "" : " dark"}`}>
-            <img src="src/assets/images/moon1.png" />
+            <img src="../src/assets/images/moon1.png" />
           </div>
         </div>
         <div
