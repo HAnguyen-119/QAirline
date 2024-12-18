@@ -32,7 +32,6 @@ export default function SearchResults() {
     const today = new Date();
 
     const deptDays = getDeptDays(deptDate);
-    console.log(deptDays)
     const retDays = tripType === 'round-trip' ? getRetDays(deptDate) : [];
 
 
@@ -53,14 +52,10 @@ export default function SearchResults() {
     const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
     const [filteredFlights, setFilteredFlights] = useState([]);
 
-    console.log(activeOutbound)
-    console.log(activeReturn)
 
     const activeDeptDate = activeOutbound !== null
         ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
         : deptDate;
-    console.log(activeDeptDate)
-    console.log(activeOutbound)
     useEffect(() => {
         // TODO: bo comment sau khi hoan thanh database
         // xu ly nguoi dung co tinh thay doi params
@@ -75,8 +70,8 @@ export default function SearchResults() {
         const fetchFlights = async () => {
             try {
                 const searchData = {
-                    "departureAirportId": deptAirportId,
-                    "arrivalAirportId": destAirportId,
+                    "departureAirportId": deptAirportId !== '' ? deptAirportId : 1,
+                    "arrivalAirportId": destAirportId !== '' ? destAirportId : 1,
                     "departureDate": activeDeptDate,
                     "passengerNumber": passengerNumber
                 };
@@ -90,6 +85,7 @@ export default function SearchResults() {
         fetchFlights();
 
     }, [deptAirportId, destAirportId, deptDate, retDate, passengerNumber, activeOutbound, activeReturn]);
+
 
     const handleBookNow = (id, type) => {
         const flight = flights.find(flight => flight.id === id);
