@@ -2,6 +2,8 @@ import "./Airports.css";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import userAPI from "../../../api/userAPI.jsx";
+import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Airports() {
   const isLightMode = useOutletContext();
@@ -236,14 +238,14 @@ export default function Airports() {
                     setIsUpdating(true);
                     setUpdatingAirport(airport);
                   }}
-                ></button>
+                ><FontAwesomeIcon icon={faPenToSquare}/></button>
                 <button
                   className="delete"
                   onClick={() => {
                     setIsDeleting(true);
                     setDeletingAirport(airport);
                   }}
-                ></button>
+                ><FontAwesomeIcon icon={faTrash}/></button>
               </td>
             </tr>
           ))}

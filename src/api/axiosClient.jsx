@@ -7,7 +7,7 @@ const axiosClient = axios.create({
   },
 });
 
-//Interceptors
+// Interceptors
 // Add a request interceptor
 
 axiosClient.interceptors.request.use(
@@ -17,7 +17,7 @@ axiosClient.interceptors.request.use(
     console.log("aaaa");
     console.log(token);
     console.log("bbbb");
-    if (token !== null && token !== undefined && token != "undefined") {
+    if (token !== null && token !== undefined && token !== "undefined") {
       console.log("ccc");
       config.headers["Authorization"] = `Bearer ${token}`;
     }
