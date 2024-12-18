@@ -5,6 +5,8 @@
     min-height: 50vh;
     justify-content: center;
     margin-top: 3rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .planes table {
@@ -12,12 +14,16 @@
     height: 100%;
 }
 
-.planes table, .planes table td, .planes table th {
+.planes table,
+.planes table td,
+.planes table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-.planes table.dark, .planes table.dark td, .planes table.dark th {
+.planes table.dark,
+.planes table.dark td,
+.planes table.dark th {
     border: 2px solid var(--light);
 }
 
@@ -27,19 +33,21 @@
     margin-bottom: 1rem;
 }
 
-
-.planes tr:first-child > th:nth-child(3), .planes tr:first-child > th:nth-child(4) {
-    width: 20%;
-    min-width: 200px;
+.planes tr:first-child > th:nth-child(3),
+.planes tr:first-child > th:nth-child(4) {
+    width: 15%;
+    min-width: 150px;
 }
 
-.planes tr:first-child > th:first-child, .planes tr:first-child > th:nth-child(2) {
+.planes tr:first-child > th:first-child,
+.planes tr:first-child > th:nth-child(2),
+.planes tr:first-child > th:nth-child(6) {
     width: 10%;
     min-width: 100px;
 }
 
 .planes tr:first-child > th:nth-child(5) {
-    width: 30%;
+    width: 20%;
     min-width: 300px;
 }
 
@@ -102,14 +110,6 @@ table.dark button:hover {
     border-radius: 5px;
 }
 
-/*.edit {*/
-/*    */
-/*}*/
-
-/*.delete {*/
-/*    */
-/*}*/
-
 .planes-filter {
     display: flex;
     flex-direction: column;
@@ -144,9 +144,17 @@ table.dark button:hover {
     width: 200px;
 }
 
+.planes .filters > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
 .planes .filters input, .planes .filters select {
     margin-bottom: 1rem;
     color: var(--dark);
+    width: 95%;
 }
 
 .add-plane-window, .delete-plane-window {
@@ -247,3 +255,40 @@ table.dark button:hover {
     background-color: var(--button-hover);
 }
 
+@media screen and (max-width: 1324px) {
+    .planes {
+        flex-direction: column;
+    }
+
+    .planes .table-container {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding-bottom: 10px;
+    }
+
+    .planes table {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .planes-filter {
+        width: 100%;
+        align-items: center;
+    }
+
+    .planes .filters {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .planes .filters > div {
+        justify-content: center;
+        align-items: center;
+    }
+}

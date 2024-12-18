@@ -190,17 +190,17 @@ export default function Airports() {
           Add new airport
         </button>
         <div className="filters">
-          ID <input type="text" id="id-filter" className="josefin-sans" />
-          Name <input type="text" id="name-filter" className="josefin-sans" />
-          Region{" "}
-          <input type="text" id="region-filter" className="josefin-sans" />
-          City <input type="text" id="city-filter" className="josefin-sans" />
-          Status{" "}
+          <div>ID <input type="text" id="id-filter" className="josefin-sans" /></div>
+          <div>Name <input type="text" id="name-filter" className="josefin-sans" /></div>
+          <div>Region
+            <input type="text" id="region-filter" className="josefin-sans" /></div>
+          <div>City <input type="text" id="city-filter" className="josefin-sans" /></div>
+          <div>Status
           <select id="status-filter" className="josefin-sans">
             <option value=""></option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
-          </select>
+          </select></div>
         </div>
         <div>
           <button className="josefin-sans" onClick={searchWithFilter}>
@@ -211,6 +211,7 @@ export default function Airports() {
           </button>
         </div>
       </div>
+      <div className="table-container">
       <table className={`${isLightMode ? "" : "dark"}`}>
         <caption>TOTAL NUMBER OF AIRPORTS : {airportData.length}</caption>
         <tbody>
@@ -251,6 +252,7 @@ export default function Airports() {
           ))}
         </tbody>
       </table>
+      </div>
       {isAdding || isUpdating ? (
         <div className="add-airport-window">
           <div></div>
