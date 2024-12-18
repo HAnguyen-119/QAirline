@@ -4,7 +4,7 @@ import codes from '../../data/CountryCode.js';
 
 import './CountryCodeSelector.css';
 
-export default function CountryCodeSelector({ htmlFor, description}) {
+export default function CountryCodeSelector({ htmlFor, description }) {
     const [query, setQuery] = useState('');
     const [filteredSuggestion, setFilteredSuggestion] = useState([]);
 
@@ -40,7 +40,7 @@ export default function CountryCodeSelector({ htmlFor, description}) {
 
     return (
         <DivContainer parentClass={'form-wrapper country'}>
-            <label htmlFor={htmlFor}>{description}</label>
+            <label htmlFor={htmlFor}>{description} <span style={{color: 'red'}}>*</span></label>
             <input
                 type='text'
                 className='country-input'
@@ -48,6 +48,7 @@ export default function CountryCodeSelector({ htmlFor, description}) {
                 onChange={handleInputChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                required={true}
             />
             {filteredSuggestion.length > 0 && (
                 <ul className="suggestions">
