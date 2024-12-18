@@ -1,0 +1,14 @@
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-group > * {
+    flex: 1;
+}
+
+.search-form>button {
+    padding: 10px 20px;
+}

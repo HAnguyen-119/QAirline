@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './Booking.css';
 import BookingNav from "../../../components/Booking/BookingNav.jsx";
 import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
-import Search from "../../../components/Booking/Search.jsx";
+import Search from "../../../components/Booking/Search/Search.jsx";
 import {useOutletContext} from "react-router-dom";
 
 export default function Booking() {

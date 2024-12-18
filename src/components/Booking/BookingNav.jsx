@@ -12,7 +12,7 @@ export default function BookingNav({ activeForm, setActiveForm }) {
                 <Button type='button' buttonClass={`form-button ${activeForm === 'search-flight' ? 'active' : ''}`} onClick={() => setActiveForm('search-flight')} text=' Search Flight' icon={faPlane} />
             </DivContainer>
             <DivContainer parentClass='form-button-container'>
-                <Button type='button' buttonClass={`form-button ${activeForm === 'search-booking' ? 'active' : ''}`} onClick={() => setActiveForm('search-booking')} text=' Search Booking' icon={faTicket}/>
+                <Button type='button' buttonClass={`form-button ${activeForm === 'search-booking' ? 'active' : ''}`} onClick={() => setActiveForm('search-booking')} text=' Manage Booking' icon={faTicket}/>
             </DivContainer>
         </div>
     );

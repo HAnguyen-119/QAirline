@@ -30,6 +30,7 @@ import Airports from "./pages/Admin/Airports/Airports.jsx";
 import Payment from "./pages/User/Booking/Payment/Payment.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Logout from "./components/Logout.jsx";
+import BookingDetails from "./pages/User/Booking/BookingDetails/BookingDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
             <Route path='booking/payment' element={<Payment/>} />
+            <Route path='booking/details' element={<BookingDetails/>} />
         </Route>
         <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<Dashboard/>} />
