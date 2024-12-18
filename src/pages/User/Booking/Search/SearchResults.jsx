@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './SearchResults.css';
 import FilterModal from '../FilterModal/FilterModal.jsx';
-import { getDeptDays, getReturnDays } from "../../../../utils/ActiveDays.js";
+import { getDeptDays, getRetDays } from "../../../../utils/ActiveDays.js";
 import Days from "../../../../components/Booking/Date/Days.jsx";
 import DivContainer from "../../../../components/DivContainer.jsx";
 import FlightCard from "../../../../components/Card/FlightCard.jsx";
@@ -28,36 +28,40 @@ export default function SearchResults() {
         tripType = 'round-trip';
     }
 
-    const [flights, setFlights] = useState([]);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [activeOutbound, setActiveOutbound] = useState(null);
-    const [activeReturn, setActiveReturn] = useState(null);
-    const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
-    const [filteredFlights, setFilteredFlights] = useState([]);
+    let activeIndex = 0;
+    const today = new Date();
 
     const deptDays = getDeptDays(deptDate);
     console.log(deptDays)
-    const retDays = tripType === 'round-trip' ? getDeptDays(deptDate) : [];
+    const retDays = tripType === 'round-trip' ? getRetDays(deptDate) : [];
+
+
+    if (fullParams.toString().includes('outbound')) {
+        if (deptDate === today.toISOString().split('T')[0]) {
+            activeIndex = 0;
+        } else  {
+            activeIndex = - today.getDate() + new Date(deptDate).getDate();
+        }
+    } else {
+        activeIndex = 0;
+    }
+
+    const [flights, setFlights] = useState([]);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [activeOutbound, setActiveOutbound] = useState(activeIndex);
+    const [activeReturn, setActiveReturn] = useState(fullParams.toString().includes('return') ? 0 : null);
+    const [filters, setFilters] = useState({ priceRange: 'all', sortOrder: 'asc', flightTime: 'all' });
+    const [filteredFlights, setFilteredFlights] = useState([]);
+
+    console.log(activeOutbound)
+    console.log(activeReturn)
 
     const activeDeptDate = activeOutbound !== null
         ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
         : deptDate;
-
+    console.log(activeDeptDate)
+    console.log(activeOutbound)
     useEffect(() => {
-        // let dateIndex = '';
-        // console.log(fullParams.toString())
-        // if (fullParams.toString().includes('outbound')) {
-        //     dateIndex = deptDays.findIndex(day =>
-        //         `${day[3]}-${day[2]}-${day[1]}` === deptDate
-        //     );
-        //     setActiveOutbound(dateIndex);
-        // } else {
-        //     dateIndex = retDays.findIndex(day =>
-        //         `${day[3]}-${day[2]}-${day[1]}` === deptDate
-        //     );
-        //     setActiveReturn(dateIndex)
-        // }
-
         // TODO: bo comment sau khi hoan thanh database
         // xu ly nguoi dung co tinh thay doi params
         // const today = new Date();

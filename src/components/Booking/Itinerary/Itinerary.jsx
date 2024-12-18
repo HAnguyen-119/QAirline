@@ -39,14 +39,7 @@ export default function Itinerary() {
     const handleSearchFlightSubmit = async (event) => {
         event.preventDefault();
         try {
-            // const searchData = {
-            //     'departureAirportId': deptID,
-            //     'arrivalAirportId': destID,
-            //     'departureDate': deptDate,
-            //     'arrivalDate': tripType === 'round-trip' ? arrivalDate : '',
-            //     'passengerNumber': passengers.adults + passengers.children
-            // };
-
+            //bo comment sau khi hoan thanh database
             const searchDept = {
                 "dept-id": deptID,
                 "arr-id": destID,
@@ -54,6 +47,14 @@ export default function Itinerary() {
                 "ret-date": tripType === 'round-trip' ? arrivalDate : '',
                 "passenger": passengers.adults + passengers.children,
             }
+
+            // const searchDept = {
+            //     "dept-id": 1,
+            //     "arr-id": 2,
+            //     "dept-date": "2024-10-04",
+            //     "ret-date": "2024-12-10",
+            //     "passenger": 2,
+            // }
 
 
             const params = new URLSearchParams(searchDept).toString();
