@@ -30,7 +30,7 @@ export default function Search() {
             };
             try {
                 const booking = await userAPI.searchBooking(searchData);
-                navigate('/booking/search/results', { state: { booking } });
+                navigate(`/booking/details?booking-code=${CodeReformatation(code)}`, { state: { booking, lastName } });
             } catch (error) {
                 document.getElementById('booking-code').focus();
                 setCodeTooltip({ ...codeTooltip, type: 'error', message: 'Booking not found!' });

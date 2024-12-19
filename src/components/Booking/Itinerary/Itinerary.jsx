@@ -70,7 +70,7 @@ export default function Itinerary() {
 
     return (
         <div className='itinerary'>
-            <h1>ITINERARY</h1>
+            <h1>BOOKING</h1>
             <form className='booking-form' onSubmit={handleSearchFlightSubmit}>
                 <DivContainer parentClass='type'>
                     <Button type='button' buttonClass={`button ${tripType === 'one-way' ? 'active' : ''}`} onClick={() => setTripType('one-way')} text=' One-way Trip' icon={faPlaneUp}/>

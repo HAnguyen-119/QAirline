@@ -170,7 +170,7 @@ export default function Traveler() {
         console.log(bookingData)
         try {
             const response = await userAPI.addBooking(bookingData);
-            navigate('/booking/payment', { state: { code: response.code } });
+            navigate('/booking/payment', { state: { code: response.code, email: contactInfo.email } });
         } catch (error) {
             console.error("Error adding booking:", error);
         }

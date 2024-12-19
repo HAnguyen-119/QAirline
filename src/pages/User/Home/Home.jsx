@@ -9,6 +9,7 @@ import NewsContainer from "../../../components/Home/News/NewsContainer.jsx";
 import ButtonSlider from "../../../components/Home/Slider/ButtonSlider.jsx";
 import HorizontalRule from "../../../components/HorizontalRule.jsx";
 import H1Text from "../../../components/H1Text.jsx";
+import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
 
 export default function Home() {
     const isLightMode = useOutletContext();
@@ -17,6 +18,7 @@ export default function Home() {
             {/*Flight searcher section*/}
             {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
             <FlightSearcher isLightMode={isLightMode}/>
+            <Itinerary/>
             <HorizontalRule/>
 
             {/*Recommendations section*/}
