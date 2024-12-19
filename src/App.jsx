@@ -12,9 +12,6 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Manage from "./pages/User/Manage/Manage.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
-import Company from "./pages/User/About/Company/Company.jsx";
-import Career from "./pages/User/About/Career/Career.jsx";
-import Partners from "./pages/User/About/Partners/Partners.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard.jsx";
@@ -42,11 +39,7 @@ const router = createBrowserRouter(
             <Route path='/booking/shopping-cart' element={<FlightConfirmation/>} />
             <Route path='/booking/traveler' element={<Traveler/>} />
             <Route path="manage" element={<Manage/>} />
-            <Route path="about" element={<About/>}>
-                <Route path="company" element={<Company/>} />
-                <Route path="partners" element={<Partners/>} />
-                <Route path="career" element={<Career/>} />
-            </Route>
+            <Route path="about" element={<About/>}></Route>
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
