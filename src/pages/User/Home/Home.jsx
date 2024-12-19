@@ -9,8 +9,35 @@ import NewsContainer from "../../../components/Home/News/NewsContainer.jsx";
 import ButtonSlider from "../../../components/Home/Slider/ButtonSlider.jsx";
 import HorizontalRule from "../../../components/HorizontalRule.jsx";
 import H1Text from "../../../components/H1Text.jsx";
+import {useEffect, useState} from "react";
+import userAPI from "../../../api/userAPI.jsx";
 
 export default function Home() {
+    const [postData, setPostData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const posts = await userAPI.getAllPosts();
+                const postsWithImages = await Promise.all(
+                    posts.map(async (post) => {
+                        const imageResponse = await userAPI.getPostImageById(post);
+                        const imageUrl = URL.createObjectURL(imageResponse);
+                        return { ...post, imageUrl };
+                    })
+                );
+                setPostData(postsWithImages);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const newsFilter = postData.filter(post => post.type === 'news').slice(0, 3);
+    const discountFilter = postData.filter(post => post.type.toLowerCase() === 'discount').slice(0, 4);
+    console.log(newsFilter)
+
     const isLightMode = useOutletContext();
     return (
         <div className="home">
@@ -26,18 +53,19 @@ export default function Home() {
             </div>
             <br/>
             <ButtonSlider/>
-            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/Explore">See more places</NavLink>
+            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">Explore more</NavLink>
             <HorizontalRule/>
 
             {/*Discounts section*/}
             <H1Text content={"Discounts"}/>
-            <Discounts/>
-            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/booking">See more discounts</NavLink>
+            <Discounts discountData={discountFilter} />
+            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">See more discounts</NavLink>
             <HorizontalRule/>
 
             {/*News section*/}
             <H1Text content={"News"}/>
-            <NewsContainer/>
+            <NewsContainer newsData={newsFilter}/>
+            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">Read more</NavLink>
             <HorizontalRule/>
 
             {/*Subscribe section*/}

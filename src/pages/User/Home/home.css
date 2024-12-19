@@ -33,12 +33,14 @@
     margin-right: auto;
 }
 
-.moreDiscount {
+.more {
     display: flex;
     align-items: center;
     justify-content: center;
     align-self: center;
-    width: 200px;
+    width: fit-content;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     height: 35px;
     text-decoration: none;
     color: var(--light);
@@ -49,11 +51,11 @@
     font-size: 1.2rem;
 }
 
-.moreDiscount.dark {
+.more.dark {
     background-color: var(--light);
     color: var(--dark);
 }
 
-.moreDiscount:hover {
+.more:hover {
     text-decoration: underline;
 }

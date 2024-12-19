@@ -3,23 +3,16 @@
     height: 40px;
     background-color: transparent;
     border: none;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-.prev {
-    background-image: url("src/assets/images/previous.png");
+.prev:hover, .next:hover {
+    border-bottom: 2px solid var(--dark);
 }
 
-.prev.dark {
-    background-image: url("src/assets/images/previous-dark.png");
-}
-
-.next {
-    background-image: url("src/assets/images/next.png");
-}
-
-.next.dark {
-    background-image: url("src/assets/images/next-dark.png");
+.prev.dark:hover, .next.dark:hover {
+    border-bottom: 2px solid var(--light);
 }

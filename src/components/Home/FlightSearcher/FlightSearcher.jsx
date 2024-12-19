@@ -1,5 +1,3 @@
-import H1Text from "../../H1Text.jsx";
-
 import ('./FlightSearcher.css')
 
 // eslint-disable-next-line react/prop-types
