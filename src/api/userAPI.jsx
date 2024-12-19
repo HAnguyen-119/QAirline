@@ -118,6 +118,10 @@ const userAPI = {
     searchBooking: (data) => {
         const url = 'api/v1/bookings/search';
         return axiosClient.post(url, data);
+    },
+    deleteBooking: (bookingId) => {
+        const url = `api/v1/bookings/${bookingId}`;
+        return axiosClient.delete(url, bookingId);
     }
 }
 

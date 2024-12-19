@@ -16,7 +16,6 @@ export default function Search() {
     const [lastName, setLastName] = useState('');
     const [nameTooltip, setNameTooltip] = useState({ message: 'Fill your last name!', type: 'hint', visible: false });
     const [codeTooltip, setCodeTooltip] = useState({ message: 'Fill your Booking Code!', type: 'hint', visible: false });
-    const [error, setError] = useState('');
 
     const handleSearchBookingSubmit = (event) => {
         event.preventDefault();
@@ -25,22 +24,16 @@ export default function Search() {
         }
 
         const searchBooking = async () => {
-            let codeValid = CodeReformatation(code);
-            let lastNameValid = NameValidation(lastName);
             const searchData = {
-                'code': codeValid,
-                'lastname': lastNameValid
+                'code': CodeReformatation(code),
+                'lastname': NameValidation(lastName)
             };
-            console.log(searchData)
             try {
                 const booking = await userAPI.searchBooking(searchData);
-                if (booking.id == null) {
-                    setError('Booking not found, please try again!');
-                } else {
-                    navigate(`/booking/details?bookingCode=${codeValid}`, { state: { lastName: lastNameValid, bookingDetails: booking } });
-                }
+                navigate('/booking/search/results', { state: { booking } });
             } catch (error) {
-
+                document.getElementById('booking-code').focus();
+                setCodeTooltip({ ...codeTooltip, type: 'error', message: 'Booking not found!' });
             }
         };
         searchBooking();
@@ -123,7 +116,6 @@ export default function Search() {
                         )}
                     </div>
                 </div>
-                {error !== '' && <span className='error-msg'>{error}</span>}
                 <Button buttonClass='button' type='submit' icon={faMagnifyingGlass} text=' Search' onClick={handleSearchBookingSubmit} />
             </form>
         </div>
