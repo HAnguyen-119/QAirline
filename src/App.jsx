@@ -10,7 +10,6 @@ import Booking from "./pages/User/Booking/Booking.jsx";
 import About from "./pages/User/About/About.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
-import Manage from "./pages/User/Manage/Manage.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -38,7 +37,6 @@ const router = createBrowserRouter(
             <Route path='/booking/return/availability' element={<SearchResults/>} />
             <Route path='/booking/shopping-cart' element={<FlightConfirmation/>} />
             <Route path='/booking/traveler' element={<Traveler/>} />
-            <Route path="manage" element={<Manage/>} />
             <Route path="about" element={<About/>}></Route>
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
