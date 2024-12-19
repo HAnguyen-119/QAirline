@@ -4,10 +4,7 @@ import './SearchResults.css';
 import FilterModal from '../FilterModal/FilterModal.jsx';
 import { getDeptDays, getRetDays } from "../../../../utils/ActiveDays.js";
 import Days from "../../../../components/Booking/Date/Days.jsx";
-import DivContainer from "../../../../components/DivContainer.jsx";
-import FlightCard from "../../../../components/Card/FlightCard.jsx";
 
-import EmptyFlight from '../../../../assets/images/empty.png';
 import userAPI from "../../../../api/userAPI.jsx";
 import FlightList from "../../../../components/Booking/Flights/FlightList.jsx";
 
@@ -53,6 +50,7 @@ export default function SearchResults() {
     const [filteredFlights, setFilteredFlights] = useState([]);
 
     console.log(activeReturn)
+    console.log(retDays)
 
     let activeDeptDate = '';
 
@@ -60,7 +58,7 @@ export default function SearchResults() {
         activeDeptDate = activeOutbound !== null
             ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
             : deptDate;
-    } else {
+    } else if (tripType === 'round-trip') {
         activeDeptDate = activeReturn !== null
             ? `${retDays[activeReturn][3]}-${retDays[activeReturn][2]}-${retDays[activeReturn][1]}`
             : deptDate;
@@ -120,7 +118,7 @@ export default function SearchResults() {
                     "arr-id": deptAirportId,
                     "dept-date": retDate,
                     "ret-date": "",
-                    "passenger": 2
+                    "passenger": passengerNumber
                 }).toString();
                 params = new URLSearchParams({
                     'dept-date': deptDate,
@@ -199,7 +197,7 @@ export default function SearchResults() {
     let activeOutboundString = activeOutbound !== null
         ? `${deptDays[activeOutbound][3]}-${deptDays[activeOutbound][2]}-${deptDays[activeOutbound][1]}`
         : null;
-    let activeReturnString = activeReturn !== null
+    let activeReturnString = activeReturn !== null && tripType === 'round-trip'
         ? `${retDays[activeReturn][3]}-${retDays[activeReturn][2]}-${retDays[activeReturn][1]}`
         : null;
 

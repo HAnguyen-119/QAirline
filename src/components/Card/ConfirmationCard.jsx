@@ -8,7 +8,7 @@ import html2canvas from "html2canvas";
 
 import './ConfirmationCard.css';
 
-export default function ConfirmationCard({ flight, passengerNumber, seatType, handle, type }) {
+export default function ConfirmationCard({ flight, passengerNumber, seatType, handle, type, hasButton }) {
     const departureDate = flight?.departureTime?.split('T')[0];
     const arrivalDate = flight?.arrivalTime?.split('T')[0];
 
@@ -143,7 +143,7 @@ export default function ConfirmationCard({ flight, passengerNumber, seatType, ha
                 </DivContainer>
             </DivContainer>
             <DivContainer parentClass={'change-flight'}>
-                <button className='button' onClick={handle}>Change Flight</button>
+                {hasButton && <button className='button' onClick={handle}>Change Flight</button>}
                 <button className='button' onClick={handleCapture}>Download</button>
             </DivContainer>
         </>

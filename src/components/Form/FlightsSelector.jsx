@@ -71,7 +71,7 @@ export default function FlightsSelector({ htmlFor, description, id, value, onCha
         setTimeout(() => { setFilteredSuggestion([]);
         setSelectedRegion('');
         setIsFocus(false);
-        }, 150);
+        }, 300);
     };
 
     return (

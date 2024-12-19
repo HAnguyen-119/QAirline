@@ -12,3 +12,9 @@
 .search-form>button {
     padding: 10px 20px;
 }
+
+.error-msg {
+    color: red;
+    font-size: 1rem;
+    text-align: center;
+}
