@@ -16,12 +16,16 @@
     margin: auto;
 }
 
-.bookings table, .bookings table td, .bookings table th {
+.bookings table,
+.bookings table td,
+.bookings table th {
     border: 2px solid var(--dark);
     border-collapse: collapse;
 }
 
-.bookings table.dark, .bookings table.dark td, .bookings table.dark th {
+.bookings table.dark,
+.bookings table.dark td,
+.bookings table.dark th {
     border: 2px solid var(--light);
 }
 
@@ -31,25 +35,28 @@
     margin-bottom: 1rem;
 }
 
-
-.bookings tr:first-child > th:nth-child(4), .bookings tr:first-child > th:nth-child(8) {
+.bookings tr:first-child > th:nth-child(5),
+.bookings tr:first-child > th:nth-child(8) {
     width: 20%;
     min-width: 200px;
 }
 
-.bookings tr:first-child > th:first-child, .bookings tr:first-child > th:nth-child(2), .bookings tr:first-child > th:nth-child(3) {
+.bookings tr:first-child > th:first-child,
+.bookings tr:first-child > th:nth-child(2),
+.bookings tr:first-child > th:nth-child(3),
+.bookings tr:first-child > th:nth-child(4) {
     width: 10%;
     min-width: 100px;
 }
 
-.bookings tr:first-child > th:nth-child(5) {
+.bookings tr:first-child > th:nth-child(6) {
     width: 10%;
     min-width: 100px;
 }
 
-.bookings tr:first-child > th:nth-child(7), .bookings tr:first-child > th:nth-child(8) {
-    width: 15%;
-    min-width: 150px;
+.bookings tr:first-child > th:nth-child(8), .bookings tr:first-child > th:nth-child(9) {
+    width: 10%;
+    min-width: 100px;
 }
 
 .bookings tr:first-child > th:last-child {
@@ -239,4 +246,16 @@ th {
 .buttons button:hover {
     background-color: var(--button-hover);
 }
+
+@media screen and (max-width: 1024px) {
+    .bookings .filters {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bookings .filters > div {
+        width: 100%;
+    }
+}
+
 

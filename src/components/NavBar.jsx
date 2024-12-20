@@ -5,11 +5,16 @@ import "./NavBar.css";
 
 import Sun from "../assets/images/sun1.png";
 import Moon from "../assets/images/moon1.png";
-import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import {faBars, faCircleUser, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // eslint-disable-next-line react/prop-types
 export default function NavBar({ isAdmin, switchMode, isLightMode }) {
+    window.onresize = () => {
+        if (window.innerWidth > 768) {
+            document.querySelector(".navBar").style.height = "60px";
+        }
+    };
   if (isAdmin) {
     return (
       <div className="navBar">
@@ -17,7 +22,6 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         <NavLink to="/admin" end>
           Dashboard
         </NavLink>
-        <NavLink to="/admin/users">Users</NavLink>
         <NavLink to="/admin/flights">Flights</NavLink>
         <NavLink to="/admin/planes">Planes</NavLink>
         <NavLink to="/admin/airports">Airports</NavLink>
@@ -44,12 +48,9 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </div>
-        {/* <NavLink to='/login' className="login" onClick={() => {
+        <NavLink to='/login' className="logout" onClick={() => {
                     document.querySelector(".navBar").style.height = "60px"
-                }}><FontAwesomeIcon icon={faUser}/></NavLink> */}
-        <NavLink to="/admin/logout" className="logout">
-          Logout
-        </NavLink>
+                }}><FontAwesomeIcon icon={faRightFromBracket}/></NavLink>
       </div>
     );
   } else
@@ -58,7 +59,6 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         <Logo />
         <NavLink to="/">Home</NavLink>
         <NavLink to="/booking">Booking</NavLink>
-        <NavLink to="/manage">Manage</NavLink>
         <NavLink to="/explore">Explore</NavLink>
         <NavLink to="/about">About</NavLink>
         <div className="switchMode" onClick={switchMode}>
@@ -89,14 +89,8 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
             document.querySelector(".navBar").style.height = "60px";
           }}
         >
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faCircleUser} size="2x" />
         </NavLink>
       </div>
     );
 }
-
-window.onresize = () => {
-  if (window.innerWidth > 768) {
-    document.querySelector(".navBar").style.height = "60px";
-  }
-};

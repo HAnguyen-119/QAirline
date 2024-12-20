@@ -131,7 +131,7 @@ export default function Posts() {
                     new Blob([JSON.stringify(newPostData)], { type: "application/json" }));
                 formData.append("imageFile", imgFile);
                 await userAPI.updatePost(updatingPost.id, formData);
-                setIsAdding(false);
+                setIsUpdating(false);
                 setIsRefresh(!isRefresh);
             }
         } catch (error) {
@@ -161,19 +161,20 @@ export default function Posts() {
                 }}>Add new post
                 </button>
                 <div className="filters">
-                    ID <input type="text" id="id-filter" className="josefin-sans"/>
-                    Type <select id="type-filter" className="josefin-sans">
+                    <div>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div>Type <select id="type-filter" className="josefin-sans">
                     <option></option>
                     <option>News</option>
                     <option>Discount</option>
-                    </select>
-                    Date <input type="date" id="date-filter" className="josefin-sans"/>
+                    </select></div>
+                    <div>Date <input type="date" id="date-filter" className="josefin-sans"/></div>
                 </div>
                 <div>
                     <button className="josefin-sans" onClick={searchWithFilter}>Search</button>
                     <button className="josefin-sans" onClick={clearFilters}>Clear Filters</button>
                 </div>
             </div>
+            <div className="table-container">
             <table className={`${isLightMode ? "" : "dark"}`}>
                 <caption>TOTAL NUMBER OF POSTS : {postData.length}</caption>
                 <tbody>
@@ -207,6 +208,7 @@ export default function Posts() {
                     </tr>)}
                 </tbody>
             </table>
+            </div>
             {(isAdding || isUpdating) ?
                 <div className="add-post-window">
                     <div></div>

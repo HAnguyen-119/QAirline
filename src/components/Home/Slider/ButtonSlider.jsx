@@ -1,9 +1,11 @@
 import {next, prev} from "../../../utils/SuggestionNav.js";
 import {useOutletContext} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleArrowLeft, faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 import ('./ButtonSlider.css')
 
-export default function ButtonSlider() {
+export default function ButtonSlider({nextHandle, prevHandle}) {
     const isLightMode = useOutletContext()
     return (
         <div style={{
@@ -13,21 +15,20 @@ export default function ButtonSlider() {
             justifyContent: "center",
             gap: "1rem"
         }}>
-            <button className={`prev${isLightMode ? "" : " dark"}`} onClick={(e) => {
-                prev();
+            <div className={`prev${isLightMode ? "" : " dark"}`} onClick={(e) => {
+                prevHandle();
                 e.target.disabled = true;
                 setTimeout(() => {
                     e.target.disabled = false
                 }, 500)
-            }}></button>
-            <p>o o o o o o o</p>
-            <button className={`next${isLightMode ? "" : " dark"}`} onClick={(e) => {
-                next();
+            }}><FontAwesomeIcon icon={faCircleArrowLeft} size="2x"/></div>
+            <div className={`next${isLightMode ? "" : " dark"}`} onClick={(e) => {
+                nextHandle();
                 e.target.disabled = true;
                 setTimeout(() => {
                     e.target.disabled = false
                 }, 500)
-            }}></button>
+            }}><FontAwesomeIcon icon={faCircleArrowRight} size="2x"/></div>
         </div>
     )
 }

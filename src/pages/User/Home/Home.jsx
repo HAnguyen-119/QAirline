@@ -9,8 +9,45 @@ import NewsContainer from "../../../components/Home/News/NewsContainer.jsx";
 import ButtonSlider from "../../../components/Home/Slider/ButtonSlider.jsx";
 import HorizontalRule from "../../../components/HorizontalRule.jsx";
 import H1Text from "../../../components/H1Text.jsx";
+import {useEffect, useState} from "react";
+import userAPI from "../../../api/userAPI.jsx";
+import {next, prev} from "../../../utils/SuggestionNav.js";
 
 export default function Home() {
+    const [postData, setPostData] = useState([]);
+    const [newsIndex, setNewsIndex] = useState(0);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const posts = await userAPI.getAllPosts();
+                const postsWithImages = await Promise.all(
+                    posts.map(async (post) => {
+                        const imageResponse = await userAPI.getPostImageById(post);
+                        const imageUrl = URL.createObjectURL(imageResponse);
+                        return { ...post, imageUrl };
+                    })
+                );
+                setPostData(postsWithImages);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const nextNews = () => {
+        setNewsIndex((newsIndex + 1) % 3);
+    }
+
+    const prevNews = () => {
+        setNewsIndex((newsIndex + 2) % 3);
+    }
+
+    const newsFilter = postData.filter(post => post.type === 'news').slice(newsIndex * 3, newsIndex + 3);
+    const discountFilter = postData.filter(post => post.type.toLowerCase() === 'discount').slice(0, 4);
+    console.log(newsFilter)
+
     const isLightMode = useOutletContext();
     return (
         <div className="home">
@@ -21,23 +58,24 @@ export default function Home() {
 
             {/*Recommendations section*/}
             <H1Text content={"Recommendations"}/>
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", overflow: "hidden", width: "80%", marginLeft: "auto", marginRight: "auto"}}>
+            <div className="suggestion-carousel">
                 <Suggestions/>
             </div>
             <br/>
-            <ButtonSlider/>
-            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/Explore">See more places</NavLink>
+            <ButtonSlider nextHandle={next} prevHandle={prev}/>
+            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">Explore more</NavLink>
             <HorizontalRule/>
 
             {/*Discounts section*/}
             <H1Text content={"Discounts"}/>
-            <Discounts/>
-            <NavLink className={`moreDiscount${isLightMode ? "" : " dark"}`} to="/booking">See more discounts</NavLink>
+            <Discounts discountData={discountFilter} />
+            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">See more discounts</NavLink>
             <HorizontalRule/>
 
             {/*News section*/}
             <H1Text content={"News"}/>
-            <NewsContainer/>
+            <NewsContainer newsData={newsFilter}/>
+            <ButtonSlider nextHandle={nextNews} prevHandle={prevNews}/>
             <HorizontalRule/>
 
             {/*Subscribe section*/}

@@ -40,11 +40,13 @@
     border-radius: 15px;
     overflow: hidden;
     justify-content: center;
-
     align-self: center;
     margin-bottom: 3rem;
 }
 
+.flightSearcherContainer h1 {
+    font-size: 40px;
+}
 
 .flightSearcher > div {
     width: 100%;

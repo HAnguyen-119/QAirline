@@ -1,0 +1,110 @@
+.destination {
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    transition: flex 0.5s ease;
+}
+
+.destination.dark {
+    border: 2px solid var(--light);
+}
+
+.destination > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.destination > div:first-child > div {
+    background: no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.7);
+    transition: filter 0.5s ease;
+}
+
+.destination > div:first-child > h3 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+    color: var(--light);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.destination > div:last-child {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.5s ease, width 0.5s ease;
+}
+
+.destination > div:last-child > div:first-child {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 2px solid var(--dark);
+}
+
+.destination.dark > div:last-child > div:first-child {
+    border-bottom: 2px solid var(--light);
+}
+
+.destination > div:last-child > div:nth-child(2) {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    flex: 4;
+}
+
+.destination > div:last-child a {
+    width: 100%;
+    height: 100%;
+    background-color: var(--button-active);
+    color: var(--light);
+    flex: 1;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.destination:hover > div:first-child {
+    width: 35%;
+}
+
+.destination:hover > div:first-child > div {
+    filter: brightness(1);
+}
+
+.destination:hover > div:first-child > h3 {
+    opacity: 0;
+}
+
+.destination:hover > div:last-child {
+    opacity: 1;
+    width: 65%;
+    border-left: 2px solid var(--dark);
+}
+
+.destination.dark:hover > div:last-child {
+    border-left: 2px solid var(--light);
+}
+
+
+/*.destination:hover {*/
+/*    !*grid-row: span 2;*!*/
+/*    width: 10%;*/
+/*    transform: scale(1.1);*/
+/*}*/

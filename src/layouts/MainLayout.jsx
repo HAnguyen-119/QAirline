@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar.jsx";
 import {Outlet} from "react-router-dom";
 import Footer from "../components/Footer.jsx";
-import Background from "../components/Background.jsx";
 import {useState} from "react";
 
 import "./MainLayout.css"

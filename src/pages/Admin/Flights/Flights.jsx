@@ -251,6 +251,7 @@ export default function Flights() {
                     <button className="josefin-sans" onClick={clearFilters}>Clear Filters</button>
                 </div>
             </div>
+            <div className="table-container">
             <table className={`${isLightMode ? "" : "dark"}`}>
                 <caption>TOTAL NUMBER OF FLIGHTS : {flightData.length}</caption>
                 <tbody>
@@ -308,6 +309,7 @@ export default function Flights() {
                 </tr>)}
                 </tbody>
             </table>
+            </div>
             {(isAdding || isUpdating) ?
                 <div className="add-flight-window">
                     <div></div>

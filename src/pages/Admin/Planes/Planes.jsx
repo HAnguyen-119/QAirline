@@ -196,26 +196,27 @@ export default function Planes() {
             <div className="planes-filter">
                 <button className="josefin-sans" id="add-Bt" onClick={() => {setIsAdding(true)}}>Add new plane</button>
                 <div className="filters">
-                    ID <input type="text" id="id-filter" className="josefin-sans"/>
-                    Model <input type="text" id="model-filter" className="josefin-sans"/>
-                    Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/>
-                    Capacity <select id="capacity-filter" className="josefin-sans">
+                    <div>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div>Model <input type="text" id="model-filter" className="josefin-sans"/></div>
+                    <div>Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/></div>
+                    <div>Capacity <select id="capacity-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="< 100">{"< 100"}</option>
                         <option value="100 - 200">{"100 - 200"}</option>
                         <option value="> 200">{"> 200"}</option>
-                    </select>
-                    Status <select id="status-filter" className="josefin-sans">
+                    </select></div>
+                    <div>Status <select id="status-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
-                    </select>
+                    </select></div>
                 </div>
                 <div>
                     <button className="josefin-sans" onClick={searchWithFilter}>Search</button>
                     <button className="josefin-sans" onClick={clearFilters}>Clear Filters</button>
                 </div>
             </div>
+            <div className="table-container">
             <table className={`${isLightMode ? "" : "dark"}`}>
                 <caption>TOTAL NUMBER OF PLANES : {planeData.length}</caption>
                 <tbody>
@@ -256,6 +257,7 @@ export default function Planes() {
                     </tr>)}
                 </tbody>
             </table>
+            </div>
             {(isAdding || isUpdating) ?
                 <div className="add-plane-window">
                     <div></div>

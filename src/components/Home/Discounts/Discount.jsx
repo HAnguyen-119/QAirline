@@ -3,10 +3,10 @@ import {NavLink} from "react-router-dom";
 import ('./Discount.css')
 
 // eslint-disable-next-line react/prop-types
-export default function Discount({content, isLightMode}) {
+export default function Discount({content, contentImage, isLightMode}) {
     return (
         <div className={`discount${isLightMode ? "" : " dark"}`}>
-            <div></div>
+            <div style={{backgroundImage: `url(${contentImage})`}}></div>
             <div>
                 <p>{content}</p>
                 <NavLink to="/booking">More details</NavLink>

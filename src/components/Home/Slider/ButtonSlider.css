@@ -3,23 +3,13 @@
     height: 40px;
     background-color: transparent;
     border: none;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: scale 0.1s ease;
 }
 
-.prev {
-    background-image: url("src/assets/images/previous.png");
-}
-
-.prev.dark {
-    background-image: url("src/assets/images/previous-dark.png");
-}
-
-.next {
-    background-image: url("src/assets/images/next.png");
-}
-
-.next.dark {
-    background-image: url("src/assets/images/next-dark.png");
+.prev:hover, .next:hover {
+    scale: 1.2;
 }

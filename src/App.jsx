@@ -10,15 +10,10 @@ import Booking from "./pages/User/Booking/Booking.jsx";
 import About from "./pages/User/About/About.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
-import Manage from "./pages/User/Manage/Manage.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
-import Company from "./pages/User/About/Company/Company.jsx";
-import Career from "./pages/User/About/Career/Career.jsx";
-import Partners from "./pages/User/About/Partners/Partners.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard.jsx";
-import Users from "./pages/Admin/Users/Users.jsx";
 import Flights from "./pages/Admin/Flights/Flights.jsx";
 import Planes from "./pages/Admin/Planes/Planes.jsx";
 import Bookings from "./pages/Admin/Bookings/Bookings.jsx";
@@ -41,28 +36,25 @@ const router = createBrowserRouter(
             <Route path='/booking/return/availability' element={<SearchResults/>} />
             <Route path='/booking/shopping-cart' element={<FlightConfirmation/>} />
             <Route path='/booking/traveler' element={<Traveler/>} />
-            <Route path="manage" element={<Manage/>} />
-            <Route path="about" element={<About/>}>
-                <Route path="company" element={<Company/>} />
-                <Route path="partners" element={<Partners/>} />
-                <Route path="career" element={<Career/>} />
-            </Route>
+            <Route path="about" element={<About/>}></Route>
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
             <Route path='signup' element={<Signup/>} />
             <Route path='booking/payment' element={<Payment/>} />
+            <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="admin" element={<AdminLayout/>}>
+        <Route path="admin" element={<ProtectedRoute>
+            <AdminLayout />
+        </ProtectedRoute>}>
             <Route index element={<Dashboard/>} />
-            <Route path="users" element={<Users/>} />
             <Route path="flights" element={<Flights/>} />
             <Route path="planes" element={<Planes/>} />
             <Route path="airports" element={<Airports/>} />
             <Route path="bookings" element={<Bookings/>} />
             <Route path="posts" element={<Posts />} />
             <Route path="logout" element={<Logout />} />
+            <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
     </>
   )
 );

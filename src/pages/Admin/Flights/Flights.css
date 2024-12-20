@@ -3,17 +3,14 @@
     flex-direction: column;
     margin-top: 3rem;
     justify-content: center;
-    overflow-x: scroll;
-    overflow-y: hidden;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
 }
 
-.flights table {
-    width: 90%;
-    height: 100%;
-    margin: auto;
+.flights .table-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 10px;
 }
 
 .flights table,
@@ -90,32 +87,13 @@
     padding-left: 0.5rem;
 }
 
-/*.flights table button {*/
-/*    width: 20px;*/
-/*    height: 20px;*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    background-size: contain;*/
-/*    background-color: transparent;*/
-/*    border: none;*/
-/*    margin: 5px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.flights .edit {*/
-/*    background-image: url("../src/assets/images/edit.png");*/
-/*}*/
-
-/*.flights .delete {*/
-/*    background-image: url("../src/assets/images/delete.png");*/
-/*}*/
-
 .flights-filter {
     display: flex;
     flex-direction: column;
     width: 100%;
     /*justify-content: center;*/
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .flights .filters > div {
@@ -124,6 +102,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .flights-filter > div:last-child {
@@ -287,3 +266,27 @@
     background-color: var(--button-hover);
 }
 
+@media screen and (max-width: 1024px) {
+    .flights .filters {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .flights .filters > div {
+        width: 100%;
+    }
+
+    .add-flight-form {
+        width: 80%;
+        height: 95%;
+    }
+
+    .add-flight-form .input-fields {
+        font-size: 0.8rem;
+        grid-template-columns: 1fr;
+    }
+
+    .add-flight-form .input-fields > input, .add-flight-form .input-fields select {
+
+    }
+}

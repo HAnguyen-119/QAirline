@@ -7,7 +7,11 @@ import ('./Suggestion.css')
 
 export default function Suggestions() {
     const isLightMode = useOutletContext();
-
+    window.onresize = () => {
+        const suggestionWidth = document.querySelector(".suggestionContainer > div").offsetWidth;
+        const suggestionContainer = document.querySelector(".suggestionContainer");
+        suggestionContainer.style.transform = `translateX(${-suggestionWidth}px)`;
+    }
     return (
         <div className="suggestionContainer">
             <Suggestion imageURL={vnuImage} location="University of Engineering and Technology" price="66USD" isLightMode={isLightMode}/>
@@ -32,3 +36,4 @@ export default function Suggestions() {
         </div>
     )
 }
+
