@@ -1,7 +1,8 @@
+import './NotFound.css'
+
 export default function NotFound() {
     return (
-        <div>
-            NotFound
+        <div className="not-found">
         </div>
     )
 }

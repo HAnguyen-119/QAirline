@@ -23,12 +23,21 @@
     border-bottom: 2px solid var(--dark);
 }
 
+.about-content-container > div.dark {
+    border-top: 2px solid var(--light);
+    border-bottom: 2px solid var(--light);
+}
+
 .about-content-container > div:hover {
     flex: 4;
 }
 
 .about-content-container > div:not(:first-child) {
     border-left: 2px solid var(--dark);
+}
+
+.about-content-container > div:not(:first-child).dark {
+    border-left: 2px solid var(--light);
 }
 
 .specific-content {
@@ -61,6 +70,10 @@
     height: 200px;
     border-radius: 20px;
     border: 2px solid var(--dark);
+}
+
+.basic-info.dark {
+    border: 2px solid var(--light);
 }
 
 .about > div:last-child {
