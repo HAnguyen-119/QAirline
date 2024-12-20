@@ -57,6 +57,10 @@
     border-bottom: 2px solid var(--dark);
 }
 
+.destination.dark > div:last-child > div:first-child {
+    border-bottom: 2px solid var(--light);
+}
+
 .destination > div:last-child > div:nth-child(2) {
     margin-left: 0.5rem;
     margin-top: 0.5rem;
