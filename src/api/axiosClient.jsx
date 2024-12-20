@@ -13,14 +13,14 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const token = sessionStorage.getItem("token");
-    console.log("aaaa");
-    console.log(token);
-    console.log("bbbb");
-    if (token !== null && token !== undefined && token !== "undefined") {
-      console.log("ccc");
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+    // const token = sessionStorage.getItem("token");
+    // console.log("aaaa");
+    // console.log(token);
+    // console.log("bbbb");
+    // if (token !== null && token !== undefined && token !== "undefined") {
+    //   console.log("ccc");
+    //   config.headers["Authorization"] = `Bearer ${token}`;
+    // }
     return config;
   },
   function (error) {
