@@ -340,75 +340,81 @@ export default function Flights() {
                                     })}
                                 </select>
                             </div>
-                            <div className='form-wrapper'>
-                                <span>Departure Airport <span style={{color: "red"}}>* </span></span>
-                                <select id="departure-airport-new" className="josefin-sans" required={true}
-                                        defaultValue={isUpdating ? updatingFlight.departureAirport.code : ""}
-                                        onChange={(e) => {
-                                            const selectedAirportCode = e.target.value;
-                                            const selectedAirport = airportData.find((airport) => airport.code === selectedAirportCode);
-                                            setSelectingDepartureAirport(selectedAirport);
-                                            console.log(selectedAirport);
-                                        }}>
-                                    <option></option>
-                                    {airportData.map((airport) => {
-                                        return (
-                                            <option key={airport.code} value={airport.code}>
-                                                {`${airport.name} (${airport.code})`}
-                                            </option>
-                                        )
-                                    })}
-                                </select>
-                            </div>
-                            <div className='form-wrapper'>
-                                <span>Arrival Airport <span style={{color: "red"}}>* </span></span>
-                                <select id="arrival-airport-new" className="josefin-sans" required={true}
-                                        defaultValue={isUpdating ? updatingFlight.arrivalAirport.code : ""}
-                                        onChange={(e) => {
-                                            const selectedAirportCode = e.target.value;
-                                            const selectedAirport = airportData.find((airport) => airport.code === selectedAirportCode);
-                                            setSelectingArrivalAirport(selectedAirport);
-                                            console.log(selectedAirport);
-                                        }}>
-                                    <option></option>
-                                    {airportData.map((airport) => {
-                                        return (
-                                            <option key={airport.code} value={airport.code}>
-                                                {`${airport.name} (${airport.code})`}
-                                            </option>
-                                        )
-                                    })}
-                                </select>
-                            </div>
-                            <div className='time'>
-                                <span>Departure Time <span style={{color: "red"}}>* </span></span>
-                                <div className="form-wrapper">
-                                    <input type="date" id="departure-date-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.departureTime.substring(0, 10) : ""}/>
-                                    <input type="time" id="departure-time-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.departureTime.substring(11) : ""}/>
+                            <div className='input-airport'>
+                                <div className='form-wrapper'>
+                                    <span>Departure Airport <span style={{color: "red"}}>* </span></span>
+                                    <select id="departure-airport-new" className="josefin-sans" required={true}
+                                            defaultValue={isUpdating ? updatingFlight.departureAirport.code : ""}
+                                            onChange={(e) => {
+                                                const selectedAirportCode = e.target.value;
+                                                const selectedAirport = airportData.find((airport) => airport.code === selectedAirportCode);
+                                                setSelectingDepartureAirport(selectedAirport);
+                                                console.log(selectedAirport);
+                                            }}>
+                                        <option></option>
+                                        {airportData.map((airport) => {
+                                            return (
+                                                <option key={airport.code} value={airport.code}>
+                                                    {`${airport.name} (${airport.code})`}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                                <div className='form-wrapper'>
+                                    <span>Arrival Airport <span style={{color: "red"}}>* </span></span>
+                                    <select id="arrival-airport-new" className="josefin-sans" required={true}
+                                            defaultValue={isUpdating ? updatingFlight.arrivalAirport.code : ""}
+                                            onChange={(e) => {
+                                                const selectedAirportCode = e.target.value;
+                                                const selectedAirport = airportData.find((airport) => airport.code === selectedAirportCode);
+                                                setSelectingArrivalAirport(selectedAirport);
+                                                console.log(selectedAirport);
+                                            }}>
+                                        <option></option>
+                                        {airportData.map((airport) => {
+                                            return (
+                                                <option key={airport.code} value={airport.code}>
+                                                    {`${airport.name} (${airport.code})`}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
                                 </div>
                             </div>
-                            <div className='time'>
-                                <span>Arrival Time <span style={{color: "red"}}>* </span></span>
-                                <div className="form-wrapper">
-                                    <input type="date" id="arrival-date-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(0, 10) : ""}/>
-                                    <input type="time" id="arrival-time-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(11) : ""}/>
+                            <div className='input-time'>
+                                <div className='time'>
+                                    <span>Departure Time <span style={{color: "red"}}>* </span></span>
+                                    <div className="form-wrapper">
+                                        <input type="date" id="departure-date-new" className="josefin-sans" required={true}
+                                               defaultValue={isUpdating ? updatingFlight.departureTime.substring(0, 10) : ""}/>
+                                        <input type="time" id="departure-time-new" className="josefin-sans" required={true}
+                                               defaultValue={isUpdating ? updatingFlight.departureTime.substring(11) : ""}/>
+                                    </div>
+                                </div>
+                                <div className='time'>
+                                    <span>Arrival Time <span style={{color: "red"}}>* </span></span>
+                                    <div className="form-wrapper">
+                                        <input type="date" id="arrival-date-new" className="josefin-sans" required={true}
+                                               defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(0, 10) : ""}/>
+                                        <input type="time" id="arrival-time-new" className="josefin-sans" required={true}
+                                               defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(11) : ""}/>
+                                    </div>
                                 </div>
                             </div>
-                            <div className='form-wrapper'>
-                                <span>Economy price ($)<span style={{color: "red"}}>*</span></span>
-                                <input type="number" min={1} id="economy-price-new" className="josefin-sans"
-                                       required={true}
-                                       defaultValue={isUpdating ? updatingFlight.economyPrice : ""}/>
-                            </div>
-                            <div className='form-wrapper'>
-                                <span>Business price ($)<span style={{color: "red"}}>*</span></span>
-                                <input type="number" min={1} id="business-price-new" className="josefin-sans"
-                                       required={true}
-                                       defaultValue={isUpdating ? updatingFlight.businessPrice : ""}/>
+                            <div className='input-price'>
+                                <div className='form-wrapper'>
+                                    <span>Economy price ($)<span style={{color: "red"}}>*</span></span>
+                                    <input type="number" min={1} id="economy-price-new" className="josefin-sans"
+                                           required={true}
+                                           defaultValue={isUpdating ? updatingFlight.economyPrice : ""}/>
+                                </div>
+                                <div className='form-wrapper'>
+                                    <span>Business price ($)<span style={{color: "red"}}>*</span></span>
+                                    <input type="number" min={1} id="business-price-new" className="josefin-sans"
+                                           required={true}
+                                           defaultValue={isUpdating ? updatingFlight.businessPrice : ""}/>
+                                </div>
                             </div>
                             <div className='form-wrapper'>
                                 <span>Status</span>

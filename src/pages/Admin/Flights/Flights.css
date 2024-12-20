@@ -239,7 +239,7 @@ table tr:nth-child(even) {
     gap: 1rem;
 }
 
-.add-flight-form .input-fields > div:not(:last-child) {
+.add-flight-form .input-fields > .form-wrapper:not(:last-child) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -264,7 +264,7 @@ table tr:nth-child(even) {
     font-size: 1rem;
 }
 
-.add-flight-form > div > input:not(:last-child) {
+.add-flight-form > .form-wrapper > input:not(:last-child) {
     margin-bottom: 1rem;
 }
 
@@ -293,6 +293,27 @@ table tr:nth-child(even) {
     background-color: var(--button-hover);
 }
 
+.input-airport {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+}
+
+.input-time, .input-price {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 90%;
+    >* {
+        flex: 1;
+    }
+}
+
+.input-time {
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1024px) {
     .flights .filters {
         display: grid;
@@ -305,7 +326,6 @@ table tr:nth-child(even) {
 
     .add-flight-form {
         width: 80%;
-        height: 95%;
     }
 
     .add-flight-form .input-fields {
@@ -313,7 +333,7 @@ table tr:nth-child(even) {
         grid-template-columns: 1fr;
     }
 
-    .add-flight-form .input-fields > input, .add-flight-form .input-fields select {
-
+    .input-airport {
+        flex-direction: row;
     }
 }
