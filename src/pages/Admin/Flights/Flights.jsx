@@ -131,7 +131,7 @@ export default function Flights() {
             && newArrivalAirport.length > 0
             && newDepartureDate.length > 0
             && newArrivalDate.length > 0
-        const newFlightData = {"flightNumber": newId,
+        const newFlightData = {"flightNumber": newId.toUpperCase(),
             "departureTime": `${newDepartureDate}T${newDepartureTime}`,
             "arrivalTime": `${newArrivalDate}T${newArrivalTime}`,
             "flightStatus": "SCHEDULED",
@@ -182,7 +182,7 @@ export default function Flights() {
             && newDepartureDate.length > 0
             && newArrivalDate.length > 0
         && newStatus.length > 0
-        const newFlightData = {"flightNumber": newId,
+        const newFlightData = {"flightNumber": newId.toUpperCase(),
             "departureTime": `${newDepartureDate}T${newDepartureTime}`,
             "arrivalTime": `${newArrivalDate}T${newArrivalTime}`,
             "flightStatus": newStatus,
@@ -238,7 +238,7 @@ export default function Flights() {
                     <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="Scheduled">Scheduled</option>
-                        <option value="En route">En route</option>
+                        <option value="In_Air">In_Air</option>
                         <option value="Arrived">Arrived</option>
                         <option value="Delayed">Delayed</option>
                         <option value="Cancelled">Cancelled</option>
@@ -425,7 +425,7 @@ export default function Flights() {
                                             defaultValue={updatingFlight.flightStatus}>
                                         <option value="">{""}</option>
                                         <option value="SCHEDULED">Scheduled</option>
-                                        <option value="EN ROUTE">En route</option>
+                                        <option value="IN AIR">In Air</option>
                                         <option value="ARRIVED">Arrived</option>
                                         <option value="DELAYED">Delayed</option>
                                         <option value="CANCELLED">Cancelled</option>

@@ -27,7 +27,7 @@ export default function Posts() {
                     posts.map(async (post) => {
                         const imageResponse = await userAPI.getPostImageById(post);
                         const imageUrl = URL.createObjectURL(imageResponse);
-                        return { ...post, imageUrl };
+                        return { ...post, imageUrl};
                     })
                 );
                 setPostData(postsWithImages);
@@ -39,32 +39,26 @@ export default function Posts() {
     }, [isRefresh]);
 
     const searchParams = new URLSearchParams(location.search);
-    const id = searchParams.get('id');
     const type = searchParams.get('type');
     const date = searchParams.get("date");
 
     const filteredPost = postData.filter((post) => {
-        return (!id || post.id === id)
-            && (!type || post.type === type)
+        return (!type || post.type === type)
             && (!date || post.date === date)
     })
 
     const clearFilters = () => {
-        const idFilter = document.getElementById("id-filter");
         const typeFilter = document.getElementById("type-filter");
         const dateFilter = document.getElementById("date-filter");
-        idFilter.value = "";
         typeFilter.value = "";
         dateFilter.value = "";
         searchWithFilter();
     }
 
     const searchWithFilter = () => {
-        const idValue = document.getElementById("id-filter").value.trim();
         const typeValue = document.getElementById("type-filter").value.trim();
         const dateValue = document.getElementById("date-filter").value.trim();
         let params = new URLSearchParams({
-            'id': idValue,
             'type': typeValue,
             'date': dateValue,
         }).toString();
@@ -161,7 +155,6 @@ export default function Posts() {
                 }}>Add new post
                 </button>
                 <div className="filters">
-                    <div className='form-wrapper'>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
                     <div className='form-wrapper select'>Type <select id="type-filter" className="josefin-sans">
                     <option></option>
                     <option>News</option>
