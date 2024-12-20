@@ -25,18 +25,20 @@ export default function Traveler() {
     const [contactInfo, setContactInfo] = useState({ email: '', phoneNumber: '', citizenId: '', country: '', emailTooltip: {message: 'eg: abc@def.fgh', type:'hint', visible: false }, phoneTooltip: {message: 'eg: 0123456789', type:'hint', visible: false } });
 
     const navigate = useNavigate();
-    useEffect(() => {
-        const handleBackNavigation = (e) => {
-            e.preventDefault();
-            navigate("/booking");
-        };
-
-        window.addEventListener("popstate", handleBackNavigation);
-
-        return () => {
-            window.removeEventListener("popstate", handleBackNavigation);
-        };
-    }, [navigate]);
+    //TODO: khong cho nguoi dung back lai sau khi nhan checkout
+    //chua hoat dong
+    // useEffect(() => {
+    //     const handleBackNavigation = (e) => {
+    //         e.preventDefault();
+    //         navigate("/booking");
+    //     };
+    //
+    //     window.addEventListener("popstate", handleBackNavigation);
+    //
+    //     return () => {
+    //         window.removeEventListener("popstate", handleBackNavigation);
+    //     };
+    // }, [navigate]);
 
     const handleInputChange = (index, field, value, type) => {
         const updatedDetails = type === 'adult' ? [...adultDetails] : type === 'child' ? [...childDetails] : [...infantDetails];
@@ -168,7 +170,8 @@ export default function Traveler() {
         console.log(bookingData)
         try {
             const response = await userAPI.addBooking(bookingData);
-            navigate('/booking/payment', { state: { code: response.code } });
+            console.log(response)
+            navigate('/booking/payment', { state: { booking: response } });
         } catch (error) {
             console.error("Error adding booking:", error);
         }

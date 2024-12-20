@@ -1,0 +1,101 @@
+.booking-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.booking-details-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+}
+
+.booking-details-form>*>* {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.booking-details {
+    border: 2px solid;
+    padding: 20px;
+    background-color: var(--booking-light);
+}
+
+.dark .booking-details {
+    background-color: var(--booking-dark);
+}
+
+.cancel-form {
+    position: fixed;
+}
+
+.cancel-email {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+    >input {
+        width: 100%;
+    }
+}
+
+.cancel-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-email>input, #otp {
+    padding: 10px 0 10px 0;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 3px solid;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.cancel-email>input:focus, #otp:focus {
+    border-bottom-color: #FF7043;
+}
+
+.exit-button {
+    background-color: grey;
+}
+
+.exit-button:hover {
+    background-color: #aba8a8;
+}
+
+.success-message {
+    color: green;
+    margin-top: 5px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+@media (max-width: 1024px) {
+    .booking-details-form {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-details-form {
+        width: 100%;
+    }
+}

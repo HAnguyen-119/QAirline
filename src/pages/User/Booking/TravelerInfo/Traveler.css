@@ -14,7 +14,6 @@
     flex-direction: row;
     width: 100%;
     gap: 20px;
-    justify-content: center;
 }
 
 .passenger-info {
@@ -24,7 +23,6 @@
 }
 
 .form.customer-data form > * {
-    flex: 1;
     margin: 0 20px;
 }
 
@@ -32,7 +30,7 @@
     margin-right: 10px;
 }
 
-.passenger-data, .contact-info {
+.passenger-info, .contact-info {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -41,8 +39,16 @@
     background-color: var(--booking-light);
 }
 
-.passenger-data {
+.passenger-info {
     width: 50%;
+}
+
+.passenger-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    background-color: var(--booking-light);
 }
 
 .contact-info {
@@ -93,4 +99,23 @@
     background-color: #eaf7ff;
     border-color: #00aaff;
     color: #005b9f;
+}
+
+@media (max-width: 1400px) {
+    .contact-info {
+        position: relative;
+    }
+
+    .passenger-data {
+        width: 100%;
+    }
+
+    .form.customer-data form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .passenger-info, .contact-info {
+        width: 80%;
+    }
 }

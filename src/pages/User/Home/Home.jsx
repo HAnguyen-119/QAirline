@@ -12,6 +12,7 @@ import H1Text from "../../../components/H1Text.jsx";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 import {next, prev} from "../../../utils/SuggestionNav.js";
+import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
 
 export default function Home() {
     const [postData, setPostData] = useState([]);
@@ -53,7 +54,8 @@ export default function Home() {
         <div className="home">
             {/*Flight searcher section*/}
             {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
-            <FlightSearcher isLightMode={isLightMode}/>
+            {/*<FlightSearcher isLightMode={isLightMode}/>*/}
+            <Itinerary/>
             <HorizontalRule/>
 
             {/*Recommendations section*/}

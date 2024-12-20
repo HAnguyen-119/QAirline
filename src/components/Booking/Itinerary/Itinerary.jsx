@@ -17,7 +17,7 @@ import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons/faMagnifyingG
 
 import ('./Itinerary.css');
 
-export default function Itinerary() {
+export default function Itinerary({hasTitle}) {
     const navigate = useNavigate();
 
     const [tripType, setTripType] = useState('one-way');
@@ -70,19 +70,22 @@ export default function Itinerary() {
 
     return (
         <div className='itinerary'>
-            <h1>ITINERARY</h1>
+            {hasTitle && <h1>BOOKING</h1>}
             <form className='booking-form' onSubmit={handleSearchFlightSubmit}>
                 <DivContainer parentClass='type'>
                     <Button type='button' buttonClass={`button ${tripType === 'one-way' ? 'active' : ''}`} onClick={() => setTripType('one-way')} text=' One-way Trip' icon={faPlaneUp}/>
                     <Button type='button' buttonClass={`button ${tripType === 'round-trip' ? 'active' : ''}`} onClick={() => setTripType('round-trip')} text=' Round Trip' icon={faRotate   }/>
                 </DivContainer>
                 <div className='info'>
-                    <FlightsSelector htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
-                    <Icon name='trip-arrow' iconName={tripType === 'round-trip' ? faRightLeft : faRightLong} />
-                    <FlightsSelector htmlFor='destination' description='Destination Airport' id='destination' name='destination' required={true} value={destID} onChange={(e) => setDestID(e.target.value)}/>
-                    <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)} minDate={today}/>
-                    <div className={'return-date-choice'} style={{ visibility: tripType === 'round-trip' ? 'visible' : 'hidden', marginLeft: '10px'}}>
-                        <InputElement htmlFor='return-date' description='Return Date' id='return-date' name='return-date' type='date' required={tripType === 'round-trip'} onChange={(e) => setArrivalDate(e.target.value)} minDate={deptDate}/>
+                    <div className='choice-container'>
+                        <FlightsSelector htmlFor='departure' description='Departure Airport' id='departure' name='departure' required={true} value={deptID} onChange={(e) => setDeptID(e.target.value)}/>
+                        <FlightsSelector htmlFor='destination' description='Arrival Airport' id='destination' name='destination' required={true} value={destID} onChange={(e) => setDestID(e.target.value)}/>
+                    </div>
+                    <div className='choice-container'>
+                        <InputElement htmlFor='dept-date' description='Start Date' id='dept-date' name='dept-date' type='date' required={true} onChange={(e) => setDeptDate(e.target.value)} minDate={today}/>
+                        <div className={'return-date-choice'} style={{ visibility: tripType === 'round-trip' ? 'visible' : 'hidden'}}>
+                            <InputElement htmlFor='return-date' description='Return Date' id='return-date' name='return-date' type='date' required={tripType === 'round-trip'} onChange={(e) => setArrivalDate(e.target.value)} minDate={deptDate}/>
+                        </div>
                     </div>
                 </div>
                 <p>Passenger</p>

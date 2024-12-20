@@ -7,7 +7,7 @@
     padding: 2rem;
     border: 2px solid;
     border-radius: 8px;
-    width: 80%;
+    width: 85%;
 }
 
 .passenger {
@@ -19,6 +19,7 @@
     padding: 0.5rem;
     border: 1px solid;
     border-radius: 8px;
+    flex: 1;
 }
 
 .number {
@@ -38,7 +39,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;  /* Thêm hiệu ứng phóng to một chút khi di chuột */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .passenger-button:hover {
@@ -68,4 +69,47 @@
 
 .passenger>button>svg {
     margin: 0;
+}
+
+.choice-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+    width: 60%;
+    >* {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .passenger-container {
+        flex-direction: column;
+        width: 70%;
+    }
+    .number {
+        font-size: 1.1rem;
+    }
+
+    .info span {
+        font-size: 0.95rem;
+    }
+    .suggestions-airport-container {
+        width: 250%;
+    }
+}
+
+@media (max-width: 768px) {
+    .number {
+        font-size: 1rem;
+    }
+
+    .info span {
+        font-size: 0.9rem;
+    }
+    .suggestions-airport-container {
+        width: 150%;
+    }
 }

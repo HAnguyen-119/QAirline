@@ -13,6 +13,7 @@ import FeeDetails from "../../../../components/Booking/Flights/FeeDetails.jsx";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 import Icon from "../../../../components/Icon/icon.jsx";
 import HorizontalRule from "../../../../components/HorizontalRule.jsx";
+import BoardingPass from "../../../../components/Booking/BoardingPass/BoardingPass.jsx";
 
 export default function FlightConfirmation() {
     const location = useLocation();
@@ -69,10 +70,6 @@ export default function FlightConfirmation() {
         navigate('/booking/traveler', { state: { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType, total } });
     };
 
-    const handleLogin = () => {
-        navigate('/login');
-    };
-
     const handleGoBack = (num) => {
         navigate(-num);
     }
@@ -81,27 +78,7 @@ export default function FlightConfirmation() {
         <div className='cart-container'>
             <H1Text content={'Flight Itineraries'}/>
             <DivContainer parentClass={'cart-content'}>
-                <DivContainer parentClass={'boarding-pass'}>
-                    <DivContainer parentClass={'departure-flight'}>
-                        <DivContainer parentClass={'flight-name'}>
-                            Departure Flight
-                        </DivContainer>
-                        <DivContainer parentClass={'departure-card'}>
-                            <ConfirmationCard flight={outboundFlight} passengerNumber={passengerNumber} seatType={outboundSeatType} handle={() => handleGoBack(tripType === 'one-way' ? 1 : 2)} type={'DEP'}/>
-                        </DivContainer>
-                    </DivContainer>
-                    {tripType === 'round-trip' && (
-                        <DivContainer parentClass={'return-flight'}>
-                            <DivContainer parentClass={'flight-name'}>
-                                Return Flight
-                            </DivContainer>
-                            <DivContainer parentClass={'return-card'}>
-                                <ConfirmationCard flight={returnFlight} passengerNumber={passengerNumber} seatType={returnSeatType} handle={() => handleGoBack(1)} type={'RET'}/>
-                            </DivContainer>
-                        </DivContainer>
-                    )}
-
-                </DivContainer>
+                <BoardingPass tripType={tripType} outboundFlight={outboundFlight} returnFlight={returnFlight} passengerNumber={passengerNumber} outboundSeatType={outboundSeatType} returnSeatType={returnSeatType} handleOutbound={() => handleGoBack(tripType === 'one-way' ? 1 : 2)} handleReturn={() => handleGoBack(1)} hasButton={true}/>
                 <DivContainer parentClass={'cart-summary'}>
                     <DivContainer parentClass={'summary-header'}>
                         <h2>Cart Summary</h2>
@@ -109,25 +86,39 @@ export default function FlightConfirmation() {
                     </DivContainer>
                     <DivContainer parentClass={'summary-content'}>
                         <DivContainer parentClass={'summary-item'}>
-                            <strong>Departure Flight</strong>
-                            <p>${totalOutbound}</p>
-                            <HorizontalRule/>
-                            <strong>Tax</strong>
-                            <p>${outboundTax}</p>
-                            <HorizontalRule/>
-                            <strong>Discounts</strong>
-                            <p>0</p>
+                            <div className='summary-comp'>
+                                <strong>Departure Flight</strong>
+                                <p>${totalOutbound}</p>
+                                <HorizontalRule/>
+                            </div>
+                            <div className='summary-comp'>
+                                <strong>Tax</strong>
+                                <p>${outboundTax}</p>
+                                <HorizontalRule/>
+                            </div>
+                            <div className='summary-comp'>
+                                <strong>Discounts</strong>
+                                <p>0</p>
+                                <HorizontalRule/>
+                            </div>
                         </DivContainer>
                         {tripType === 'round-trip' && (
                             <DivContainer parentClass={'summary-item'}>
-                                <strong>Return Flight</strong>
-                                <p>${totalReturn}</p>
-                                <HorizontalRule/>
-                                <strong>Tax</strong>
-                                <p>${returnTax}</p>
-                                <HorizontalRule/>
-                                <strong>Discounts</strong>
-                                <p>0</p>
+                                <div className='summary-comp'>
+                                    <strong>Return Flight</strong>
+                                    <p>${totalReturn}</p>
+                                    <HorizontalRule/>
+                                </div>
+                                <div className='summary-comp'>
+                                    <strong>Tax</strong>
+                                    <p>${returnTax}</p>
+                                    <HorizontalRule/>
+                                </div>
+                                <div className='summary-comp'>
+                                    <strong>Discounts</strong>
+                                    <p>0</p>
+                                    <HorizontalRule/>
+                                </div>
                             </DivContainer>
                         )}
                         <DivContainer parentClass={'flight-total'}>
@@ -141,7 +132,6 @@ export default function FlightConfirmation() {
                     </DivContainer>
                     <DivContainer parentClass={'submit-container'}>
                         <button className='button' onClick={handleContinue}>Continue</button>
-                        <button className='button' onClick={handleLogin}>Login to Continue</button>
                     </DivContainer>
                 </DivContainer>
             </DivContainer>

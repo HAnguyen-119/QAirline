@@ -2,7 +2,7 @@ import Button from "../Button/Button.jsx";
 import DivContainer from "../DivContainer.jsx";
 import React, { useState } from "react";
 import Icon from "../Icon/icon.jsx";
-import { faRightLeft, faRightLong } from "@fortawesome/free-solid-svg-icons";
+import {faMoneyCheck, faRightLeft, faRightLong} from "@fortawesome/free-solid-svg-icons";
 import {format} from "../../utils/Time.js";
 import {calculateTravelTime} from "../../utils/CalculateTime.js";
 import {faSuitcase} from "@fortawesome/free-solid-svg-icons/faSuitcase";
@@ -14,10 +14,14 @@ import {faBriefcase} from "@fortawesome/free-solid-svg-icons/faBriefcase";
 import {faSuitcaseRolling} from "@fortawesome/free-solid-svg-icons/faSuitcaseRolling";
 import {faCouch} from "@fortawesome/free-solid-svg-icons/faCouch";
 import {faMoneyBill} from "@fortawesome/free-solid-svg-icons/faMoneyBill";
+import {faAsterisk} from "@fortawesome/free-solid-svg-icons/faAsterisk";
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 
 import ('./FlightCard.css');
 
 export default function FlightCard({ flight, tripType, handleBookNow }) {
+    const [openPopup, setOpenPopup] = useState('');
+
     const deptTime = flight.departureTime;
     const destTime = flight.arrivalTime;
 
@@ -37,6 +41,14 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
 
     const toggleDropdown = () => {
         setOpenDropdown(!openDropdown);
+    }
+
+    const handleOpenPopup = (type) => {
+        setOpenPopup(type);
+    }
+
+    const handleClosePopup = () => {
+        setOpenPopup('');
     }
 
     return (
@@ -72,7 +84,10 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                 {openDropdown && (
                     <div className='dropdown-content'>
                         <div className='dropdown-option'>
-                            <h2><Icon iconName={faCouch}/> Economy</h2>
+                            <div className='ticket-type'>
+                                <h2><Icon iconName={faCouch}/> Economy</h2>
+                                <button onClick={() => handleOpenPopup('ECONOMY')}><Icon iconName={faInfoCircle}/></button>
+                            </div>
                             <span className="seat-price">${flight.economyPrice}</span>
                             <p>Price/Pax</p>
                             <div className="seat-details">
@@ -83,15 +98,18 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                                 </div>
                                 <div className="seat-details-flexibility">
                                     <strong>Flexibility</strong>
-                                    <span><Icon iconName={faCalendarDays}/> Reschedulable</span>
-                                    <span><Icon iconName={faBan}/> Non-Refundable</span>
+                                    <span><Icon iconName={faBan}/> Less Preferential</span>
+                                    <span><Icon iconName={faBan}/> No Online Payment</span>
                                 </div>
                             </div>
                             <span><Icon iconName={faChair}/> Seats available: {flight.airplane.economySeatNumber - flight.economySeatBookedNumber}</span>
                             <Button buttonClass='button' onClick={() => handleBookNow(flight.id, 'ECONOMY')} text='Book now!' />
                         </div>
                         <div className='dropdown-option'>
-                            <h2><Icon iconName={faBriefcase}/> Business</h2>
+                            <div className='ticket-type'>
+                                <h2><Icon iconName={faBriefcase}/> Business</h2>
+                                <button onClick={() => handleOpenPopup('BUSINESS')}><Icon iconName={faInfoCircle}/></button>
+                            </div>
                             <span className="seat-price">${flight.businessPrice}</span>
                             <p>Price/Pax</p>
                             <div className="seat-details">
@@ -102,8 +120,8 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                                 </div>
                                 <div className="seat-details-flexibility">
                                     <strong>Flexibility</strong>
-                                    <span><Icon iconName={faCalendarDays}/> Reschedulable</span>
-                                    <span><Icon iconName={faMoneyBill}/> Refundable within 12 hours.</span>
+                                    <span><Icon iconName={faAsterisk}/> Attractive Preferential</span>
+                                    <span><Icon iconName={faMoneyCheck}/> Online Payment</span>
                                 </div>
                             </div>
                             <span><Icon iconName={faChair}/> Seats available: {flight.airplane.businessSeatNumber - flight.businessSeatBookedNumber}</span>
@@ -111,6 +129,50 @@ export default function FlightCard({ flight, tripType, handleBookNow }) {
                         </div>
                     </div>
                 )}
+            {openPopup && (
+                <div className='popup'>
+                    <div className='popup-content'>
+                        <h2>{openPopup} SEAT</h2>
+                        {openPopup === 'ECONOMY' && (
+                            <>
+                                <span className="seat-price">${flight.economyPrice}</span>
+                                <p>Price/Pax</p>
+                                <div className="seat-details">
+                                    <div className="seat-details-baggage">
+                                        <strong>Baggage</strong>
+                                        <span><Icon iconName={faSuitcase}/> Cabin Baggage 7kg</span>
+                                        <span><Icon iconName={faBan}/> Checked Baggage</span>
+                                    </div>
+                                    <div className="seat-details-flexibility">
+                                        <strong>Flexibility</strong>
+                                        <span><Icon iconName={faBan}/> Less Preferential</span>
+                                        <span><Icon iconName={faBan}/> No Online Payment</span>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                        {openPopup === 'BUSINESS' && (
+                            <>
+                                <span className="seat-price">${flight.businessPrice}</span>
+                                <p>Price/Pax</p>
+                                <div className="seat-details">
+                                    <div className="seat-details-baggage">
+                                        <strong>Baggage</strong>
+                                        <span><Icon iconName={faSuitcase}/> Cabin Baggage 7kg</span>
+                                        <span><Icon iconName={faSuitcaseRolling}/> Checked Baggage 20kg</span>
+                                    </div>
+                                    <div className="seat-details-flexibility">
+                                        <strong>Flexibility</strong>
+                                        <span><Icon iconName={faAsterisk}/> Attractive Preferential</span>
+                                        <span><Icon iconName={faMoneyCheck}/> Online Payment</span>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                        <Button buttonClass='button' onClick={handleClosePopup} text='Close' />
+                    </div>
+                </div>
+            )}
         </DivContainer>
     )
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './Booking.css';
 import BookingNav from "../../../components/Booking/BookingNav.jsx";
 import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
-import Search from "../../../components/Booking/Search.jsx";
+import Search from "../../../components/Booking/Search/Search.jsx";
 import {useOutletContext} from "react-router-dom";
 
 export default function Booking() {
@@ -15,7 +15,7 @@ export default function Booking() {
             <div className={`booking ${isLightMode ? '' : 'dark'}`}>
                 <BookingNav activeForm={activeForm} setActiveForm={setActiveForm} />
                 {activeForm === 'search-flight' && (
-                    <Itinerary/>
+                    <Itinerary hasTitle={true}/>
                 )}
                 {activeForm === 'search-booking' && (
                     <Search/>

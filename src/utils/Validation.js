@@ -52,6 +52,15 @@ export function getAdultDay() {
         .split("T")[0];
 }
 
+export function CodeValidation(code) {
+    const CODE_REGEX = /^[a-zA-Z0-9]/;
+    return CODE_REGEX.test(code);
+}
+
+export function CodeReformatation(code) {
+    return code.toUpperCase();
+}
+
 console.log(getInfantDay())
 console.log(getChildDay())
 console.log(getAdultDay())
