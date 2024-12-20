@@ -190,12 +190,12 @@ export default function Airports() {
           Add new airport
         </button>
         <div className="filters">
-          <div>ID <input type="text" id="id-filter" className="josefin-sans" /></div>
-          <div>Name <input type="text" id="name-filter" className="josefin-sans" /></div>
-          <div>Region
+          <div className='form-wrapper'>ID <input type="text" id="id-filter" className="josefin-sans" /></div>
+          <div className='form-wrapper'>Name <input type="text" id="name-filter" className="josefin-sans" /></div>
+          <div className='form-wrapper'>Region
             <input type="text" id="region-filter" className="josefin-sans" /></div>
-          <div>City <input type="text" id="city-filter" className="josefin-sans" /></div>
-          <div>Status
+          <div className='form-wrapper'>City <input type="text" id="city-filter" className="josefin-sans" /></div>
+          <div className='form-wrapper'>Status
           <select id="status-filter" className="josefin-sans">
             <option value=""></option>
             <option value="Active">Active</option>
@@ -258,7 +258,7 @@ export default function Airports() {
           <div></div>
           <div className="add-airport-form">
             <h1>{isAdding ? "New airport" : "Update airport"}</h1>
-            <div className="input-fields">
+            <div className="input-fields form-wrapper">
               <span>
                 Airport ID{" "}
                 <span style={{ color: "red" }}>

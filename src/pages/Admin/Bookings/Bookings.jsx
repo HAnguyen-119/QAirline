@@ -94,17 +94,17 @@ export default function Bookings() {
         <div className="bookings">
             <div className="bookings-filter">
                 <div className="filters">
-                    <div>ID<input type="text" id="id-filter" className="josefin-sans"/></div>
-                    <div>Outbound Flight<input type="text" id="outbound-flight-filter" className="josefin-sans"/></div>
-                    <div>Return Flight<input type="text" id="return-flight-filter" className="josefin-sans"/></div>
-                    <div>Class <select id="class-filter" className="josefin-sans">
+                    <div className='form-wrapper'>ID<input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Outbound Flight<input type="text" id="outbound-flight-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Return Flight<input type="text" id="return-flight-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Class <select id="class-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="Economy">Economy</option>
                         <option value="Business">Business</option>
                     </select></div>
-                    <div>Reservation Date <input type="date" id="reservation-date-filter" className="josefin-sans"/>
+                    <div className='form-wrapper'>Reservation Date <input type="date" id="reservation-date-filter" className="josefin-sans"/>
                     </div>
-                    <div>Status <select id="status-filter" className="josefin-sans">
+                    <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="PENDING">PENDING</option>
                         <option value="Paid">Paid</option>

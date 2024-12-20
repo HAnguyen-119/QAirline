@@ -77,7 +77,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p style={{ color: "red" }}>{error}</p>}
-          <button className="submit" type="submit" disabled={loading}>
+          <button className="button" type="submit" disabled={loading}>
             Login
           </button>
 

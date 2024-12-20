@@ -146,10 +146,22 @@ table.dark button:hover {
     width: 100%;
 }
 
-.planes .filters input, .planes .filters select {
+.planes .filters input {
+    padding-left: 10px;
     margin-bottom: 1rem;
     color: var(--dark);
     width: 95%;
+}
+.dark .planes .filters select {
+    color: var(--dark);
+}
+.dark .planes .filters select option {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.dark .filters input, .dark .filters select {
+    background-color: var(--light);
 }
 
 .add-plane-window, .delete-plane-window {
@@ -178,12 +190,12 @@ table.dark button:hover {
 .add-plane-form {
     position: absolute;
     width: 400px;
-    height: 530px;
     background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 0;
 }
 
 .delete-plane-form {
@@ -206,7 +218,12 @@ table.dark button:hover {
     margin-bottom: 2rem;
 }
 
-.planes .input-fields > div {
+.form-wrapper.status-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.planes .input-fields .seat-number {
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -219,7 +236,6 @@ table.dark button:hover {
 }
 
 .add-plane-form input, .add-plane-form select {
-    height: 1.5rem;
     font-size: 1rem;
 }
 

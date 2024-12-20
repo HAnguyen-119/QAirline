@@ -8,7 +8,6 @@ const ProtectedRoute = ({ children }) => {
   if (!token) {
     return <Navigate to="/" />;
   }
-
   // Nếu có token, hiển thị nội dung của trang
   return children;
 };

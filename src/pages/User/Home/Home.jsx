@@ -54,8 +54,8 @@ export default function Home() {
         <div className="home">
             {/*Flight searcher section*/}
             {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
-            {/*<FlightSearcher isLightMode={isLightMode}/>*/}
-            <Itinerary/>
+            <FlightSearcher isLightMode={isLightMode}/>
+            {/*<Itinerary/>*/}
             <HorizontalRule/>
 
             {/*Recommendations section*/}

@@ -161,13 +161,13 @@ export default function Posts() {
                 }}>Add new post
                 </button>
                 <div className="filters">
-                    <div>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
-                    <div>Type <select id="type-filter" className="josefin-sans">
+                    <div className='form-wrapper'>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper select'>Type <select id="type-filter" className="josefin-sans">
                     <option></option>
                     <option>News</option>
                     <option>Discount</option>
                     </select></div>
-                    <div>Date <input type="date" id="date-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Date <input type="date" id="date-filter" className="josefin-sans"/></div>
                 </div>
                 <div>
                     <button className="josefin-sans" onClick={searchWithFilter}>Search</button>
@@ -214,7 +214,7 @@ export default function Posts() {
                     <div></div>
                     <div className="add-post-form">
                         <h1>{isAdding ? "New post" : "Update post"}</h1>
-                        <div className="input-fields">
+                        <div className="input-fields form-wrapper">
                             <span>Type <span style={{color: "red"}}>* </span></span>
                             <select id="type-new" className="josefin-sans" required={true}
                                     defaultValue={isUpdating ? updatingPost.type : ""}>

@@ -88,11 +88,14 @@ th {
     width: 100%;
 }
 
-.airports .filters input,
-.airports .filters select {
+.airports .filters input {
     margin-bottom: 1rem;
     color: var(--dark);
     width: 95%;
+}
+
+.filters .form-wrapper input, .filters .form-wrapper select {
+    padding-left: 10px;
 }
 
 .airports-filter button {
@@ -152,12 +155,12 @@ th {
 .add-airport-form {
     position: absolute;
     width: 350px;
-    height: 520px;
     background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 0;
 }
 
 .delete-airport-form {

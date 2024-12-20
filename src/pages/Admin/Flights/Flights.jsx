@@ -30,10 +30,8 @@ export default function Flights() {
         const fetchData = async () => {
             const flights = await userAPI.getAllFlights();
             setFlightData(flights);
-            // console.log(flights);
             const planes = await userAPI.getAllPlanes();
             setPlaneData(planes);
-            // console.log(planes);
             const airports = await userAPI.getAllAirports();
             setAirportData(airports);
         }
@@ -231,13 +229,13 @@ export default function Flights() {
                 }}>Add new flight
                 </button>
                 <div className="filters">
-                    <div>ID<input type="text" id="id-filter" className="josefin-sans"/></div>
-                    <div>Plane ID <input type="text" id="plane-id-filter" className="josefin-sans"/></div>
-                    <div>Departure Airport <input type="text" id="departure-airport-filter" className="josefin-sans"/></div>
-                    <div>Arrival Airport <input type="text" id="arrival-airport-filter" className="josefin-sans"/></div>
-                    <div>Departure Date <input type="date" id="departure-date-filter" className="josefin-sans"/></div>
-                    <div>Arrival Date <input type="date" id="arrival-date-filter" className="josefin-sans"/></div>
-                    <div>Status <select id="status-filter" className="josefin-sans">
+                    <div className='form-wrapper'>ID<input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Plane ID <input type="text" id="plane-id-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Departure Airport <input type="text" id="departure-airport-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Arrival Airport <input type="text" id="arrival-airport-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Departure Date <input type="date" id="departure-date-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Arrival Date <input type="date" id="arrival-date-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="Scheduled">Scheduled</option>
                         <option value="En route">En route</option>
@@ -316,13 +314,13 @@ export default function Flights() {
                     <div className="add-flight-form">
                         <h1>{isAdding ? "New flight" : "Update flight"}</h1>
                         <div className="input-fields">
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Flight Number <span
                                     style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
                                 <input type="text" id="id-new" className="josefin-sans" required={true}
                                        defaultValue={isUpdating ? updatingFlight.flightNumber : ""}/>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Plane ID <span style={{color: "red"}}>* </span></span>
                                 <select id="plane-id-new" className="josefin-sans" required={true}
                                         defaultValue={isUpdating ? updatingFlight.airplane.code : ""}
@@ -342,7 +340,7 @@ export default function Flights() {
                                     })}
                                 </select>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Departure Airport <span style={{color: "red"}}>* </span></span>
                                 <select id="departure-airport-new" className="josefin-sans" required={true}
                                         defaultValue={isUpdating ? updatingFlight.departureAirport.code : ""}
@@ -362,7 +360,7 @@ export default function Flights() {
                                     })}
                                 </select>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Arrival Airport <span style={{color: "red"}}>* </span></span>
                                 <select id="arrival-airport-new" className="josefin-sans" required={true}
                                         defaultValue={isUpdating ? updatingFlight.arrivalAirport.code : ""}
@@ -382,37 +380,37 @@ export default function Flights() {
                                     })}
                                 </select>
                             </div>
-                            <div>
+                            <div className='time'>
                                 <span>Departure Time <span style={{color: "red"}}>* </span></span>
-                                <div className="time">
+                                <div className="form-wrapper">
                                     <input type="date" id="departure-date-new" className="josefin-sans" required={true}
                                            defaultValue={isUpdating ? updatingFlight.departureTime.substring(0, 10) : ""}/>
                                     <input type="time" id="departure-time-new" className="josefin-sans" required={true}
                                            defaultValue={isUpdating ? updatingFlight.departureTime.substring(11) : ""}/>
                                 </div>
                             </div>
-                            <div>
+                            <div className='time'>
                                 <span>Arrival Time <span style={{color: "red"}}>* </span></span>
-                                <div className="time">
+                                <div className="form-wrapper">
                                     <input type="date" id="arrival-date-new" className="josefin-sans" required={true}
                                            defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(0, 10) : ""}/>
                                     <input type="time" id="arrival-time-new" className="josefin-sans" required={true}
                                            defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(11) : ""}/>
                                 </div>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Economy price ($)<span style={{color: "red"}}>*</span></span>
                                 <input type="number" min={1} id="economy-price-new" className="josefin-sans"
                                        required={true}
                                        defaultValue={isUpdating ? updatingFlight.economyPrice : ""}/>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Business price ($)<span style={{color: "red"}}>*</span></span>
                                 <input type="number" min={1} id="business-price-new" className="josefin-sans"
                                        required={true}
                                        defaultValue={isUpdating ? updatingFlight.businessPrice : ""}/>
                             </div>
-                            <div>
+                            <div className='form-wrapper'>
                                 <span>Status</span>
                                 {isAdding ?
                                     <input type="text" id="status-new" className="josefin-sans"

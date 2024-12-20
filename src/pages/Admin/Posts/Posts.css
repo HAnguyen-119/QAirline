@@ -76,11 +76,23 @@
     width: 100%;
 }
 
-.posts .filters input,
-.posts .filters select {
+.posts .filters input {
     margin-bottom: 1rem;
     color: var(--dark);
     width: 95%;
+}
+
+.posts .filters .form-wrapper.select {
+    padding-bottom: 1rem;
+}
+
+.dark .posts .filters .form-wrapper.select {
+    padding-bottom: 4px;
+}
+
+.dark .filters select {
+    color: var(--dark);
+    margin-bottom: 10px;
 }
 
 .posts-filter button {
@@ -139,12 +151,12 @@
 .add-post-form {
     position: absolute;
     width: 350px;
-    height: 450px;
     background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 0;
 }
 
 .delete-post-form {
@@ -184,6 +196,7 @@
 @media screen and (max-width: 1224px) {
     .posts {
         flex-direction: column;
+
     }
 
     .posts .table-container {
@@ -194,16 +207,19 @@
 
     .posts .filters {
         flex-direction: row;
-        gap: 1rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        width: 100%;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
     }
 
     .posts .filters > div {
         justify-content: center;
         align-items: center;
+    }
+
+    .filters select {
+        color: var(--dark);
+        margin-bottom: 0;
     }
 }

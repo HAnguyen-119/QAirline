@@ -196,16 +196,16 @@ export default function Planes() {
             <div className="planes-filter">
                 <button className="josefin-sans" id="add-Bt" onClick={() => {setIsAdding(true)}}>Add new plane</button>
                 <div className="filters">
-                    <div>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
-                    <div>Model <input type="text" id="model-filter" className="josefin-sans"/></div>
-                    <div>Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/></div>
-                    <div>Capacity <select id="capacity-filter" className="josefin-sans">
+                    <div className='form-wrapper'>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Model <input type="text" id="model-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/></div>
+                    <div className='form-wrapper'>Capacity <select id="capacity-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="< 100">{"< 100"}</option>
                         <option value="100 - 200">{"100 - 200"}</option>
                         <option value="> 200">{"> 200"}</option>
                     </select></div>
-                    <div>Status <select id="status-filter" className="josefin-sans">
+                    <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
@@ -263,7 +263,7 @@ export default function Planes() {
                     <div></div>
                     <div className="add-plane-form">
                         <h1>{isAdding ? "New plane" : "Update plane"}</h1>
-                        <div className="input-fields">
+                        <div className="form-wrapper input-fields">
                             <span>Plane ID <span
                                 style={{color: "red"}}>* {isDuplicatedId ? "ID existed ! Try another ID" : ""}</span></span>
                             <input type="text" id="id-new" className="josefin-sans" required={true}
@@ -275,24 +275,26 @@ export default function Planes() {
                                 style={{color: "red"}}>* </span></span>
                             <input type="text" id="manufacturer-new" className="josefin-sans" required={true}
                                    defaultValue={isUpdating ? updatingPlane.manufacturer : ""}/>
-                            <div>
-                                <div>
+                            <div className='seat-number'>
+                                <div className='form-wrapper'>
                                     <span>Economy seats <span style={{color: "red"}}>* </span></span>
                                     <input type="number" id="economy-new" className="josefin-sans" min={1} required={true}
                                            defaultValue={isUpdating ? updatingPlane.economySeatNumber : ""}/>
                                 </div>
-                                <div>
+                                <div className='form-wrapper'>
                                     <span>Business seats <span style={{color: "red"}}>* </span></span>
                                     <input type="number" id="business-new" className="josefin-sans" min={1} required={true}
                                            defaultValue={isUpdating ? updatingPlane.businessSeatNumber : ""}/>
                                 </div>
                             </div>
-                            <span>Status <span style={{color: "red"}}>* </span></span>
-                            <select id="status-new" className="josefin-sans" required={true}
-                                    defaultValue={isUpdating ? (updatingPlane.isActive ? "Active" : "Inactive") : "Active"}>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
+                            <div className='form-wrapper status-input'>
+                                <span>Status <span style={{color: "red"}}>* </span></span>
+                                <select id="status-new" className="josefin-sans" required={true}
+                                        defaultValue={isUpdating ? (updatingPlane.isActive ? "Active" : "Inactive") : "Active"}>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="buttons">
                             <button className="josefin-sans" onClick={handleCancel}>CANCEL</button>
