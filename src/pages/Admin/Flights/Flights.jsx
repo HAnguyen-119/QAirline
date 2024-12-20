@@ -26,6 +26,8 @@ export default function Flights() {
     const [selectingDepartureAirport, setSelectingDepartureAirport] = useState(null);
     const [selectingArrivalAirport, setSelectingArrivalAirport] = useState(null);
 
+    const [departureTime, setDepartureTime] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             const flights = await userAPI.getAllFlights();
@@ -119,9 +121,9 @@ export default function Flights() {
         const newDepartureAirport = document.getElementById("departure-airport-new").value.trim();
         const newArrivalAirport = document.getElementById("arrival-airport-new").value.trim();
         const newDepartureDate = document.getElementById("departure-date-new").value.trim();
-        const newDepartureTime = document.getElementById("departure-time-new").value.trim();
+        // const newDepartureTime = document.getElementById("departure-time-new").value.trim();
         const newArrivalDate = document.getElementById("arrival-date-new").value.trim();
-        const newArrivalTime = document.getElementById("arrival-time-new").value.trim();
+        // const newArrivalTime = document.getElementById("arrival-time-new").value.trim();
         const newEconomyPrice = document.getElementById("economy-price-new").value;
         const newBusinessPrice = document.getElementById("business-price-new").value;
         const isValid = newId.length > 0
@@ -132,8 +134,8 @@ export default function Flights() {
             && newDepartureDate.length > 0
             && newArrivalDate.length > 0
         const newFlightData = {"flightNumber": newId.toUpperCase(),
-            "departureTime": `${newDepartureDate}T${newDepartureTime}`,
-            "arrivalTime": `${newArrivalDate}T${newArrivalTime}`,
+            "departureTime": newDepartureDate,
+            "arrivalTime": newArrivalDate,
             "flightStatus": "SCHEDULED",
             "economyPrice": newEconomyPrice,
             "businessPrice": newBusinessPrice,
@@ -168,9 +170,9 @@ export default function Flights() {
         const newDepartureAirport = document.getElementById("departure-airport-new").value.trim();
         const newArrivalAirport = document.getElementById("arrival-airport-new").value.trim();
         const newDepartureDate = document.getElementById("departure-date-new").value.trim();
-        const newDepartureTime = document.getElementById("departure-time-new").value.trim();
+        // const newDepartureTime = document.getElementById("departure-time-new").value.trim();
         const newArrivalDate = document.getElementById("arrival-date-new").value.trim();
-        const newArrivalTime = document.getElementById("arrival-time-new").value.trim();
+        // const newArrivalTime = document.getElementById("arrival-time-new").value.trim();
         const newEconomyPrice = document.getElementById("economy-price-new").value;
         const newBusinessPrice = document.getElementById("business-price-new").value;
         const newStatus = document.getElementById("status-new").value;
@@ -183,8 +185,8 @@ export default function Flights() {
             && newArrivalDate.length > 0
         && newStatus.length > 0
         const newFlightData = {"flightNumber": newId.toUpperCase(),
-            "departureTime": `${newDepartureDate}T${newDepartureTime}`,
-            "arrivalTime": `${newArrivalDate}T${newArrivalTime}`,
+            "departureTime": newDepartureDate,
+            "arrivalTime": newArrivalDate,
             "flightStatus": newStatus,
             "economyPrice": newEconomyPrice,
             "businessPrice": newBusinessPrice,
@@ -383,19 +385,21 @@ export default function Flights() {
                             <div className='time'>
                                 <span>Departure Time <span style={{color: "red"}}>* </span></span>
                                 <div className="form-wrapper">
-                                    <input type="date" id="departure-date-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.departureTime.substring(0, 10) : ""}/>
-                                    <input type="time" id="departure-time-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.departureTime.substring(11) : ""}/>
+                                    <input type="datetime-local" id="departure-date-new" className="josefin-sans" required={true}
+                                           defaultValue={isUpdating ? updatingFlight.departureTime.substring(0, 10) : ""}
+                                           onChange={(e) => {setDepartureTime(new Date(e.target.value)); console.log(`${new Date(e.target.value)}`);}}/>
+                                    {/*<input type="time" id="departure-time-new" className="josefin-sans" required={true}*/}
+                                    {/*       defaultValue={isUpdating ? updatingFlight.departureTime.substring(11) : ""}/>*/}
                                 </div>
                             </div>
                             <div className='time'>
                                 <span>Arrival Time <span style={{color: "red"}}>* </span></span>
                                 <div className="form-wrapper">
-                                    <input type="date" id="arrival-date-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(0, 10) : ""}/>
-                                    <input type="time" id="arrival-time-new" className="josefin-sans" required={true}
-                                           defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(11) : ""}/>
+                                    <input type="datetime-local" id="arrival-date-new" className="josefin-sans" required={true}
+                                           defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(0, 10) : ""}
+                                           min={departureTime}/>
+                                    {/*<input type="time" id="arrival-time-new" className="josefin-sans" required={true}*/}
+                                    {/*       defaultValue={isUpdating ? updatingFlight.arrivalTime.substring(11) : ""}/>*/}
                                 </div>
                             </div>
                             <div className='form-wrapper'>
