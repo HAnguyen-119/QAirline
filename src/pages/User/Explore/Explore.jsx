@@ -13,28 +13,23 @@ export default function Explore() {
 
     const [region, setRegion] = useState("Asia");
     const [regionIndex, setRegionIndex] = useState(0);
-    const [postData, setPostData] = useState([]);
+    const [destinationData, setDestinationData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const posts = await userAPI.getAllPosts();
-                const postsWithImages = await Promise.all(
-                    posts.map(async (post) => {
-                        const imageResponse = await userAPI.getPostImageById(post);
-                        const imageUrl = URL.createObjectURL(imageResponse);
-                        return { ...post, imageUrl };
-                    })
-                );
-                setPostData(postsWithImages);
+                const airports = await userAPI.getAllAirports();
+                setDestinationData(airports);
+                console.log(airports);
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         fetchData();
     }, []);
 
     const regions = ["Asia", "Europe", "Africa", "America", "Oceania"];
+    const destinationFiltered = destinationData.filter((dest) => dest.region === region);
     const handleActive = (index) => {
         setRegionIndex(index);
     }
@@ -61,17 +56,16 @@ export default function Explore() {
                         ))}
                     </div>
                     <div className="destinations">
-                        {postData.map((post) =>
-                            <Destination key={post.id}
-                                         name={post.title}
-                                         description={post.content}
-                                         image={post.imageUrl}
+                        {destinationFiltered.map((dest) =>
+                            <Destination key={dest.id}
+                                         name={dest.city.split(",")[0]}
+                                         description={dest.description}
+                                         image={dest.imageUrl}
                                          isLightMode={isLightMode}/>
                         )}
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -34,7 +34,7 @@ export default function Airports() {
   }, [isRefresh]);
 
   const searchParams = new URLSearchParams(location.search);
-  const code = searchParams.get("id");
+  const id = searchParams.get("id");
   const name = searchParams.get("name");
   const region = searchParams.get("region");
   const city = searchParams.get("city");
@@ -51,10 +51,10 @@ export default function Airports() {
 
   const filteredAirports = airportData.filter((airport) => {
     return (
-      (!code || airport.code === code) &&
-      (!name || airport.name === name) &&
-      (!region || airport.region === region) &&
-      (!city || airport.city === city) &&
+      (!id || airport.code === id.toUpperCase()) &&
+      (!name || airport.name.toLowerCase() === name.toLowerCase()) &&
+      (!region || airport.region.toLowerCase() === region.toLowerCase()) &&
+      (!city || airport.city.toLowerCase() === city.toLowerCase()) &&
       (!status || airport.isActive === (status === "Active"))
     );
   });
@@ -109,7 +109,7 @@ export default function Airports() {
       newRegion.length > 0 &&
       newCity.length > 0;
     const newAirportData = {
-      code: newId,
+      code: newId.toUpperCase(),
       name: newName,
       region: newRegion,
       city: newCity,
@@ -145,7 +145,7 @@ export default function Airports() {
       newRegion.length > 0 &&
       newCity.length > 0;
     const newAirportData = {
-      code: newId,
+      code: newId.toUpperCase(),
       name: newName,
       region: newRegion,
       city: newCity,
