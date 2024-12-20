@@ -211,6 +211,12 @@ table tr:nth-child(even) {
     align-items: center;
 }
 
+.dark .add-flight-form input, .dark .add-flight-form select {
+    background-color: white;
+    border-color: var(--dark);
+    color: var(--dark);
+}
+
 .delete-flight-form {
     position: absolute;
     width: 350px;

@@ -202,6 +202,12 @@ table.dark button:hover {
     padding: 10px 0;
 }
 
+.dark .add-plane-form input, .dark .add-plane-form select {
+    background-color: white;
+    border-color: var(--dark);
+    color: var(--dark);
+}
+
 .delete-plane-form {
     position: absolute;
     width: 350px;
