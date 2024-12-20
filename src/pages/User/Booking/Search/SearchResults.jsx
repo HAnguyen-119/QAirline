@@ -7,6 +7,8 @@ import Days from "../../../../components/Booking/Date/Days.jsx";
 
 import userAPI from "../../../../api/userAPI.jsx";
 import FlightList from "../../../../components/Booking/Flights/FlightList.jsx";
+import {faFilter} from "@fortawesome/free-solid-svg-icons";
+import Icon from "../../../../components/Icon/icon.jsx";
 
 export default function SearchResults() {
     const location = useLocation();
@@ -214,13 +216,14 @@ export default function SearchResults() {
     const isOutboundEmpty = filteredOutbound.length === 0;
     const isReturnEmpty = filteredReturn.length === 0;
 
+
     return (
         <div className='search-results'>
             {fullParams.toString().includes('outbound') && (
                 <div className='outbound-result'>
                     <h1>Outbound flights</h1>
                     <Days days={deptDays} activeDate={activeOutbound} setActiveDate={setActiveOutbound} />
-                    <button className='' onClick={handleOpenFilter}>Filter</button>
+                    <button className='button' onClick={handleOpenFilter}><Icon iconName={faFilter}/> Filter</button>
                     <FlightList isEmpty={isOutboundEmpty} flights={filteredOutbound} tripType={tripType} handleBookNow={handleBookNow} />
                     <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} onFilters={handleFilters} />
                 </div>
@@ -229,7 +232,7 @@ export default function SearchResults() {
                 <div className='outbound-result'>
                     <h1>Return Flights</h1>
                     <Days days={retDays} activeDate={activeReturn} setActiveDate={setActiveReturn} />
-                    <button className='' onClick={handleOpenFilter}>Filter</button>
+                    <button className='button' onClick={handleOpenFilter}><Icon iconName={faFilter}/> Filter</button>
                     <FlightList isEmpty={isReturnEmpty} flights={filteredReturn} tripType={tripType} handleBookNow={handleBookNow} />
                     <FilterModal isOpen={isFilterOpen} onClose={handleCloseFilter} onFilters={handleFilters}/>
                 </div>

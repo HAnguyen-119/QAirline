@@ -1,11 +1,3 @@
-.flightSearcherContainer button {
-    width: 50px;
-    height: 50px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .flightSearcherContainer {
     width: 100%;
     height: 95vh;
@@ -47,35 +39,42 @@
     font-size: clamp(20px, 3vw, 40px);
 }
 
-.flightSearcher > div {
-    width: 100%;
-    height: auto;
-    bottom: 0;
-    position: absolute;
-}
-
 .flightSearcher > div:first-child {
     background-color: var(--light);
     opacity: 0.8;
-}
-
-.flightSearcher > div:nth-child(2) {
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-
-}
-
-.flightSearcher input {
-    width: 60%;
-}
-
-.flightSearcher button {
-    width: 30%;
+    margin-top: 5rem;
 }
 
 .flightSearcher.dark > div:first-child {
     background-color: var(--dark);
+}
+
+.flightSearcher .passenger, .flightSearcher .passenger-container {
+    border: none;
+    padding: 10px;
+}
+
+.flightSearcher .info>span {
+    display: none;
+}
+
+.flightSearcher .button {
+}
+
+@media (max-width: 1024px) {
+    .flightSearcher .passenger-container {
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flightSearcher .passenger-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .flightSearcher .booking-form {
+        overflow-y: auto;
+        max-height: 60vh;
+    }
 }

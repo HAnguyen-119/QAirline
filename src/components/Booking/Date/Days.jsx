@@ -10,6 +10,7 @@ export default function Days({ days, activeDate, setActiveDate }) {
     const [startIndex, setStartIndex] = useState(0);
     const [daysToShow, setDaysToShow] = useState(7);
 
+
     useEffect(() => {
         const updateDaysToShow = () => {
             if (window.innerWidth <= 768) {
@@ -55,7 +56,6 @@ export default function Days({ days, activeDate, setActiveDate }) {
                         thingDay={day[0]}
                         day={day[1]}
                         month={numberToMonth(day[2])}
-                        cost='100USD'
                         isActive={index + startIndex === activeDate}
                         onClick={() => setActiveDate(index + startIndex)}
                     />

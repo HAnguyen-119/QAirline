@@ -83,6 +83,8 @@ export default function BookingDetails() {
         }
     }
 
+    console.log(booking.returnFlight)
+
     return (
         <div className='booking-details-container'>
             <h1>BOOKING DETAILS</h1>
@@ -120,7 +122,7 @@ export default function BookingDetails() {
                     </div>
                 )}
                 <p>For more information</p>
-                <BoardingPass tripType={tripType} passengerNumber={booking.passengers.length} outboundSeatType={"ECONOMY"} returnSeatType={"ECONOMY"} outboundFlight={booking.flight} returnFlight={booking.returnFLight} hasButton={false} />
+                <BoardingPass tripType={tripType} passengerNumber={booking.passengers.length} outboundSeatType={"ECONOMY"} returnSeatType={"ECONOMY"} outboundFlight={booking.flight} returnFlight={booking.returnFlight} hasButton={false} />
             </div>
         </div>
     );

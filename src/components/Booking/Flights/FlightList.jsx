@@ -11,7 +11,7 @@ export default function FlightList({isEmpty, flights, tripType, handleBookNow}) 
             ))}
             {isEmpty && (
                 <DivContainer parentClass='empty'>
-                    <img src={EmptyFlight} />
+                    <h3>Oops! There's no flights that depart on this day. Please try another day!</h3>
                 </DivContainer>
             )}
         </div>

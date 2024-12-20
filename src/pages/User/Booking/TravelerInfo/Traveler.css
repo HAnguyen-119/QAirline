@@ -101,21 +101,19 @@
     color: #005b9f;
 }
 
-@media (max-width: 1400px) {
-    .contact-info {
-        position: relative;
-    }
+.contact-info {
+    position: relative;
+}
 
-    .passenger-data {
-        width: 100%;
-    }
+.passenger-data {
+    width: 100%;
+}
 
-    .form.customer-data form {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .passenger-info, .contact-info {
-        width: 80%;
-    }
+.form.customer-data form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.passenger-info, .contact-info {
+    width: 80%;
 }

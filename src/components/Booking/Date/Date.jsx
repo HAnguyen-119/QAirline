@@ -3,7 +3,7 @@ import DivContainer from "../../DivContainer.jsx";
 import HorizontalRule from "../../HorizontalRule.jsx";
 import ('./Date.css')
 
-export default function Date({ thingDay, day, month, cost, isActive, onClick}) {
+export default function Date({ thingDay, day, month, isActive, onClick}) {
     return (
         <div className={`date ${isActive ? 'active' : ''} `} onClick={onClick}>
             <DivContainer parentClass={'month'}>
@@ -17,9 +17,6 @@ export default function Date({ thingDay, day, month, cost, isActive, onClick}) {
                 <li>{thingDay}</li>
             </DivContainer>
             <HorizontalRule/>
-            <DivContainer parentClass={'cost'}>
-                <li>{cost}</li>
-            </DivContainer>
         </div>
     );
 

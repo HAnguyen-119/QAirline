@@ -13,10 +13,3 @@
     color: var(--light);
 }
 
-footer {
-    background-color: var(--primary);
-    height: 200px;
-    color: white;
-    bottom: 0;
-    width: auto;
-}
