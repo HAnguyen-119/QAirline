@@ -11,6 +11,7 @@ export default function Suggestions() {
     const isLightMode = useOutletContext();
 
     const [destinationData, setDestinationData] = useState([]);
+    const [randomDestination, setRandomDestination] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,6 +26,12 @@ export default function Suggestions() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (destinationData.length > 0) {
+            setRandomDestination(getRandomItems(destinationData, 8));
+        }
+    }, [destinationData]);
+
     const getRandomItems = (arr, numItems) => {
         const shuffled = [...arr]; // Copy the array to avoid modifying the original
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -34,7 +41,7 @@ export default function Suggestions() {
         return shuffled.slice(0, numItems); // Take the first `numItems` items
     };
 
-    const suggestionDestination = getRandomItems(destinationData, 8);
+    // const suggestionDestination = getRandomItems(destinationData, 8);
 
     window.onresize = () => {
         const suggestionWidth = document.querySelector(".suggestionContainer > div").offsetWidth;
@@ -43,7 +50,7 @@ export default function Suggestions() {
     }
     return (
         <div className="suggestionContainer">
-            {suggestionDestination.map((dest) =>
+            {randomDestination.map((dest) =>
                 <Suggestion key={dest.id}
                 imageURL={dest.imageUrl}
                 location={dest.city.split(",")[0]}
