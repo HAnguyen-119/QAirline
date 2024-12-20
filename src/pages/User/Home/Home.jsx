@@ -11,9 +11,11 @@ import HorizontalRule from "../../../components/HorizontalRule.jsx";
 import H1Text from "../../../components/H1Text.jsx";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
+import {next, prev} from "../../../utils/SuggestionNav.js";
 
 export default function Home() {
     const [postData, setPostData] = useState([]);
+    const [newsIndex, setNewsIndex] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,7 +36,15 @@ export default function Home() {
         fetchData();
     }, []);
 
-    const newsFilter = postData.filter(post => post.type === 'news').slice(0, 3);
+    const nextNews = () => {
+        setNewsIndex((newsIndex + 1) % 3);
+    }
+
+    const prevNews = () => {
+        setNewsIndex((newsIndex + 2) % 3);
+    }
+
+    const newsFilter = postData.filter(post => post.type === 'news').slice(newsIndex * 3, newsIndex + 3);
     const discountFilter = postData.filter(post => post.type.toLowerCase() === 'discount').slice(0, 4);
     console.log(newsFilter)
 
@@ -52,7 +62,7 @@ export default function Home() {
                 <Suggestions/>
             </div>
             <br/>
-            <ButtonSlider/>
+            <ButtonSlider nextHandle={next} prevHandle={prev}/>
             <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">Explore more</NavLink>
             <HorizontalRule/>
 
@@ -65,7 +75,7 @@ export default function Home() {
             {/*News section*/}
             <H1Text content={"News"}/>
             <NewsContainer newsData={newsFilter}/>
-            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">Read more</NavLink>
+            <ButtonSlider nextHandle={nextNews} prevHandle={prevNews}/>
             <HorizontalRule/>
 
             {/*Subscribe section*/}

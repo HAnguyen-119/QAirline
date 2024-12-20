@@ -8,7 +8,12 @@ export default function NewsContainer({newsData}) {
     return (
         <div className={`newsContainer${isLightMode ? "" : " dark"}`}>
             {newsData.map(news =>
-                <News key={news.id} date={news.postedTime.substring(0, 10)} content={news.title} contentImage={news.imageUrl} isLightMode={isLightMode} />
+                <News key={news.id}
+                      date={news.postedTime.substring(0, 10)}
+                      title={news.title}
+                      content={news.content}
+                      contentImage={news.imageUrl}
+                      isLightMode={isLightMode} />
             )}
             {/*<News date={newsContents[0][0]} content={newsContents[0][1]} contentImage={newsContents[0][2]} isLightMode={isLightMode}/>*/}
             {/*<News date={newsContents[1][0]} content={newsContents[1][1]} contentImage={newsContents[1][2]} isLightMode={isLightMode}/>*/}

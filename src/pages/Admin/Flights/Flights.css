@@ -275,4 +275,18 @@
     .flights .filters > div {
         width: 100%;
     }
+
+    .add-flight-form {
+        width: 80%;
+        height: 95%;
+    }
+
+    .add-flight-form .input-fields {
+        font-size: 0.8rem;
+        grid-template-columns: 1fr;
+    }
+
+    .add-flight-form .input-fields > input, .add-flight-form .input-fields select {
+
+    }
 }

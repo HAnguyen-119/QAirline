@@ -139,7 +139,7 @@
 .add-post-form {
     position: absolute;
     width: 350px;
-    height: 460px;
+    height: 450px;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -165,6 +165,11 @@
     gap: 0.5rem;
     width: 90%;
     margin-bottom: 2rem;
+}
+
+.add-post-form select {
+    margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
 .add-post-form > div > input {

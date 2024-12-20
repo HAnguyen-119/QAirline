@@ -7,12 +7,9 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: scale 0.1s ease;
 }
 
 .prev:hover, .next:hover {
-    border-bottom: 2px solid var(--dark);
-}
-
-.prev.dark:hover, .next.dark:hover {
-    border-bottom: 2px solid var(--light);
+    scale: 1.2;
 }
