@@ -21,6 +21,10 @@
     padding: 20px;
 }
 
+.dark .suggestions-airport-container {
+    background-color: var(--dark);
+}
+
 .region-container {
     display: flex;
     flex-direction: column;
@@ -42,6 +46,10 @@
 .region-item:hover {
     cursor: pointer;
     background-color: var(--booking-light);
+}
+
+.dark .region-item:hover {
+    background-color: var(--booking-dark);
 }
 
 .suggestions-airport {
