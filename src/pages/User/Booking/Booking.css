@@ -107,7 +107,7 @@ form>.info > .return-date {
 
 .form-button {
     width: 100%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     color: #ffffff;
     border: none;
     padding: 20px 0;

@@ -51,7 +51,6 @@ export default function BookingDetails() {
         }
         const random = Math.floor(100000 + Math.random() * 900000).toString();
         setRandomOTP(random);
-        console.log(random)
         sendOTP(state.lastName, random, email)
         setSuccessMessage('Email sent successfully!');
         setTimeout(() => setSuccessMessage(''), 3000);

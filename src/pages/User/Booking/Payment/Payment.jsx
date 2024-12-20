@@ -42,7 +42,7 @@ export default function Payment() {
         <div className='payment'>
             <h1>Payment</h1>
             <div className='payment-container'>
-                <p>Your booking code is: {state.code}</p>
+                <p>Your booking code is: {booking.code}</p>
                 <p>Would you like to pay online or check your payment later?</p>
                 {payOnline && (
                     <img src='https://raw.githubusercontent.com/Raphael9143/PermanentImage/refs/heads/main/QAirline%20Payment.png' alt="QR Code"/>

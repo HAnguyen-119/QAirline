@@ -39,7 +39,7 @@
     background-color: var(--booking-light);
 }
 
-.region-container:hover {
+.region-item:hover {
     cursor: pointer;
     background-color: var(--booking-light);
 }
@@ -53,8 +53,4 @@
     padding: 10px;
     cursor: pointer;
     border-bottom: 1px solid;
-}
-
-.suggestions-airport:hover {
-    background-color: var(--booking-light);
 }

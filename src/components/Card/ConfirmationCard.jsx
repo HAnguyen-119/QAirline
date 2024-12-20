@@ -7,12 +7,14 @@ import { useOutletContext } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 import './ConfirmationCard.css';
+import {useState} from "react";
 
 export default function ConfirmationCard({ flight, passengerNumber, seatType, handle, type, hasButton }) {
     const departureDate = flight?.departureTime?.split('T')[0];
     const arrivalDate = flight?.arrivalTime?.split('T')[0];
 
     const isLightMode = useOutletContext();
+
 
     const handleCapture = async () => {
         let element;
@@ -61,7 +63,7 @@ export default function ConfirmationCard({ flight, passengerNumber, seatType, ha
                             <DivContainer parentClass={'title passenger-title'}>
                                 <p>Passenger</p>
                             </DivContainer>
-                            <DivContainer parentClass={'passenger-info'}>
+                            <DivContainer parentClass={'passenger-number-info'}>
                                 <p>{passengerNumber}</p>
                             </DivContainer>
                         </DivContainer>
@@ -146,6 +148,7 @@ export default function ConfirmationCard({ flight, passengerNumber, seatType, ha
                 {hasButton && <button className='button' onClick={handle}>Change Flight</button>}
                 <button className='button' onClick={handleCapture}>Download</button>
             </DivContainer>
+
         </>
     )
 }

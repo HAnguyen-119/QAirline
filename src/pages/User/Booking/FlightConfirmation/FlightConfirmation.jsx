@@ -86,25 +86,39 @@ export default function FlightConfirmation() {
                     </DivContainer>
                     <DivContainer parentClass={'summary-content'}>
                         <DivContainer parentClass={'summary-item'}>
-                            <strong>Departure Flight</strong>
-                            <p>${totalOutbound}</p>
-                            <HorizontalRule/>
-                            <strong>Tax</strong>
-                            <p>${outboundTax}</p>
-                            <HorizontalRule/>
-                            <strong>Discounts</strong>
-                            <p>0</p>
+                            <div className='summary-comp'>
+                                <strong>Departure Flight</strong>
+                                <p>${totalOutbound}</p>
+                                <HorizontalRule/>
+                            </div>
+                            <div className='summary-comp'>
+                                <strong>Tax</strong>
+                                <p>${outboundTax}</p>
+                                <HorizontalRule/>
+                            </div>
+                            <div className='summary-comp'>
+                                <strong>Discounts</strong>
+                                <p>0</p>
+                                <HorizontalRule/>
+                            </div>
                         </DivContainer>
                         {tripType === 'round-trip' && (
                             <DivContainer parentClass={'summary-item'}>
-                                <strong>Return Flight</strong>
-                                <p>${totalReturn}</p>
-                                <HorizontalRule/>
-                                <strong>Tax</strong>
-                                <p>${returnTax}</p>
-                                <HorizontalRule/>
-                                <strong>Discounts</strong>
-                                <p>0</p>
+                                <div className='summary-comp'>
+                                    <strong>Return Flight</strong>
+                                    <p>${totalReturn}</p>
+                                    <HorizontalRule/>
+                                </div>
+                                <div className='summary-comp'>
+                                    <strong>Tax</strong>
+                                    <p>${returnTax}</p>
+                                    <HorizontalRule/>
+                                </div>
+                                <div className='summary-comp'>
+                                    <strong>Discounts</strong>
+                                    <p>0</p>
+                                    <HorizontalRule/>
+                                </div>
                             </DivContainer>
                         )}
                         <DivContainer parentClass={'flight-total'}>

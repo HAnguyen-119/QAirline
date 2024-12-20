@@ -16,6 +16,8 @@ export default function Days({ days, activeDate, setActiveDate }) {
                 setDaysToShow(3);
             } else if (window.innerWidth <= 1024) {
                 setDaysToShow(4);
+            } else if (window.innerWidth <= 1200) {
+                setDaysToShow(5)
             } else if (window.innerWidth <= 1400) {
                 setDaysToShow(6);
             } else {
@@ -46,17 +48,19 @@ export default function Days({ days, activeDate, setActiveDate }) {
     return (
         <div className='calendar'>
             <button onClick={handlePrev} disabled={startIndex === 0}><Icon iconName={faCaretLeft} /></button>
-            {displayedDays.map((day, index) => (
-                <Date
-                    key={index}
-                    thingDay={day[0]}
-                    day={day[1]}
-                    month={numberToMonth(day[2])}
-                    cost='100USD'
-                    isActive={index + startIndex === activeDate}
-                    onClick={() => setActiveDate(index + startIndex)}
-                />
-            ))}
+            <div className='display-date'>
+                {displayedDays.map((day, index) => (
+                    <Date
+                        key={index}
+                        thingDay={day[0]}
+                        day={day[1]}
+                        month={numberToMonth(day[2])}
+                        cost='100USD'
+                        isActive={index + startIndex === activeDate}
+                        onClick={() => setActiveDate(index + startIndex)}
+                    />
+                ))}
+            </div>
             <button onClick={handleNext} disabled={startIndex + daysToShow >= days.length}><Icon iconName={faCaretRight} /></button>
         </div>
     );

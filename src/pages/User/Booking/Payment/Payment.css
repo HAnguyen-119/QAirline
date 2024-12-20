@@ -21,6 +21,9 @@
     border: 2px solid;
     width: 50%;
     background-color: var(--booking-light);
+    p {
+        text-align: center;
+    }
 }
 
 .dark .payment-container {
@@ -28,5 +31,5 @@
 }
 
 .payment-container>img {
-    width: 480px;
+    width: 80%;
 }

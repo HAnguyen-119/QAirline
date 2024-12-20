@@ -87,3 +87,15 @@
     color: red;
     margin-top: 5px;
 }
+
+@media (max-width: 1024px) {
+    .booking-details-form {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-details-form {
+        width: 100%;
+    }
+}

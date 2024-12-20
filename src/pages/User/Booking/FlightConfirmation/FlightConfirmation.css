@@ -74,7 +74,7 @@
     }
 }
 
-.dark span>* {
+.dark .total-price>* {
     color: var(--light)
 }
 
@@ -122,5 +122,51 @@
     width: 40%;
     >* {
         margin: 0 5rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    .boarding-pass {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cart-content {
+        width: 88%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-summary p {
+        font-size: 0.9rem;
+    }
+    .summary-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .summary-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        >* {
+            flex: 1;
+        }
+    }
+    .cart-content {
+        width: 95%;
+
+    }
+
+    .cart-content p {
+        font-size: 0.9rem
+    }
+}
+
+@media (max-width: 600px) {
+    .card-container {
+        width: 98%;
     }
 }
