@@ -8,6 +8,9 @@ export default function Payment() {
     const location = useLocation()
     const state = location.state
 
+    const booking = state.booking;
+
+
     const [payOnline, setPayOnline] = useState(false);
 
     useEffect(() => {
@@ -32,8 +35,8 @@ export default function Payment() {
         const subject = 'THANK YOU!';
         const title = 'Payment';
         const text = `Your booking code is: ${state.code}. Please show your ticket to the staff before enter the area. Wish you and your family have a great trip!`;
-        sendEmailWithText({email: "dodinhdung2004@gmail.com", name: "dung", subject: subject, title: title, text: text})
-        // navigate('/booking');
+        sendEmailWithText({email: booking.email, name: booking.passengers[0].lastname, subject: subject, title: title, text: text})
+        navigate('/booking');
     }
     return (
         <div className='payment'>

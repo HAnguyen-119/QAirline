@@ -1,6 +1,8 @@
 import DivContainer from "../../DivContainer.jsx";
 import ConfirmationCard from "../../Card/ConfirmationCard.jsx";
 
+import './BoardingPass.css';
+
 export default function BoardingPass({ tripType, outboundFlight, returnFlight, passengerNumber, outboundSeatType, returnSeatType, handleOutbound, handleReturn, hasButton }) {
     return (
         <DivContainer parentClass={'boarding-pass'}>

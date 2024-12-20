@@ -20,6 +20,11 @@
     gap: 10px;
     border: 2px solid;
     width: 50%;
+    background-color: var(--booking-light);
+}
+
+.dark .payment-container {
+    background-color: var(--booking-dark);
 }
 
 .payment-container>img {

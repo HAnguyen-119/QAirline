@@ -38,6 +38,11 @@
 
 .cart-summary {
     flex: 1;
+    background-color: var(--booking-light);
+}
+
+.dark .cart-summary {
+    background-color: var(--booking-dark);
 }
 
 
@@ -114,6 +119,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40%;
     >* {
         margin: 0 5rem;
     }

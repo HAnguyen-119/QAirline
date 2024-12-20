@@ -132,7 +132,33 @@ form>.info > .return-date {
     }
 }
 
+.return-date-choice {
+    width: 100%;
+    margin-left: 0;
+}
+
 span.trip-arrow {
     padding-top: 18px;
     color: var(--primary);
+}
+
+@media (max-width: 1024px) {
+    form>.info {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .itinerary .type {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .choice-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+
 }

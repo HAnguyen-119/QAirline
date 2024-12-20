@@ -23,7 +23,13 @@
 }
 
 .booking-details {
+    border: 2px solid;
+    padding: 20px;
+    background-color: var(--booking-light);
+}
 
+.dark .booking-details {
+    background-color: var(--booking-dark);
 }
 
 .cancel-form {
@@ -44,6 +50,7 @@
 
 .cancel-buttons {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: 20px;
 }

@@ -15,7 +15,7 @@ export default function Booking() {
             <div className={`booking ${isLightMode ? '' : 'dark'}`}>
                 <BookingNav activeForm={activeForm} setActiveForm={setActiveForm} />
                 {activeForm === 'search-flight' && (
-                    <Itinerary/>
+                    <Itinerary hasTitle={true}/>
                 )}
                 {activeForm === 'search-booking' && (
                     <Search/>

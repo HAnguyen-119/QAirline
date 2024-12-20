@@ -18,7 +18,6 @@ export default function Home() {
             {/*Flight searcher section*/}
             {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
             <FlightSearcher isLightMode={isLightMode}/>
-            <Itinerary/>
             <HorizontalRule/>
 
             {/*Recommendations section*/}

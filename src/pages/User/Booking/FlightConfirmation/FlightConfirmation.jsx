@@ -70,10 +70,6 @@ export default function FlightConfirmation() {
         navigate('/booking/traveler', { state: { outboundFlight, returnFlight, adults, children, infants, outboundSeatType, returnSeatType, total } });
     };
 
-    const handleLogin = () => {
-        navigate('/login');
-    };
-
     const handleGoBack = (num) => {
         navigate(-num);
     }
@@ -122,7 +118,6 @@ export default function FlightConfirmation() {
                     </DivContainer>
                     <DivContainer parentClass={'submit-container'}>
                         <button className='button' onClick={handleContinue}>Continue</button>
-                        <button className='button' onClick={handleLogin}>Login to Continue</button>
                     </DivContainer>
                 </DivContainer>
             </DivContainer>

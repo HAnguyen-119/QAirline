@@ -16,7 +16,7 @@ export default function FeeDetails({ isOpen, onClose }) {
                     <p>Ticket Fee: $2 per passenger!</p>
                     <p>Baggage Fee: $10 for all!</p>
                 </div>
-                <button onClick={onClose}>Close</button>
+                <button className='button' onClick={onClose}>Close</button>
             </div>
         </div>
     );
