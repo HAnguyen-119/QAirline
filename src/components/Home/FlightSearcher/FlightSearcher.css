@@ -44,7 +44,7 @@
 }
 
 .flightSearcherContainer h1 {
-    font-size: 40px;
+    font-size: clamp(20px, 3vw, 40px);
 }
 
 .flightSearcher > div {

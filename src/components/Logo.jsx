@@ -1,11 +1,11 @@
 import AppLogo from '../assets/images/logo.png'
+import {NavLink} from "react-router-dom";
 
 export default function Logo() {
     return (
-        // Add NavLink to Homepage
-        <div className='logo'>
+        <NavLink to="/" className="logo">
             <img src={AppLogo} alt="logo"/>
             <p>AIRLINE</p>
-        </div>
+        </NavLink>
     )
 }

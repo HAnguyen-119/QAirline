@@ -7,7 +7,7 @@ export default function Destination({name, image, description, isLightMode}) {
         <div className={`destination ${isLightMode ? '' : 'dark'}`}>
             <div>
                 <div style={{backgroundImage: `url(${image})`}}></div>
-                <h3>{name}</h3>
+                <h2>{name}</h2>
             </div>
             <div>
                 <div>{name}</div>
