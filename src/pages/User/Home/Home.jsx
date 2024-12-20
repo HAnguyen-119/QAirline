@@ -45,7 +45,7 @@ export default function Home() {
         setNewsIndex((newsIndex + 2) % 3);
     }
 
-    const newsFilter = postData.filter(post => post.type === 'news').slice(newsIndex * 3, newsIndex + 3);
+    const newsFilter = postData.filter(post => post.type === 'news').slice(newsIndex, newsIndex + 3);
     const discountFilter = postData.filter(post => post.type.toLowerCase() === 'discount').slice(0, 4);
     console.log(newsFilter)
 
