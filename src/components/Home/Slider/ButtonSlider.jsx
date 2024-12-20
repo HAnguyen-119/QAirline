@@ -5,7 +5,7 @@ import {faCircleArrowLeft, faCircleArrowRight} from "@fortawesome/free-solid-svg
 
 import ('./ButtonSlider.css')
 
-export default function ButtonSlider() {
+export default function ButtonSlider({nextHandle, prevHandle}) {
     const isLightMode = useOutletContext()
     return (
         <div style={{
@@ -16,15 +16,14 @@ export default function ButtonSlider() {
             gap: "1rem"
         }}>
             <div className={`prev${isLightMode ? "" : " dark"}`} onClick={(e) => {
-                prev();
+                prevHandle();
                 e.target.disabled = true;
                 setTimeout(() => {
                     e.target.disabled = false
                 }, 500)
             }}><FontAwesomeIcon icon={faCircleArrowLeft} size="2x"/></div>
-            <p>o o o o o o o</p>
             <div className={`next${isLightMode ? "" : " dark"}`} onClick={(e) => {
-                next();
+                nextHandle();
                 e.target.disabled = true;
                 setTimeout(() => {
                     e.target.disabled = false

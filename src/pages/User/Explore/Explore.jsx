@@ -12,6 +12,7 @@ export default function Explore() {
     const isLightMode = useOutletContext();
 
     const [region, setRegion] = useState("Asia");
+    const [regionIndex, setRegionIndex] = useState(0);
     const [postData, setPostData] = useState([]);
 
     useEffect(() => {
@@ -33,26 +34,39 @@ export default function Explore() {
         fetchData();
     }, []);
 
+    const regions = ["Asia", "Europe", "Africa", "America", "Oceania"];
+    const handleActive = (index) => {
+        setRegionIndex(index);
+    }
 
     return (
         <div className='explore-container'>
             <div className='explore'>
-                <h1>Explore our destinations !</h1>
-                <div style={{alignSelf: "center"}}>QAirline provides flights to over 50 destinations around the world</div>
+                <h1>Explore our destinations</h1>
+                <div style={{alignSelf: "center", textAlign: "center"}}>QAirline provides flights to over 50 destinations around the world</div>
                 <div className="destination-container">
-                    <div className="regions" style={{alignSelf: "center"}}>
-                        <div>Asia</div>
-                        <div>Europe</div>
-                        <div>America</div>
-                        <div>Africa</div>
-                        <div>Oceania</div>
+                    <div className={`regions ${isLightMode ? "" : "dark"}`}>
+                        {regions.map((region, index) => (
+                            <div key={index}
+                                 onClick={() => 
+                                 {handleActive(index); setRegion(region)}}
+                                 style={{backgroundColor: regionIndex === index ?
+                                         isLightMode ? "var(--dark)" : "var(--light)" :
+                                         isLightMode ? "var(--light)" : "var(--dark)",
+                                         color: regionIndex === index ?
+                                         isLightMode ? "var(--light)" : "var(--dark)" :
+                                         isLightMode ? "var(--dark)" : "var(--light)" }}>
+                                 {region}
+                            </div>
+                        ))}
                     </div>
                     <div className="destinations">
                         {postData.map((post) =>
                             <Destination key={post.id}
                                          name={post.title}
                                          description={post.content}
-                                         image={post.imageUrl} />
+                                         image={post.imageUrl}
+                                         isLightMode={isLightMode}/>
                         )}
                     </div>
                 </div>

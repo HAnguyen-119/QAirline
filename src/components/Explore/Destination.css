@@ -7,6 +7,10 @@
     transition: flex 0.5s ease;
 }
 
+.destination.dark {
+    border: 2px solid var(--light);
+}
+
 .destination > div:first-child {
     display: flex;
     align-items: center;
@@ -88,6 +92,10 @@
     opacity: 1;
     width: 65%;
     border-left: 2px solid var(--dark);
+}
+
+.destination.dark:hover > div:last-child {
+    border-left: 2px solid var(--light);
 }
 
 

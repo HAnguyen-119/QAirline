@@ -40,7 +40,7 @@ export default function Bookings() {
             && (!returnFlight || booking.returnFlight.flightNumber === returnFlight)
             && (!seatClass || booking.seatClass === seatClass)
             && (!reservationDate || booking.reservationTime.substring(0, 10) === reservationDate)
-            && (!status || booking.status === status)
+            && (!status || booking.bookingStatus === status)
     })
 
     const clearFilters = () => {
@@ -106,8 +106,8 @@ export default function Bookings() {
                     </div>
                     <div>Status <select id="status-filter" className="josefin-sans">
                         <option value="">{""}</option>
-                        <option value="Scheduled">Scheduled</option>
-                        <option value="En route">En route</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="Paid">Paid</option>
                     </select></div>
                 </div>
                 <div>
