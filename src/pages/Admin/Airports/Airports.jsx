@@ -195,7 +195,7 @@ export default function Airports() {
           <div className='form-wrapper'>Region
             <input type="text" id="region-filter" className="josefin-sans" /></div>
           <div className='form-wrapper'>City <input type="text" id="city-filter" className="josefin-sans" /></div>
-          <div className='form-wrapper'>Status
+          <div className='form-wrapper select'>Status
           <select id="status-filter" className="josefin-sans">
             <option value=""></option>
             <option value="Active">Active</option>

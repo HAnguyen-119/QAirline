@@ -199,13 +199,13 @@ export default function Planes() {
                     <div className='form-wrapper'>ID <input type="text" id="id-filter" className="josefin-sans"/></div>
                     <div className='form-wrapper'>Model <input type="text" id="model-filter" className="josefin-sans"/></div>
                     <div className='form-wrapper'>Manufacturer <input type="text" id="manufacturer-filter" className="josefin-sans"/></div>
-                    <div className='form-wrapper'>Capacity <select id="capacity-filter" className="josefin-sans">
+                    <div className='form-wrapper select'>Capacity <select id="capacity-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="< 100">{"< 100"}</option>
                         <option value="100 - 200">{"100 - 200"}</option>
                         <option value="> 200">{"> 200"}</option>
                     </select></div>
-                    <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
+                    <div className='form-wrapper select'>Status <select id="status-filter" className="josefin-sans">
                         <option value=""></option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>

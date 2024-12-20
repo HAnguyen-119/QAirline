@@ -77,14 +77,10 @@
 }
 
 .posts .filters input {
-    margin-bottom: 1rem;
     color: var(--dark);
     width: 95%;
 }
 
-.posts .filters .form-wrapper.select {
-    padding-bottom: 1rem;
-}
 
 .dark .posts .filters .form-wrapper.select {
     padding-bottom: 4px;
@@ -92,7 +88,6 @@
 
 .dark .filters select {
     color: var(--dark);
-    margin-bottom: 10px;
 }
 
 .posts-filter button {

@@ -94,6 +94,10 @@ th {
     width: 95%;
 }
 
+.airports .filters .form-wrapper.select {
+    padding-bottom: 17px;
+}
+
 .filters .form-wrapper input, .filters .form-wrapper select {
     padding-left: 10px;
 }

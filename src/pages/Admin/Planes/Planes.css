@@ -160,6 +160,10 @@ table.dark button:hover {
     color: var(--light);
 }
 
+.planes .filters .form-wrapper.select {
+    padding-bottom: 17px;
+}
+
 .dark .filters input, .dark .filters select {
     background-color: var(--light);
 }
