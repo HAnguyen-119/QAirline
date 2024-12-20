@@ -76,7 +76,7 @@
   transform: translateX(-10px);
 }
 
-.navBar a {
+.navBar a:not(.logo) {
   font-size: clamp(15px, 1.3vw, 20px);
   width: 10%;
   height: 100%;
@@ -88,6 +88,11 @@
   justify-content: center;
   float: left;
   transition: background-color 0.5s ease;
+}
+
+a.logo {
+  text-decoration: none;
+  color: var(--light);
 }
 
 .menu {
@@ -105,11 +110,11 @@
   color: var(--dark);
 }
 
-.navBar a:hover {
+.navBar a:not(.logo):hover {
   color: var(--dark);
 }
 
-.navBar a.active {
+.navBar a:not(.logo).active {
   background-color: var(--primary-active);
   color: var(--dark);
 }
@@ -142,7 +147,7 @@
     height: 30px;
   }
 
-  .navBar a:not(.login):not(.logout) {
+  .navBar a:not(.login):not(.logout):not(.logo) {
     width: 100%;
     font-size: 20px;
   }
