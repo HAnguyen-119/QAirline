@@ -34,7 +34,7 @@ export default function Planes() {
     }, [isRefresh]);
 
     const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get('code');
+    const id = searchParams.get('id');
     const model = searchParams.get('model');
     const manufacturer = searchParams.get("manufacturer");
     const capacity = searchParams.get('capacity');
@@ -63,9 +63,9 @@ export default function Planes() {
     }
 
     const filteredPlanes = planeData.filter((plane) => {
-        return (!code || plane.code === code)
-            && (!model || plane.model === model)
-            && (!manufacturer || plane.manufacturer === manufacturer)
+        return (!id || plane.code === id.toUpperCase())
+            && (!model || plane.model.toLowerCase() === model.toLowerCase())
+            && (!manufacturer || plane.manufacturer.toLowerCase() === manufacturer.toLowerCase())
             && (!status || plane.isActive === (status === "Active"))
             && (checkCapacity(plane.economySeatNumber + plane.businessSeatNumber, capacity));
     })
@@ -91,7 +91,7 @@ export default function Planes() {
         const statusValue = document.getElementById("status-filter").value.trim();
         const capacityValue = document.getElementById("capacity-filter").value.trim();
         let params = new URLSearchParams({
-            'id': idValue,
+            'id': idValue.toUpperCase(),
             'model': modelValue,
             'manufacturer': manufacturerValue,
             'status': statusValue,
@@ -120,7 +120,7 @@ export default function Planes() {
                                 && newManufacturer.length > 0
                                 && newEconomy.length > 0
                                 && newBusiness.length > 0;
-        const newPlaneData = {"code": newId,
+        const newPlaneData = {"code": newId.toUpperCase(),
             "model": newModel,
             "manufacturer": newManufacturer,
             "economySeatNumber": newEconomy,
