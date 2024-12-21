@@ -43,8 +43,8 @@ export default function Posts() {
     const date = searchParams.get("date");
 
     const filteredPost = postData.filter((post) => {
-        return (!type || post.type === type)
-            && (!date || post.date === date)
+        return (!type || post.type.toLowerCase() === type.toLowerCase())
+            && (!date || post.postedTime.substring(0, 10) === date)
     })
 
     const clearFilters = () => {

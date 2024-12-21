@@ -240,7 +240,6 @@ export default function Flights() {
                         <option value="Scheduled">Scheduled</option>
                         <option value="In_Air">In_Air</option>
                         <option value="Arrived">Arrived</option>
-                        <option value="Delayed">Delayed</option>
                         <option value="Cancelled">Cancelled</option>
                     </select></div>
                 </div>
@@ -425,9 +424,8 @@ export default function Flights() {
                                             defaultValue={updatingFlight.flightStatus}>
                                         <option value="">{""}</option>
                                         <option value="SCHEDULED">Scheduled</option>
-                                        <option value="IN AIR">In Air</option>
+                                        <option value="IN_AIR">In Air</option>
                                         <option value="ARRIVED">Arrived</option>
-                                        <option value="DELAYED">Delayed</option>
                                         <option value="CANCELLED">Cancelled</option>
                                     </select>}
                             </div>

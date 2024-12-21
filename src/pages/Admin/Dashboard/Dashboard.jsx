@@ -76,8 +76,9 @@ export default function Dashboard() {
                     <div>
                         <div>Total bookings: {bookingData.length}</div>
                         <ul>
-                            <li>One way: {bookingData.filter(booking => booking.isRoundTrip === false).length}</li>
-                            <li>Round trip: {bookingData.filter(booking => booking.isRoundTrip === true).length}</li>
+                            <li>Pending: {bookingData.filter(booking => booking.bookingStatus === "PENDING").length}</li>
+                            <li>Cancelled: {bookingData.filter(booking => booking.bookingStatus === "CANCELLED").length}</li>
+                            <li>Completed: {bookingData.filter(booking => booking.bookingStatus === "COMPLETED").length}</li>
                         </ul>
                     </div>
                 </DashboardItem>

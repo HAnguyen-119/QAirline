@@ -9,7 +9,6 @@ export default function Bookings() {
     const navigate = useNavigate();
 
     const [bookingData, setBookingData] = useState([]);
-    const [isRefresh, setIsRefresh] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,13 +16,12 @@ export default function Bookings() {
                 const bookings = await userAPI.getAllBookings();
                 setBookingData(bookings);
                 console.log(bookings);
-                console.log(isRefresh);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
-    }, [isRefresh]);
+    }, []);
 
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('id');
@@ -107,7 +105,8 @@ export default function Bookings() {
                     <div className='form-wrapper'>Status <select id="status-filter" className="josefin-sans">
                         <option value="">{""}</option>
                         <option value="PENDING">PENDING</option>
-                        <option value="Paid">Paid</option>
+                        <option value="CANCELLED">CANCELLED</option>
+                        <option value="COMPLETED">COMPLETED</option>
                     </select></div>
                 </div>
                 <div>
