@@ -1,4 +1,3 @@
-import {useState} from "react";
 import DivContainer from "../../DivContainer.jsx";
 import HorizontalRule from "../../HorizontalRule.jsx";
 import ('./Date.css')

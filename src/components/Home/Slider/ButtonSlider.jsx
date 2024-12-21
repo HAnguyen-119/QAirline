@@ -1,4 +1,3 @@
-import {next, prev} from "../../../utils/SuggestionNav.js";
 import {useOutletContext} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleArrowLeft, faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";

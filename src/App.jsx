@@ -10,7 +10,6 @@ import Booking from "./pages/User/Booking/Booking.jsx";
 import About from "./pages/User/About/About.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Login from "./pages/Login/Login.jsx";
-import Signup from "./pages/Signup/Signup.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard.jsx";
@@ -40,7 +39,6 @@ const router = createBrowserRouter(
             <Route path="about" element={<About/>}></Route>
             <Route path="explore" element={<Explore/>} />
             <Route path="login" element={<Login/>} />
-            <Route path='signup' element={<Signup/>} />
             <Route path='booking/payment' element={<Payment/>} />
             <Route path="*" element={<NotFound isAdmin={false}/>} />
             <Route path='booking/details' element={<BookingDetails/>} />

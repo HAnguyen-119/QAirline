@@ -1,19 +1,16 @@
 import Button from "../Button/Button.jsx";
 import DivContainer from "../DivContainer.jsx";
-import React, { useState } from "react";
+import { useState } from "react";
 import Icon from "../Icon/icon.jsx";
 import {faMoneyCheck, faRightLeft, faRightLong} from "@fortawesome/free-solid-svg-icons";
 import {format} from "../../utils/Time.js";
 import {calculateTravelTime} from "../../utils/CalculateTime.js";
 import {faSuitcase} from "@fortawesome/free-solid-svg-icons/faSuitcase";
-import {faCalendarDays} from "@fortawesome/free-solid-svg-icons/faCalendarDays";
 import {faBan} from "@fortawesome/free-solid-svg-icons/faBan";
-import HorizontalRule from "../HorizontalRule.jsx";
 import {faChair} from "@fortawesome/free-solid-svg-icons/faChair";
 import {faBriefcase} from "@fortawesome/free-solid-svg-icons/faBriefcase";
 import {faSuitcaseRolling} from "@fortawesome/free-solid-svg-icons/faSuitcaseRolling";
 import {faCouch} from "@fortawesome/free-solid-svg-icons/faCouch";
-import {faMoneyBill} from "@fortawesome/free-solid-svg-icons/faMoneyBill";
 import {faAsterisk} from "@fortawesome/free-solid-svg-icons/faAsterisk";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 

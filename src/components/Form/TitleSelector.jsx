@@ -1,4 +1,3 @@
-import React from "react";
 import './Form.css';
 
 export default function TitleSelector({ htmlFor, description, id, value, onChange, required }) {

@@ -1,7 +1,5 @@
 import FlightCard from "../../Card/FlightCard.jsx";
 import DivContainer from "../../DivContainer.jsx";
-import EmptyFlight from "../../../assets/images/empty.png";
-import React from "react";
 
 export default function FlightList({isEmpty, flights, tripType, handleBookNow}) {
     return (

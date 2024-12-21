@@ -15,7 +15,8 @@ input[type="date"] {
     padding: 8px 0 8px 0;
 }
 
-.flights  input, .flights select {
+.flights  input,
+.flights select {
     padding-left: 10px;
 }
 
@@ -167,7 +168,8 @@ table tr:nth-child(even) {
     color: var(--dark);
 }
 
-.dark .flights .filters input, .dark .flights .filters select {
+.dark .flights .filters input,
+.dark .flights .filters select {
     background-color: var(--light);
 }
 
@@ -178,7 +180,8 @@ table tr:nth-child(even) {
     color: var(--dark);
 }
 
-.add-flight-window, .delete-flight-window {
+.add-flight-window,
+.delete-flight-window {
     position: fixed;
     top: 0;
     left: 0;
@@ -191,7 +194,8 @@ table tr:nth-child(even) {
     color: var(--dark);
 }
 
-.add-flight-window > div:first-child, .delete-flight-window > div:first-child {
+.add-flight-window > div:first-child,
+.delete-flight-window > div:first-child {
     position: fixed;
     top: 0;
     left: 0;
@@ -211,7 +215,8 @@ table tr:nth-child(even) {
     align-items: center;
 }
 
-.dark .add-flight-form input, .dark .add-flight-form select {
+.dark .add-flight-form input,
+.dark .add-flight-form select {
     background-color: white;
     border-color: var(--dark);
     color: var(--dark);

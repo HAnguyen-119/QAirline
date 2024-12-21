@@ -54,7 +54,8 @@
     min-width: 100px;
 }
 
-.bookings tr:first-child > th:nth-child(8), .bookings tr:first-child > th:nth-child(9) {
+.bookings tr:first-child > th:nth-child(8),
+.bookings tr:first-child > th:nth-child(9) {
     width: 10%;
     min-width: 100px;
 }
@@ -162,7 +163,8 @@ th {
     z-index: 10;
 }
 
-.add-booking-window > div:first-child, .delete-booking-window > div:first-child {
+.add-booking-window > div:first-child,
+.delete-booking-window > div:first-child {
     position: fixed;
     top: 0;
     left: 0;
@@ -215,12 +217,14 @@ th {
     width: 50%;
 }
 
-.add-booking-form input, .add-booking-form select {
+.add-booking-form input,
+.add-booking-form select {
     height: 1.5rem;
     font-size: 1rem;
 }
 
-.add-booking-form > div > input, .add-booking-form > div > div {
+.add-booking-form > div > input,
+.add-booking-form > div > div {
     margin-bottom: 1rem;
 }
 

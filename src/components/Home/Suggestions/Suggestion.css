@@ -4,10 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /*gap: 1rem;*/
     width: 266.66%;
-    /*transition: transform 0.5s ease;*/
-    /*background-color: var(--button-active);*/
     transform: translateX(calc(-1 * (var(--suggestion-width))));
 }
 

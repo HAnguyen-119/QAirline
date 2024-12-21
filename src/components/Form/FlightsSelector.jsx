@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import userAPI from "../../api/userAPI.jsx";
 import DivContainer from "../DivContainer.jsx";
 import './FlightsSelector.css';

@@ -8,7 +8,6 @@ export default function DashboardItem({icon, page, title, isAccount, children}) 
     const [isChanging, setIsChanging] = useState(false);
     const [isViewing, setIsViewing] = useState(false);
     const [currentPassword, setCurrentPassword] = useState(JSON.parse(sessionStorage.getItem("userData")).password);
-    // const [isValid, setIsValid] = useState(false);
 
     const handleChange = () => {
         setIsChanging(true);

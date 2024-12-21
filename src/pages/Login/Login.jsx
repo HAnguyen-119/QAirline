@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import InputElement from "../../components/Form/InputElement.jsx";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import loginBackground from "../../assets/images/authenticationbackground.jpg";
 
 export default function Login() {
   const [email, setEmail] = useState("");

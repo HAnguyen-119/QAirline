@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Date from "./Date.jsx";
 import './Days.css';
 import Icon from "../../Icon/icon.jsx";

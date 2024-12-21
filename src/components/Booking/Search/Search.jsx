@@ -1,9 +1,9 @@
 import InputElement from "../../Form/InputElement.jsx";
 import Button from "../../Button/Button.jsx";
-import React, { useEffect, useState } from "react";
+import {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userAPI from "../../../api/userAPI.jsx";
-import {CodeReformatation, CodeValidation, NameValidation} from "../../../utils/Validation.js";
+import {CodeReformation, CodeValidation, NameValidation} from "../../../utils/Validation.js";
 import {NAME_REGEX} from "../../../data/RegEx.js";
 
 import './Search.css'
@@ -25,12 +25,12 @@ export default function Search() {
 
         const searchBooking = async () => {
             const searchData = {
-                'code': CodeReformatation(code),
+                'code': CodeReformation(code),
                 'lastname': NameValidation(lastName)
             };
             try {
                 const booking = await userAPI.searchBooking(searchData);
-                navigate(`/booking/details?booking-code=${CodeReformatation(code)}`, { state: { booking, lastName } });
+                navigate(`/booking/details?booking-code=${CodeReformation(code)}`, { state: { booking, lastName } });
             } catch (error) {
                 document.getElementById('booking-code').focus();
                 setCodeTooltip({ ...codeTooltip, type: 'error', message: 'Booking not found!' });

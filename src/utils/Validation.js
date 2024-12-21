@@ -1,9 +1,5 @@
 import {EMAIL_REGEX, NAME_REGEX, PHONE_REGEX} from "../data/RegEx.js";
 
-let name = '          a          aksd           adsa '
-let email = 'abc@gmail.com'
-let password = '1234567890 '
-
 export function NameValidation(str) {
     let names = str.split(' ');
     let ret = '';
@@ -57,13 +53,7 @@ export function CodeValidation(code) {
     return CODE_REGEX.test(code);
 }
 
-export function CodeReformatation(code) {
+export function CodeReformation(code) {
     return code.toUpperCase();
 }
 
-console.log(getInfantDay())
-console.log(getChildDay())
-console.log(getAdultDay())
-console.log(PhoneValidation(password))
-
-console.log(EmailValidation(email))

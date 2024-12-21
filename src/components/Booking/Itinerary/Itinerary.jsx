@@ -2,16 +2,12 @@ import DivContainer from "../../DivContainer.jsx";
 import Button from "../../Button/Button.jsx";
 import FlightsSelector from "../../Form/FlightsSelector.jsx";
 import Icon from "../../Icon/icon.jsx";
-import {faRightLeft, faRightLong} from "@fortawesome/free-solid-svg-icons";
 import InputElement from "../../Form/InputElement.jsx";
-import {useEffect, useState} from "react";
-import {useNavigate, useOutletContext} from "react-router-dom";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {faPlaneUp} from "@fortawesome/free-solid-svg-icons/faPlaneUp";
 import {faRotate} from "@fortawesome/free-solid-svg-icons/faRotate";
 import userAPI from "../../../api/userAPI.jsx";
-import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
-import {faBabyCarriage} from "@fortawesome/free-solid-svg-icons/faBabyCarriage";
-import {faChild} from "@fortawesome/free-solid-svg-icons/faChild";
 import Passenger from "../Passenger/Passenger.jsx";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
 

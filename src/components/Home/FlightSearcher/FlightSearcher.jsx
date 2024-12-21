@@ -1,6 +1,5 @@
-import H1Text from "../../H1Text.jsx";
 import Itinerary from "../../Booking/Itinerary/Itinerary.jsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 import ('./FlightSearcher.css')
 

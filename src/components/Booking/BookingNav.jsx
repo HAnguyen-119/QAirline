@@ -1,7 +1,5 @@
-import React from "react";
 import DivContainer from "../DivContainer.jsx";
 import Button from "../Button/Button.jsx";
-import Icon from "../Icon/icon.jsx";
 import {faPlane} from "@fortawesome/free-solid-svg-icons/faPlane";
 import {faTicket} from "@fortawesome/free-solid-svg-icons/faTicket";
 

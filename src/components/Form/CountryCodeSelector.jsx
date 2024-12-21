@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DivContainer from '../DivContainer.jsx';
 import codes from '../../data/CountryCode.js';
 

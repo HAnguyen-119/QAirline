@@ -1,5 +1,4 @@
 import './AboutContent.css'
-import {NavLink} from "react-router-dom";
 
 export default function AboutContent({content, background, description, isLightMode}) {
     return (

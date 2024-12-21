@@ -7,7 +7,6 @@ import { useOutletContext } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 import './ConfirmationCard.css';
-import {useState} from "react";
 
 export default function ConfirmationCard({ flight, passengerNumber, seatType, handle, type, hasButton }) {
     const departureDate = flight?.departureTime?.split('T')[0];

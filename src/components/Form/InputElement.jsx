@@ -1,4 +1,3 @@
-import React from "react";
 import './Form.css';
 
 export default function InputElement({htmlFor, description, type, id, value, name, onChange, onFocus, onBlur, required, checked, minDate, maxDate}) {

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './FilterModal.css';
-import InputElement from "../../../../components/Form/InputElement.jsx";
 
 export default function FilterModal({ isOpen, onClose, onFilters }) {
     const [priceRange, setPriceRange] = useState('all');

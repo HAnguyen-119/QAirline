@@ -3,8 +3,6 @@ import Logo from "./Logo.jsx";
 
 import "./NavBar.css";
 
-import Sun from "../assets/images/sun1.png";
-import Moon from "../assets/images/moon1.png";
 import {
   faBars,
   faCircleUser,

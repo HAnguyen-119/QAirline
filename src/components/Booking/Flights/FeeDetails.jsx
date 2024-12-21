@@ -1,4 +1,3 @@
-import React from 'react';
 import './FeeDetails.css';
 
 export default function FeeDetails({ isOpen, onClose }) {

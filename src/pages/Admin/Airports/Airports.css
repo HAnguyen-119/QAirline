@@ -77,7 +77,6 @@ th {
 .airports-filter {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
 }
 
@@ -98,7 +97,8 @@ th {
     padding-bottom: 17px;
 }
 
-.filters .form-wrapper input, .filters .form-wrapper select {
+.filters .form-wrapper input,
+.filters .form-wrapper select {
     padding-left: 10px;
 }
 
@@ -133,7 +133,8 @@ th {
     margin-bottom: 1rem;
 }
 
-.add-airport-window, .delete-airport-window {
+.add-airport-window,
+.delete-airport-window {
     position: fixed;
     top: 0;
     left: 0;
@@ -146,7 +147,8 @@ th {
     color: var(--dark);
 }
 
-.airports .add-airport-window > div:first-child, .airports .delete-airport-window > div:first-child {
+.airports .add-airport-window > div:first-child,
+.airports .delete-airport-window > div:first-child {
     position: fixed;
     top: 0;
     left: 0;

@@ -1,7 +1,4 @@
-import Suggestions from "../../../components/Home/Suggestions/Suggestions.jsx";
-import ButtonSlider from "../../../components/Home/Slider/ButtonSlider.jsx";
-import {NavLink, useOutletContext} from "react-router-dom";
-import HorizontalRule from "../../../components/HorizontalRule.jsx";
+import {useOutletContext} from "react-router-dom";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 import Destination from "../../../components/Explore/Destination.jsx";

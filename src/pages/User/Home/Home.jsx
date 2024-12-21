@@ -12,7 +12,6 @@ import H1Text from "../../../components/H1Text.jsx";
 import {useEffect, useState} from "react";
 import userAPI from "../../../api/userAPI.jsx";
 import {next, prev} from "../../../utils/SuggestionNav.js";
-import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
 
 export default function Home() {
     const isLightMode = useOutletContext();
@@ -78,9 +77,7 @@ export default function Home() {
     return (
         <div className="home">
             {/*Flight searcher section*/}
-            {/*<H1Text style={{marginTop: "3rem"}} content={"Enjoy the best experience at QAirline"}/>*/}
             <FlightSearcher isLightMode={isLightMode}/>
-            {/*<Itinerary/>*/}
             <HorizontalRule/>
 
             {/*Recommendations section*/}
@@ -96,7 +93,6 @@ export default function Home() {
             {/*Discounts section*/}
             <H1Text content={"Special Discounts"}/>
             <Discounts discountData={discountFilter} />
-            {/*<NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">See more discounts</NavLink>*/}
             <ButtonSlider nextHandle={nextDiscount} prevHandle={prevDiscount}/>
             <HorizontalRule/>
 

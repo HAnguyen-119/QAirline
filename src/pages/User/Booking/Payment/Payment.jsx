@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import './Payment.css';
 import {useLocation, useNavigate} from "react-router-dom";
 import {sendEmailWithText} from "../../../../utils/SendEmail.js";
@@ -40,6 +40,7 @@ export default function Payment() {
                     id: booking.id,
                     bookingStatus: 'COMPLETED'
                 }
+                await userAPI.updateStatus(data);
                 console.log(data)
             } catch (error) {
                 console.log(error)
