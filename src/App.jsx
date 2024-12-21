@@ -57,6 +57,7 @@ const router = createBrowserRouter(
             <Route path="logout" element={<Logout />} />
             <Route path="*" element={<NotFound isAdmin={true}/>} />
         </Route>
+        <Route path="*" element={<NotFound/>} />
     </>
   )
 );
