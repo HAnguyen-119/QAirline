@@ -44,7 +44,12 @@ export default function Home() {
     console.log(discountData.length);
     console.log(newsData.length);
 
+    console.log("discount index: " + discountIndex)
+
     const nextDiscount = () => {
+        if (discountIndex + 1 === discountData.length) {
+            return;
+        }
         setDiscountIndex((discountIndex + 1) % discountData.length);
     }
 

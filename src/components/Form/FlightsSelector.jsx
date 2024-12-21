@@ -65,13 +65,13 @@ export default function FlightsSelector({ htmlFor, description, id, value, onCha
         setQuery(`${suggestion.name} (${suggestion.code})`);
         onChange({ target: { value: suggestion.id } });
         setFilteredSuggestion([]);
+        setIsFocus(false);
     };
 
     const handleBlur = () => {
-        setTimeout(() => { setFilteredSuggestion([]);
+        setFilteredSuggestion([]);
         setSelectedRegion('');
         setIsFocus(false);
-        }, 300);
     };
 
     return (
@@ -100,7 +100,7 @@ export default function FlightsSelector({ htmlFor, description, id, value, onCha
                         {filteredSuggestion.map((airport, index) => (
                             <span
                                 key={index}
-                                onClick={() => handleSuggestionClick(airport)}
+                                onMouseDown={(e) => { e.preventDefault(); handleSuggestionClick(airport); }}
                                 className="suggestion-item"
                             >
                                 {airport.name} ({airport.code})

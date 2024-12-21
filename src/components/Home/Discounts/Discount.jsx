@@ -38,8 +38,3 @@ export default function Discount({content, contentImage, isLightMode, details}) 
         </div>
     )
 }
-
-export const contents = ["Christmas and New Year pack",
-    "Save up to 10% when travel with groups",
-    "20% off for students",
-    "Fly to Viet Nam - 20% off"]
