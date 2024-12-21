@@ -7,6 +7,7 @@ const Logout = () => {
 
   useEffect(() => {
     // Xóa token khỏi sessionStorage
+    sessionStorage.setItem("isLogin", "false");
     sessionStorage.removeItem("token");
 
     // Chuyển hướng người dùng về trang đăng nhập

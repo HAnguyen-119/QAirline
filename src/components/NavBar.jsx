@@ -5,16 +5,20 @@ import "./NavBar.css";
 
 import Sun from "../assets/images/sun1.png";
 import Moon from "../assets/images/moon1.png";
-import {faBars, faCircleUser, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCircleUser,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // eslint-disable-next-line react/prop-types
 export default function NavBar({ isAdmin, switchMode, isLightMode }) {
-    window.onresize = () => {
-        if (window.innerWidth > 768) {
-            document.querySelector(".navBar").style.height = "60px";
-        }
-    };
+  window.onresize = () => {
+    if (window.innerWidth > 768) {
+      document.querySelector(".navBar").style.height = "60px";
+    }
+  };
   if (isAdmin) {
     return (
       <div className="navBar">
@@ -48,9 +52,15 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <NavLink to='/login' className="logout" onClick={() => {
-                    document.querySelector(".navBar").style.height = "60px"
-                }}><FontAwesomeIcon icon={faRightFromBracket}/></NavLink>
+        <NavLink
+          to="/admin/logout"
+          className="logout"
+          onClick={() => {
+            document.querySelector(".navBar").style.height = "60px";
+          }}
+        >
+          <FontAwesomeIcon icon={faRightFromBracket} />
+        </NavLink>
       </div>
     );
   } else
@@ -82,15 +92,27 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <NavLink
-          to="/login"
-          className="login"
-          onClick={() => {
-            document.querySelector(".navBar").style.height = "60px";
-          }}
-        >
-          <FontAwesomeIcon icon={faCircleUser} size="2x" />
-        </NavLink>
+        {sessionStorage.getItem("isLogin") === "true" ? (
+          <NavLink
+            to="/admin"
+            className="login"
+            onClick={() => {
+              document.querySelector(".navBar").style.height = "60px";
+            }}
+          >
+            <FontAwesomeIcon icon={faCircleUser} size="2x" />
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/login"
+            className="login"
+            onClick={() => {
+              document.querySelector(".navBar").style.height = "60px";
+            }}
+          >
+            <FontAwesomeIcon icon={faCircleUser} size="2x" />
+          </NavLink>
+        )}
       </div>
     );
 }

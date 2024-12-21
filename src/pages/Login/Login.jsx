@@ -41,6 +41,7 @@ export default function Login() {
 
       if (response.status === 200) {
         alert("Login succesfully!");
+        sessionStorage.setItem("isLogin", "true");
         sessionStorage.setItem("token", response.data.access_token);
         navigate("/admin");
       }
@@ -60,8 +61,8 @@ export default function Login() {
   return (
     <div className="form">
       <div className="inner">
-        <form className='login' onSubmit={handleSubmit}>
-          <h1 className='login-title' >LOGIN FOR ADMINISTRATORS</h1>
+        <form className="login" onSubmit={handleSubmit}>
+          <h1 className="login-title">LOGIN FOR ADMINISTRATORS</h1>
           <InputElement
             htmlFor="email"
             description="Email"
