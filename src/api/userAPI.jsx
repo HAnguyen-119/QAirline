@@ -111,6 +111,12 @@ const userAPI = {
         const url = "api/v1/auth/authenticate";
         return axiosClient.post(url, userData);
     },
+
+    changePassword: (userData) => {
+        const url = "api/v1/users/change-password";
+        return axiosClient.post(url, userData);
+    },
+
     addBooking: (booking) => {
         const url = "api/v1/bookings";
         return axiosClient.post(url, booking);

@@ -6,10 +6,14 @@
     font-size: large;
 }
 
+.dashboard h1 {
+    font-size: clamp(14px, 4vw, 40px);
+}
+
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 250px;
+    grid-auto-rows: 35vh;
     width: 80%;
     height: 100%;
     gap: 2rem;
@@ -25,6 +29,10 @@
     overflow: hidden;
 }
 
+.dashboard.dark .dashboard-item {
+    border: 2px solid var(--light);
+}
+
 .dashboard-item > div:first-child {
     border-bottom: 2px solid var(--dark);
     display: flex;
@@ -36,9 +44,13 @@
     color: var(--light);
 }
 
+.dashboard.dark .dashboard-item > div:first-child {
+    border-bottom: 2px solid var(--light);
+}
+
 .dashboard-item > div:nth-child(2) {
     flex: 3;
-    padding: 1rem;
+    padding: 0.2rem;
 }
 
 .dashboard-item > div:last-child {
@@ -51,22 +63,51 @@
 .dashboard-item li {
     list-style: disc;
     line-height: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
-.dashboard-item a {
+.dashboard-item a,
+.change-password,
+.dashboard-item .cancel,
+.dashboard-item .confirm {
     text-decoration: none;
     color: var(--light);
     background-color: var(--button-active);
-    width: 40%;
     height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
-.dashboard-item a:hover {
+.dashboard-item a {
+    width: 40%;
+}
+
+.change-password {
+    width: 160px;
+}
+
+.changing-password-bt {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dashboard-item .cancel,
+.dashboard-item .confirm {
+    width: 100px;
+}
+
+.dashboard-item a:hover,
+.change-password:hover,
+.dashboard-item .cancel:hover,
+.dashboard-item .confirm:hover {
     background-color: var(--button-hover);
 }
 
@@ -76,7 +117,7 @@
     }
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
     .dashboard-container {
         grid-template-columns: 1fr;
     }

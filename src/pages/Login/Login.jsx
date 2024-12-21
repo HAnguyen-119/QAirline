@@ -29,6 +29,8 @@ export default function Login() {
       password: password,
     };
 
+    sessionStorage.setItem("userData", JSON.stringify(userData));
+
     console.log(userData);
 
     try {

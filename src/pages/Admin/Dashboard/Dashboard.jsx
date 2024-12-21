@@ -39,15 +39,10 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className='dashboard'>
+        <div className={`dashboard ${isLightMode ? "" : "dark"}`}>
             <h1>WELCOME BACK, ADMIN !</h1>
             <div className="dashboard-container">
-                <DashboardItem icon={faUser} title="ACCOUNT" isAccount={true}>
-                    <div>
-                        <div>Email: </div>
-                        <div>Password: </div>
-                    </div>
-                </DashboardItem>
+                <DashboardItem icon={faUser} title="ACCOUNT" isAccount={true}/>
                 <DashboardItem icon={faPlaneDeparture} title="FLIGHTS" page="flights">
                     <div>
                         <div>Total flights: {flightData.length}</div>
@@ -63,8 +58,8 @@ export default function Dashboard() {
                     <div>
                         <div>Total planes: {planeData.length}</div>
                         <ul>
-                            <li>Active: {planeData.filter(plane => plane.status === "Active").length}</li>
-                            <li>Inactive: {flightData.filter(plane => plane.status === "Inactive").length}</li>
+                            <li>Active: {planeData.filter(plane => plane.isActive === true).length}</li>
+                            <li>Inactive: {flightData.filter(plane => plane.isActive === false).length}</li>
                         </ul>
                     </div>
                 </DashboardItem>
@@ -72,8 +67,8 @@ export default function Dashboard() {
                     <div>
                         <div>Total airports: {airportData.length}</div>
                         <ul>
-                            <li>Active: {airportData.filter(airport => airport.status === "Active").length}</li>
-                            <li>Inactive: {airportData.filter(airport => airport.status === "Inactive").length}</li>
+                            <li>Active: {airportData.filter(airport => airport.isActive === true).length}</li>
+                            <li>Inactive: {airportData.filter(airport => airport.isActive === false).length}</li>
                         </ul>
                     </div>
                 </DashboardItem>
@@ -90,8 +85,8 @@ export default function Dashboard() {
                     <div>
                         <div>Total posts: {postData.length}</div>
                         <ul>
-                            <li>News: {postData.filter(post => post.type === "News").length}</li>
-                            <li>Discount: {postData.filter(post => post.status === "News").length}</li>
+                            <li>News: {postData.filter(post => post.type.toLowerCase() === "news").length}</li>
+                            <li>Discount: {postData.filter(post => post.type.toLowerCase() === "discount").length}</li>
                         </ul>
                     </div>
                 </DashboardItem>
