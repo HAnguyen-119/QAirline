@@ -4,7 +4,7 @@ export default function FieldElement({ htmlFor, description, id, value, onChange
     return (
         <div className='form-wrapper'>
             <label htmlFor={htmlFor}>{description}</label>
-            <textarea id={id} value={value} onChange={onChange}/>
+            <textarea id={id} value={value} onChange={onChange} autoComplete={'off'}/>
         </div>
     )
 }

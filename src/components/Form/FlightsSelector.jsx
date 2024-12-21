@@ -86,6 +86,7 @@ export default function FlightsSelector({ htmlFor, description, id, value, onCha
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 required={true}
+                autoComplete={'off'}
             />
             {isFocus && (
                 <div className="suggestions-airport-container">
