@@ -1,7 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {NavLink} from "react-router-dom";
 
-export default function DashboardItem({icon, page, title, children}) {
+export default function DashboardItem({icon, page, title, isAccount, children}) {
     return (
         <div className="dashboard-item">
             <div>
@@ -9,7 +9,10 @@ export default function DashboardItem({icon, page, title, children}) {
                 <div>{title}</div>
             </div>
             <div>{children}</div>
-            <div><NavLink to={`/admin/${page}`}>Manage</NavLink></div>
+            <div>
+                {isAccount ? <div className="change-password">Change password</div> :
+                <NavLink to={`/admin/${page}`}>Manage</NavLink>}
+            </div>
         </div>
     )
 }

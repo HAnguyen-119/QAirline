@@ -38,6 +38,7 @@
 
 .dashboard-item > div:nth-child(2) {
     flex: 3;
+    padding: 1rem;
 }
 
 .dashboard-item > div:last-child {
@@ -45,6 +46,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dashboard-item li {
+    list-style: disc;
+    line-height: 1.2rem;
 }
 
 .dashboard-item a {
