@@ -122,6 +122,10 @@ const userAPI = {
     deleteBooking: (bookingId) => {
         const url = `api/v1/bookings/${bookingId}`;
         return axiosClient.delete(url, bookingId);
+    },
+    updateStatus: (data) => {
+        const url = `api/v1/bookings/update-status`;
+        return axiosClient.put(url, data);
     }
 }
 

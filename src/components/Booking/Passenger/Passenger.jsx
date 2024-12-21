@@ -40,7 +40,7 @@ export default function Passenger({ passengers, setPassengers }) {
                 <DivContainer parentClass='info adults'>
                     <DivContainer parentClass='number adults'>
                         <span>{passengers.adults}&times;</span>
-                        <Icon name='passenger' iconName={faUser} />
+                        <Icon name='' iconName={faUser} />
                     </DivContainer>
                     <span>From 12 yrs</span>
                 </DivContainer>
@@ -51,7 +51,7 @@ export default function Passenger({ passengers, setPassengers }) {
                 <DivContainer parentClass='info children'>
                     <DivContainer parentClass='number children'>
                         <span>{passengers.children}&times;</span>
-                        <Icon name='passenger' iconName={faChild} />
+                        <Icon name='' iconName={faChild} />
                     </DivContainer>
                     <span>2-11 yrs</span>
                 </DivContainer>
@@ -62,7 +62,7 @@ export default function Passenger({ passengers, setPassengers }) {
                 <DivContainer parentClass='info infants'>
                     <DivContainer parentClass='number infants'>
                         <span>{passengers.infants}&times;</span>
-                        <Icon name='passenger' iconName={faBabyCarriage} />
+                        <Icon name='' iconName={faBabyCarriage} />
                     </DivContainer>
                     <span>Under 2 yrs</span>
                 </DivContainer>
