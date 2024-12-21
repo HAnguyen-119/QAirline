@@ -124,6 +124,9 @@ export default function Posts() {
                 formData.append("post",
                     new Blob([JSON.stringify(newPostData)], { type: "application/json" }));
                 formData.append("imageFile", imgFile);
+                for (const pair of formData.entries()) {
+                    console.log(pair[0], pair[1]);
+                }
                 await userAPI.updatePost(updatingPost.id, formData);
                 setIsUpdating(false);
                 setIsRefresh(!isRefresh);
