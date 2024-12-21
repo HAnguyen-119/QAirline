@@ -12,7 +12,8 @@ export default function Discounts({discountData}) {
                 <Discount key={discount.id}
                           content={discount.title}
                           contentImage={discount.imageUrl}
-                          isLightMode={isLightMode} />
+                          isLightMode={isLightMode}
+                          details={discount.content}/>
             )}
             {/*<Discount content={contents[0]} isLightMode={isLightMode}/>*/}
             {/*<Discount content={contents[1]} isLightMode={isLightMode}/>*/}

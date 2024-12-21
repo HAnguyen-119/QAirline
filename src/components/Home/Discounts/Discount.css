@@ -6,6 +6,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1rem;
 }
 
 .discount {
@@ -14,14 +15,18 @@
     position: relative;
     color: var(--light);
     overflow: hidden;
+}
 
+.discount > div:nth-child(2) > div {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .discount:hover > div:nth-child(1) {
     transform: scale(1.2);
 }
 
-.discount:hover a {
+.discount:hover > div:nth-child(2) > div {
     transform: translateY(-10px);
     opacity: 1;
 }
@@ -60,7 +65,7 @@
     transition: 0.5s ease;
 }
 
-.discount a {
+.discount > div:nth-child(2) > div {
     color: var(--light);
     font-size: 0.9rem;
     margin: 7px;
@@ -70,33 +75,93 @@
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.discount a.active {
-    color: var(--light);
-}
-
 .discount:nth-child(1) {
     grid-area: 1 / 1 / 3 / 3;
 }
-
-/*.discount:nth-child(1) > div:nth-child(1) {*/
-/*    background-image: url("https://gbs.edu.mt/media/gixj1o0a/intro-image.jpg?width=3000&height=2000");*/
-/*}*/
 
 .discount:nth-child(2) {
     grid-area: 1 / 3 / 2 / 5;
 }
 
-/*.discount:nth-child(2) > div:nth-child(1) {*/
-/*    background-image: url("https://people.com/thmb/flx_Cizdjf9MdK6SlnEn7I2zLek=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2)/group-vacation-tout-072523-f3827a4393484e9d8f1fccf202cb63cf.jpg");*/
-/*}*/
+.details-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
 
-/*.discount:nth-child(3) > div:nth-child(1) {*/
-/*    background-image: url("https://tsrmatters.com/wp-content/uploads/2022/11/900x500-students-on-laptop.png");*/
-/*}*/
+.details-container > div:first-child {
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    opacity: 0.5;
+}
 
-/*.discount:nth-child(4) > div:nth-child(1) {*/
-/*    background-image: url("https://media.vneconomy.vn/images/upload/2023/07/01/vietnam-becomes-seventh-most-searched-country-worldwide-494.jpg");*/
-/*}*/
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+    min-width: 350px;
+    height: 75%;
+    background-color: var(--light);
+    border-radius: 15px;
+    color: var(--dark);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.details > div:first-child {
+    width: 80%;
+    height: 50%;
+    background: center no-repeat;
+    background-size: cover;
+    margin-top: 10%;
+}
+
+.details > div:nth-child(2) {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.details > div:nth-child(3) {
+    padding: 1rem;
+}
+
+.details > div:last-child {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.details > div:last-child > div, .details > div:last-child > a {
+    width: 30%;
+    height: 30px;
+    background-color: var(--button-active);
+    border-radius: 10px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.details > div:last-child > div:hover, .details > div:last-child > a:hover {
+    background-color: var(--button-hover);
+}
 
 @media screen and (max-width: 1024px) {
     .discountContainer {
