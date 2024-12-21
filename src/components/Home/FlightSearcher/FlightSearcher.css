@@ -38,7 +38,7 @@
 
 .flightSearcher > div:first-child {
     background-color: var(--light);
-    opacity: 0.9;
+    opacity: 0.7;
     margin-top: 5rem;
 }
 
@@ -60,6 +60,12 @@
 
 .flightSearcher .suggestions-airport-container {
     max-height: 360px;
+}
+
+.flightSearcher.clicked {
+    .itinerary {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 1024px) {
