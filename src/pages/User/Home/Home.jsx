@@ -15,7 +15,9 @@ import {next, prev} from "../../../utils/SuggestionNav.js";
 import Itinerary from "../../../components/Booking/Itinerary/Itinerary.jsx";
 
 export default function Home() {
+    const isLightMode = useOutletContext();
     const [postData, setPostData] = useState([]);
+    const [discountIndex, setDiscountIndex] = useState(0);
     const [newsIndex, setNewsIndex] = useState(0);
 
     useEffect(() => {
@@ -26,7 +28,7 @@ export default function Home() {
                     posts.map(async (post) => {
                         const imageResponse = await userAPI.getPostImageById(post);
                         const imageUrl = URL.createObjectURL(imageResponse);
-                        return { ...post, imageUrl };
+                        return {...post, imageUrl};
                     })
                 );
                 setPostData(postsWithImages);
@@ -37,19 +39,35 @@ export default function Home() {
         fetchData();
     }, []);
 
+    const newsData = postData.filter(post => post.type.toLowerCase() === 'news');
+    const discountData = postData.filter(post => post.type.toLowerCase() === 'discount');
+    console.log(discountData.length);
+    console.log(newsData.length);
+
+    const nextDiscount = () => {
+        setDiscountIndex((discountIndex + 1) % discountData.length);
+    }
+
+    const prevDiscount = () => {
+        setDiscountIndex((discountIndex + discountData.length - 1) % discountData.length);
+    }
+
     const nextNews = () => {
-        setNewsIndex((newsIndex + 1) % 3);
+        setNewsIndex((newsIndex + 1) % newsData.length);
     }
 
     const prevNews = () => {
-        setNewsIndex((newsIndex + 2) % 3);
+        setNewsIndex((newsIndex + newsData.length - 1) % newsData.length);
     }
 
-    const newsFilter = postData.filter(post => post.type === 'news').slice(newsIndex, newsIndex + 3);
-    const discountFilter = postData.filter(post => post.type.toLowerCase() === 'discount').slice(0, 4);
-    console.log(newsFilter)
+    const newsFilter = newsIndex <= newsData.length - 3 ?
+        newsData.slice(newsIndex, newsIndex + 3) :
+        newsData.slice(newsIndex, newsData.length).concat(newsData.slice(0, 3 - (newsData.length - newsIndex)));
 
-    const isLightMode = useOutletContext();
+    const discountFilter = discountIndex <= discountData.length - 4 ?
+        discountData.slice(discountIndex, discountIndex + 4) :
+        discountData.slice(discountIndex, discountData.length).concat(discountData.slice(0, 4 - (discountData.length - discountIndex)));
+
     return (
         <div className="home">
             {/*Flight searcher section*/}
@@ -69,13 +87,14 @@ export default function Home() {
             <HorizontalRule/>
 
             {/*Discounts section*/}
-            <H1Text content={"Discounts"}/>
+            <H1Text content={"Special Discounts"}/>
             <Discounts discountData={discountFilter} />
-            <NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">See more discounts</NavLink>
+            {/*<NavLink className={`more${isLightMode ? "" : " dark"}`} to="/explore">See more discounts</NavLink>*/}
+            <ButtonSlider nextHandle={nextDiscount} prevHandle={prevDiscount}/>
             <HorizontalRule/>
 
             {/*News section*/}
-            <H1Text content={"News"}/>
+            <H1Text content={"Latest News"}/>
             <NewsContainer newsData={newsFilter}/>
             <ButtonSlider nextHandle={nextNews} prevHandle={prevNews}/>
             <HorizontalRule/>
