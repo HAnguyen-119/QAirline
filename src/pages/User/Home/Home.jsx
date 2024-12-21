@@ -65,13 +65,15 @@ export default function Home() {
         setNewsIndex((newsIndex + newsData.length - 1) % newsData.length);
     }
 
-    const newsFilter = newsIndex <= newsData.length - 3 ?
+    const newsFilter = newsData.length > 3 ?
+        (newsIndex <= newsData.length - 3 ?
         newsData.slice(newsIndex, newsIndex + 3) :
-        newsData.slice(newsIndex, newsData.length).concat(newsData.slice(0, 3 - (newsData.length - newsIndex)));
+        newsData.slice(newsIndex, newsData.length).concat(newsData.slice(0, 3 - (newsData.length - newsIndex)))) : newsData;
 
-    const discountFilter = discountIndex <= discountData.length - 4 ?
+    const discountFilter = discountData.length > 4 ?
+        (discountIndex <= discountData.length - 4 ?
         discountData.slice(discountIndex, discountIndex + 4) :
-        discountData.slice(discountIndex, discountData.length).concat(discountData.slice(0, 4 - (discountData.length - discountIndex)));
+        discountData.slice(discountIndex, discountData.length).concat(discountData.slice(0, 4 - (discountData.length - discountIndex)))) : discountData;
 
     return (
         <div className="home">
