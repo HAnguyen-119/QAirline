@@ -42,46 +42,57 @@ export default function Dashboard() {
         <div className='dashboard'>
             <h1>WELCOME BACK, ADMIN !</h1>
             <div className="dashboard-container">
-                <DashboardItem icon={faUser} title="USERS" page="users">
+                <DashboardItem icon={faUser} title="ACCOUNT" isAccount={true}>
                     <div>
-                        Total
+                        <div>Email: </div>
+                        <div>Password: </div>
                     </div>
                 </DashboardItem>
                 <DashboardItem icon={faPlaneDeparture} title="FLIGHTS" page="flights">
                     <div>
                         <div>Total flights: {flightData.length}</div>
-                        <div>Scheduled</div>
-                        <div>In air</div>
-                        <div>Arrived</div>
-                        <div>Cancelled</div>
+                        <ul>
+                            <li>Scheduled: {flightData.filter(flight => flight.flightStatus === "SCHEDULED").length}</li>
+                            <li>In Air: {flightData.filter(flight => flight.flightStatus === "IN_AIR").length}</li>
+                            <li>Arrived: {flightData.filter(flight => flight.flightStatus === "ARRIVED").length}</li>
+                            <li>Cancelled: {flightData.filter(flight => flight.flightStatus === "CANCELLED").length}</li>
+                        </ul>
                     </div>
                 </DashboardItem>
                 <DashboardItem icon={faPlane} title="PLANES" page="planes">
                     <div>
                         <div>Total planes: {planeData.length}</div>
-                        <div>Active</div>
-                        <div>Inactive</div>
+                        <ul>
+                            <li>Active: {planeData.filter(plane => plane.status === "Active").length}</li>
+                            <li>Inactive: {flightData.filter(plane => plane.status === "Inactive").length}</li>
+                        </ul>
                     </div>
                 </DashboardItem>
                 <DashboardItem icon={faMapLocationDot} title="AIRPORTS" page="airports">
                     <div>
                         <div>Total airports: {airportData.length}</div>
-                        <div>Active</div>
-                        <div>Inactive</div>
+                        <ul>
+                            <li>Active: {airportData.filter(airport => airport.status === "Active").length}</li>
+                            <li>Inactive: {airportData.filter(airport => airport.status === "Inactive").length}</li>
+                        </ul>
                     </div>
                 </DashboardItem>
                 <DashboardItem icon={faTicket} title="BOOKINGS" page="bookings">
                     <div>
                         <div>Total bookings: {bookingData.length}</div>
-                        <div>Active</div>
-                        <div>Inactive</div>
+                        <ul>
+                            <li>One way: {bookingData.filter(booking => booking.isRoundTrip === false).length}</li>
+                            <li>Round trip: {bookingData.filter(booking => booking.isRoundTrip === true).length}</li>
+                        </ul>
                     </div>
                 </DashboardItem>
                 <DashboardItem icon={faNewspaper} title="POSTS" page="posts">
                     <div>
                         <div>Total posts: {postData.length}</div>
-                        <div>Active</div>
-                        <div>Inactive</div>
+                        <ul>
+                            <li>News: {postData.filter(post => post.type === "News").length}</li>
+                            <li>Discount: {postData.filter(post => post.status === "News").length}</li>
+                        </ul>
                     </div>
                 </DashboardItem>
             </div>
