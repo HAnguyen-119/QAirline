@@ -26,9 +26,7 @@
 }
 
 .flightSearcher {
-    position: relative;
     width: 80%;
-    height: 100%;
     overflow: hidden;
     justify-content: center;
     align-self: center;
@@ -59,6 +57,10 @@
 }
 
 .flightSearcher .button {
+}
+
+.flightSearcher .suggestions-airport-container {
+    max-height: 200px;
 }
 
 @media (max-width: 1024px) {
