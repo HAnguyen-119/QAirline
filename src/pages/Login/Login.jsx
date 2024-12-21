@@ -5,6 +5,8 @@ import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import loginBackground from "../../assets/images/authenticationbackground.jpg";
+
 export default function Login() {
   const [email, setEmail] = useState("");
 
@@ -38,17 +40,17 @@ export default function Login() {
       console.log(response.data);
 
       if (response.status === 200) {
-        alert("Đăng nhập thành công!");
+        alert("Login succesfully!");
         sessionStorage.setItem("token", response.data.access_token);
         navigate("/admin");
       }
     } catch (error) {
       if (error.response) {
-        setError("Sai tên đăng nhập hoặc mật khẩu.");
+        setError("Wrong username or password, please try again!");
       } else if (error.request) {
-        setError("Không thể kết nối đến máy chủ. Vui lòng thử lại.");
+        setError("Can't send request to server, please retry!");
       } else {
-        setError("Đã có lỗi xảy ra. Vui lòng thử lại.");
+        setError("Some errors occurred, please try again later!");
       }
     } finally {
       setLoading(false);
@@ -58,8 +60,8 @@ export default function Login() {
   return (
     <div className="form">
       <div className="inner">
-        <form onSubmit={handleSubmit}>
-          <h1>LOGIN</h1>
+        <form className='login' onSubmit={handleSubmit}>
+          <h1 className='login-title' >LOGIN FOR ADMINISTRATORS</h1>
           <InputElement
             htmlFor="email"
             description="Email"
@@ -80,11 +82,6 @@ export default function Login() {
           <button className="button" type="submit" disabled={loading}>
             Login
           </button>
-
-          <div className="switch">
-            <p>Don't have an account?</p>
-            <NavLink to="/signup">Sign up</NavLink>
-          </div>
         </form>
       </div>
     </div>

@@ -34,8 +34,8 @@ export default function Payment() {
     const handleCheckLater = () => {
         const subject = 'THANK YOU!';
         const title = 'Payment';
-        const text = `Your booking code is: ${state.code}. Please show your ticket to the staff before enter the area. Wish you and your family have a great trip!`;
-        sendEmailWithText({email: booking.email, name: booking.passengers[0].lastname, subject: subject, title: title, text: text})
+        const text = `Your booking code is: ${booking.code}. Please show your ticket to the staff before enter the area. You can get the ticket in the outer lobby on the left hand side near the GE2 building door. Please show your identify card or passport to get the ticket. Wish you and your family have a great trip!`;
+        sendEmailWithText(booking.email, booking.passengers[0].lastname, subject, title, text)
         navigate('/booking');
     }
     return (

@@ -6,6 +6,7 @@
     gap : 3rem;
     background-color: var(--light);
     color: var(--dark);
+    min-height: 100%;
 }
 
 .mainPage.dark {

@@ -2,3 +2,36 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+
+.inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.inner>.login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 2px solid;
+    background: var(--booking-light);
+    box-shadow: 0.8rem 0.8rem 0 0 #ffbd3e;
+}
+
+.dark .inner>.login {
+    background: var(--booking-dark);
+}
+
+@media (max-width: 768px) {
+    .form .login h1 {
+        font-size: 1.3rem;
+    }
+
+    .form .login label, .form .login input {
+        font-size: 1rem
+    }
+}

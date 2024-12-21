@@ -31,15 +31,6 @@ export function sendCancelNotification(email, name, code) {
 }
 
 export function sendEmailWithText(email, name, subject, title, text) {
-    console.log(email)
-    const templateParams = {
-        to_email: email,
-        username: name,
-        subject: subject,
-        title: title,
-        text: text,
-    };
-
     emailjs.send("c2VydmljZV9zb3dpejM5","czlheWh4ZA==",{
         title: title,
         username: name,

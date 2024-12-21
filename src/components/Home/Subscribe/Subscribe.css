@@ -3,7 +3,6 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    height: 250px;
     border-radius: 20px;
     overflow: hidden;
     display: flex;
@@ -13,6 +12,7 @@
     background-image: url('https://izitour.com/media/imglib/nha-trang-tru-beach-1.webp');
     background-size: cover;
     background-position: center;
+    padding: 2rem 0;
 }
 
 .subscribeContainer.dark {
@@ -27,7 +27,6 @@
 
 .subscribe {
     width: 50%;
-    height: 70%;
     margin-right: 10%;
     border: none;
     border-radius: 10px;
@@ -37,6 +36,12 @@
     justify-content: center;
     flex-direction: column;
     margin-left: 30px;
+    padding: 1rem 0;
+    opacity: 0.8;
+}
+
+.form-wrapper.subscribe>input {
+    width: 50%;
 }
 
 .subscribe.dark {
@@ -53,12 +58,15 @@
 
     .subscribe {
         width: 60%;
-        height: 50%;
         margin: 0;
     }
 
     .subscribeContainer > h1 {
         margin: 0;
         width: 100%;
+    }
+
+    .form-wrapper.subscribe>input {
+        width: 70%;
     }
 }

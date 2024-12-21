@@ -117,3 +117,7 @@
 .passenger-info, .contact-info {
     width: 80%;
 }
+
+.dark .passenger-info {
+    background-color: var(--booking-dark);
+}

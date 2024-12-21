@@ -96,11 +96,6 @@ export default function FlightConfirmation() {
                                 <p>${outboundTax}</p>
                                 <HorizontalRule/>
                             </div>
-                            <div className='summary-comp'>
-                                <strong>Discounts</strong>
-                                <p>0</p>
-                                <HorizontalRule/>
-                            </div>
                         </DivContainer>
                         {tripType === 'round-trip' && (
                             <DivContainer parentClass={'summary-item'}>
@@ -112,11 +107,6 @@ export default function FlightConfirmation() {
                                 <div className='summary-comp'>
                                     <strong>Tax</strong>
                                     <p>${returnTax}</p>
-                                    <HorizontalRule/>
-                                </div>
-                                <div className='summary-comp'>
-                                    <strong>Discounts</strong>
-                                    <p>0</p>
                                     <HorizontalRule/>
                                 </div>
                             </DivContainer>

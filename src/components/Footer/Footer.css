@@ -64,3 +64,13 @@ footer a {
 .award-img > img {
     width: 20%;
 }
+
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .phone-links {
+        text-align: end;
+    }
+}

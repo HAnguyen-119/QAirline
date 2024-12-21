@@ -6,13 +6,6 @@
     background-repeat: no-repeat;
 }
 
-.form>.inner {
-    width: 66%;
-    margin: auto;
-    background: url('../../assets/images/authenticationbackground.jpg') no-repeat;
-    background-size: cover;
-}
-
 .form form {
     width: 40%;
     padding: 60px;
