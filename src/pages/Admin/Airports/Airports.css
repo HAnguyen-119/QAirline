@@ -200,6 +200,12 @@ th {
     color: var(--dark);
 }
 
+.places-regions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .airports {
         flex-direction: column;

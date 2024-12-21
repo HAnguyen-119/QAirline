@@ -294,26 +294,33 @@ export default function Airports() {
                   required={true}
                   defaultValue={isUpdating ? updatingAirport.name : ""}
               />
-              <span>
+              <div className='places-regions'>
+                <div className='form-wrapper'>
+                                <span>
                 Region <span style={{color: "red"}}>* </span>
               </span>
-              <input
-                  type="text"
-                  id="region-new"
-                  className="josefin-sans"
-                  required={true}
-                  defaultValue={isUpdating ? updatingAirport.region : ""}
-              />
-              <span>
+                  <input
+                      type="text"
+                      id="region-new"
+                      className="josefin-sans"
+                      required={true}
+                      defaultValue={isUpdating ? updatingAirport.region : ""}
+                  />
+                </div>
+<div className='form-wrapper'>
+                <span>
                 City <span style={{color: "red"}}>* </span>
               </span>
-              <input
-                  type="text"
-                  id="city-new"
-                  className="josefin-sans"
-                  required={true}
-                  defaultValue={isUpdating ? updatingAirport.city : ""}
-              />
+                <input
+                    type="text"
+                    id="city-new"
+                    className="josefin-sans"
+                    required={true}
+                    defaultValue={isUpdating ? updatingAirport.city : ""}
+                />
+</div>
+              </div>
+
               <span>
                 Description <span style={{color: "red"}}>* </span>
               </span>
