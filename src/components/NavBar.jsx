@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// eslint-disable-next-line react/prop-types
 export default function NavBar({ isAdmin, switchMode, isLightMode }) {
   window.onresize = () => {
     if (window.innerWidth > 768) {
@@ -33,10 +32,10 @@ export default function NavBar({ isAdmin, switchMode, isLightMode }) {
         <NavLink to="/admin/posts">Posts</NavLink>
         <div className="switchMode" onClick={switchMode}>
           <div className={`sun ${isLightMode ? "" : " dark"}`}>
-            <img src="../src/assets/images/sun1.png" />
+            <img src={Sun} />
           </div>
           <div className={`moon ${isLightMode ? "" : " dark"}`}>
-            <img src="../src/assets/images/moon1.png" />
+            <img src={Moon} />
           </div>
         </div>
         <div
