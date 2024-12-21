@@ -102,17 +102,23 @@ export default function Airports() {
     const newName = document.getElementById("name-new").value.trim();
     const newRegion = document.getElementById("region-new").value.trim();
     const newCity = document.getElementById("city-new").value.trim();
+    const newDescription = document.getElementById("description-new").value.trim();
+    const newImageURL = document.getElementById("imageURL-new").value.trim();
     const newStatus = document.getElementById("status-new").value.trim();
     const isValid =
       newId.length > 0 &&
       newName.length > 0 &&
       newRegion.length > 0 &&
-      newCity.length > 0;
+      newCity.length > 0 &&
+      newDescription.length > 0 &&
+      newImageURL.length > 0;
     const newAirportData = {
       code: newId.toUpperCase(),
       name: newName,
       region: newRegion,
       city: newCity,
+      description: newDescription,
+      imageUrl: newImageURL,
       isActive: newStatus === "Active",
     };
     try {
@@ -138,17 +144,23 @@ export default function Airports() {
     const newName = document.getElementById("name-new").value.trim();
     const newRegion = document.getElementById("region-new").value.trim();
     const newCity = document.getElementById("city-new").value.trim();
+    const newDescription = document.getElementById("description-new").value.trim();
+    const newImageURL = document.getElementById("imageURL-new").value.trim();
     const newStatus = document.getElementById("status-new").value.trim();
     const isValid =
       newId.length > 0 &&
       newName.length > 0 &&
       newRegion.length > 0 &&
-      newCity.length > 0;
+      newCity.length > 0 &&
+      newDescription.length > 0 &&
+      newImageURL.length > 0;
     const newAirportData = {
       code: newId.toUpperCase(),
       name: newName,
       region: newRegion,
       city: newCity,
+      description: newDescription,
+      imageUrl: newImageURL,
       isActive: newStatus === "Active",
     };
     try {
@@ -225,7 +237,7 @@ export default function Airports() {
             <th>Edit</th>
           </tr>
           {filteredAirports.map((airport, index) => (
-            <tr key={airport.code}>
+            <tr key={airport.id}>
               <td>{index + 1}</td>
               <td>{airport.code}</td>
               <td>{airport.name}</td>
@@ -261,61 +273,81 @@ export default function Airports() {
             <div className="input-fields form-wrapper">
               <span>
                 Airport ID{" "}
-                <span style={{ color: "red" }}>
+                <span style={{color: "red"}}>
                   * {isDuplicatedId ? "ID existed ! Try another ID" : ""}
                 </span>
               </span>
               <input
-                type="text"
-                id="id-new"
-                className="josefin-sans"
-                required={true}
-                defaultValue={isUpdating ? updatingAirport.code : ""}
+                  type="text"
+                  id="id-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.code : ""}
               />
               <span>
-                Name <span style={{ color: "red" }}>* </span>
+                Name <span style={{color: "red"}}>* </span>
               </span>
               <input
-                type="text"
-                id="name-new"
-                className="josefin-sans"
-                required={true}
-                defaultValue={isUpdating ? updatingAirport.name : ""}
+                  type="text"
+                  id="name-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.name : ""}
               />
               <span>
-                Region <span style={{ color: "red" }}>* </span>
+                Region <span style={{color: "red"}}>* </span>
               </span>
               <input
-                type="text"
-                id="region-new"
-                className="josefin-sans"
-                required={true}
-                defaultValue={isUpdating ? updatingAirport.region : ""}
+                  type="text"
+                  id="region-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.region : ""}
               />
               <span>
-                City <span style={{ color: "red" }}>* </span>
+                City <span style={{color: "red"}}>* </span>
               </span>
               <input
-                type="text"
-                id="city-new"
-                className="josefin-sans"
-                required={true}
-                defaultValue={isUpdating ? updatingAirport.city : ""}
+                  type="text"
+                  id="city-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.city : ""}
               />
               <span>
-                Status <span style={{ color: "red" }}>* </span>
+                Description <span style={{color: "red"}}>* </span>
+              </span>
+              <input
+                  type="text"
+                  id="description-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.description : ""}
+              />
+              <span>
+                Image URL <span style={{color: "red"}}>* </span>
+              </span>
+              <input
+                  type="text"
+                  id="imageURL-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={isUpdating ? updatingAirport.imageUrl : ""}
+              />
+              <span>
+                Status <span style={{color: "red"}}>* </span>
               </span>
               <select
-                id="status-new"
-                className="josefin-sans"
-                required={true}
-                defaultValue={
-                  isUpdating
-                    ? updatingAirport.isActive
-                      ? "Active"
-                      : "Inactive"
-                    : "Active"
-                }
+                  id="status-new"
+                  className="josefin-sans"
+                  required={true}
+                  defaultValue={
+                    isUpdating
+                        ? updatingAirport.isActive
+                            ? "Active"
+                            : "Inactive"
+                        : "Active"
+                  }
               >
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
@@ -326,11 +358,11 @@ export default function Airports() {
                 CANCEL
               </button>
               {isAdding ? (
-                <button className="josefin-sans" onClick={handleAdd}>
-                  ADD
-                </button>
+                  <button className="josefin-sans" onClick={handleAdd}>
+                    ADD
+                  </button>
               ) : (
-                <button className="josefin-sans" onClick={handleUpdate}>
+                  <button className="josefin-sans" onClick={handleUpdate}>
                   SAVE
                 </button>
               )}
