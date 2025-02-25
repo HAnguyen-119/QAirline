@@ -1,82 +1,83 @@
 .flightSearcherContainer {
-    width: 100%;
-    height: 95vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-image: url('https://www.flyingmag.com/uploads/2022/06/AdobeStock_249454423-scaled.jpeg?auto=webp&auto=webp&optimize=high&quality=70&width=3840');
-    background-size: cover;
-    background-position: 50% 35%;
-    background-repeat: no-repeat;
+  width: 100%;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("https://www.flyingmag.com/uploads/2022/06/AdobeStock_249454423-scaled.jpeg?auto=webp&auto=webp&optimize=high&quality=70&width=3840");
+  background-size: cover;
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
 }
 
 .flightSearcherContainer h1 {
-    text-align: center;
-    margin-top: 4rem;
+  text-align: center;
+  margin-top: 4rem;
 }
 
 .flightSearcherContainer.dark {
-    background-position: bottom center;
-    background-image: url("https://news.delta.com/sites/default/files/2022-07/767-300_3.jpg");
+  background-position: bottom center;
+  background-image: url("src/assets/images/background_dark.jpg");
 }
 
 .flightSearcher {
-    width: 80%;
-    justify-content: center;
-    align-self: center;
-    margin-bottom: 3rem;
+  width: 80%;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 3rem;
 }
 
 .flightSearcherContainer h1 {
-    font-size: clamp(20px, 3vw, 40px);
+  font-size: clamp(20px, 3vw, 40px);
 }
 
 .flightSearcher > div:first-child {
-    background-color: var(--light);
-    opacity: 0.7;
-    margin-top: 5rem;
+  background-color: var(--light);
+  opacity: 0.7;
+  margin-top: 5rem;
 }
 
 .flightSearcher.dark > div:first-child {
-    background-color: var(--dark);
+  background-color: var(--dark);
 }
 
-.flightSearcher .passenger, .flightSearcher .passenger-container {
-    border: none;
-    padding: 10px;
+.flightSearcher .passenger,
+.flightSearcher .passenger-container {
+  border: none;
+  padding: 10px;
 }
 
-.flightSearcher .info>span {
-    display: none;
+.flightSearcher .info > span {
+  display: none;
 }
 
 .flightSearcher .button {
 }
 
 .flightSearcher .suggestions-airport-container {
-    max-height: 360px;
+  max-height: 360px;
 }
 
 .flightSearcher.clicked {
-    .itinerary {
-        opacity: 1;
-    }
+  .itinerary {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1024px) {
-    .flightSearcher .passenger-container {
-        flex-direction: row;
-        gap: 20px;
-    }
+  .flightSearcher .passenger-container {
+    flex-direction: row;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
-    .flightSearcher .passenger-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .flightSearcher .booking-form {
-        overflow-y: auto;
-        max-height: 60vh;
-    }
+  .flightSearcher .passenger-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .flightSearcher .booking-form {
+    overflow-y: auto;
+    max-height: 60vh;
+  }
 }
